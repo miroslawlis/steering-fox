@@ -1,0 +1,7 @@
+:root {
+    --amber                : #06b38d;
+    --backgroundNav        : #203a27;
+    --backgroundMain       : #1c3a1c;
+    --backgroundMainOpacity: rgba(55, 55, 55, 0.9);
+    --white                : rgb(226, 226, 226);
+  }

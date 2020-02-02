@@ -1,0 +1,662 @@
+@font-face {
+  font-family: "Montserrat";
+  src        : url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+
+* {
+  box-sizing: border-box;
+  margin    : 0;
+  padding   : 0;
+}
+
+body,
+html {
+  height      : 100%;
+  width       : 100%;
+  touch-action: none;
+  font-family : Montserrat;
+  overflow    : hidden;
+  cursor      : none;
+}
+
+h3 {
+  margin-bottom: 3vw;
+}
+
+
+#app,
+main,
+.grid-container {
+  height: 100%;
+  width : 100%;
+}
+
+.grid-container {
+  /* display                : grid;
+    grid-template-columns   : 25% 75%;
+    grid-template-rows      : 1fr;
+    grid-template-areas     : "nav main"; */
+  display                   : block;
+}
+
+#main .youtube,
+#main .map {
+  width : 100%;
+  height: 100%;
+}
+
+
+#main {
+  /* grid-area: main; */
+  color       : white;
+  font-size   : 2vw;
+  display     : inline-block;
+  width       : 90%;
+  height      : 100%;
+}
+
+#nav .element {
+  height     : 20%;
+  min-height : 3vw;
+  padding    : 1.5vw 1vw;
+  text-align : center;
+  color      : #fff;
+  font-size  : 3vw;
+  line-height: 3vw;
+  opacity    : 1;
+  transition : all 0.2s;
+}
+
+#nav {
+  background    : var(--backgroundNav);
+  text-transform: uppercase;
+  display       : block;
+  width         : 10%;
+  height        : 100%;
+  float         : left;
+}
+
+#nav svg {
+  width : 80%;
+  height: 100%;
+}
+
+html {
+  background            : var(--backgroundMain);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing        : 1px;
+}
+
+.hide {
+  display: none !important;
+}
+
+#nav .active {
+  /* background: var(--amber); */
+  transition   : all 0.3s;
+}
+
+#nav .active svg {
+  transition: all 0.3s;
+  /* filter    : drop-shadow(0px 0px 8px var(--white)); */
+  height    : 100%;
+  color     : var(--amber);
+  /* stroke: rgb(255, 255, 255);
+  stroke-width: 14; */
+}
+
+#main .element {
+  background: var(--backgroundMain);
+}
+
+#main .element:not(.active) {
+  display: none;
+  opacity: 0;
+}
+
+#main .element.active {
+  display  : block;
+  width    : 100%;
+  height   : 100%;
+  opacity  : 1;
+  animation: fadeInRight 0.5s;
+}
+
+#main .music.element.active {
+  height: 100%;
+}
+
+#wrapperMtable {
+  overflow  : auto;
+  max-height: 100%;
+  height    : 100%;
+  display   : none;
+}
+
+
+#wrapperMtable::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+#wrapperMtable::-webkit-scrollbar-track {
+  background: #4e4d4d;
+}
+
+/* Handle */
+#wrapperMtable::-webkit-scrollbar-thumb {
+  background: var(--amber);
+}
+
+table.musicTable {
+  width          : 100%;
+  height         : 100%;
+  text-align     : center;
+  border-collapse: collapse;
+  font-size      : 2.6vw;
+  table-layout   : fixed;
+  overflow       : hidden;
+}
+
+table.musicTable td,
+table.musicTable th {
+  border-bottom: 1px solid var(--amber);
+  padding      : 6px 5px;
+}
+
+td.file,
+th.file {
+  width: auto;
+}
+
+td.itemid,
+th.itemid {
+  width: 7vw;
+}
+
+td.length,
+th.length {
+  width: 15vw;
+}
+
+table.musicTable thead th {
+  font-weight   : normal;
+  color         : #FFFFFF;
+  text-align    : center;
+  position      : sticky;
+  top           : 0;
+  background    : var(--amber);
+  border-spacing: 0;
+  word-wrap     : break-word;
+}
+
+table.musicTable tfoot {
+  font-weight: normal;
+}
+
+#threeSongs {
+  display   : block;
+  text-align: center;
+}
+
+#previousSong,
+#currentSong,
+#nextSong {
+  height     : 7vw;
+  line-height: 7vw;
+  overflow   : hidden;
+}
+
+#previousSong {
+  font-size: 2.8vw;
+}
+
+#currentSong {
+  font-size: 3.5vw;
+  color    : var(--amber);
+}
+
+#nextSong {
+  margin-top: 4vw;
+  font-size : 2.8vw;
+}
+
+#music-player {
+  text-align: center;
+  max-height: 200px;
+  position  : relative;
+  height    : 200px;
+}
+
+#music-player .button {
+  display   : inline-block;
+  padding   : 17px;
+  text-align: center;
+  fill      : #fff;
+  color     : #fff;
+  max-width : 20vw;
+}
+
+#music-player .button span {
+  vertical-align: sub;
+}
+
+#volume-music-bar {
+  -webkit-appearance: none;
+  background-color  : transparent;
+  outline           : none;
+  overflow          : hidden;
+  transition        : all 0.2s;
+  height            : 2vw;
+  width             : 8vw;
+  display           : block;
+  position          : absolute;
+  top               : 7vw;
+  left              : 1vw;
+  transform         : rotate(270deg);
+}
+
+#volume-music-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width             : 1.5vw;
+  height            : 3vw;
+  background        : var(--amber);
+  box-shadow        : -8vw 0 0 8vw #fff;
+}
+
+.button svg {
+  height    : 45px;
+  text-align: center;
+  display   : block;
+  margin    : auto;
+}
+
+.playing.button {
+  fill: #7b7bf4;
+}
+
+.grid-wrapper {
+  width : 100%;
+  height: 100%;
+}
+
+.grid-cell {
+  width        : 32%;
+  height       : 26%;
+  text-align   : center;
+  line-height  : 4vw;
+  font-size    : 4vw;
+  margin       : 2.5vw auto 2.5vw auto;
+  float        : left;
+  overflow-wrap: break-word;
+}
+
+.info .grid-cell .description {
+  line-height: initial;
+  display    : block;
+  margin     : 0;
+  padding    : 0;
+  font-size  : 2.2vw;
+}
+
+.info .grid-cell .data {
+  line-height: 6vw;
+  font-size  : 5vw;
+}
+
+.info .grid-cell .data1 {
+  display: inline-block;
+}
+
+.info.element .wrapper-first {
+  display: block;
+  padding: 2vw 0;
+}
+
+.music.element .wrapper-first,
+.settings.element .wrapper-first {
+  display: block;
+  padding: 3vw;
+}
+
+.settings .item {
+  margin   : 0.4vw 0.3vw;
+  font-size: 1.3rem;
+}
+
+.settings .item-2 {
+  display      : flex;
+  align-items  : center;
+  align-content: center;
+}
+
+.item .filepath {
+  font-size: 1.6vw;
+}
+
+.item-1 {
+  width    : 19vw;
+  min-width: 19vw;
+  ;
+}
+
+.row {
+  display      : flex;
+  align-items  : center;
+  align-content: center;
+}
+
+.settings .wrapper.buttons {
+  margin         : 5vw auto;
+  display        : flex;
+  justify-content: space-between;
+}
+
+.active.button path {
+  fill: var(--amber);
+}
+
+.curentlyPlaying {
+  color: var(--amber);
+}
+
+#minimize,
+#closeApp,
+#bluetooth,
+#wifi {
+  height : 70px;
+  width  : 70px;
+  display: inline-block;
+}
+
+#music-folder-path {
+  display: none;
+}
+
+.file-upload.button {
+  margin-right: 1vw;
+  padding     : 1vw;
+  border      : 2px solid var(--white);
+  background  : var(--backgroundnav);
+  color       : #fff;
+}
+
+.settings select {
+  min-width: 20vw;
+}
+
+select {
+  background: var(--backgroundnav);
+  color     : #fff;
+  font-size : inherit;
+  border    : 2px solid var(--white);
+  padding   : 1vw;
+}
+
+select option {
+  background: var(--backgroundNav);
+}
+
+#minimize svg,
+#closeApp svg,
+#bluetooth svg,
+#wifi svg {
+  width  : 50px;
+  height : 70px;
+  margin : auto;
+  display: block;
+  color  : var(--white);
+}
+
+.settings .bluetooth,
+.settings .wifi {
+  position  : absolute;
+  top       : 0;
+  left      : 0;
+  right     : 0;
+  bottom    : 0;
+  width     : 100%;
+  height    : 100%;
+  background: var(--backgroundMain);
+  margin    : auto;
+}
+
+.settings .wrapper {
+  padding: 0 2vw;
+}
+
+.settings .bluetooth .wrapper,
+.settings .wifi .wrapper {
+  text-align: center;
+  display   : block;
+  height    : 100%;
+  width     : 100%;
+  padding   : 3vw 5vw;
+}
+
+.settings .wifi .availableNetworks,
+.settings .wifi .currentNetwork {
+  margin-top: 2vw;
+}
+
+.settings .wifi .availableNetworks .label {
+  margin-bottom: 1vw;
+}
+
+.settings .bluetooth .data,
+.settings .wifi .data {
+  display: block;
+  width  : 100%;
+  height : 75%;
+}
+
+.settings .bluetooth .buttons,
+.settings .wifi .buttons {
+  display        : flex;
+  height         : auto;
+  width          : 60%;
+  margin         : auto;
+  text-align     : center;
+  align-items    : center;
+  align-content  : center;
+  justify-content: space-evenly;
+}
+
+.settings .bluetooth .btn {
+  display    : block;
+  float      : left;
+  color      : var(--white);
+  line-height: 7vw;
+  height     : 7vw;
+  width      : 7vw;
+}
+
+.settings .bluetooth .data .pairedDevices {
+  min-height: 15vw;
+  margin-top: 2vw;
+}
+
+.settings .bluetooth .scanedDevices .devices .device .name,
+.settings .bluetooth .scanedDevices .devices .device .mac,
+.settings .bluetooth .pairedDevices .devices .device .name,
+.settings .bluetooth .pairedDevices .devices .device .mac {
+  display: inline-block;
+}
+
+.settings .bluetooth .scanedDevices .devices .device .mac,
+.settings .bluetooth .pairedDevices .devices .device .mac {
+  margin-left: 1vw;
+}
+
+.settings .bluetooth .scanedDevices .devices .device.selected {
+  color: var(--amber);
+}
+
+.ssid {
+  margin-bottom: 0.5vw;
+}
+
+.ssid.selectedWiFi {
+  color: var(--amber);
+}
+
+#wifiPassword .content {
+  height    : 26vw;
+  width     : 55vw;
+  text-align: center;
+  background: var(--backgroundMain);
+  position  : relative;
+  top       : 4vw;
+  padding   : 4vw;
+}
+
+#wifiPassword input {
+  display   : block;
+  width     : 100%;
+  height    : 4vw;
+  background: var(--backgroundNav);
+  border    : none;
+}
+
+#loader {
+  border          : 22px solid var(--backgroundNav);
+  border-top      : 22px solid var(--amber);
+  border-bottom   : 22px solid var(--amber);
+  border-radius   : 50%;
+  width           : 200px;
+  height          : 200px;
+  animation       : spin 2s linear infinite;
+  margin          : auto;
+  position        : relative;
+  top             : 140px;
+  /* box-shadow   : 0px 0px 3px 3px #bf9f86; */
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+#loader-wrapper {
+  width     : 100%;
+  height    : 100%;
+  opacity   : 1;
+  background: var(--backgroundMain);
+  position  : absolute;
+  z-index   : 1;
+}
+
+.info .curent_time .time {
+  display     : block;
+  margin-right: 10px;
+  padding     : 0;
+  margin      : auto;
+  height      : 6vw;
+  line-height : 6vw;
+  font-size   : 6vw;
+}
+
+.info .curent_time .date {
+  display    : block;
+  padding    : 0;
+  margin     : auto;
+  height     : 6vw;
+  line-height: 6vw;
+  font-size  : 3vw;
+}
+
+#ipslist .ip {
+  display: block;
+}
+
+.grid-cell.weather_forecast {
+  display: none;
+}
+
+.small.text {
+  display    : inline-block;
+  margin-left: 2vw;
+  font-size  : 2vw;
+}
+
+.grid-cell:focus {
+  outline: 4px solid var(--amber);
+}
+
+.background.modal {
+  display           : flex;
+  /* align-items    : center; */
+  justify-content   : center;
+  position          : absolute;
+  top               : 0;
+  left              : 0;
+  height            : 100%;
+  width             : 100%;
+  background        : var(--backgroundMainOpacity);
+  color             : var(--white);
+}
+
+.modal .set,
+.modal .content,
+#wifipasswordModal .modal {
+  height    : 26vw;
+  width     : 60vw;
+  text-align: center;
+  background: var(--backgroundMain);
+  position  : relative;
+  padding   : 4vw 8vw;
+  top       : 10%;
+}
+
+.btn.single {
+  display     : block;
+  float       : left;
+  color       : var(--white);
+  line-height : 7vw;
+  height      : 7vw;
+  width       : 7vw;
+  margin-right: 3vw;
+  margin      : 2vw auto !important;
+  float       : unset !important;
+  text-align  : center;
+}
+
+.btn {
+  display    : block;
+  color      : var(--white);
+  line-height: 7vw;
+  height     : 7vw;
+  width      : 7vw;
+}
+
+input.hour.time,
+input.minutes.time {
+  width     : 10vw;
+  height    : 5vw;
+  background: transparent;
+  background: var(--backgroundNav);
+  border    : none;
+  color     : var(--white);
+}
+
+input.minutes.time {
+  margin-left: 3vw;
+}
+
+.modal .confirm {
+  max-width: 10vw;
+  margin   : auto;
+  color    : var(--white);
+}
+
+.modal .close {
+  position: absolute;
+  top     : 0;
+  right   : 0;
+  margin  : 1vw;
+}

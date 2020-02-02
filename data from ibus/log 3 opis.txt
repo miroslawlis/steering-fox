@@ -1,0 +1,27 @@
+log 3 kolejność
+
+1. klakson
+2. menu koło kierownicy (komputer)
+3. podgrzewanie fotela kierownicy
+4. asystent zjazdu 
+5. DSC
+6. Parking asystent
+
+log 4 kolejność
+
+1. menu koło kierownicy (komputer) 15:00 - 15:01
+2. podgrzewanie fotela kierownicy 15:02:30
+3. asystent zjazdu 15:02:40 - 15:03
+4. Parking asystent 15:03:30 - 15:04
+5. reset spalania 15:04:20 - 15:04:45sec
+
+log 5
+1. zerowanie średnie prędkości 15:06:40
+
+log 6
+
+przełączanie temperatury pomiędzy Farenhit i Celsius
+
+log 7
+
+krutka jazda 

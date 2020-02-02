@@ -1,0 +1,432 @@
+Timestamp|Datagram|Srce|Dest|Command|Parameters
+2019-10-13 10:25:26.323||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:25:28.337||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:25:29.021||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:25:30.337||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:25:30.402||GT   |TEL |Device status request
+2019-10-13 10:25:30.413||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:25:30.873||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:25:32.361||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:25:34.372||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:25:35.729||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:25:35.816||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:25:36.381||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:25:38.398||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:25:40.402||GT   |VID |Device status request
+2019-10-13 10:25:40.410||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:25:40.895||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:25:42.420||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:25:44.020||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:25:44.423||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:25:45.059||IKE  |LOC |Update Text|Layout=Time  Flags=  F0="10:27  "
+2019-10-13 10:25:45.866||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:25:45.959||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:25:46.423||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:25:48.436||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:25:49.105||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 111m;  UTC 08:25:49
+2019-10-13 10:25:49.153||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:25:49.200||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:25:50.426||GT   |BMBT|Device status request
+2019-10-13 10:25:50.474||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:25:50.911||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:25:52.467||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:25:54.481||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:25:56.488||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:25:58.500||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:25:59.071||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:26:00.375||GT   |CID |Device status request
+2019-10-13 10:26:00.513||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:26:00.944||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:26:02.517||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:26:04.541||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:26:06.546||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:26:08.557||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:26:09.255||NAV  |IKE |Time & date|UTC  08:26 27 lutego 2000
+2019-10-13 10:26:10.400||GT   |IKE |Device status request
+2019-10-13 10:26:10.400||IKE  |GT  |Device status ready|
+2019-10-13 10:26:10.554||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:26:10.949||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:26:12.575||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:26:14.015||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:26:14.574||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:26:16.598||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:26:18.611||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:26:19.040||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 112m;  UTC 08:26:19
+2019-10-13 10:26:19.093||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:26:19.155||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:26:20.363||GT   |DSP |Device status request
+2019-10-13 10:26:20.620||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:26:20.954||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:26:22.620||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:26:24.629||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:26:26.649||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:26:28.662||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:26:29.008||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:26:30.348||GT   |TEL |Device status request
+2019-10-13 10:26:30.363||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:26:30.667||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:26:30.982||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:26:32.686||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:26:34.685||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:26:36.706||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:26:38.718||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:26:40.341||GT   |VID |Device status request
+2019-10-13 10:26:40.730||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:26:41.000||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:26:42.769||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:26:44.013||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:26:44.752||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:26:44.964||IKE  |LOC |Update Text|Layout=Time  Flags=  F0="10:28  "
+2019-10-13 10:26:46.760||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:26:48.773||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:26:48.994||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 112m;  UTC 08:26:49
+2019-10-13 10:26:49.054||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:26:49.114||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:26:50.319||GT   |BMBT|Device status request
+2019-10-13 10:26:50.782||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:26:51.020||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:26:52.794||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:26:54.796||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:26:56.816||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:26:58.830||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:26:59.008||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:27:00.325||GT   |CID |Device status request
+2019-10-13 10:27:00.840||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:27:01.040||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:27:02.852||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:27:04.860||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:27:04.912||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:04.982||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:06.872||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:27:07.415||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:07.499||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:08.881||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:27:08.941||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.033||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.126||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.182||NAV  |IKE |Time & date|UTC  08:27 27 lutego 2000
+2019-10-13 10:27:09.242||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.307||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.415||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.491||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.584||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.678||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.768||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.864||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:09.956||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:10.045||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:10.137||MFL  |RAD |Volume Control|Increase 1 step
+2019-10-13 10:27:10.313||GT   |IKE |Device status request
+2019-10-13 10:27:10.329||IKE  |GT  |Device status ready|
+2019-10-13 10:27:10.890||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:27:11.052||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:27:11.845||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:11.937||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.031||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.127||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.215||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.307||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.397||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.491||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.583||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.675||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.769||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.861||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:12.909||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:27:12.961||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:13.045||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:13.137||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:13.223||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:13.320||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:13.413||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:13.506||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:13.586||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:13.690||MFL  |RAD |Volume Control|Decrease 1 step
+2019-10-13 10:27:14.006||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:27:14.915||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:27:16.928||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:27:17.765||MFL  |RAD |Radio/Telephone control|Search_Up_pressed
+2019-10-13 10:27:17.970||MFL  |RAD |Radio/Telephone control|Search_Up_released
+2019-10-13 10:27:18.944||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 112m;  UTC 08:27:19
+2019-10-13 10:27:19.000||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:27:19.056||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:27:19.072||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:27:20.198||MFL  |RAD |Radio/Telephone control|Search_Down_pressed
+2019-10-13 10:27:20.300||GT   |DSP |Device status request
+2019-10-13 10:27:20.377||MFL  |RAD |Radio/Telephone control|Search_Down_released
+2019-10-13 10:27:20.969||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:27:21.075||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:27:22.832||MFL  |LOC |Radio/Telephone control|Mode_Toggle_pressed
+2019-10-13 10:27:22.938||TEL  |IKE |Display Text|Layout=0x42| Flags=CLS  F0=" ACTIVATE PHONE"
+2019-10-13 10:27:22.998||TEL  |IKE |Display Text|Layout=0x42| Flags=CLS  F0=" ACTIVATE PHONE"
+2019-10-13 10:27:23.018||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:27:24.577||MFL  |TEL |Radio/Telephone control|Send/End_pressed
+2019-10-13 10:27:24.948||MFL  |TEL |Radio/Telephone control|Send/End_released
+2019-10-13 10:27:25.000||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:27:27.005||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:27:28.191||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:27:28.278||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:27:29.009||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:27:29.025||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:27:30.301||GT   |TEL |Device status request
+2019-10-13 10:27:30.317||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:27:31.037||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:27:31.093||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:27:33.040||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:27:35.050||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:27:37.063||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:27:38.269||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:27:38.359||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:27:39.071||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:27:40.283||GT   |VID |Device status request
+2019-10-13 10:27:41.084||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:27:41.144||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:27:43.098||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:27:43.992||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:27:44.994||IKE  |LOC |Update Text|Layout=Time  Flags=  F0="10:29  "
+2019-10-13 10:27:45.108||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:27:47.119||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:27:48.349||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:27:48.438||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:27:48.899||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 112m;  UTC 08:27:49
+2019-10-13 10:27:48.955||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:27:49.015||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:27:49.131||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:27:51.127||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:27:51.144||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:27:53.153||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:27:55.163||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:27:57.172||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:27:58.430||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:27:58.520||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:27:58.999||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:27:59.185||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:28:01.145||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:28:01.204||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:28:03.207||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:28:05.218||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:28:07.229||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:28:08.508||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:28:08.600||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:28:09.128||NAV  |IKE |Time & date|UTC  08:28 27 lutego 2000
+2019-10-13 10:28:09.239||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:28:10.256||GT   |IKE |Device status request
+2019-10-13 10:28:10.274||IKE  |GT  |Device status ready|
+2019-10-13 10:28:11.164||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:28:11.248||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:28:11.425||EWS  |IKE |Odometer request
+2019-10-13 10:28:11.441||IKE  |GLO |Odometer|0 kms  [0 mls]
+2019-10-13 10:28:13.264||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:28:13.999||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:28:15.272||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:28:17.286||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:28:18.843||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 112m;  UTC 08:28:19
+2019-10-13 10:28:18.916||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:28:18.932||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:28:19.286||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:28:21.193||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:28:21.303||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:28:23.320||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:28:25.317||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:28:27.337||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:28:29.053||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:28:29.349||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:28:30.237||GT   |TEL |Device status request
+2019-10-13 10:28:30.253||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:28:31.199||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:28:31.360||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:28:33.368||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:28:35.377||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:28:37.392||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:28:39.404||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:28:41.220||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:28:41.414||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:28:43.426||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:28:43.983||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:28:45.022||IKE  |LOC |Update Text|Layout=Time  Flags=  F0="10:30  "
+2019-10-13 10:28:45.436||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:28:47.445||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:28:48.802||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 113m;  UTC 08:28:49
+2019-10-13 10:28:48.846||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:28:48.890||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:28:49.205||IKE  |LCM |Vehicle data request
+2019-10-13 10:28:49.217||LCM  |IKE |Vehicle data status|VIN WB43960; Total dist 224 200 kms [139 311 mls]; SI-L 1410 litres since last service; ; SI-T 1355 days since last service
+2019-10-13 10:28:49.399||DIA  |LCM |Read AIS|Data="02"    [ ]
+2019-10-13 10:28:49.415||LCM  |DIA |Diagnostic command acknowledged|Data="02 57 42 43 96 00"    [ WBC– ]
+2019-10-13 10:28:49.455||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:28:49.629||DIA  |GT  |Read coding data|Data="00 04 07"    [   ]
+2019-10-13 10:28:49.734||GT   |DIA |Diagnostic command acknowledged|Data="57 42 34 33 39 36 30"    [WB43960]
+2019-10-13 10:28:50.220||GT   |IKE |Device status request
+2019-10-13 10:28:50.240||IKE  |GT  |Device status ready|
+2019-10-13 10:28:51.238||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:28:51.469||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:28:53.480||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:28:55.491||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:28:57.499||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:28:58.992||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:28:59.512||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:29:00.208||GT   |TEL |Device status request
+2019-10-13 10:29:00.228||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:29:01.249||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:29:01.525||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:29:03.529||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:29:05.547||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:29:07.554||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:29:09.066||NAV  |IKE |Time & date|UTC  08:29 27 lutego 2000
+2019-10-13 10:29:09.559||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:29:10.202||GT   |IKE |Device status request
+2019-10-13 10:29:10.222||IKE  |GT  |Device status ready|
+2019-10-13 10:29:11.275||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:29:11.569||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:29:13.583||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:29:13.988||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:29:15.591||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:29:17.613||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:29:18.754||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 114m;  UTC 08:29:19
+2019-10-13 10:29:18.818||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:29:18.843||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:29:19.621||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:29:20.190||GT   |TEL |Device status request
+2019-10-13 10:29:20.210||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:29:21.298||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:29:21.632||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:29:23.643||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:29:25.652||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:29:27.665||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:29:28.986||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:29:29.676||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:29:30.183||GT   |IKE |Device status request
+2019-10-13 10:29:30.199||IKE  |GT  |Device status ready|
+2019-10-13 10:29:31.311||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:29:31.685||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:29:33.697||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:29:35.710||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:29:37.721||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:29:39.734||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:29:40.174||GT   |TEL |Device status request
+2019-10-13 10:29:40.190||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:29:41.330||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:29:41.741||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:29:43.752||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:29:43.983||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:29:45.056||IKE  |LOC |Update Text|Layout=Time  Flags=  F0="10:31  "
+2019-10-13 10:29:45.762||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:29:47.777||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:29:48.707||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 115m;  UTC 08:29:49
+2019-10-13 10:29:48.770||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:29:48.794||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:29:49.786||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:29:50.164||GT   |IKE |Device status request
+2019-10-13 10:29:50.184||IKE  |GT  |Device status ready|
+2019-10-13 10:29:51.347||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:29:51.790||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:29:53.805||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:29:55.819||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:29:57.830||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:29:58.982||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:29:59.840||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:30:00.154||GT   |TEL |Device status request
+2019-10-13 10:30:00.170||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:30:01.363||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:30:01.855||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:30:03.863||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:30:05.871||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:30:07.882||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:30:07.914||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:30:07.997||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:30:09.012||NAV  |IKE |Time & date|UTC  08:30 27 lutego 2000
+2019-10-13 10:30:09.894||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:30:10.149||GT   |IKE |Device status request
+2019-10-13 10:30:10.161||IKE  |GT  |Device status ready|
+2019-10-13 10:30:11.372||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:30:11.904||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:30:13.907||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:30:13.969||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:30:15.928||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:30:17.937||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:30:17.989||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:30:18.168||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:30:18.656||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 115m;  UTC 08:30:19
+2019-10-13 10:30:18.724||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:30:18.748||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:30:19.948||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:30:20.133||GT   |TEL |Device status request
+2019-10-13 10:30:20.153||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:30:21.406||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:30:21.966||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:30:23.970||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:30:25.982||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:30:27.984||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:30:28.062||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:30:28.148||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:30:28.976||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:30:30.002||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:30:30.122||GT   |IKE |Device status request
+2019-10-13 10:30:30.142||IKE  |GLO |Device status ready|
+2019-10-13 10:30:31.420||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:30:32.013||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:30:34.020||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:30:36.039||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:30:38.052||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:30:38.152||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:30:38.240||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:30:40.062||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:30:40.114||GT   |TEL |Device status request
+2019-10-13 10:30:40.126||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:30:41.436||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:30:42.069||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:30:43.975||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:30:44.081||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:30:44.946||IKE  |LOC |Update Text|Layout=Time  Flags=  F0="10:32  "
+2019-10-13 10:30:46.091||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:30:48.101||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:30:48.231||NAV  |TEL |Telephone data|Current_network_request Count_0
+2019-10-13 10:30:48.319||NAV  |TEL |Telephone data|Current_phone_status Count_0
+2019-10-13 10:30:48.610||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 114m;  UTC 08:30:49
+2019-10-13 10:30:48.674||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:30:48.698||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:30:50.104||GT   |IKE |Device status request
+2019-10-13 10:30:50.126||IKE  |GT  |Device status ready|
+2019-10-13 10:30:50.159||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:30:51.458||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:30:52.128||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:30:54.135||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:30:56.153||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:30:58.156||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:30:58.972||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:31:00.102||GT   |TEL |Device status request
+2019-10-13 10:31:00.126||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:31:00.190||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:31:01.481||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:31:02.176||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:31:04.187||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:31:06.198||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:31:08.207||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:31:08.958||NAV  |IKE |Time & date|UTC  08:31 27 lutego 2000
+2019-10-13 10:31:10.091||GT   |IKE |Device status request
+2019-10-13 10:31:10.111||IKE  |GT  |Device status ready|
+2019-10-13 10:31:10.222||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:31:11.494||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:31:12.231||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:31:13.963||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:31:14.244||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:31:16.254||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:31:18.267||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:31:18.562||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 114m;  UTC 08:31:19
+2019-10-13 10:31:18.630||NAV  |TEL |Current location|Town = PROMNA
+2019-10-13 10:31:18.650||NAV  |TEL |Current location|Street = ULICA ZLOTA;
+2019-10-13 10:31:20.069||GT   |TEL |Device status request
+2019-10-13 10:31:20.100||TEL  |GT  |Device status ready|Assist_ready_after_Reset Bit5
+2019-10-13 10:31:20.283||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:31:21.505||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:31:22.287||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:31:24.304||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:31:26.307||AB   |GLO |Remote control central locking status|Data="22 00 0A"
+2019-10-13 10:31:28.320||AB   |GLO |Remote control central locking status|Data="23 00 0A"
+2019-10-13 10:31:28.970||LCM  |GLO |Light dimmer|Data="FF FC FF 00"
+2019-10-13 10:31:30.072||GT   |IKE |Device status request
+2019-10-13 10:31:30.092||IKE  |GT  |Device status ready|
+2019-10-13 10:31:30.331||AB   |GLO |Remote control central locking status|Data="20 00 0A"
+2019-10-13 10:31:31.528||RLS  |LCM |Light control status|Control|Turn_lights_off Sensor_OK Level_Signal_invalid Reason:Data="40 00"
+2019-10-13 10:31:32.342||AB   |GLO |Remote control central locking status|Data="21 00 0A"
+2019-10-13 10:31:34.355||AB   |GLO |Remote control central locking status|Data="22 00 0A"

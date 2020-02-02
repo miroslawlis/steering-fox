@@ -1,0 +1,63 @@
+{
+  "name": "stearing_fox",
+  "version": "1.0.0",
+  "description": "Stearing Fox car dash application (Navigation, control panel, wheater, CAN)",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "debug": "node_modules\\.bin\\electron . debug",
+    "prepare": "electron-build-env npm rebuild",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "package": "electron-packager ./ --platform=linux --arch=armv7l --icon=build/icons/png/1024x1024.png --overwrite --prune=true",
+    "install": "electron-rebuild"
+  },
+  "keywords": [
+    "car",
+    "dash",
+    "js"
+  ],
+  "author": "Mirosław Lis",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^3.0.16",
+    "electron-build-env": "0.2.0",
+    "electron-packager": "^14.0.6",
+    "electron-rebuild": "1.8.6",
+    "electron-reload": "1.4.0"
+  },
+  "dependencies": {
+    "bluetoothctl": "git+https://github.com/miroslawlis/bluetoothctl.git",
+    "brightness": "^3.0.0",
+    "ibus": "git+https://github.com/osvathrobi/node-ibus.git",
+    "recursive-readdir": "2.2.2",
+    "serialport": "7.1.5"
+  },
+  "build": {
+    "appId": "Stearing_FOX",
+    "dmg": {
+      "contents": [
+        {
+          "x": 110,
+          "y": 150
+        },
+        {
+          "x": 240,
+          "y": 150,
+          "type": "link",
+          "path": "/Applications"
+        }
+      ]
+    },
+    "linux": {
+      "target": [
+        "AppImage",
+        "deb"
+      ],
+      "icon": "build/icons/png/"
+    },
+    "win": {
+      "target": "NSIS",
+      "icon": "build/icons/win/icon.ico"
+    }
+  }
+}
