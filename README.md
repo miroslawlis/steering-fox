@@ -41,19 +41,29 @@ Not ready yet :)
   <li>Allows to do phone calls (to do)</li>
   </ol>
   
-<h3>Usage</h3>
-First install alll depecies:
+###Usage
+First install all dependencies:
+```
 npm install
+```
 
-Start aplication without debug logs, logs can be later turn on by setting: debugMode = true
+Start application without debug logs, logs can be later turn on by setting: `debugMode = true`
+```
 npm start
- 
-Start aplication with debug logs
-npm run debug
- 
-Rebuild aplication
-npm run prepare
+```
 
-Build aplication for raspberry pi 3B+ (linux)
+Start application with debug logs
+```
+npm run debug
+```
+
+Rebuild application
+```
+npm run prepare
+```
+
+Build application for Raspberry pi 3B+ (linux)
+```
 npm run package
+```
 
