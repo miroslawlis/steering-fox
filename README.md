@@ -41,7 +41,7 @@ Not ready yet :)
   <li>Allows to do phone calls (to do)</li>
   </ol>
   
-###Usage
+### Usage
 First install all dependencies:
 ```
 npm install
