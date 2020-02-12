@@ -1,10 +1,12 @@
 This aplication and hardware was designed to replace default/stock navigation/radio provided by BMW in my x3 e83 (2004).<br>
 Not ready yet :)
 
+![steering_fox music GUI](/for_readme/img/stearing_fox_music_GUI.png)
+
 <h4>Hardware:</h4>
 <ol>
 <li>Raspbery pi 3B+ - heart of hardware</li>
-<li>Resler USB IBUS interface (I encourage You to try other solutions, cheaper ones :) )</li>
+<li>Resler USB IBUS interface (I encourage you to try other solutions, cheaper ones :) )</li>
 <li>DAC plus soundcard (raspberry pi hat), DYKB PCM5122 Raspberry pi B+ 2/3B HIFI DAC + Sound Card Digital Audio Module</li>
 <li>12v step down DC converter with output set around 5,7V</li>
 <li>Bluetooth dongle</li>
@@ -39,7 +41,7 @@ Not ready yet :)
   <li>Manage Bluetooth conections/devices</li>
   <li>Play music via ADSP (egz. music from phone)</li>
   <li>Allows to do phone calls (to do)</li>
-  </ol>
+</ol>
   
 ### Usage
 First install all dependencies:
