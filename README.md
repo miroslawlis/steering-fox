@@ -1,7 +1,11 @@
 This aplication and hardware was designed to replace default/stock navigation/radio provided by BMW in my x3 e83 (2004).<br>
 Not ready yet :)
 
+### How it looks
+#### Music GUI
 ![steering_fox music GUI](/for_readme/img/stearing_fox_music_GUI.png)
+
+`more to come`
 
 <h4>Hardware:</h4>
 <ol>
