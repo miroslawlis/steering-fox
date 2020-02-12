@@ -7,7 +7,7 @@ Not ready yet :)
 
 `more to come`
 
-<h4>Hardware:</h4>
+<h3>Hardware:</h3>
 <ol>
 <li>Raspbery pi 3B+ - heart of hardware</li>
 <li>Resler USB IBUS interface (I encourage you to try other solutions, cheaper ones :) )</li>
@@ -21,7 +21,7 @@ Not ready yet :)
 <li>GPIO Extension Expansion Board Module for Raspberry pi 3B+</li>
 </ol>
 
-<h4>Software:</h4>
+<h3>Software:</h3>
 <ol>
 <li>Raspbian</li>
 <li>Node.JS</li>
@@ -29,13 +29,13 @@ Not ready yet :)
 <li>more in package.json ;)</li>
 </ol>
 
-<h4>Few facts:</h4>
+<h3>Few facts:</h3>
 <ol>
 <li>GUI was designed for 6,5 inch screen (800 x 480 px)</li>
 <li>Image from revers camera is handled by PCB control board (when revers gear is on then revers camera is on and signal send to control board)</li>
 </ol> 
 
-<h4>Aplication can:</h4>
+<h3>Aplication can:</h3>
 <ol>
   <li>Displays diffrent data from car CAN network like (temperature outside, fuel consumption, avarage speed, altitude, time and more</li>
   <li>Play mp3 from disk (USB to do?)</li>
