@@ -3,7 +3,7 @@ Not ready yet :)
 
 ### How it looks
 #### Music GUI
-![steering_fox music GUI](/for_readme/img/stearing_fox_music_GUI.png)
+![stearing_fox music GUI](/for_readme/img/stearing_fox_music_GUI.png)
 
 `more to come`
 
@@ -44,6 +44,7 @@ Not ready yet :)
   <li>Manage Wi-Fi connections</li>
   <li>Manage Bluetooth conections/devices</li>
   <li>Play music via ADSP (egz. music from phone)</li>
+  <li>Be controlled from steering wheel controls</li>
   <li>Allows to do phone calls (to do)</li>
 </ol>
   
