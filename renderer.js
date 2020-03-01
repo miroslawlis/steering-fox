@@ -56,13 +56,9 @@ window.addEventListener('DOMContentLoaded', function () {
     getIPs();
     wifiInfo();
 
-    sendCAN('fuel_consumption_1');
-    sendCAN('fuel_consumption_2');
-    sendCAN('outside_temp');
-    sendCAN('distance');
-    sendCAN('range');
-    sendCAN('avg_speed');
-    sendCAN('time');
+    asksCANforNewData();
+    // and repeate checking and asking if necessery every x miliseconds
+    setInterval(asksCANforNewData, 500);
 
     dateAndTime();
     setInterval(dateAndTime, 30000);
@@ -495,8 +491,8 @@ function fuelConsResetModal(arg) {
     document.body.appendChild(modal_fuel_reset);
 
     // add attribute "onclick" to template file
-    
-    document.querySelector('#modalConfirmWrap .modal .confirm').onclick(function() {
+
+    document.querySelector('#modalConfirmWrap .modal .confirm').onclick(function () {
         // fire reset fuel1 CAN function
     });
 
@@ -551,4 +547,31 @@ function switchTheme(ele) {
                 break;
         }
     }
+}
+
+function asksCANforNewData() {
+// checks if variable is empty, if soo then ask CAN for new data
+
+    if (!fuel_consumption_1) {
+        sendCAN('fuel_consumption_1');
+    }
+    if (!fuel_consumption_2) {
+        sendCAN('fuel_consumption_2');
+    }
+    if (!temp_outside) {
+        sendCAN('temp_outside');
+    }
+    if (!distance) {
+        sendCAN('distance');
+    }
+    if (!range) {
+        sendCAN('range');
+    }
+    if (!avg_speed) {
+        sendCAN('avg_speed');
+    }
+    if (!time_instrument_cluster) {
+        sendCAN('time');
+    }
+
 }

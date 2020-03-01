@@ -246,7 +246,7 @@ function sendCAN(request, arg1, arg2) {
             });
             break;
         // request for outside temperature
-        case 'outside_temp':
+        case 'temp_outside':
             ibusInterface.sendMessage({
                 src: 0x3B,
                 dst: 0x80,
