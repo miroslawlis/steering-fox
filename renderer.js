@@ -492,7 +492,7 @@ function fuelConsResetModal(arg) {
 
     // add attribute "onclick" to template file
 
-    document.querySelector('#modalConfirmWrap .modal .confirm').onclick(function () {
+    document.querySelector('#modalConfirmWrap .modal .confirm').click(function () {
         // fire reset fuel1 CAN function
     });
 
