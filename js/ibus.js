@@ -51,12 +51,9 @@ function onIbusData(data) {
     let buffMsg = new Buffer.from(data.msg);
     let buffMsgHex = buffMsg.toString('hex').toLowerCase();
 
-    debugLog('[app] Id:          ' + data.id, 'colorORANGE');
-    debugLog('[app] From:        ' + IbusDevices.getDeviceName(data.src));
-    debugLog('[app] To: 	     ' + IbusDevices.getDeviceName(data.dst));
-    debugLog('[app] Message:     ' + data.msg);
-    debugLog('[app] Message hex: ', buffMsgHex);
-    debugLog('[app] Analyzing:   ', data);
+    //id, from, to, message, message hex, analyzing
+    debugLog(`${data.id} | ${IbusDevices.getDeviceName(data.src)} | ${IbusDevices.getDeviceName(data.dst)} Message: ${data.msg} |  ${buffMsgHex} | ${data}`);
+
     // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
 
 
