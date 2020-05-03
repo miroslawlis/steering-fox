@@ -32,6 +32,16 @@ function init() {
 // main start
 init();
 
+// Message structure:
+// 1. Transmitter address (8 bit Source ID)
+// 2. Length of data (number of following message bytes)
+// 3. Receiver address (8 bit Destination ID)
+// 4. Detailed description of message (maximum 32 bytes of data)
+// 5. Summary of transmitted information (check sum)
+
+// | Source ID | Length | Dest ID | Message Data | Checksum |
+// |-----------|--------|---------|--------------|----------|
+// |           |        |           Length                  |
 
 // Add an event listener on the ibus interface output stream.
 
