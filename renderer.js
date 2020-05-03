@@ -380,7 +380,7 @@ function guiUpdateData() {
 
     //fuel consumption 1
     if (fuel_consumption_1) {
-        fuel_1_ele.innerHTML = '<div class="data1">' + fuel_consumption_1 + '</div><div class="small text">l/100km</div>';
+        document.querySelector('#main .fuel_cons1 .data').innerHTML = '<div class="data1">' + fuel_consumption_1 + '</div><div class="small text">l/100km</div>';
     }
     //fuel consumption 2
     if (fuel_consumption_2) {
