@@ -173,7 +173,7 @@ function onIbusData(data) {
             msgDescryption = 'Speed limit';
 
         }
-        if (buffMsgHex.slice(0, 4) == '240a') {
+        if (buffMsgHex.slice(0, 6) == '240a00') {
             // avarage speed
             avg_speed = buffMsgHex.slice(6, 14);
             avg_speed = hex_to_ascii(avg_speed).trim();
