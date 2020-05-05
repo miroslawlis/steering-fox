@@ -50,6 +50,8 @@ ibusInterface.on('data', onIbusData);
 
 function onIbusData(data) {
 
+    let msgDescryption = '';
+
     // remove empty data, like: from BodyModule - 0 to BodyModule - 0
     if (lessInfoFromCAN === true) {
         if ( (data.src == '0' && data.dst == '0') || (data.src == 'a4') ) {
@@ -61,30 +63,31 @@ function onIbusData(data) {
     let buffMsg = new Buffer.from(data.msg);
     let buffMsgHex = buffMsg.toString('hex').toLowerCase();
 
-    //id, from, to, message, message hex, analyzing
-    debugLog(`${data.id} | ${IbusDevices.getDeviceName(data.src)} | ${IbusDevices.getDeviceName(data.dst)} Message: ${data.msg} |  ${buffMsgHex} | ${data}`);
-
-    // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
-
-
-
     // from: MultiFunctionSteeringWheel && to: Radio or Telephone ('c8')
     if (data.src == '50' && (data.dst == '68' || data.dst == 'c8')) {
         // volume down steering wheel
         if (data.msg == new Buffer.from([50, 16]).toString('ascii')) {
             volDown();
+
+            msgDescryption = 'Volume down button steering wheel';
         }
         // volume up steering wheel
         if (data.msg == new Buffer.from([50, 17]).toString('ascii')) {
             volUp();
+
+            msgDescryption = 'Volume up button steering wheel';
         }
         // previous track steering wheel
         if (data.msg == new Buffer.from([59, 8]).toString('ascii')) {
             nextSong();
+
+            msgDescryption = 'Arrow up? button steering wheel';
         }
         //next song steering wheel
         if (data.msg == new Buffer.from([59, 1]).toString('ascii')) {
             previousSong();
+
+            msgDescryption = 'Arrow down? button steering wheel';
         }
     }
 
@@ -93,10 +96,14 @@ function onIbusData(data) {
         // face button steering wheel
         if (buffMsgHex == '3b40') {
             muteAudio(document.querySelector('#music-player .mute.button'));
+
+            msgDescryption = 'Face button steering wheel';
         }
         // RT button steering wheel
         if (buffMsgHex == '3b80') {
             pauseAudio();
+
+            msgDescryption = 'RT button steering wheel';
         }
     }
     // egz WHOLE message: 80 0a ff 24 03 00 2b 31 32 2e 35 61 80 0f ff 24 02 00 31 30 2e 31 31 2e 32 30 31 39 5d 80 05 bf 18 00 06 24
@@ -105,6 +112,9 @@ function onIbusData(data) {
     if (data.src == '80' && data.dst == 'ff' && buffMsgHex.substring(0, 4) == '2403') {
         // outside temperature
         temp_outside = buffMsgHex.substring(6, 16);
+
+        msgDescryption = 'Outside temperature';
+
     }
 
     // time from instrument cluster not GPS
@@ -113,6 +123,8 @@ function onIbusData(data) {
         // remove 3 first parts from buffer and remove 2 parts from end -> this give time in format HH:MM egz 12:45 (12h or 24h?)
         time_instrument_cluster = buffMsg.slice(3, 9).toString('utf-8');
 
+        msgDescryption = 'Time from instrument cluster';
+
     }
 
     if (data.src == '80' && data.dst == 'ff') {
@@ -120,7 +132,9 @@ function onIbusData(data) {
         if (data.msg[1] == '04') {
             // fuel consumption 1
             fuel_consumption_1 = (data.msg).slice(3, 14).toString('utf-8').replace(".", ",").trim();
-            debugLog('fuel_consumption_1', 'colorGREEN')
+            
+            msgDescryption = 'Fuel consumption 1';
+
         }
         if (buffMsgHex.slice(0, 4) == '2405') {
             // if (data.msg[1] == '05') {
@@ -133,29 +147,39 @@ function onIbusData(data) {
             // crc: "55";
             fuel_consumption_2 = buffMsgHex.slice(6, 14);
             fuel_consumption_2 = hex_to_ascii(fuel_consumption_2).replace(".", ",").trim();
-            debugLog('fuel_consumption_2', 'colorGREEN');
+            
+            msgDescryption = 'Fuel consumption 2';
+            
         }
         if (buffMsgHex.slice(0, 4) == '2406') {
             // range
             range = buffMsgHex.slice(6, 14);
             range = hex_to_ascii(range).trim();
-            debugLog('range', 'colorGREEN');
+            
+            msgDescryption = 'Range';
+
         }
         if (data.msg[1] == '07') {
             // distance
             distance = (data.msg).slice(3, 14).toString('hex');
-            debugLog('distance', 'colorGREEN');
+
+            msgDescryption = 'Distance';
+
         }
         if (data.msg[1] == '09') {
             // speed_limit
             speed_limit = (data.msg).slice(3, 14).toString('hex');
-            debugLog('speed_limit', 'colorGREEN');
+
+            msgDescryption = 'Speed limit';
+
         }
         if (buffMsgHex.slice(0, 4) == '240a') {
             // avarage speed
             avg_speed = buffMsgHex.slice(6, 14);
             avg_speed = hex_to_ascii(avg_speed).trim();
-            debugLog('avg_speed', 'colorGREEN');
+
+            msgDescryption = 'AVG speed';
+
         }
     }
     // if from NavigationEurope 7f
@@ -164,16 +188,16 @@ function onIbusData(data) {
         // Town from NavModule GPS
         // data.msg -> third part ("1") in buffer msg describe is it town ([164, 0, 1])
         if (buffMsgHex.slice(0, 6) === 'a40001') {
-            //
-            town_nav = buffMsg.slice(3, buffMsg.indexOf('0', 5)).toString('utf-8');
 
+            town_nav = buffMsg.slice(3, buffMsg.indexOf('0', 5)).toString('utf-8');
+            msgDescryption = 'Town name';
         }
         // Street from NavModule GPS
         // data.msg -> third part ("2") in buffer msg describe is it street ([164, 0, 2])
         if (buffMsgHex.slice(0, 6) === 'a40002') {
             //
             street_nav = buffMsg.slice(3, buffMsg.indexOf('0', 5)).toString('utf-8');
-
+            msgDescryption = 'Street name';
         }
         // GPS cords, time, altitude
         // data.msg -> first 3 parts in buffer describe is it GPS position ([162, 1, 0]) -> 'a20100' -- maybe only one part?? [162] - > 'a2', it can be ([162, 0, 0])
@@ -187,6 +211,8 @@ function onIbusData(data) {
             gps_altitude = parseInt(buffMsgHex.slice(24, 28));
             gps_utc_time = buffMsg.slice(15, 18).toString('hex');
 
+            msgDescryption = 'GPS cords';
+
         }
 
     }
@@ -198,18 +224,24 @@ function onIbusData(data) {
         //
         light_sensor = 'day';
         // brightness.set(0.8).then(() => {
-        //     debugLog('Brightness changed to 80%');
+            //Brightness changed to 80%
         // });
+        msgDescryption = 'Light sensor = day';
 
     }
 
     if (data.src == 'd0' && data.dst == 'bf' && buffMsgHex === '5cfe3fff00') {
         light_sensor = 'night';
         // brightness.set(0.2).then(() => {
-        //     debugLog('Brightness changed to 20%');
+            //Brightness changed to 20%
         // });
+        msgDescryption = 'Light sensor = night';
     }
 
+    //id, from, to, message, message hex, analyzing, description
+    debugLog(`${data.id} | ${IbusDevices.getDeviceName(data.src)} | ${IbusDevices.getDeviceName(data.dst)} Message: ${data.msg} |  ${buffMsgHex} | ${data} | ${msgDescryption}`);
+
+    // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
 
 }
 
