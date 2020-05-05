@@ -74,3 +74,9 @@ Build application for Raspberry pi 3B+ (linux)
 npm run package
 ```
 
+### Settings
+More logs can be show by setting:
+```
+lessInfoFromCAN=false
+```
+
