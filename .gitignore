@@ -4,3 +4,4 @@ package-lock.json
 maps_data
 data\ from\ ibus
 .gitattributes
+node_test.js
