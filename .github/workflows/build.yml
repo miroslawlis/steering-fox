@@ -30,6 +30,9 @@ jobs:
 
     - name: Install dependencies
       run: npm install
+      
+    - name: Rebuild dependencies
+      run: npm run postinstall
 
     - name: electron rebuild
       run: npm run release
