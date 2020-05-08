@@ -10,7 +10,10 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "build-linux": "electron-packager ./ --platform=linux --arch=armv7l --icon=build/icons/png/1024x1024.png --overwrite --prune=true",
     "build-windows": "electron-packager .electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
-    "install": "electron-rebuild"
+    "install": "electron-rebuild",
+    "postinstall": "electron-builder install-app-deps",
+		"build": "electron-builder --mac --windows --linux",
+		"release": "electron-builder --mac --windows --linux --publish always"
   },
   "keywords": [
     "car",
@@ -29,6 +32,7 @@
   "dependencies": {
     "bluetoothctl": "git+https://github.com/miroslawlis/bluetoothctl.git",
     "brightness": "^3.0.0",
+    "electron-builder": "^22.6.0",
     "ibus": "git+https://github.com/osvathrobi/node-ibus.git",
     "recursive-readdir": "2.2.2",
     "serialport": "7.1.5"
