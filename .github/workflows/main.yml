@@ -19,6 +19,12 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
+      with:
+        ref: electron
+        
+    - uses: actions/setup-node@master
+      with:
+        node-version: 10.16
 
     - name: Install dependencies
       run: npm install
