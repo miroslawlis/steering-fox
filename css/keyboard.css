@@ -30,7 +30,7 @@
     border                     : none;
     background                 : var(--backgroundNav);
     color                      : var(--white);
-    font-size                  : 1.05vw;
+    font-size                  : 3vw;
     outline                    : none;
     cursor                     : pointer;
     display                    : inline-flex;
