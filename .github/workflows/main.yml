@@ -28,4 +28,4 @@ jobs:
       
     # Runs a single command using the runners shell
     - name: Run a one-line script
-      run: "electron-packager ./ --platform=linux --arch=armv7l --icon=build/icons/png/1024x1024.png --overwrite --prune=true"
+      run: npm run build-linux
