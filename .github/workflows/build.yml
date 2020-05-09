@@ -1,38 +1,31 @@
-# This is a basic workflow to help you get started with Actions
+name: Build/release
 
-name: Build 
+on: push
 
-# Controls when the action will run. Triggers the workflow on push or pull request
-# events but only for the master branch
-on:
-  push:
-    branches: [ master ]
-
-# A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "build"
-  build:
-    # The type of runner that the job will run on
-    runs-on: ubuntu-16.04
+  release:
+    runs-on: ${{ matrix.os }}
 
-    # Steps represent a sequence of tasks that will be executed as part of the job
+    strategy:
+      matrix:
+        os: [macos-latest, ubuntu-latest, windows-latest]
+
     steps:
-    # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
-    - uses: actions/checkout@v2
-    - uses: actions/setup-node@v1
-      with:
-        node-version: 10.16
+      - name: Check out Git repository
+        uses: actions/checkout@v1
 
-    - name: Install dependencies
-      #npm install
-      run: npm install
-      
-    - name: Rebuild postinstall
-      run: npm run postinstall
+      - name: Install Node.js, NPM and Yarn
+        uses: actions/setup-node@v1
+        with:
+          node-version: 10
 
-    - name: Electron rebuild
-      run: npm run prepare
+      - name: Build/release Electron app
+        uses: samuelmeuli/action-electron-builder@v1
+        with:
+          # GitHub token, automatically provided to the action
+          # (No need to define this secret in the repo settings)
+          github_token: ${{ secrets.github_token }}
 
-    # Runs a single command using the runners shell
-    - name: Run a one-line script
-      run: npm run build-linux
+          # If the commit is tagged with a version (e.g. "v1.0.0"),
+          # release the app after building
+          #release: ${{ startsWith(github.ref, 'refs/tags/v') }}
