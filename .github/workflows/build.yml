@@ -25,7 +25,7 @@ jobs:
 
     - name: Install dependencies
       #npm install
-      run: npm ci
+      run: npm ci --only=production
       
     - name: Rebuild postinstall
       run: npm run postinstall
