@@ -1,6 +1,6 @@
 # This is a basic workflow to help you get started with Actions
 
-name: CI
+name: Build 
 
 # Controls when the action will run. Triggers the workflow on push or pull request
 # events but only for the master branch
@@ -19,23 +19,19 @@ jobs:
     steps:
     # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
     - uses: actions/checkout@v2
-
-    - uses: actions/setup-node@master
-      with:
-        ref: electron
-
-    - uses: actions/setup-node@master
+    - uses: actions/setup-node@v1
       with:
         node-version: 10.16
 
     - name: Install dependencies
-      run: npm install
+      #npm install
+      run: npm ci
       
-    - name: Rebuild dependencies
+    - name: Rebuild postinstall
       run: npm run postinstall
 
-    - name: electron rebuild
-      run: npm run release
+    - name: Electron rebuild
+      run: npm run prepare
 
     # Runs a single command using the runners shell
     - name: Run a one-line script
