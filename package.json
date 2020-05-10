@@ -8,8 +8,6 @@
     "debug": "node_modules\\.bin\\electron . debug",
     "prepare": "electron-build-env npm rebuild",
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build-linux": "electron-packager ./ --platform=linux --arch=armv7l --icon=build/icons/png/1024x1024.png --overwrite --prune=true",
-    "build-windows": "electron-packager .electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
     "install": "electron-rebuild",
     "postinstall": "electron-builder install-app-deps",
     "release": "electron-builder --publish onTag --x64 --armv7l -wl",
@@ -18,7 +16,6 @@
     "dist-win": "electron-builder --publish onTag --x64 -w",
     "dist-linux": "electron-builder --publish onTag --armv7l -l appImage",
     "dist-linux2": "electron-builder --dir --armv7l -l appImage"
-
   },
   "keywords": [
     "car",
@@ -30,7 +27,6 @@
   "devDependencies": {
     "electron": "^3.0.16",
     "electron-build-env": "0.2.0",
-    "electron-packager": "^14.0.6",
     "electron-rebuild": "1.8.6",
     "electron-reload": "1.4.0",
     "electron-builder": "^22.6.0"
