@@ -4,7 +4,7 @@ on: push
 
 jobs:
   release:
-    if: startsWith(github.ref, 'refs/tags/v') == true
+    if: startsWith(github.ref, 'refs/tags/') == true
     runs-on: ${{ matrix.os }}
     strategy:
       matrix:
@@ -22,6 +22,6 @@ jobs:
       - name: Build
         #run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run dist build
         run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run dist release
-        if: startsWith(github.ref, 'refs/tags/v') == true
+        if: startsWith(github.ref, 'refs/tags/') == true
       
         
