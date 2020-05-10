@@ -80,3 +80,11 @@ More logs can be show by setting:
 lessInfoFromCAN=false
 ```
 
+### Deployment
+Github actions need tag to be present in order to compile release
+First update version in package.json, then:
+```
+git commit -am 1.0.0
+git tag 1.0.0
+git push && git push --tags
+```
