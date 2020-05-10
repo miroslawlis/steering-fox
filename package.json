@@ -59,11 +59,14 @@
         "AppImage",
         "deb"
       ],
-      "icon": "build/icons/png/"
+      "icon": "build/icons/png/",
+      "publish": "github"
     },
     "win": {
       "target": "NSIS",
-      "icon": "build/icons/win/icon.ico"
+      "icon": "build/icons/win/icon.ico",
+      "publish": "github"
     }
-  }
+  },
+  "release": "build"
 }
