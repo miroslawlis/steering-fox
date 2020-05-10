@@ -15,7 +15,9 @@ linux:
     - AppImage
     - deb
   icon: build/icons/png/
+  publish: github
 win:
   target: NSIS
   icon: build/icons/win/icon.ico
+  publish: github
 electronVersion: 3.0.16
