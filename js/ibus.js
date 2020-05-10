@@ -5,7 +5,7 @@ sp.list(function (err, ports) {
     debugLog(ports);
 });
 
-var time_instrument_cluster, town_nav, street_nav, gps_altitude, gps_cords_lat, gps_cords_lon, gps_utc_time, temp_outside, fuel_consumption_1, fuel_consumption_2, range, distance, speed_limit, avg_speed, light_sensor;
+var time_instrument_cluster, town_nav, street_nav, gps_altitude, gps_cords_lat, gps_cords_lon, gps_utc_time, temp_outside, fuel_consumption_1, fuel_consumption_2, range, distance, speed_limit, avg_speed, light_sensor, temp_outside, coolant_temp;
 var lessInfoFromCAN = true;
 
 //// ibus part start
@@ -56,7 +56,7 @@ function onIbusData(data) {
 
     // remove empty data, like: from BodyModule - 0 to BodyModule - 0
     if (lessInfoFromCAN === true) {
-        if ( (data.src == '0' && data.dst == '0') || (data.src == 'a4') ) {
+        if ((data.src == '0' && data.dst == '0') || (data.src == 'a4')) {
             return;
             // end this round of data
         } else if (data.src == "3b" && data.dst == "80" && buffMsgHex == "410701") {
@@ -129,61 +129,76 @@ function onIbusData(data) {
 
     }
 
-    if (data.src == '80' && data.dst == 'ff') {
-        // if (buffMsg.slice(1, 1).toString('hex') == '04') {
-        if (data.msg[1] == '04') {
-            // fuel consumption 1
-            fuel_consumption_1 = (data.msg).slice(3, 14).toString('utf-8').replace(".", ",").trim();
-            
-            msgDescryption = 'Fuel consumption 1';
+    // temperature outside and coolant temperature
+    // from: InstrumentClusterElectronics - 80 to: GlobalBroadcastAddress - bf msg: 19154b00
+    if (data.src == "80" && data.dst == "bf" && buffMsgHex.substring(0, 2) == '19') {
+        // first hex in message indicates temperature outside and coolant temperatur message
 
-        }
-        if (buffMsgHex.slice(0, 4) == '2405') {
-            // if (data.msg[1] == '05') {
-            // fuel consumption 2
-            // src: "80";
-            // len: "9";
-            // dst: "ff";
-            // msg: {"type":"Buffer","data":[36,5,0,32,56,46,52]};
-            // 24050020382e34
-            // crc: "55";
-            fuel_consumption_2 = buffMsgHex.slice(6, 14);
-            fuel_consumption_2 = hex_to_ascii(fuel_consumption_2).replace(".", ",").trim();
-            
-            msgDescryption = 'Fuel consumption 2';
-            
-        }
-        if (buffMsgHex.slice(0, 4) == '2406') {
-            // range
-            range = buffMsgHex.slice(6, 14);
-            range = hex_to_ascii(range).trim();
-            
-            msgDescryption = 'Range';
+        // to decimal conversion
+        // in Celsius
+        // CHECK IF ITS OK
+        temp_outside = parseInt(buffMsgHex.substring(2,4), 16);
+        coolant_temp = parseInt(buffMsgHex.substring(4,6), 16);
 
-        }
-        if (data.msg[1] == '07') {
-            // distance
-            distance = (data.msg).slice(3, 14).toString('hex');
-
-            msgDescryption = 'Distance';
-
-        }
-        if (data.msg[1] == '09') {
-            // speed_limit
-            speed_limit = (data.msg).slice(3, 14).toString('hex');
-
-            msgDescryption = 'Speed limit';
-
-        }
-        if (buffMsgHex.slice(0, 6) == '240a00') {
-            // avarage speed
-            avg_speed = buffMsgHex.slice(6, 14);
-            avg_speed = hex_to_ascii(avg_speed).trim();
-
-            msgDescryption = 'AVG speed';
-
-        }
+        msgDescryption = 'Temperature: Outside:' + temp_outside + 'C ' + 'Coolant: ' + coolant_temp + ' C';
+        
     }
+
+        if (data.src == '80' && data.dst == 'ff') {
+            // if (buffMsg.slice(1, 1).toString('hex') == '04') {
+            if (data.msg[1] == '04') {
+                // fuel consumption 1
+                fuel_consumption_1 = (data.msg).slice(3, 14).toString('utf-8').replace(".", ",").trim();
+
+                msgDescryption = 'Fuel consumption 1';
+
+            }
+            if (buffMsgHex.slice(0, 4) == '2405') {
+                // if (data.msg[1] == '05') {
+                // fuel consumption 2
+                // src: "80";
+                // len: "9";
+                // dst: "ff";
+                // msg: {"type":"Buffer","data":[36,5,0,32,56,46,52]};
+                // 24050020382e34
+                // crc: "55";
+                fuel_consumption_2 = buffMsgHex.slice(6, 14);
+                fuel_consumption_2 = hex_to_ascii(fuel_consumption_2).replace(".", ",").trim();
+
+                msgDescryption = 'Fuel consumption 2';
+
+            }
+            if (buffMsgHex.slice(0, 4) == '2406') {
+                // range
+                range = buffMsgHex.slice(6, 14);
+                range = hex_to_ascii(range).trim();
+
+                msgDescryption = 'Range';
+
+            }
+            if (data.msg[1] == '07') {
+                // distance
+                distance = (data.msg).slice(3, 14).toString('hex');
+
+                msgDescryption = 'Distance';
+
+            }
+            if (data.msg[1] == '09') {
+                // speed_limit
+                speed_limit = (data.msg).slice(3, 14).toString('hex');
+
+                msgDescryption = 'Speed limit';
+
+            }
+            if (buffMsgHex.slice(0, 6) == '240a00') {
+                // avarage speed
+                avg_speed = buffMsgHex.slice(6, 14);
+                avg_speed = hex_to_ascii(avg_speed).trim();
+
+                msgDescryption = 'AVG speed';
+
+            }
+        }
     // if from NavigationEurope 7f
     if (data.src == '7f') {
 
@@ -226,7 +241,7 @@ function onIbusData(data) {
         //
         light_sensor = 'day';
         // brightness.set(0.8).then(() => {
-            //Brightness changed to 80%
+        //Brightness changed to 80%
         // });
         msgDescryption = 'Light sensor = day';
 
@@ -235,7 +250,7 @@ function onIbusData(data) {
     if (data.src == 'd0' && data.dst == 'bf' && buffMsgHex === '5cfe3fff00') {
         light_sensor = 'night';
         // brightness.set(0.2).then(() => {
-            //Brightness changed to 20%
+        //Brightness changed to 20%
         // });
         msgDescryption = 'Light sensor = night';
     }
