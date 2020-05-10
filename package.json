@@ -16,7 +16,8 @@
     "pack": "electron-builder --dir",
     "dist": "electron-builder --publish onTag --x64 --armv7l -wl",
     "dist-win": "electron-builder --publish onTag --x64 -w",
-    "dist-linux": "electron-builder --publish onTag --armv7l -l"
+    "dist-linux": "electron-builder --publish onTag --armv7l -l appImage",
+    "dist-linux2": "electron-builder --dir --armv7l -l appImage"
 
   },
   "keywords": [
