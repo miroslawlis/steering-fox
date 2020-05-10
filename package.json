@@ -59,13 +59,11 @@
         "AppImage",
         "deb"
       ],
-      "arch": ["arm7l", "x64"],
       "icon": "build/icons/png/",
       "publish": "github"
     },
     "win": {
       "target": "portable",
-      "arch": ["x64"],
       "icon": "build/icons/win/icon.ico",
       "publish": "github"
     }
