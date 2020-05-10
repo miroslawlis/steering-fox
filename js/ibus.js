@@ -51,17 +51,19 @@ ibusInterface.on('data', onIbusData);
 function onIbusData(data) {
 
     let msgDescryption = '';
+    let buffMsg = new Buffer.from(data.msg);
+    let buffMsgHex = buffMsg.toString('hex').toLowerCase();
 
     // remove empty data, like: from BodyModule - 0 to BodyModule - 0
     if (lessInfoFromCAN === true) {
         if ( (data.src == '0' && data.dst == '0') || (data.src == 'a4') ) {
             return;
             // end this round of data
+        } else if (data.src == "3b" && data.src == "80" && buffMsgHex == "410701") {
+            // filters this: id: 1588784831880 | GraphicsNavigationDriver - 3b | InstrumentClusterElectronics - 80 Message: A |  410701 | [object Object] | 
+            return;
         }
     }
-
-    let buffMsg = new Buffer.from(data.msg);
-    let buffMsgHex = buffMsg.toString('hex').toLowerCase();
 
     // from: MultiFunctionSteeringWheel && to: Radio or Telephone ('c8')
     if (data.src == '50' && (data.dst == '68' || data.dst == 'c8')) {
@@ -83,7 +85,7 @@ function onIbusData(data) {
 
             msgDescryption = 'Arrow up? button steering wheel';
         }
-        //next song steering wheel
+        //next song stearing wheel
         if (data.msg == new Buffer.from([59, 1]).toString('ascii')) {
             previousSong();
 
@@ -239,7 +241,7 @@ function onIbusData(data) {
     }
 
     //id, from, to, message, message hex, analyzing, description
-    debugLog(`${data.id} | ${IbusDevices.getDeviceName(data.src)} | ${IbusDevices.getDeviceName(data.dst)} Message: ${data.msg} |  ${buffMsgHex} | ${data} | ${msgDescryption}`);
+    debugLog(data.id, ' | ', IbusDevices.getDeviceName(data.src), '|', IbusDevices.getDeviceName(data.dst), '|', data.msg, '|', buffMsgHex, '|', data, '|', msgDescryption);
 
     // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
 
