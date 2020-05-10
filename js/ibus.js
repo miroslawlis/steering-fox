@@ -59,7 +59,7 @@ function onIbusData(data) {
         if ( (data.src == '0' && data.dst == '0') || (data.src == 'a4') ) {
             return;
             // end this round of data
-        } else if (data.src == "3b" && data.src == "80" && buffMsgHex == "410701") {
+        } else if (data.src == "3b" && data.dst == "80" && buffMsgHex == "410701") {
             // filters this: id: 1588784831880 | GraphicsNavigationDriver - 3b | InstrumentClusterElectronics - 80 Message: A |  410701 | [object Object] | 
             return;
         }
