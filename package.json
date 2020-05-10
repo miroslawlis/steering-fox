@@ -12,9 +12,9 @@
     "build-windows": "electron-packager .electron-tutorial-app --overwrite --asar=true --platform=win32 --arch=ia32 --icon=build/icons/win/icon.ico --prune=true --out=release-builds --version-string.CompanyName=CE --version-string.FileDescription=CE --version-string.ProductName=\"Electron Tutorial App\"",
     "install": "electron-rebuild",
     "postinstall": "electron-builder install-app-deps",
-    "release": "electron-builder --publish onTag --armv7l",
+    "release": "electron-builder --publish onTag --x64 --armv7l -wl",
     "pack": "electron-builder --dir",
-    "dist": "electron-builder --publish onTag --armv7l"
+    "dist": "electron-builder --publish onTag --x64 --armv7l -wl"
   },
   "keywords": [
     "car",
@@ -56,29 +56,16 @@
     },
     "linux": {
       "target": [
-        {
-          "target": [
-            "AppImage",
-            "deb"
-          ],
-          "arch": [
-            "arm7l",
-            "x64"
-          ]
-        }
+        "AppImage",
+        "deb"
       ],
+      "arch": ["arm7l", "x64"],
       "icon": "build/icons/png/",
       "publish": "github"
     },
     "win": {
-      "target": [
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
+      "target": "portable",
+      "arch": ["x64"],
       "icon": "build/icons/win/icon.ico",
       "publish": "github"
     }
