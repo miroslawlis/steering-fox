@@ -82,9 +82,15 @@ lessInfoFromCAN=false
 
 ### Deployment
 Github actions need tag to be present in order to compile release
-First update version in package.json, then:
+First update version in package.json:
 ```
 git commit -am 1.0.0
+```
+Tag your commit:
+```
 git tag 1.0.0
+```
+Push your changes to GitHub:
+```
 git push && git push --tags
 ```
