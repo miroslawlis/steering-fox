@@ -55,26 +55,30 @@
       ]
     },
     "linux": {
-      "target": {
-        "target": [
-          "AppImage",
-          "deb"
-        ],
-        "arch": [
-          "arm7l",
-          "x64"
-        ]
-      },
+      "target": [
+        {
+          "target": [
+            "AppImage",
+            "deb"
+          ],
+          "arch": [
+            "arm7l",
+            "x64"
+          ]
+        }
+      ],
       "icon": "build/icons/png/",
       "publish": "github"
     },
     "win": {
-      "target": {
-        "target": "portable",
-        "arch": [
-          "x64"
-        ]
-      },
+      "target": [
+        {
+          "target": "portable",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
       "icon": "build/icons/win/icon.ico",
       "publish": "github"
     }
