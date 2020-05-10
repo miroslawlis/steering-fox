@@ -355,7 +355,7 @@ function guiUpdateData() {
 
     //neerest town
     if (town_nav) {
-        document.querySelector('.grid-cell.nearest_town .data').innerText = town_nav;
+        // document.querySelector('.grid-cell.nearest_town .data').innerText = town_nav;
     }
 
     // alltitude, with conversion
@@ -376,6 +376,10 @@ function guiUpdateData() {
 
             document.querySelector('.grid-cell.temp_outside_car .data').innerText = temp_outside + ' \xB0C';
         }
+    }
+
+    if (coolant_temp) {
+        document.querySelector('.grid-cell.coolant_temp .data').innerText = coolant_temp + ' \xB0C';
     }
 
     //fuel consumption 1
