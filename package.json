@@ -21,7 +21,7 @@
     "dash",
     "js"
   ],
-  "author": "Mirosław Lis",
+  "author": "Mirosław Lis, <aaa@aaa.aaa>",
   "license": "ISC",
   "devDependencies": {
     "electron": "^3.0.16",
