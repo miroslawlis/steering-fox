@@ -4,16 +4,18 @@ on: push
 
 jobs:
   release:
-    runs-on: [ubuntu-lates]
+    runs-on: ${{ matrix.os }}
+    strategy:
+      matrix:
+        os: [ubuntu-latest, windows-latest]
+
     steps:
-    - name: Electron Forge Action
-      uses: yinxulai/actions-electron-forge@0.05
-      with:
-        # GitHub authentication token
-        # github_token: 
-        # Directory where NPM/Yarn commands should be run
-        package_root: # optional, default is .
-        # Optional package.json scripts name
-        script_name: # optional, default is publish
-        # Whether the app should be released after a successful build
-        release: # optional
+      - uses: actions/checkout@v1
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Install Dependencies
+        run: npm install
+      - name: Build
+        run: npm run dist build
