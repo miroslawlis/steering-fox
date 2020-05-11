@@ -34,6 +34,7 @@
   "dependencies": {
     "bluetoothctl": "git+https://github.com/miroslawlis/bluetoothctl.git",
     "brightness": "^3.0.0",
+    "electron-updater": "^4.3.1",
     "ibus": "git+https://github.com/osvathrobi/node-ibus.git",
     "recursive-readdir": "2.2.2",
     "serialport": "7.1.5"
