@@ -137,68 +137,68 @@ function onIbusData(data) {
         // to decimal conversion
         // in Celsius
         // CHECK IF ITS OK
-        temp_outside = parseInt(buffMsgHex.substring(2,4), 16);
-        coolant_temp = parseInt(buffMsgHex.substring(4,6), 16);
+        temp_outside = parseInt(buffMsgHex.substring(2, 4), 16);
+        coolant_temp = parseInt(buffMsgHex.substring(4, 6), 16);
 
         msgDescryption = 'Temperature: Outside:' + temp_outside + 'C ' + 'Coolant: ' + coolant_temp + ' C';
-        
+
     }
 
-        if (data.src == '80' && data.dst == 'ff') {
-            // if (buffMsg.slice(1, 1).toString('hex') == '04') {
-            if (data.msg[1] == '04') {
-                // fuel consumption 1
-                fuel_consumption_1 = (data.msg).slice(3, 14).toString('utf-8').replace(".", ",").trim();
+    if (data.src == '80' && data.dst == 'ff') {
+        // if (buffMsg.slice(1, 1).toString('hex') == '04') {
+        if (data.msg[1] == '04') {
+            // fuel consumption 1
+            fuel_consumption_1 = (data.msg).slice(3, 14).toString('utf-8').replace(".", ",").trim();
 
-                msgDescryption = 'Fuel consumption 1';
+            msgDescryption = 'Fuel consumption 1';
 
-            }
-            if (buffMsgHex.slice(0, 4) == '2405') {
-                // if (data.msg[1] == '05') {
-                // fuel consumption 2
-                // src: "80";
-                // len: "9";
-                // dst: "ff";
-                // msg: {"type":"Buffer","data":[36,5,0,32,56,46,52]};
-                // 24050020382e34
-                // crc: "55";
-                fuel_consumption_2 = buffMsgHex.slice(6, 14);
-                fuel_consumption_2 = hex_to_ascii(fuel_consumption_2).replace(".", ",").trim();
-
-                msgDescryption = 'Fuel consumption 2';
-
-            }
-            if (buffMsgHex.slice(0, 4) == '2406') {
-                // range
-                range = buffMsgHex.slice(6, 14);
-                range = hex_to_ascii(range).trim();
-
-                msgDescryption = 'Range';
-
-            }
-            if (data.msg[1] == '07') {
-                // distance
-                distance = (data.msg).slice(3, 14).toString('hex');
-
-                msgDescryption = 'Distance';
-
-            }
-            if (data.msg[1] == '09') {
-                // speed_limit
-                speed_limit = (data.msg).slice(3, 14).toString('hex');
-
-                msgDescryption = 'Speed limit';
-
-            }
-            if (buffMsgHex.slice(0, 6) == '240a00') {
-                // avarage speed
-                avg_speed = buffMsgHex.slice(6, 14);
-                avg_speed = hex_to_ascii(avg_speed).trim();
-
-                msgDescryption = 'AVG speed';
-
-            }
         }
+        if (buffMsgHex.slice(0, 4) == '2405') {
+            // if (data.msg[1] == '05') {
+            // fuel consumption 2
+            // src: "80";
+            // len: "9";
+            // dst: "ff";
+            // msg: {"type":"Buffer","data":[36,5,0,32,56,46,52]};
+            // 24050020382e34
+            // crc: "55";
+            fuel_consumption_2 = buffMsgHex.slice(6, 14);
+            fuel_consumption_2 = hex_to_ascii(fuel_consumption_2).replace(".", ",").trim();
+
+            msgDescryption = 'Fuel consumption 2';
+
+        }
+        if (buffMsgHex.slice(0, 4) == '2406') {
+            // range
+            range = buffMsgHex.slice(6, 14);
+            range = hex_to_ascii(range).trim();
+
+            msgDescryption = 'Range';
+
+        }
+        if (data.msg[1] == '07') {
+            // distance
+            distance = (data.msg).slice(3, 14).toString('hex');
+
+            msgDescryption = 'Distance';
+
+        }
+        if (data.msg[1] == '09') {
+            // speed_limit
+            speed_limit = (data.msg).slice(3, 14).toString('hex');
+
+            msgDescryption = 'Speed limit';
+
+        }
+        if (buffMsgHex.slice(0, 6) == '240a00') {
+            // avarage speed
+            avg_speed = buffMsgHex.slice(6, 14);
+            avg_speed = hex_to_ascii(avg_speed).trim();
+
+            msgDescryption = 'AVG speed';
+
+        }
+    }
     // if from NavigationEurope 7f
     if (data.src == '7f') {
 
@@ -282,107 +282,113 @@ function onSignalInt() {
 
 function sendCAN(request, arg1, arg2) {
 
-    switch (request) {
-        // request for fuel consumption 1
-        case 'fuel_consumption_1':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x41, 0x04, 0x01])
-                //3B 05 80 41 04 01
-            });
-            break;
-        // request for fuel consumption 2
-        case 'fuel_consumption_2':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x41, 0x05, 0x01])
-                //3B 05 80 41 05 01
-            });
-            break;
-        // request for outside temperature
-        case 'temp_outside':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x41, 0x03, 0x01])
-            });
-            break;
-        // request for total kilometers
-        // Odometer request
-        case 'distance':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x41, 0x07, 0x01])
-            });
-            break;
-        // request range
-        case 'range':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x41, 0x06, 0x01])
-            })
-            break;
-        // request avg speed
-        case 'avg_speed':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x41, 0x0A, 0x01])
-            })
-            break;
-        //request obc
-        case 'obc':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x41, 0x19])
-            })
-            break;
+    try {
+        if (ibusInterface) {
+            switch (request) {
+                // request for fuel consumption 1
+                case 'fuel_consumption_1':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x41, 0x04, 0x01])
+                        //3B 05 80 41 04 01
+                    });
+                    break;
+                // request for fuel consumption 2
+                case 'fuel_consumption_2':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x41, 0x05, 0x01])
+                        //3B 05 80 41 05 01
+                    });
+                    break;
+                // request for outside temperature
+                case 'temp_outside':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x41, 0x03, 0x01])
+                    });
+                    break;
+                // request for total kilometers
+                // Odometer request
+                case 'distance':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x41, 0x07, 0x01])
+                    });
+                    break;
+                // request range
+                case 'range':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x41, 0x06, 0x01])
+                    })
+                    break;
+                // request avg speed
+                case 'avg_speed':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x41, 0x0A, 0x01])
+                    })
+                    break;
+                //request obc
+                case 'obc':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x41, 0x19])
+                    })
+                    break;
 
-        // set DSP
-        case 'dsp-on-concert-hall':
-            ibusInterface.sendMessage({
-                src: 0x68,
-                dst: 0x6A,
-                msg: new Buffer.from([0x34, 0x09])
-            })
-            break;
+                // set DSP
+                case 'dsp-on-concert-hall':
+                    ibusInterface.sendMessage({
+                        src: 0x68,
+                        dst: 0x6A,
+                        msg: new Buffer.from([0x34, 0x09])
+                    })
+                    break;
 
-        // request time
-        case 'time':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x41, 0x01, 0x01])
-            })
-            break;
+                // request time
+                case 'time':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x41, 0x01, 0x01])
+                    })
+                    break;
 
-        // update time
-        // arg1->Hours, arg2->minutes
-        case 'update-time':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x40, 0x01, arg1, arg2])
-            })
-            break;
+                // update time
+                // arg1->Hours, arg2->minutes
+                case 'update-time':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x40, 0x01, arg1, arg2])
+                    })
+                    break;
 
-        // update date
-        // arg1->day, arg2->month, arg3->year
-        case 'update-date':
-            ibusInterface.sendMessage({
-                src: 0x3B,
-                dst: 0x80,
-                msg: new Buffer.from([0x40, 0x02, arg1, arg2, arg3])
-            })
-            break;
+                // update date
+                // arg1->day, arg2->month, arg3->year
+                case 'update-date':
+                    ibusInterface.sendMessage({
+                        src: 0x3B,
+                        dst: 0x80,
+                        msg: new Buffer.from([0x40, 0x02, arg1, arg2, arg3])
+                    })
+                    break;
 
-        default:
-            break;
+                default:
+                    break;
+            }
+        }
+    } catch (error) {
+        console.error(error);
     }
 }
 
