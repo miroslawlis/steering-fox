@@ -22,7 +22,12 @@ function createWindow() {
     frame: false,
     icon: path.join(__dirname, 'build/icons/png/1024x1024.png'),
     webPreferences: {
-      preload: path.join(__dirname, 'preload.js'),
+      nodeIntegration: true, // is default value after Electron v5
+      nodeIntegrationInWorker: false,
+      nodeIntegrationInSubFrames: false,
+      contextIsolation: true, // protect against prototype pollution
+      enableRemoteModule: true, // turn off remote
+      // preload: path.join(__dirname, "preload.js"),   // use a preload script
       webviewTag: true //for webview -> youtube
     },
     fullscreen: true,
