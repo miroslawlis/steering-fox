@@ -197,13 +197,13 @@
 
       </div>
       <div class="youtube element">
-        <webview id="yt-view" src="https://www.youtube.com/" style="width:100%; height:100%"></webview>
+        <webview webPreferences="contextIsolation=yes" id="yt-view" src="https://www.youtube.com/" style="width:100%; height:100%"></webview>
         <!-- pig hack for youtube in iframe -->
         <input id="input-for-yt" type="text" class="nocss"
           style="position: fixed; z-index: 1; top: 1vw; left: 35vw; background-color: transparent; border: none; width: 20vw; min-width: 20vw; height: 5vw; color: black; font-size: 2.5vw;">
       </div>
       <div class="map element">
-        <webview id="map-view" src="https://www.google.pl/maps?hl=pl&tab=wl" style="width:100%; height:100%"
+        <webview webPreferences="contextIsolation=yes" id="map-view" src="https://www.google.pl/maps?hl=pl&tab=wl" style="width:100%; height:100%"
           preload="./js/keyboard.js"></webview>
         <!-- nodeintegration nodeintegrationinsubframes -->
         <script>
@@ -427,6 +427,8 @@
 
           </div>
 
+          <div id="versionInfo"></div><button onclick="updateAppToNewVersion()">Update</button><div id="updateMessage"></div>
+
         </div>
       </div>
       <!-- END settings element -->
@@ -437,12 +439,12 @@
   <!-- You can also require other files to run in this process -->
   <script src="renderer.js"></script>
   <script src="js/music-player.js"></script>
-  <script src="js/ibus.js"></script>
+  <!-- <script src="js/ibus.js"></script> -->
   <script src="js/keyboard.js"></script>
-  <script src="js/bluetooth.js"></script>
-  <script src="js/wifi.js"></script>
+  <!-- <script src="js/bluetooth.js"></script>
+  <script src="js/wifi.js"></script> -->
   <script src="js/modal.js"></script>
-  <script src="js/translation.js"></script>
+  <!-- <script src="js/translation.js"></script> -->
 
 </body>
 

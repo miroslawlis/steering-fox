@@ -1,13 +1,17 @@
+console.log('ibus initialized');
 var sp = require('serialport');
 
-sp.list(function (err, ports) {
-    debugLog('ports: ');
-    debugLog(ports);
-});
+sp.list().then(
+    function (err, ports) {
+        console.log('ports: ');
+        console.log(ports);
+    }
+);
 
-var time_instrument_cluster, town_nav, street_nav, gps_altitude, gps_cords_lat, gps_cords_lon, gps_utc_time, temp_outside, fuel_consumption_1, fuel_consumption_2, range, distance, speed_limit, avg_speed, light_sensor, temp_outside, coolant_temp;
-var lessInfoFromCAN = true;
+var canData = {};
+canData.lessInfoFromCAN = true;
 
+console.log('fuel_consumption_1: ', canData.fuel_consumption_1, canData.lessInfoFromCAN);
 //// ibus part start
 
 var IbusInterface = require('ibus').IbusInterface;
@@ -55,7 +59,7 @@ function onIbusData(data) {
     let buffMsgHex = buffMsg.toString('hex').toLowerCase();
 
     // remove empty data, like: from BodyModule - 0 to BodyModule - 0
-    if (lessInfoFromCAN === true) {
+    if (canData.lessInfoFromCAN === true) {
         if ((data.src == '0' && data.dst == '0') || (data.src == 'a4')) {
             return;
             // end this round of data
@@ -113,7 +117,7 @@ function onIbusData(data) {
     // 80 source, 0a length, ff destenation, 2b 31 32 2e 35 actual temperature, there is allso time later in string
     if (data.src == '80' && data.dst == 'ff' && buffMsgHex.substring(0, 4) == '2403') {
         // outside temperature
-        temp_outside = buffMsgHex.substring(6, 16);
+        canData.temp_outside = buffMsgHex.substring(6, 16);
 
         msgDescryption = 'Outside temperature';
 
@@ -123,7 +127,7 @@ function onIbusData(data) {
     // data.msg -> first 3 parts in buffer describe is it time ([36, 1, 0]) in hex: 24010031373a30392020
     if (data.src == '80' && data.dst == 'ff' && buffMsgHex.substring(0, 6) == '240100') {
         // remove 3 first parts from buffer and remove 2 parts from end -> this give time in format HH:MM egz 12:45 (12h or 24h?)
-        time_instrument_cluster = buffMsg.slice(3, 9).toString('utf-8');
+        canData.time_instrument_cluster = buffMsg.slice(3, 9).toString('utf-8');
 
         msgDescryption = 'Time from instrument cluster';
 
@@ -137,10 +141,10 @@ function onIbusData(data) {
         // to decimal conversion
         // in Celsius
         // CHECK IF ITS OK
-        temp_outside = parseInt(buffMsgHex.substring(2, 4), 16);
-        coolant_temp = parseInt(buffMsgHex.substring(4, 6), 16);
+        canData.temp_outside = parseInt(buffMsgHex.substring(2, 4), 16);
+        canData.coolant_temp = parseInt(buffMsgHex.substring(4, 6), 16);
 
-        msgDescryption = 'Temperature: Outside:' + temp_outside + 'C ' + 'Coolant: ' + coolant_temp + ' C';
+        msgDescryption = 'Temperature: Outside:' + canData.temp_outside + 'C ' + 'Coolant: ' + canData.coolant_temp + ' C';
 
     }
 
@@ -148,7 +152,7 @@ function onIbusData(data) {
         // if (buffMsg.slice(1, 1).toString('hex') == '04') {
         if (data.msg[1] == '04') {
             // fuel consumption 1
-            fuel_consumption_1 = (data.msg).slice(3, 14).toString('utf-8').replace(".", ",").trim();
+            canData.fuel_consumption_1 = (data.msg).slice(3, 14).toString('utf-8').replace(".", ",").trim();
 
             msgDescryption = 'Fuel consumption 1';
 
@@ -162,38 +166,38 @@ function onIbusData(data) {
             // msg: {"type":"Buffer","data":[36,5,0,32,56,46,52]};
             // 24050020382e34
             // crc: "55";
-            fuel_consumption_2 = buffMsgHex.slice(6, 14);
-            fuel_consumption_2 = hex_to_ascii(fuel_consumption_2).replace(".", ",").trim();
+            canData.fuel_consumption_2 = buffMsgHex.slice(6, 14);
+            canData.fuel_consumption_2 = hex_to_ascii(canData.fuel_consumption_2).replace(".", ",").trim();
 
             msgDescryption = 'Fuel consumption 2';
 
         }
         if (buffMsgHex.slice(0, 4) == '2406') {
             // range
-            range = buffMsgHex.slice(6, 14);
-            range = hex_to_ascii(range).trim();
+            canData.range = buffMsgHex.slice(6, 14);
+            canData.range = hex_to_ascii(canData.range).trim();
 
             msgDescryption = 'Range';
 
         }
         if (data.msg[1] == '07') {
             // distance
-            distance = (data.msg).slice(3, 14).toString('hex');
+            canData.distance = (data.msg).slice(3, 14).toString('hex');
 
             msgDescryption = 'Distance';
 
         }
         if (data.msg[1] == '09') {
             // speed_limit
-            speed_limit = (data.msg).slice(3, 14).toString('hex');
+            canData.speed_limit = (data.msg).slice(3, 14).toString('hex');
 
             msgDescryption = 'Speed limit';
 
         }
         if (buffMsgHex.slice(0, 6) == '240a00') {
             // avarage speed
-            avg_speed = buffMsgHex.slice(6, 14);
-            avg_speed = hex_to_ascii(avg_speed).trim();
+            canData.avg_speed = buffMsgHex.slice(6, 14);
+            canData.avg_speed = hex_to_ascii(canData.avg_speed).trim();
 
             msgDescryption = 'AVG speed';
 
@@ -206,14 +210,14 @@ function onIbusData(data) {
         // data.msg -> third part ("1") in buffer msg describe is it town ([164, 0, 1])
         if (buffMsgHex.slice(0, 6) === 'a40001') {
 
-            town_nav = buffMsg.slice(3, buffMsg.indexOf('0', 5)).toString('utf-8');
+            canData.town_nav = buffMsg.slice(3, buffMsg.indexOf('0', 5)).toString('utf-8');
             msgDescryption = 'Town name';
         }
         // Street from NavModule GPS
         // data.msg -> third part ("2") in buffer msg describe is it street ([164, 0, 2])
         if (buffMsgHex.slice(0, 6) === 'a40002') {
             //
-            street_nav = buffMsg.slice(3, buffMsg.indexOf('0', 5)).toString('utf-8');
+            canData.street_nav = buffMsg.slice(3, buffMsg.indexOf('0', 5)).toString('utf-8');
             msgDescryption = 'Street name';
         }
         // GPS cords, time, altitude
@@ -223,10 +227,10 @@ function onIbusData(data) {
             // first 3 can be  erased (a20100) -> 514052500020574190011000104749
             // from nav encoder: 2019-10-13 10:25:49.105||NAV  |TEL |Current position|GPS fix; 51°40'52.5"N  20°57'41.9"E; Alt 111m;  UTC 08:25:49
             // 51 (stopnie) 40 (minuty) 52 (sekundy) 50 (połowki sekundy N?) 00 (separator?) 20 (stopnie) 57 (minuty) 41 (sekundy) 90 (połowki sekundy E?) 01 10 00 (wysokość 111m, traktować jak stringi i połączyć? wtedy 01 + 10 + 00 daje 011000 -> 110m?) 10 (UTC godzina)47 (UTC minuty) 49 (UTC sekundy)
-            gps_cords_lat = buffMsg.slice(3, 7).toString('hex');
-            gps_cords_lon = buffMsg.slice(8, 12).toString('hex');
-            gps_altitude = parseInt(buffMsgHex.slice(24, 28));
-            gps_utc_time = buffMsg.slice(15, 18).toString('hex');
+            canData.gps_cords_lat = buffMsg.slice(3, 7).toString('hex');
+            canData.gps_cords_lon = buffMsg.slice(8, 12).toString('hex');
+            canData.gps_altitude = parseInt(buffMsgHex.slice(24, 28));
+            canData.gps_utc_time = buffMsg.slice(15, 18).toString('hex');
 
             msgDescryption = 'GPS cords';
 
@@ -239,7 +243,7 @@ function onIbusData(data) {
     // data.msg -> hex -> 5c ff c9 ff 00 -> lights on?
     if (data.src == 'd0' && data.dst == 'bf' && buffMsgHex === '5cff3fff00') {
         //
-        light_sensor = 'day';
+        canData.light_sensor = 'day';
         // brightness.set(0.8).then(() => {
         //Brightness changed to 80%
         // });
@@ -248,7 +252,7 @@ function onIbusData(data) {
     }
 
     if (data.src == 'd0' && data.dst == 'bf' && buffMsgHex === '5cfe3fff00') {
-        light_sensor = 'night';
+        canData.light_sensor = 'night';
         // brightness.set(0.2).then(() => {
         //Brightness changed to 20%
         // });
@@ -256,9 +260,9 @@ function onIbusData(data) {
     }
 
     //id, from, to, message, message hex, analyzing, description
-    debugLog(data.id, ' | ', IbusDevices.getDeviceName(data.src), '|', IbusDevices.getDeviceName(data.dst), '|', data.msg, '|', buffMsgHex, '|', data, '|', msgDescryption);
+    window.apiMain.debugLog(data.id, ' | ', IbusDevices.getDeviceName(data.src), '|', IbusDevices.getDeviceName(data.dst), '|', data.msg, '|', buffMsgHex, '|', data, '|', msgDescryption);
 
-    // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
+    // window.apiMain.debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
 
 }
 
@@ -391,10 +395,7 @@ function sendCAN(request, arg1, arg2) {
         console.error(error);
     }
 }
-
-
 // send end
-
-
 //// ibus part end
-
+module.exports.canData = canData;
+module.exports.sendCAN = sendCAN;

@@ -24,7 +24,7 @@ window.addEventListener("DOMContentLoaded", function () {
     //hook to play event and manage DOM classes
     audio.onplay = function () {
 
-        debugLog('event PLAY occured');
+        window.apiMain.debugLog('event PLAY occured');
 
         // add classes for Play button
         plyButon.classList.add('playing');
@@ -41,7 +41,7 @@ window.addEventListener("DOMContentLoaded", function () {
     //hook to pause event and manage DOM classes
     audio.onpause = function () {
 
-        debugLog('event PAUSE occured');
+        window.apiMain.debugLog('event PAUSE occured');
 
         // remove classes for play button
         plyButon.classList.remove('playing');
@@ -54,7 +54,7 @@ window.addEventListener("DOMContentLoaded", function () {
 
     audio.onended = function () {
         //start new song when "current" song eneded
-        debugLog('event ENDED occured');
+        window.apiMain.debugLog('event ENDED occured');
         nextSong();
     }
 
@@ -128,24 +128,25 @@ function volDown() {
     }
 }
 
-function shuffl() {
+function shuffl(songs_obj) {
 
     // store songs data in randomized order
     ShuffledSongsObject = [];
     let numberOfSongs;
 
-    if (songsObj[0]) {
-        numberOfSongs = songsObj.length;
+    if (songs_obj[0]) {
+        numberOfSongs = songs_obj.length;
 
-        songsObj.forEach(function (val) {
+        songs_obj.forEach(function (val) {
             let index = Math.floor((Math.random() * numberOfSongs) + 1);
             ShuffledSongsObject.splice(index, 0, { id: val.id, name: val.name, length: '', path: val.path });
         });
 
         // replace oryginall songObj with shuffeled one
         // so it can be used instade (random songs in use)
-        songsObj = ShuffledSongsObject;
-        debugLog(songsObj);
+        songs_obj = ShuffledSongsObject;
+        window.apiMain.debugLog(songs_obj);
+        return songs_obj;
 
     }
 
@@ -162,8 +163,8 @@ function currentVolume() {
     //set audio volume "globaly", value from slider value
     audio.volume = sliVmValue / 100;
 
-    // debugLog(audio.volume.toFixed(2));
-    // debugLog("sliderVolMusicValue: " + sliderVolMusicValue);
+    // window.apiMain.debugLog(audio.volume.toFixed(2));
+    // window.apiMain.debugLog("sliderVolMusicValue: " + sliderVolMusicValue);
 
 }
 
@@ -194,7 +195,7 @@ function nextSong() {
     }
 
     // HTML update
-    GetThreeSongsToGUI();
+    getThreeSongsToGUI(songsObj);
     
 }
 
@@ -221,7 +222,7 @@ function previousSong() {
     }
 
     // HTML update
-    GetThreeSongsToGUI();
+    getThreeSongsToGUI(songsObj);
 }
 
 function markCurentSongInTable() {
@@ -237,31 +238,31 @@ function markCurentSongInTable() {
     // document.getElementsByClassName('curentlyPlaying')[0].scrollIntoView({behavior: "smooth", block: "center"})
 }
 
-function GetThreeSongsToGUI() {
+function getThreeSongsToGUI(songs_obj) {
 
     let previousSongHTMLObject = document.getElementById('previousSong');
     let currentSongHTMLObject = document.getElementById('currentSong');
     let nextSongHTMLObject = document.getElementById('nextSong');
 
     currentSongID = parseInt(audio.getAttribute('itemid'));
-    currentSongIndex = songsObj.findIndex(obj => {
+    currentSongIndex = songs_obj.findIndex(obj => {
         return obj.id === currentSongID;
     });
 
     nextSongIndex = currentSongIndex + 1;
     // if this is last song then go to first
-    if (nextSongIndex >= songsObj.length) {
+    if (nextSongIndex >= songs_obj.length) {
         nextSongIndex = 0;
     }
     prevSongIndex = currentSongIndex - 1;
     // if this is first song then go to last song
     if (prevSongIndex < 0) {
-        prevSongIndex = songsObj.length - 1;
+        prevSongIndex = songs_obj.length - 1;
     }
 
     // update HTML with songs
-    previousSongHTMLObject.innerText = (songsObj[prevSongIndex]['name']) ? songsObj[prevSongIndex]['name'] : '';
-    currentSongHTMLObject.innerText = songsObj[currentSongIndex]['name'] ? songsObj[currentSongIndex]['name'] : '';
-    nextSongHTMLObject.innerText = songsObj[nextSongIndex]['name'] ? songsObj[nextSongIndex]['name'] : '';
+    previousSongHTMLObject.innerText = (songs_obj[prevSongIndex]['name']) ? songs_obj[prevSongIndex]['name'] : '';
+    currentSongHTMLObject.innerText = songs_obj[currentSongIndex]['name'] ? songs_obj[currentSongIndex]['name'] : '';
+    nextSongHTMLObject.innerText = songs_obj[nextSongIndex]['name'] ? songs_obj[nextSongIndex]['name'] : '';
 
 }
