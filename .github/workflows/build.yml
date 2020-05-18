@@ -18,7 +18,7 @@ jobs:
       - name: Build linux
         #run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run dist build
         run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run deploy
-        if: startsWith(github.ref, 'refs/tags/') == true
+        #if: startsWith(github.ref, 'refs/tags/') == true
   
 #   release_win:
 #     if: startsWith(github.ref, 'refs/tags/') == true
