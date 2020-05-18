@@ -17,23 +17,23 @@ jobs:
         run: npm install
       - name: Build linux
         #run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run dist build
-        run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run dist-linux
+        run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run deploy
         if: startsWith(github.ref, 'refs/tags/') == true
   
-  release_win:
-    if: startsWith(github.ref, 'refs/tags/') == true
-    runs-on: windows-latest
+#   release_win:
+#     if: startsWith(github.ref, 'refs/tags/') == true
+#     runs-on: windows-latest
 
-    steps:
-      - uses: actions/checkout@v1
-      - name: Setup Node
-        uses: actions/setup-node@v1
-        with:
-          node-version: '10.x'
-      - name: Install Dependencies
-        run: npm install
-      - name: Build win
-        run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run dist-win
-        if: startsWith(github.ref, 'refs/tags/') == true
+#     steps:
+#       - uses: actions/checkout@v1
+#       - name: Setup Node
+#         uses: actions/setup-node@v1
+#         with:
+#           node-version: '10.x'
+#       - name: Install Dependencies
+#         run: npm install
+#       - name: Build win
+#         run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run dist-win
+#         if: startsWith(github.ref, 'refs/tags/') == true
         
     
