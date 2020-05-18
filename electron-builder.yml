@@ -1,4 +1,3 @@
 appId: Steering_Fox
 publish:
   provider: github
-  token: GH_TOKEN
