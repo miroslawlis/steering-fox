@@ -1,9 +1,11 @@
 var sp = require('serialport');
 
-sp.list(function (err, ports) {
-    debugLog('ports: ');
-    debugLog(ports);
-});
+sp.list().then(
+    function (err, ports) {
+        debugLog('ports: ');
+        debugLog(ports);
+    }
+);
 
 var time_instrument_cluster, town_nav, street_nav, gps_altitude, gps_cords_lat, gps_cords_lon, gps_utc_time, temp_outside, fuel_consumption_1, fuel_consumption_2, range, distance, speed_limit, avg_speed, light_sensor, temp_outside, coolant_temp;
 var lessInfoFromCAN = true;
@@ -240,18 +242,14 @@ function onIbusData(data) {
     if (data.src == 'd0' && data.dst == 'bf' && buffMsgHex === '5cff3fff00') {
         //
         light_sensor = 'day';
-        // brightness.set(0.8).then(() => {
-        //Brightness changed to 80%
-        // });
+
         msgDescryption = 'Light sensor = day';
 
     }
 
     if (data.src == 'd0' && data.dst == 'bf' && buffMsgHex === '5cfe3fff00') {
         light_sensor = 'night';
-        // brightness.set(0.2).then(() => {
-        //Brightness changed to 20%
-        // });
+
         msgDescryption = 'Light sensor = night';
     }
 

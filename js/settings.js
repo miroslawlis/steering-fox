@@ -1,50 +1,44 @@
-exports.init = () => {
+const fs = require('fs');
+
+function settingsInit() {
 
     UserPath = '';
     settingsFileName = 'settings.json';
     musicFolder = '/Music/';
     UserPath = (electron.app || electron.remote.app).getPath('userData');
-
     filePathAndName = path.join(UserPath, settingsFileName);
-
-    const settingsFileContent = {};
-    settingsFileContent.musicFolder = "";
-    settingsFileContent.themeOptionFile = 5;
 
     let fuel_1_ele = document.querySelector('#main .fuel_cons1 .data');
 
-    //// if settings.json file dose not egzist in app folder then create it
-
+    // check if settings.json file dose not egzist in app folder 
+    // if it's not there then create it that file with default data
     try {
-        fs.access(filePathAndName, fs.constants.F_OK, (err) => {
+        if (!fs.existsSync(filePathAndName)) {
+            // file not exist
+            debugLog('Settings file not exist, creating...');
 
-            if (err && err.code === 'ENOENT') {
+            const settingsFileContent = {};
+            settingsFileContent.musicFolder = "";
+            settingsFileContent.themeOptionFile = 5;
 
-                // file not exist
-                debugLog('Settings file not exist, creating...');
-                fs.writeFile(filePathAndName, JSON.stringify(settingsFileContent), (err) => {
-                    if (err) {
-                        debugLog('Error in creating settings file: ' + err);
-                    } else {
-                        // no error === succes
-                        // after crating file, load content
-                        debugLog('Settings file created, loading content...');
-                        readSettingfile();
-                    }
-                });
-            } else if (err) {
-                // if error
-                debugLog(err);
-            } else {
-                // file exist and no error
-                debugLog('Settings file exist, loading content...');
-                readSettingfile();
-            }
+            fs.writeFile(filePathAndName, JSON.stringify(settingsFileContent), (err) => {
+                if (err) {
+                    console.error('Error in creating settings file: ' + err);
+                } else {
+                    // no error === succes
+                    // after crating file, load content
+                    debugLog('Settings file created');
+                    readSettingfile();
+                }
+            });
 
-
-        });
+        } else {
+            // file exist and no error
+            debugLog('Settings file exist');
+            readSettingfile();
+        }
     } catch (err) {
-        debugLog('Setting file: ' + err);
+        console.error('Setting file: ' + err);
     }
 
     document.querySelector(".settings").addEventListener('change', function () {
@@ -87,13 +81,13 @@ exports.init = () => {
             debugLog("contentObject: " + contentObject);
 
         } catch (err) {
-            debugLog(err);
+            console.error(err);
         }
 
         try {
             fs.writeFile(filePathAndName, contentObject, (err) => {
                 if (err) throw err;
-                debugLog('The file has been saved! ' + filePathAndName);
+                console.error('The file has been saved! ' + filePathAndName);
 
                 createSongsObject();
             });
@@ -102,37 +96,29 @@ exports.init = () => {
     }
 
     // if settings file contain folderPath (and it's not empty string) then use it in var musicFolder else use "/Music/"
-
     function readSettingfile() {
 
+        debugLog('Settings file, loading content...');
+
         try {
+            settingFromFileObj = fs.readFileSync(filePathAndName);
+            settingFromFileObj = JSON.parse(settingFromFileObj);
 
-            // settingFromFileObj = fs.readFileSync(filePathAndName);
-            settingFromFileObj = fs.readFile(filePathAndName, function (err, data) {
+            if (settingFromFileObj.musicFolder != '') {
 
-                if (err || data == '') {
-                    debugLog(err);
-                } else {
-                    settingFromFileObj = JSON.parse(data);
+                musicFolder = settingFromFileObj.musicFolder;
+                debugLog('musicFolder !="" : ' + musicFolder);
 
-                    if (settingFromFileObj.musicFolder != '') {
+            }
+            // fuel_consumption_1 = settingFromFileObj.lastFuel1Con;
 
-                        musicFolder = settingFromFileObj.musicFolder;
-                        debugLog('musicFolder !="" : ' + musicFolder);
-
-                    }
-                    // fuel_consumption_1 = settingFromFileObj.lastFuel1Con;
-
-                    updateGUIwithSettings(settingFromFileObj.themeOptionFile, settingFromFileObj.musicFolder, settingFromFileObj.audioVolume);
-                    //
-                    switchTheme();
-                    createSongsObject();
-                }
-            });
-
+            updateGUIwithSettings(settingFromFileObj.themeOptionFile, settingFromFileObj.musicFolder, settingFromFileObj.audioVolume);
+            //
+            switchTheme();
+            createSongsObject();
 
         } catch (error) {
-            debugLog(error);
+            console.error(error);
         }
 
     }
@@ -150,6 +136,6 @@ exports.init = () => {
 
     }
 
-    
+
 };
 

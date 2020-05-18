@@ -1,6 +1,11 @@
+// mesuure start time
+global.profile_startTime = Date.now();
+
+
 // Modules to control application life and create native browser window
-const { app, BrowserWindow, powerSaveBlocker } = require('electron');
+const { app, BrowserWindow, powerSaveBlocker, session, ipcMain } = require('electron');
 const path = require('path');
+const { autoUpdater } = require("electron-updater");
 
 //require('electron-reload')(__dirname);
 // if (process.env.NODE_ENV === 'development') { require('electron-reload')(__dirname, {
@@ -22,11 +27,11 @@ function createWindow() {
     frame: false,
     icon: path.join(__dirname, 'build/icons/png/1024x1024.png'),
     webPreferences: {
-      nodeIntegration: true, // is default value after Electron v5
+      nodeIntegration: true, // is default (false) value after Electron v5
       nodeIntegrationInWorker: false,
       nodeIntegrationInSubFrames: false,
-      contextIsolation: true, // protect against prototype pollution
-      enableRemoteModule: true, // turn off remote
+      contextIsolation: false, // protect against prototype pollution -> if true
+      enableRemoteModule: true, // turn off remote -> if false
       // preload: path.join(__dirname, "preload.js"),   // use a preload script
       webviewTag: true //for webview -> youtube
     },
@@ -43,32 +48,40 @@ function createWindow() {
   // Open the DevTools.
   // mainWindow.webContents.openDevTools()
 
+  // install updates
+  // Emitted before the application starts closing its windows.
+  mainWindow.on('before-quit', () => {
+    autoUpdater.quitAndInstall();
+  });
+
   // Emitted when the window is closed.
   mainWindow.on('closed', function () {
     // Dereference the window object, usually you would store windows
     // in an array if your app supports multi windows, this is the time
     // when you should delete the corresponding element.
     mainWindow = null
-  })
+  });
+
 }
 
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on('ready', createWindow)
+app.on('ready', createWindow);
+app.allowRendererProcessReuse = false; // deprecated https://github.com/electron/electron/issues/18397
 
 // Quit when all windows are closed.
 app.on('window-all-closed', function () {
   // On macOS it is common for applications and their menu bar
   // to stay active until the user quits explicitly with Cmd + Q
   if (process.platform !== 'darwin') app.quit()
-})
+});
 
 app.on('activate', function () {
   // On macOS it's common to re-create a window in the app when the
   // dock icon is clicked and there are no other windows open.
   if (mainWindow === null) createWindow()
-})
+});
 
 // In this file you can include the rest of your app's specific main process
 // code. You can also put them in separate files and require them here.
@@ -79,3 +92,26 @@ app.commandLine.appendSwitch('--autoplay-policy', 'no-user-gesture-required');
 
 const id = powerSaveBlocker.start('prevent-display-sleep');
 // console.log(powerSaveBlocker.isStarted(id))
+
+ipcMain.on('app_version', (event) => {
+  event.sender.send('app_version', { version: app.getVersion() });
+});
+
+// auto updater
+
+
+ipcMain.on('check_for_application_update', () => {
+  // autoUpdater.setFeedUrl = "https://github.com/miroslawlis/steering-fox";
+  autoUpdater.checkForUpdates();
+});
+
+// event listeners to handle update events
+autoUpdater.on('update-available', () => {
+  mainWindow.webContents.send('update_available');
+});
+autoUpdater.on('update-downloaded', () => {
+  mainWindow.webContents.send('update_downloaded');
+});
+autoUpdater.on('update-not-available', () => {
+  mainWindow.webContents.send('update-not-available');
+});

@@ -4,16 +4,15 @@
 
 const path = require('path');
 const electron = require('electron');
-var recursive = require("recursive-readdir");
+const ipcRenderer = electron.ipcRenderer;
 const os = require('os');
 var ifaces = os.networkInterfaces();
 var spawn = require('child_process').spawn;
 var win = electron.remote.getCurrentWindow();
 var isLinux = process.platform === 'linux';
 const remote = require('electron').remote;
-const brightness = require('brightness');
 
-const settings = require('./js/settings.js');
+// const settings = require('./js/settings.js');
 //for debugLog()
 const startParameters = remote.process.argv.slice(2);
 
@@ -29,44 +28,74 @@ window.addEventListener('DOMContentLoaded', function () {
 
     audioElement = document.querySelector("#audio");
 
-    document.getElementById('settings').addEventListener('click', function () {
-        // on click fire this function
-        getIPs();
-        wifiInfo();
-    });
+    // do settings file stuff
+    settingsInit();
 
-    // minimizing and closing
-    document.getElementById('minimize').addEventListener("click", function () {
-        win.minimize();
-    });
-    document.getElementById('closeApp').addEventListener("click", function () {
-        win.close();
-    });
-    //
-    // bluetooth
-    document.getElementById('bluetooth').addEventListener("click", function () {
-        // show/hide bluetooth settings
-        document.querySelector('.settings .bluetooth').classList.toggle('hide');
-    });
-    document.getElementById('btClose').addEventListener("click", function () {
-        document.querySelector('.settings .bluetooth').classList.toggle('hide');
-    })
+    (async () => {
+        await document.getElementById('settings').addEventListener('click', function () {
+            // on click fire this function
+            getIPs();
+            wifiInfo();
+        });
 
-    // initiall start
-    getIPs();
-    wifiInfo();
+        // minimizing and closing
+        await document.getElementById('minimize').addEventListener("click", function () {
+            win.minimize();
+        });
+        await document.getElementById('closeApp').addEventListener("click", function () {
+            win.close();
+        });
+        //
+        // bluetooth
+        await document.getElementById('bluetooth').addEventListener("click", function () {
+            // show/hide bluetooth settings
+            document.querySelector('.settings .bluetooth').classList.toggle('hide');
+        });
+        await document.getElementById('btClose').addEventListener("click", function () {
+            document.querySelector('.settings .bluetooth').classList.toggle('hide');
+        });
+        // display app version from package.json
+        ipcRenderer.send('app_version');
+        ipcRenderer.on('app_version', (evetn, args) => {
+            ipcRenderer.removeAllListeners('app_version');
+            document.getElementById('app_version').innerText = 'Version: ' + args.version;
+        });
 
-    asksCANforNewData();
-    // and repeate checking and asking if necessery every x miliseconds
-    setInterval(asksCANforNewData, 500);
+        // send request to check i update is available
+        ipcRenderer.send('check_for_application_update');
 
-    dateAndTime();
-    setInterval(dateAndTime, 30000);
+        ipcRenderer.on('update_available', () => {
+            console.log('update_available');
+            ipcRenderer.removeAllListeners('update_available');
+            document.getElementById('update_status').innerText = 'A new update is available. Downloading now...';
+        });
+        ipcRenderer.on('update_downloaded', () => {
+            console.log('update_downloaded');
+            ipcRenderer.removeAllListeners('update_downloaded');
+            document.getElementById('update_status').innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+        });
+        ipcRenderer.on('update-not-available', () => {
+            console.log('update-not-available');
+            ipcRenderer.removeAllListeners('update-not-available');
+        });
 
-    guiUpdateData();
-    setInterval(guiUpdateData, 1000);
 
-    debugLog(os.networkInterfaces());
+        // initiall start
+        await getIPs();
+        await wifiInfo();
+
+        await asksCANforNewData();
+        // and repeate checking and asking if necessery every x miliseconds
+        await setInterval(asksCANforNewData, 500);
+
+        await dateAndTime();
+        await setInterval(dateAndTime, 30000);
+
+        await guiUpdateData();
+        await setInterval(guiUpdateData, 1000);
+
+        await debugLog(os.networkInterfaces());
+    })();
 
 });
 
@@ -198,7 +227,7 @@ function menuHideToggle(element) {
 
 function updateSourceWithSong(tableRow) {
 
-    audioElement.setAttribute('src', path.join(musicFolder, tableRow.querySelector(".file").innerText));
+    audioElement.setAttribute('src', tableRow.querySelector(".file").innerText);
     // add attribute with song number
     audioElement.setAttribute('itemId', tableRow.querySelector('.itemid').innerText);
 
@@ -242,11 +271,11 @@ function addRowsToMusicTable() {
     document.querySelector("#main .music table tbody").innerHTML = '';
 
     for (let item of songsObj) {
-        document.querySelector("#main .music table tbody").innerHTML += '<tr class="itemIDrow' + item['id'] + '" onclick="updateSourceWithSong(this);"><td class="itemid">' + item['id'] + `</td><td class="file">` + item['name'] + '</td><td class="length">' + item['length'] + '</td></tr>';
+        document.querySelector("#main .music table tbody").innerHTML += '<tr class="itemIDrow' + item['id'] + '" onclick="updateSourceWithSong(this);"><td class="itemid">' + item['id'] + `</td><td class="file">` + item['path'] + '</td><td class="length">' + item['length'] + '</td></tr>';
     }
 
     // set src (first audio from table) of audio element
-    audioElement.setAttribute('src', path.join(musicFolder, document.querySelector("#main .music table tbody td.file").innerText));
+    audioElement.setAttribute('src', document.querySelector("#main .music table tbody td.file").innerText);
     // add attribute with song number
     audioElement.setAttribute('itemId', document.querySelector('#main .music table tbody td.itemid').innerText);
     //////////
@@ -254,53 +283,51 @@ function addRowsToMusicTable() {
     playAudio();
 }
 
-// do settings file stuff
-settings.init();
-
-// get files recursivly (with sub folders)
-// https:// stackoverflow.com/questions/2727167/how-do-you-get-a-list-of-the-names-of-all-files-present-in-a-directory-in-node-j
-// add record in songsObj for each audio file in musicFolder
-
 function createSongsObject() {
+    // get files recursivly (with sub folders)
+    // https://stackoverflow.com/questions/2727167/how-do-you-get-a-list-of-the-names-of-all-files-present-in-a-directory-in-node-j
+    // add record in songsObj for each audio file in musicFolder
 
     // clear songsObj
     songsObj = [];
+    let i = 1;
 
-    // wihout aditional libary was: "fs.readdir(musicFolder, (err, files) => {"
-    recursive(musicFolder, (err, files) => {
 
-        let i = 1;
-        // get only .mp3 audio files
-        files = files.filter(function (e) {
-            return path.extname(e).toLowerCase() === '.mp3';
-        });
-        //// 
-        debugLog("files.length: " + files.length);
-        files.forEach(file => {
-            // debugLog("createSongsObject: " + file);
-            // dodaje do
-            // faster
-            songsObj.push({ id: i, name: file.split('\\').pop().split('/').pop(), length: '', path: file });
-            // a bit slower
-            // songsObj.push( { id: i, name: file.replace(/^.*[\\\/]/, ''), length: '', path: file } );
-            i++;
+    function findMusicFilesRecursivly(initailPath) {
 
-            if (i > files.length) {
-                addRowsToMusicTable();
-                // renderer.addRowsToMusicTable;
-                // debugLog("addRowsToMusicTable()");
-                // randomize songs
-                shuffl();
+        // read files and directoryes in current directory
+        let files = fs.readdirSync(initailPath);
 
-                // HTML update
-                GetThreeSongsToGUI();
+        files.forEach(function (file) {
+            // for each file or directory
+            // check if it's file or directory
+            file = path.join(initailPath, file).toLowerCase();
+            var stat = fs.statSync(file);
 
-                debugLog("songsObj: ");
-                debugLog(songsObj);
+            if (stat && stat.isDirectory()) {
+                // it is directory
+                // Recurse into a subdirectory for curent path/directory
+                findMusicFilesRecursivly(file);
+            } else {
+                // Is a file
+                // get only .mp3 audio files
+                if (file.split('.').pop() == 'mp3') {
+                    songsObj.push({ id: i, name: file.split('\\').pop().split('/').pop(), length: '', path: file });
+                    i++;
+                }
             }
+        });
+    }
 
-        })
-    });
+    findMusicFilesRecursivly(musicFolder);
+    addRowsToMusicTable();
+    // randomize songs
+    shuffl();
+    // HTML update
+    GetThreeSongsToGUI();
+
+    debugLog("songsObj: ");
+    debugLog(songsObj);
 }
 
 
@@ -554,7 +581,7 @@ function switchTheme(ele) {
 }
 
 function asksCANforNewData() {
-// checks if variable is empty, if soo then ask CAN for new data
+    // checks if variable is empty, if soo then ask CAN for new data
 
     if (!fuel_consumption_1) {
         sendCAN('fuel_consumption_1');

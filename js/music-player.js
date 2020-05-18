@@ -23,7 +23,9 @@ window.addEventListener("DOMContentLoaded", function () {
 
     //hook to play event and manage DOM classes
     audio.onplay = function () {
-
+        // start time messure
+        console.log('app start time (to play event): ', (Date.now() - remote.getGlobal('profile_startTime')) / 1000, ' s');
+        //
         debugLog('event PLAY occured');
 
         // add classes for Play button
