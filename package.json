@@ -17,13 +17,15 @@
     "build-win": "electron-builder --x64 -w portable",
     "build-linux": "electron-builder  --armv7l --x64 -l appImage",
     "deploy": "electron-builder build --publish always --armv7l --x64 -l appImage",
-    "release": "build",
+    "release_win": "electron-builder --windows portable --x64 --publish always",
+    "release_linux": "electron-builder --linux --armv7l --publish always",
     "pack": "electron-builder --dir",
     "dist": "electron-builder --publish onTag --x64 --armv7l -wl",
     "dist-win": "electron-builder --publish onTag --x64 -w portable",
     "dist-linux": "electron-builder --publish onTag --armv7l --x64 -l appImage",
     "dist-linux2": "electron-builder --dir --armv7l --x64 -l appImage"
   },
+  "release": "build",
   "keywords": [
     "car",
     "dash",
