@@ -3,14 +3,10 @@ name: Build/release
 on: push
 
 jobs:
-  release:
+  release_linux:
+    name: Release Linux
     if: startsWith(github.ref, 'refs/tags/') == true
-    runs-on: ${{ matrix.os }}
-    strategy:
-      matrix:
-        #os: [ubuntu-latest, windows-latest]
-        os: [ubuntu-latest]
-
+    runs-on: [ubuntu-latest]
     steps:
       - uses: actions/checkout@v2
       - name: Setup Node
@@ -19,7 +15,20 @@ jobs:
           node-version: '10.x'
       - name: Install Dependencies
         run: npm install
-      - name: Build
-        #run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run dist build
-        run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run release
-        if: startsWith(github.ref, 'refs/tags/') == true
+      - name: Build Windows
+        run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run release-linux
+        
+  release_win:
+    name: Release Windows
+    if: startsWith(github.ref, 'refs/tags/') == true
+    runs-on: [windows-latest]
+    steps:
+      - uses: actions/checkout@v2
+      - name: Setup Node
+        uses: actions/setup-node@v1
+        with:
+          node-version: '10.x'
+      - name: Install Dependencies
+        run: npm install
+      - name: Build Linux
+        run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run release-win
