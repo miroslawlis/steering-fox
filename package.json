@@ -1,6 +1,6 @@
 {
   "name": "stearing_fox",
-  "version": "1.0.14",
+  "version": "1.0.15",
   "description": "Stearing Fox car dash application (Navigation, control panel, wheater, CAN)",
   "repository": {
     "type": "git",
@@ -13,6 +13,7 @@
     "prepare": "electron-build-env npm rebuild",
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "electron-builder install-app-deps",
+    "build": "electron-builder --windows portable --linux --x64 --armv7l",
     "build-win": "electron-builder --x64 -w portable",
     "build-linux": "electron-builder  --armv7l --x64 -l appImage",
     "deploy": "electron-builder build --publish always --armv7l --x64 -l appImage",
@@ -48,6 +49,7 @@
   },
   "build": {
     "appId": "Stearing_FOX",
+    "productName": "Stearing Fox",
     "dmg": {
       "contents": [
         {
@@ -66,13 +68,11 @@
       "target": [
         "AppImage"
       ],
-      "icon": "build/icons/png/",
-      "publish": "github"
+      "icon": "build/icons/png/"
     },
     "win": {
       "target": "portable",
-      "icon": "build/icons/png/1024x1024.png",
-      "publish": "github"
+      "icon": "build/icons/png/1024x1024.png"
     }
   }
 }
