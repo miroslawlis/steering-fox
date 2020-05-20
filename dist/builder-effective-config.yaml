@@ -2,6 +2,7 @@ directories:
   output: dist
   buildResources: build
 appId: Stearing_FOX
+productName: Stearing Fox
 dmg:
   contents:
     - x: 110
@@ -13,11 +14,12 @@ dmg:
 linux:
   target:
     - AppImage
-    - deb
   icon: build/icons/png/
-  publish: github
+  publish:
+    - github
 win:
   target: portable
   icon: build/icons/png/1024x1024.png
-  publish: github
+  publish:
+    - github
 electronVersion: 8.3.0
