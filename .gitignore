@@ -1,6 +1,6 @@
 node_modules
 Music
-# package-lock.json
+package-lock.json
 maps_data
 data\ from\ ibus
 .gitattributes
