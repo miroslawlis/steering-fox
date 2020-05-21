@@ -56,13 +56,15 @@ window.addEventListener('DOMContentLoaded', function () {
         });
         // display app version from package.json
         ipcRenderer.send('app_version');
-        ipcRenderer.on('app_version', (evetn, args) => {
+        ipcRenderer.on('app_version', (event, args) => {
             ipcRenderer.removeAllListeners('app_version');
             document.getElementById('app_version').innerText = 'Version: ' + args.version;
         });
 
-        // send request to check i update is available
-        ipcRenderer.send('check_for_application_update');
+        // send request to check if update is available
+        setTimeout(()=>{
+            ipcRenderer.send('check_for_application_update');
+        }, 10000);
 
         ipcRenderer.on('update_available', () => {
             console.log('update_available');
