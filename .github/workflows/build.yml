@@ -26,6 +26,7 @@ jobs:
          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Windows
         if: runner.os = "windows"
-        run: ${env:GH_TOKEN} npm run release_win
+        run: $env:GH_TOKEN
+        run: npm run release_win
         env:
          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
