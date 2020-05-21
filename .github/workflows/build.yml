@@ -20,12 +20,12 @@ jobs:
       - name: Install Dependencies
         run: npm install
       - name: Build Linux
-        if: runner.os == "linux"
+        if: runner.os == "Linux"
         run: GH_TOKEN=${{ secrets.GITHUB_TOKEN }} npm run release_linux
         env:
          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       - name: Build Windows
-        if: runner.os == "windows"
+        if: runner.os == "Windows"
         run: $env:GH_TOKEN; npm run release_win
         env:
          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
