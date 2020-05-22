@@ -57,29 +57,14 @@
       ]
     },
     "linux": {
-      "target": [
-        {
-          "target": "AppImage",
-          "arch": [
-            "x64",
-            "armv7l"
-          ]
-        }
-      ],
+      "target": "AppImage",
       "icon": "build/icons/png/",
       "publish": [
         "github"
       ]
     },
     "win": {
-      "target": [
-        {
-          "target": "portable",
-          "arch": [
-            "x64"
-          ]
-        }
-      ],
+      "target": "portable",
       "icon": "build/icons/png/1024x1024.png",
       "publish": [
         "github"
