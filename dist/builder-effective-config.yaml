@@ -18,7 +18,9 @@ linux:
   publish:
     - github
 win:
-  target: portable
+  target:
+    - portable
+    - nsis
   icon: build/icons/png/1024x1024.png
   publish:
     - github
