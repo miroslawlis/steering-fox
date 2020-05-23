@@ -123,5 +123,5 @@ autoUpdater.on('download-progress', (progressObj) => {
   sendStatusToWindow(log_message);
 })
 function sendStatusToWindow(text) {
-  homePageWindow.webContents.send('send-download-progress', text);
+  mainWindow.webContents.send('send-download-progress', text);
 }
