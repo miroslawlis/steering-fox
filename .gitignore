@@ -6,3 +6,4 @@ data\ from\ ibus
 .gitattributes
 node_test.js
 dist
+!./dist/builder-effective-config.yaml

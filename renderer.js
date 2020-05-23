@@ -80,7 +80,10 @@ window.addEventListener('DOMContentLoaded', function () {
             console.log('update-not-available');
             ipcRenderer.removeAllListeners('update-not-available');
         });
-
+        // download progress
+        ipcRenderer.on('send-download-progress', (text) => {
+            console.log(text);
+        });
 
         // initiall start
         await getIPs();
