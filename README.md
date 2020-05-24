@@ -9,7 +9,7 @@ Not ready yet :)
 
 <h3>Hardware:</h3>
 <ol>
-  <li><del>Raspbery pi 3B+</del> - heart of hardware, in short Raspberry sucks, a better alternative is Rock Pi 4 Model A (cost about this same, and have a lot more features, for example can run on 12V (this will eliminate need steepdown DC converter usage, and eMMC disk can be installed)</li>
+  <li><del>Raspbery pi 3B+</del> - heart of hardware, in short Raspberry sucks, a better alternative is Rock Pi 4 Model B 1GB (cost about this same, and have a lot more features, for example can run on 12V (this will eliminate need steepdown DC converter usage, and eMMC disk can be installed)</li>
 <li>Resler USB IBUS interface (I encourage you to try other solutions, cheaper ones @aliexpres :) )</li>
 <li>DAC plus soundcard (raspberry pi hat), DYKB PCM5122 Raspberry pi B+ 2/3B HIFI DAC + Sound Card Digital Audio Module</li>
 <li>12v step down DC converter with output set around 5,7V</li>
