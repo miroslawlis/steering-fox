@@ -85,7 +85,7 @@ lessInfoFromCAN=false
 
 ### OS settings
 #### Auto shutdown script
-This script is monitoring PIN 33 status when it's changes it will run `sudo shutdown -h now` command and close Linux OS
+This Python script is monitoring PIN 33 status when it's changes it will run `sudo shutdown -h now` command and close Linux OS
 Code:
 ```
 from time import sleep
