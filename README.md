@@ -3,8 +3,9 @@ Not ready yet :)
 
 ### How it looks
 #### Dashboard GUI
-![stearing_fox music GUI](/for_readme/img/stearing_fox_dashboard_GUI_1.jpg)
-![stearing_fox music GUI](/for_readme/img/stearing_fox_dashboard_GUI_2.jpg)
+<img src="for_readme/img/stearing_fox_dashboard_GUI_1.jpg" width="300">
+<img src="for_readme/img/stearing_fox_dashboard_GUI_2.jpg" width="300">
+
 #### Music GUI
 ![stearing_fox music GUI](/for_readme/img/stearing_fox_music_GUI.png)
 
