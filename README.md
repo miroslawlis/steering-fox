@@ -83,6 +83,27 @@ More logs can be show by setting:
 lessInfoFromCAN=false
 ```
 
+### OS settings
+#### Auto shutdown script
+This script is monitoring PIN 33 status when it's changes it will run `sudo shutdown -h now` command and close Linux OS
+Code:
+```
+from time import sleep
+import RPi.GPIO as GPIO
+import os
+
+GPIO.setmode(GPIO.BOARD)
+pin=33
+
+GPIO.setup(pin,GPIO.IN,pull_up_down=GPIO.PUD_UP)
+
+while(1):
+        if GPIO.input(pin)==1:
+                print "Shuting down - ACC power (switched) off"
+                os.system("sudo shutdown -h now")
+                sleep(.1)
+```
+
 ### Deployment
 Github actions need tag to be present in order to compile release
 First update version in package.json:
