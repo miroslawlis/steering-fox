@@ -7,7 +7,7 @@ Not ready yet :)
 <img src="for_readme/img/stearing_fox_dashboard_GUI_2.jpg" width="300">
 
 #### Music GUI
-![stearing_fox music GUI](/for_readme/img/stearing_fox_music_GUI.png)
+<img src="for_readme/img/stearing_fox_music_GUI.png" width="300">
 
 `more to come`
 
