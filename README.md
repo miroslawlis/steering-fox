@@ -2,6 +2,9 @@ This aplication and hardware was designed to replace default/stock navigation/ra
 Not ready yet :)
 
 ### How it looks
+#### Dashboard GUI
+![stearing_fox music GUI](/for_readme/img/stearing_fox_dashboard_GUI_1.jpg)
+![stearing_fox music GUI](/for_readme/img/stearing_fox_dashboard_GUI_2.jpg)
 #### Music GUI
 ![stearing_fox music GUI](/for_readme/img/stearing_fox_music_GUI.png)
 
