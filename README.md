@@ -104,6 +104,9 @@ while(1):
                 os.system("sudo shutdown -h now")
                 sleep(.1)
 ```
+To auto start script: `sudo nano /etc/rc.local`
+and at the end add:
+```sudo python /path_to_your_script_file/script.py &```
 
 ### Deployment
 Github actions need tag to be present in order to compile release

@@ -62,7 +62,7 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
         // send request to check if update is available
-        setTimeout(()=>{
+        setTimeout(() => {
             ipcRenderer.send('check_for_application_update');
         }, 10000);
 
@@ -94,7 +94,7 @@ window.addEventListener('DOMContentLoaded', function () {
         await setInterval(asksCANforNewData, 500);
 
         await dateAndTime();
-        await setInterval(dateAndTime, 30000);
+        await setInterval(dateAndTime, 1000);
 
         await guiUpdateData();
         await setInterval(guiUpdateData, 1000);
@@ -300,28 +300,33 @@ function createSongsObject() {
 
     function findMusicFilesRecursivly(initailPath) {
 
-        // read files and directoryes in current directory
-        let files = fs.readdirSync(initailPath);
+        try {
+            // read files and directoryes in current directory
+            let files = fs.readdirSync(initailPath);
 
-        files.forEach(function (file) {
-            // for each file or directory
-            // check if it's file or directory
-            file = path.join(initailPath, file).toLowerCase();
-            var stat = fs.statSync(file);
+            files.forEach(function (file) {
+                // for each file or directory
+                // check if it's file or directory
+                // file = path.join(initailPath, file).toLowerCase();
+                file = path.join(initailPath, file);
+                var stat = fs.statSync(file);
 
-            if (stat && stat.isDirectory()) {
-                // it is directory
-                // Recurse into a subdirectory for curent path/directory
-                findMusicFilesRecursivly(file);
-            } else {
-                // Is a file
-                // get only .mp3 audio files
-                if (file.split('.').pop() == 'mp3') {
-                    songsObj.push({ id: i, name: file.split('\\').pop().split('/').pop(), length: '', path: file });
-                    i++;
+                if (stat && stat.isDirectory()) {
+                    // it is directory
+                    // Recurse into a subdirectory for curent path/directory
+                    findMusicFilesRecursivly(file);
+                } else {
+                    // Is a file
+                    // get only .mp3 audio files
+                    if (file.split('.').pop() == 'mp3' || file.split('.').pop() == 'MP3') {
+                        songsObj.push({ id: i, name: file.split('\\').pop().split('/').pop(), length: '', path: file });
+                        i++;
+                    }
                 }
-            }
-        });
+            });
+        } catch (error) {
+            console.log(error);
+        }
     }
 
     findMusicFilesRecursivly(musicFolder);
@@ -398,6 +403,9 @@ function guiUpdateData() {
     // Temperature outside
     if (temp_outside) {
         temp_outside = (temp_outside.length > 7) ? hex_to_ascii(temp_outside) : temp_outside;
+
+        // to string conversion
+        temp_outside = temp_outside + '';
 
         if (temp_outside.includes(' ')) {
             temp_outside = temp_outside.trim();
