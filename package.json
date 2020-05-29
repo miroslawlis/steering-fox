@@ -14,9 +14,11 @@
     "test": "echo \"Error: no test specified\" && exit 1",
     "postinstall": "electron-builder install-app-deps",
     "build-win": "electron-builder --x64 -w portable nsis",
-    "build-linux": "electron-builder --armv7l --x64 -l appImage",
-    "release_win": "electron-builder --windows portable nsis --x64 --publish always",
-    "release_linux": "electron-builder --linux appImage --armv7l --x64 --publish always"
+    "build-linux": "electron-builder --x64 -l appImage",
+    "build-linux-arm": "electron-builder --armv7l -l appImage",
+    "release-win": "electron-builder --windows portable nsis --x64 --publish always",
+    "release-linux": "electron-builder --linux appImage --x64 --publish always",
+    "release-linux-arm": "electron-builder --linux appImage --armv7l --publish always"
   },
   "release": "build",
   "keywords": [
