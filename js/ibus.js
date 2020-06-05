@@ -278,7 +278,7 @@ function onSignalInt() {
 // https://github.com/kmalinich/node-bmw-ref/blob/master/ibus/bus-lib.txt
 // to check
 
-function sendCAN(request, arg1, arg2) {
+function sendCAN(request, arg1_hex, arg2_hex) {
 
     try {
         if (ibusInterface) {
@@ -362,22 +362,31 @@ function sendCAN(request, arg1, arg2) {
                     break;
 
                 // update time
-                // arg1->Hours, arg2->minutes
+                // arg1_hex->Hours, arg2_hex->minutes
                 case 'update-time':
                     ibusInterface.sendMessage({
                         src: 0x3B,
                         dst: 0x80,
-                        msg: new Buffer.from([0x40, 0x01, arg1, arg2])
+                        msg: new Buffer.from([0x40, 0x01, arg1_hex, arg2_hex])
                     })
                     break;
 
                 // update date
-                // arg1->day, arg2->month, arg3->year
+                // arg1_hex->day, arg2_hex->month, arg3->year
                 case 'update-date':
                     ibusInterface.sendMessage({
                         src: 0x3B,
                         dst: 0x80,
-                        msg: new Buffer.from([0x40, 0x02, arg1, arg2, arg3])
+                        msg: new Buffer.from([0x40, 0x02, arg1_hex, arg2_hex, arg3])
+                    })
+                    break;
+
+                // update bass settings in car
+                case 'update-bass':
+                    ibusInterface.sendMessage({
+                        src: 0x68,
+                        dst: 0xFF, //FF broadcast, maybe 0x6A DigitalSignalProcessingAudioAmplifier?
+                        msg: new Buffer.from([0x36, arg1_hex])
                     })
                     break;
 

@@ -647,8 +647,11 @@ function sliderChanged(element) {
     let value = parseInt(element.value, 0);
 
     let hexArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+    // todo
+    // allow only even 0, 2, 4, ... - DSP can only accept even values?
     if (hexArray[value]) {
-        console.log(hexArray[value]);
-        return hexArray[value];
+
+        sendCAN('update-bass', '0x6' + hexArray[value]);
+
     }
 }
