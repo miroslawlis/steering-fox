@@ -107,93 +107,93 @@
       </div>
       <div class="music element">
         <div class="wrapper-first">
-        <div id="music-player">
-          <input id="volume-music-bar" type="range" min="1" max="100" value="50" class="slider nokeyboard">
-          <div class="wrapper">
+          <div id="music-player">
+            <input id="volume-music-bar" type="range" min="1" max="100" value="50" class="slider nokeyboard">
+            <div class="wrapper">
 
-            <div class="volumedown button" onclick="volDown()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
-                <path
-                  d="M215.03 72.04L126.06 161H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V89.02c0-21.47-25.96-31.98-40.97-16.98zm123.2 108.08c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 229.28 336 242.62 336 257c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.87z" />
-              </svg>
-              <span class="totranslate">Vol-</span>
+              <div class="volumedown button" onclick="volDown()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 384 512">
+                  <path
+                    d="M215.03 72.04L126.06 161H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V89.02c0-21.47-25.96-31.98-40.97-16.98zm123.2 108.08c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 229.28 336 242.62 336 257c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.87z" />
+                </svg>
+                <span class="totranslate">Vol-</span>
+              </div>
+              <div class="volumeup button" onclick="volUp()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
+                  <path
+                    d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z" />
+                </svg>
+                <span class="totranslate">Vol+</span>
+              </div>
+              <div class="mute button" onclick="muteAudio(this)"><svg xmlns="http://www.w3.org/2000/svg"
+                  viewBox="0 0 512 512">
+                  <path
+                    d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zM461.64 256l45.64-45.64c6.3-6.3 6.3-16.52 0-22.82l-22.82-22.82c-6.3-6.3-16.52-6.3-22.82 0L416 210.36l-45.64-45.64c-6.3-6.3-16.52-6.3-22.82 0l-22.82 22.82c-6.3 6.3-6.3 16.52 0 22.82L370.36 256l-45.63 45.63c-6.3 6.3-6.3 16.52 0 22.82l22.82 22.82c6.3 6.3 16.52 6.3 22.82 0L416 301.64l45.64 45.64c6.3 6.3 16.52 6.3 22.82 0l22.82-22.82c6.3-6.3 6.3-16.52 0-22.82L461.64 256z" />
+                </svg>
+                <span class="totranslate">Mute</span>
+              </div>
             </div>
-            <div class="volumeup button" onclick="volUp()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-                <path
-                  d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zm233.32-51.08c-11.17-7.33-26.18-4.24-33.51 6.95-7.34 11.17-4.22 26.18 6.95 33.51 66.27 43.49 105.82 116.6 105.82 195.58 0 78.98-39.55 152.09-105.82 195.58-11.17 7.32-14.29 22.34-6.95 33.5 7.04 10.71 21.93 14.56 33.51 6.95C528.27 439.58 576 351.33 576 256S528.27 72.43 448.35 19.97zM480 256c0-63.53-32.06-121.94-85.77-156.24-11.19-7.14-26.03-3.82-33.12 7.46s-3.78 26.21 7.41 33.36C408.27 165.97 432 209.11 432 256s-23.73 90.03-63.48 115.42c-11.19 7.14-14.5 22.07-7.41 33.36 6.51 10.36 21.12 15.14 33.12 7.46C447.94 377.94 480 319.54 480 256zm-141.77-76.87c-11.58-6.33-26.19-2.16-32.61 9.45-6.39 11.61-2.16 26.2 9.45 32.61C327.98 228.28 336 241.63 336 256c0 14.38-8.02 27.72-20.92 34.81-11.61 6.41-15.84 21-9.45 32.61 6.43 11.66 21.05 15.8 32.61 9.45 28.23-15.55 45.77-45 45.77-76.88s-17.54-61.32-45.78-76.86z" />
-              </svg>
-              <span class="totranslate">Vol+</span>
+            <div class="wrapper">
+              <div class="play button" onclick="playAudio(this)" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path
+                    d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
+                </svg>
+                <span class="totranslate">Play</span>
+              </div>
+              <div class="pause button" onclick="pauseAudio(this)" type="button">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
+                  <path
+                    d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z" />
+                </svg>
+                <span class="totranslate">Pause</span>
+              </div>
+              <div class="previous button" onclick="previousSong()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z" />
+                </svg>
+                <span class="totranslate">Previous</span>
+              </div>
+              <div class="next button" onclick="nextSong()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    d="M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z" />
+                </svg>
+                <span class="totranslate">Next</span>
+              </div>
+              <div class="shufle button" onclick="shuffl()">
+                <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+                  <path
+                    d="M504.971 359.029c9.373 9.373 9.373 24.569 0 33.941l-80 79.984c-15.01 15.01-40.971 4.49-40.971-16.971V416h-58.785a12.004 12.004 0 0 1-8.773-3.812l-70.556-75.596 53.333-57.143L352 336h32v-39.981c0-21.438 25.943-31.998 40.971-16.971l80 79.981zM12 176h84l52.781 56.551 53.333-57.143-70.556-75.596A11.999 11.999 0 0 0 122.785 96H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12zm372 0v39.984c0 21.46 25.961 31.98 40.971 16.971l80-79.984c9.373-9.373 9.373-24.569 0-33.941l-80-79.981C409.943 24.021 384 34.582 384 56.019V96h-58.785a12.004 12.004 0 0 0-8.773 3.812L96 336H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h110.785c3.326 0 6.503-1.381 8.773-3.812L352 176h32z" />
+                </svg>
+                <span class="totranslate">Shuffl</span>
+              </div>
             </div>
-            <div class="mute button" onclick="muteAudio(this)"><svg xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512">
-                <path
-                  d="M215.03 71.05L126.06 160H24c-13.26 0-24 10.74-24 24v144c0 13.25 10.74 24 24 24h102.06l88.97 88.95c15.03 15.03 40.97 4.47 40.97-16.97V88.02c0-21.46-25.96-31.98-40.97-16.97zM461.64 256l45.64-45.64c6.3-6.3 6.3-16.52 0-22.82l-22.82-22.82c-6.3-6.3-16.52-6.3-22.82 0L416 210.36l-45.64-45.64c-6.3-6.3-16.52-6.3-22.82 0l-22.82 22.82c-6.3 6.3-6.3 16.52 0 22.82L370.36 256l-45.63 45.63c-6.3 6.3-6.3 16.52 0 22.82l22.82 22.82c6.3 6.3 16.52 6.3 22.82 0L416 301.64l45.64 45.64c6.3 6.3 16.52 6.3 22.82 0l22.82-22.82c6.3-6.3 6.3-16.52 0-22.82L461.64 256z" />
-              </svg>
-              <span class="totranslate">Mute</span>
-            </div>
+
+            <audio id="audio" src="" itemid="1"></audio>
           </div>
-          <div class="wrapper">
-            <div class="play button" onclick="playAudio(this)" type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path
-                  d="M424.4 214.7L72.4 6.6C43.8-10.3 0 6.1 0 47.9V464c0 37.5 40.7 60.1 72.4 41.3l352-208c31.4-18.5 31.5-64.1 0-82.6z" />
-              </svg>
-              <span class="totranslate">Play</span>
-            </div>
-            <div class="pause button" onclick="pauseAudio(this)" type="button">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512">
-                <path
-                  d="M144 479H48c-26.5 0-48-21.5-48-48V79c0-26.5 21.5-48 48-48h96c26.5 0 48 21.5 48 48v352c0 26.5-21.5 48-48 48zm304-48V79c0-26.5-21.5-48-48-48h-96c-26.5 0-48 21.5-48 48v352c0 26.5 21.5 48 48 48h96c26.5 0 48-21.5 48-48z" />
-              </svg>
-              <span class="totranslate">Pause</span>
-            </div>
-            <div class="previous button" onclick="previousSong()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path
-                  d="M11.5 280.6l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2zm256 0l192 160c20.6 17.2 52.5 2.8 52.5-24.6V96c0-27.4-31.9-41.8-52.5-24.6l-192 160c-15.3 12.8-15.3 36.4 0 49.2z" />
-              </svg>
-              <span class="totranslate">Previous</span>
-            </div>
-            <div class="next button" onclick="nextSong()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path
-                  d="M500.5 231.4l-192-160C287.9 54.3 256 68.6 256 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2zm-256 0l-192-160C31.9 54.3 0 68.6 0 96v320c0 27.4 31.9 41.8 52.5 24.6l192-160c15.3-12.8 15.3-36.4 0-49.2z" />
-              </svg>
-              <span class="totranslate">Next</span>
-            </div>
-            <div class="shufle button" onclick="shuffl()">
-              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
-                <path
-                  d="M504.971 359.029c9.373 9.373 9.373 24.569 0 33.941l-80 79.984c-15.01 15.01-40.971 4.49-40.971-16.971V416h-58.785a12.004 12.004 0 0 1-8.773-3.812l-70.556-75.596 53.333-57.143L352 336h32v-39.981c0-21.438 25.943-31.998 40.971-16.971l80 79.981zM12 176h84l52.781 56.551 53.333-57.143-70.556-75.596A11.999 11.999 0 0 0 122.785 96H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12zm372 0v39.984c0 21.46 25.961 31.98 40.971 16.971l80-79.984c9.373-9.373 9.373-24.569 0-33.941l-80-79.981C409.943 24.021 384 34.582 384 56.019V96h-58.785a12.004 12.004 0 0 0-8.773 3.812L96 336H12c-6.627 0-12 5.373-12 12v56c0 6.627 5.373 12 12 12h110.785c3.326 0 6.503-1.381 8.773-3.812L352 176h32z" />
-              </svg>
-              <span class="totranslate">Shuffl</span class="totranslate">
-            </div>
+
+          <div id="wrapperMtable">
+            <table class="musicTable">
+              <thead>
+                <tr>
+                  <th class="itemid">ID</th>
+                  <th class="file">Name</th>
+                  <th class="length">Length</th>
+                </tr>
+              </thead>
+              <tbody>
+              </tbody>
+            </table>
           </div>
 
-          <audio id="audio" src="" itemid="1"></audio>
+          <div id="threeSongs">
+            <div id="nextSong"></div>
+            <div id="currentSong"></div>
+            <div id="previousSong"></div>
+          </div>
         </div>
-
-        <div id="wrapperMtable">
-          <table class="musicTable">
-            <thead>
-              <tr>
-                <th class="itemid">ID</th>
-                <th class="file">Name</th>
-                <th class="length">Length</th>
-              </tr>
-            </thead>
-            <tbody>
-            </tbody>
-          </table>
-        </div>
-
-        <div id="threeSongs">
-          <div id="nextSong"></div>
-          <div id="currentSong"></div>
-          <div id="previousSong"></div>
-        </div>
-      </div>
 
       </div>
       <div class="youtube element">
@@ -206,91 +206,19 @@
         <webview id="map-view" src="https://www.google.pl/maps?hl=pl&tab=wl" style="width:100%; height:100%"
           preload="./js/keyboard.js"></webview>
         <!-- nodeintegration nodeintegrationinsubframes -->
-        <script>
-          // onload = () => {
-          //   const webview = document.querySelector('#map-view');
-          //   webview.addEventListener('dom-ready', () => {
-          //     require('./js/keyboard.js');
-
-          //     // Keyboard.init();
-          //     // Keyboard.open();
-
-          //     // // Automatically use keyboard for elements with input
-          //     // document.querySelectorAll("input").forEach(element => {
-          //     //   element.addEventListener("focus", () => {
-          //     //     this.open(element.value, currentValue => {
-          //     //       element.value = currentValue;
-          //     //     });
-          //     //   });
-
-          //     // });
-
-          //   });
-          //   webview.addEventListener('console-message', (e) => {
-          //     console.log('Guest page logged a message:', e.message)
-          //   })
-          // }
-        </script>
-        <!-- <div id="map-canvas" style="width:100%; height:100%"></div> -->
       </div>
       <div class="settings element">
-
-        <div class="wrapper-first">
-
-          <div class="wrapper options">
-
-            <div class="row">
-              <div class="item item-1 totranslate">Music folder</div>
-              <div class="item item-2 option">
-                <label for="music-folder-path" class="file-upload button">
-                  Change music folder
-                </label>
-                
-                <input id="music-folder-path" class="settingsfile nokeyboard" type="file" webkitdirectory>
-                <p class="filepath"></p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="item item-1 totranslate">Theme</div>
-              <div class="item item-2">
-                <select class="themeOption" onchange="switchTheme(this)">
-                  <option value="green">Green</option>
-                  <option value="purpule">Purpule</option>
-                  <option value="dark_gray">Dark Grey</option>
-                  <option value="rainbow">Rainbow</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="item item-1 totranslate">Language</div>
-              <div class="item item-2">
-                <select class="languageOption" onchange="languageSwitch(this)">
-                  <option value="eng">English</option>
-                  <option value="pol">Polish</option>
-                </select>
-              </div>
-            </div>
-
-          </div>
-          <div class="wrapper buttons">
-            <div id="minimize" class="btn">
-              <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
+        <div class="tabwrap">
+          <div class="tab one menu">
+            <div class="item sound-settings" onclick="toggleMainContent(this)">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="music" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" class="svg-inline--fa fa-music fa-w-16 fa-2x">
                 <path fill="currentColor"
-                  d="M480 480H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h448c17.7 0 32 14.3 32 32s-14.3 32-32 32z"></path>
+                  d="M470.38 1.51L150.41 96A32 32 0 0 0 128 126.51v261.41A139 139 0 0 0 96 384c-53 0-96 28.66-96 64s43 64 96 64 96-28.66 96-64V214.32l256-75v184.61a138.4 138.4 0 0 0-32-3.93c-53 0-96 28.66-96 64s43 64 96 64 96-28.65 96-64V32a32 32 0 0 0-41.62-30.49z"
+                  class=""></path>
               </svg>
             </div>
-            <div id="closeApp" class="btn">
-              <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="window-close"
-                class="svg-inline--fa fa-window-close fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
-                viewBox="0 0 512 512">
-                <path fill="currentColor"
-                  d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 394c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h404c3.3 0 6 2.7 6 6v340zM356.5 194.6L295.1 256l61.4 61.4c4.6 4.6 4.6 12.1 0 16.8l-22.3 22.3c-4.6 4.6-12.1 4.6-16.8 0L256 295.1l-61.4 61.4c-4.6 4.6-12.1 4.6-16.8 0l-22.3-22.3c-4.6-4.6-4.6-12.1 0-16.8l61.4-61.4-61.4-61.4c-4.6-4.6-4.6-12.1 0-16.8l22.3-22.3c4.6-4.6 12.1-4.6 16.8 0l61.4 61.4 61.4-61.4c4.6-4.6 12.1-4.6 16.8 0l22.3 22.3c4.7 4.6 4.7 12.1 0 16.8z">
-                </path>
-              </svg>
-            </div>
-            <div id="bluetooth" class="btn">
+            <div id="bluetooth" class="item bluetooth" onclick="toggleMainContent(this)">
               <svg aria-hidden="true" focusable="false" data-prefix="fab" data-icon="bluetooth-b" role="img"
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
                 class="svg-inline--fa fa-bluetooth-b fa-w-10 fa-2x">
@@ -299,7 +227,7 @@
                   class=""></path>
               </svg>
             </div>
-            <div id="wifi" class="btn">
+            <div class="item wifi" onclick="toggleMainContent(this)">
               <svg aria-hidden="true" focusable="false" data-prefix="fad" data-icon="wifi" role="img"
                 xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-wifi fa-w-20 fa-2x">
                 <g class="fa-group">
@@ -310,127 +238,216 @@
                 </g>
               </svg>
             </div>
+            <div class="item application show" onclick="toggleMainContent(this)">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="cogs" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512" class="svg-inline--fa fa-cogs fa-w-20 fa-2x">
+                <path fill="currentColor"
+                  d="M512.1 191l-8.2 14.3c-3 5.3-9.4 7.5-15.1 5.4-11.8-4.4-22.6-10.7-32.1-18.6-4.6-3.8-5.8-10.5-2.8-15.7l8.2-14.3c-6.9-8-12.3-17.3-15.9-27.4h-16.5c-6 0-11.2-4.3-12.2-10.3-2-12-2.1-24.6 0-37.1 1-6 6.2-10.4 12.2-10.4h16.5c3.6-10.1 9-19.4 15.9-27.4l-8.2-14.3c-3-5.2-1.9-11.9 2.8-15.7 9.5-7.9 20.4-14.2 32.1-18.6 5.7-2.1 12.1.1 15.1 5.4l8.2 14.3c10.5-1.9 21.2-1.9 31.7 0L552 6.3c3-5.3 9.4-7.5 15.1-5.4 11.8 4.4 22.6 10.7 32.1 18.6 4.6 3.8 5.8 10.5 2.8 15.7l-8.2 14.3c6.9 8 12.3 17.3 15.9 27.4h16.5c6 0 11.2 4.3 12.2 10.3 2 12 2.1 24.6 0 37.1-1 6-6.2 10.4-12.2 10.4h-16.5c-3.6 10.1-9 19.4-15.9 27.4l8.2 14.3c3 5.2 1.9 11.9-2.8 15.7-9.5 7.9-20.4 14.2-32.1 18.6-5.7 2.1-12.1-.1-15.1-5.4l-8.2-14.3c-10.4 1.9-21.2 1.9-31.7 0zm-10.5-58.8c38.5 29.6 82.4-14.3 52.8-52.8-38.5-29.7-82.4 14.3-52.8 52.8zM386.3 286.1l33.7 16.8c10.1 5.8 14.5 18.1 10.5 29.1-8.9 24.2-26.4 46.4-42.6 65.8-7.4 8.9-20.2 11.1-30.3 5.3l-29.1-16.8c-16 13.7-34.6 24.6-54.9 31.7v33.6c0 11.6-8.3 21.6-19.7 23.6-24.6 4.2-50.4 4.4-75.9 0-11.5-2-20-11.9-20-23.6V418c-20.3-7.2-38.9-18-54.9-31.7L74 403c-10 5.8-22.9 3.6-30.3-5.3-16.2-19.4-33.3-41.6-42.2-65.7-4-10.9.4-23.2 10.5-29.1l33.3-16.8c-3.9-20.9-3.9-42.4 0-63.4L12 205.8c-10.1-5.8-14.6-18.1-10.5-29 8.9-24.2 26-46.4 42.2-65.8 7.4-8.9 20.2-11.1 30.3-5.3l29.1 16.8c16-13.7 34.6-24.6 54.9-31.7V57.1c0-11.5 8.2-21.5 19.6-23.5 24.6-4.2 50.5-4.4 76-.1 11.5 2 20 11.9 20 23.6v33.6c20.3 7.2 38.9 18 54.9 31.7l29.1-16.8c10-5.8 22.9-3.6 30.3 5.3 16.2 19.4 33.2 41.6 42.1 65.8 4 10.9.1 23.2-10 29.1l-33.7 16.8c3.9 21 3.9 42.5 0 63.5zm-117.6 21.1c59.2-77-28.7-164.9-105.7-105.7-59.2 77 28.7 164.9 105.7 105.7zm243.4 182.7l-8.2 14.3c-3 5.3-9.4 7.5-15.1 5.4-11.8-4.4-22.6-10.7-32.1-18.6-4.6-3.8-5.8-10.5-2.8-15.7l8.2-14.3c-6.9-8-12.3-17.3-15.9-27.4h-16.5c-6 0-11.2-4.3-12.2-10.3-2-12-2.1-24.6 0-37.1 1-6 6.2-10.4 12.2-10.4h16.5c3.6-10.1 9-19.4 15.9-27.4l-8.2-14.3c-3-5.2-1.9-11.9 2.8-15.7 9.5-7.9 20.4-14.2 32.1-18.6 5.7-2.1 12.1.1 15.1 5.4l8.2 14.3c10.5-1.9 21.2-1.9 31.7 0l8.2-14.3c3-5.3 9.4-7.5 15.1-5.4 11.8 4.4 22.6 10.7 32.1 18.6 4.6 3.8 5.8 10.5 2.8 15.7l-8.2 14.3c6.9 8 12.3 17.3 15.9 27.4h16.5c6 0 11.2 4.3 12.2 10.3 2 12 2.1 24.6 0 37.1-1 6-6.2 10.4-12.2 10.4h-16.5c-3.6 10.1-9 19.4-15.9 27.4l8.2 14.3c3 5.2 1.9 11.9-2.8 15.7-9.5 7.9-20.4 14.2-32.1 18.6-5.7 2.1-12.1-.1-15.1-5.4l-8.2-14.3c-10.4 1.9-21.2 1.9-31.7 0zM501.6 431c38.5 29.6 82.4-14.3 52.8-52.8-38.5-29.6-82.4 14.3-52.8 52.8z"
+                  class=""></path>
+              </svg>
+            </div>
+            <div class="item debug" onclick="toggleMainContent(this)">
+              <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="info" role="img"
+                xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 512" class="svg-inline--fa fa-info fa-w-6 fa-2x">
+                <path fill="currentColor"
+                  d="M20 424.229h20V279.771H20c-11.046 0-20-8.954-20-20V212c0-11.046 8.954-20 20-20h112c11.046 0 20 8.954 20 20v212.229h20c11.046 0 20 8.954 20 20V492c0 11.046-8.954 20-20 20H20c-11.046 0-20-8.954-20-20v-47.771c0-11.046 8.954-20 20-20zM96 0C56.235 0 24 32.235 24 72s32.235 72 72 72 72-32.235 72-72S135.764 0 96 0z"
+                  class=""></path>
+              </svg>
+            </div>
           </div>
+          <div class="tab two content">
 
-          <div class="wrapper ips">
-            <div id="ipslist"></div>
-          </div>
-          <div class="wrapper app_data">
-            <div id="app_version"></div>
-            <div id="update_status"></div>
-          </div>
-
-          <div class="bluetooth hide">
-            <div class="wrapper">
-              <h2 class="totranslate">Bluetooth settings</h2>
-              <div class="data">
-                <div class="pairedDevices">
-                  <div class="label"><span class="totranslate">Paired devices</span>:</div>
-                  <div class="devices"></div>
+            <div class="sound-settings hide">
+              <div class="sliders-wrapper">
+                <div class="slider-wrapper">
+                  balance
+                  <input type="range" id="slider1" class="slider" min="0" max="15" step="1"
+                    onchange="sliderChanged(this)">
                 </div>
-                <div class="scanedDevices">
-                  <div class="label"><span class="totranslate">Devices available</span>:</div>
-                  <div class="devices"></div>
+                <div class="slider-wrapper">
+                  bass
+                  <input type="range" id="slider1" class="slider" min="0" max="15" step="1">
+                </div>
+                <div class="slider-wrapper">
+                  fader
+                  <input type="range" id="slider1" class="slider" min="0" max="15" step="11">
+                </div>
+              </div>
+            </div>
+            <div class="application wrapper-first show">
+
+              <div class="wrapper options">
+
+                <div class="row">
+                  <div class="item item-1 totranslate">Music folder</div>
+                  <div class="item item-2 option">
+                    <label for="music-folder-path" class="file-upload button">
+                      Change music folder
+                    </label>
+
+                    <input id="music-folder-path" class="settingsfile nokeyboard" type="file" webkitdirectory>
+                    <p class="filepath"></p>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="item item-1 totranslate">Theme</div>
+                  <div class="item item-2">
+                    <select class="themeOption" onchange="switchTheme(this)">
+                      <option value="green">Green</option>
+                      <option value="purpule">Purpule</option>
+                      <option value="dark_gray">Dark Grey</option>
+                      <option value="rainbow">Rainbow</option>
+                    </select>
+                  </div>
+                </div>
+
+                <div class="row">
+                  <div class="item item-1 totranslate">Language</div>
+                  <div class="item item-2">
+                    <select class="languageOption" onchange="languageSwitch(this)">
+                      <option value="eng">English</option>
+                      <option value="pol">Polish</option>
+                    </select>
+                  </div>
                 </div>
 
               </div>
-              <div class="buttons">
-                <div id="btDisconnect" class="btn">
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                    class="svg-inline--fa fa-times fa-w-11 fa-2x">
+              <div class="wrapper buttons">
+                <div id="minimize" class="btn">
+                  <svg aria-hidden="true" role="img" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512">
                     <path fill="currentColor"
-                      d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
-                      class=""></path>
+                      d="M480 480H32c-17.7 0-32-14.3-32-32s14.3-32 32-32h448c17.7 0 32 14.3 32 32s-14.3 32-32 32z">
+                    </path>
                   </svg>
                 </div>
-                <div id="btPair" class="btn">
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                    class="svg-inline--fa fa-check fa-w-16 fa-2x">
+                <div id="closeApp" class="btn">
+                  <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="window-close"
+                    class="svg-inline--fa fa-window-close fa-w-16" role="img" xmlns="http://www.w3.org/2000/svg"
+                    viewBox="0 0 512 512">
                     <path fill="currentColor"
-                      d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
-                      class=""></path>
+                      d="M464 32H48C21.5 32 0 53.5 0 80v352c0 26.5 21.5 48 48 48h416c26.5 0 48-21.5 48-48V80c0-26.5-21.5-48-48-48zm0 394c0 3.3-2.7 6-6 6H54c-3.3 0-6-2.7-6-6V86c0-3.3 2.7-6 6-6h404c3.3 0 6 2.7 6 6v340zM356.5 194.6L295.1 256l61.4 61.4c4.6 4.6 4.6 12.1 0 16.8l-22.3 22.3c-4.6 4.6-12.1 4.6-16.8 0L256 295.1l-61.4 61.4c-4.6 4.6-12.1 4.6-16.8 0l-22.3-22.3c-4.6-4.6-4.6-12.1 0-16.8l61.4-61.4-61.4-61.4c-4.6-4.6-4.6-12.1 0-16.8l22.3-22.3c4.6-4.6 12.1-4.6 16.8 0l61.4 61.4 61.4-61.4c4.6-4.6 12.1-4.6 16.8 0l22.3 22.3c4.7 4.6 4.7 12.1 0 16.8z">
+                    </path>
                   </svg>
                 </div>
-                <div id="btScan" class="btn">
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                    class="svg-inline--fa fa-search fa-w-16 fa-2x">
-                    <path fill="currentColor"
-                      d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
-                      class=""></path>
-                  </svg>
+
+              </div>
+              <div class="wrapper app_data">
+                <div id="app_version"></div>
+                <div id="update_status"></div>
+              </div>
+
+            </div>
+            <div class="bluetooth hide">
+
+              <div class="wrapper">
+                <h2 class="totranslate">Bluetooth settings</h2>
+                <div class="data">
+                  <div class="pairedDevices">
+                    <div class="label"><span class="totranslate">Paired devices</span>:</div>
+                    <div class="devices"></div>
+                  </div>
+                  <div class="scanedDevices">
+                    <div class="label"><span class="totranslate">Devices available</span>:</div>
+                    <div class="devices"></div>
+                  </div>
+
                 </div>
-                <div id="btClose" class="btn">
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sign-out-alt" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                    class="svg-inline--fa fa-sign-out-alt fa-w-16 fa-2x">
-                    <path fill="currentColor"
-                      d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"
-                      class=""></path>
-                  </svg>
+                <div class="buttons">
+                  <div id="btDisconnect" class="btn">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="times" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                      class="svg-inline--fa fa-times fa-w-11 fa-2x">
+                      <path fill="currentColor"
+                        d="M242.72 256l100.07-100.07c12.28-12.28 12.28-32.19 0-44.48l-22.24-22.24c-12.28-12.28-32.19-12.28-44.48 0L176 189.28 75.93 89.21c-12.28-12.28-32.19-12.28-44.48 0L9.21 111.45c-12.28 12.28-12.28 32.19 0 44.48L109.28 256 9.21 356.07c-12.28 12.28-12.28 32.19 0 44.48l22.24 22.24c12.28 12.28 32.2 12.28 44.48 0L176 322.72l100.07 100.07c12.28 12.28 32.2 12.28 44.48 0l22.24-22.24c12.28-12.28 12.28-32.19 0-44.48L242.72 256z"
+                        class=""></path>
+                    </svg>
+                  </div>
+                  <div id="btPair" class="btn">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                      class="svg-inline--fa fa-check fa-w-16 fa-2x">
+                      <path fill="currentColor"
+                        d="M173.898 439.404l-166.4-166.4c-9.997-9.997-9.997-26.206 0-36.204l36.203-36.204c9.997-9.998 26.207-9.998 36.204 0L192 312.69 432.095 72.596c9.997-9.997 26.207-9.997 36.204 0l36.203 36.204c9.997 9.997 9.997 26.206 0 36.204l-294.4 294.401c-9.998 9.997-26.207 9.997-36.204-.001z"
+                        class=""></path>
+                    </svg>
+                  </div>
+                  <div id="btScan" class="btn">
+                    <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img"
+                      xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                      class="svg-inline--fa fa-search fa-w-16 fa-2x">
+                      <path fill="currentColor"
+                        d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+                        class=""></path>
+                    </svg>
+                  </div>
+
+                </div>
+              </div>
+
+            </div>
+            <div class="wifi hide">
+              <div class="wifi">
+                <div class="wrapper">
+                  <h2 class="totranslate">Wi-Fi settings</h2>
+                  <div class="data">
+                    <div class="currentNetwork"></div>
+                    <div class="availableNetworks">
+                      <div class="label"><span class="totranslate">Available networks</span>:</div>
+                      <div class="data"></div>
+                    </div>
+                  </div>
+                  <div class="buttons">
+                    <div id="wifiDisconnect" class="btn">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="wifi-slash" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                        class="svg-inline--fa fa-wifi-slash fa-w-20 fa-2x">
+                        <path fill="currentColor"
+                          d="M5.09 154.87c-6.66 6.16-6.79 16.59-.35 22.97l34.24 33.96c6.14 6.09 16.02 6.23 22.4.38 6.99-6.4 14.31-12.22 21.65-18.01l-64.96-50.21c-4.3 3.71-8.79 7.04-12.98 10.91zm471.75 181.9l45.42-45.21c6.52-6.46 6.29-17.06-.57-23.17-64.94-57.74-148.91-82.66-230.34-74.98l-83.16-64.27c125.94-38.36 267.75-11.01 370.43 83.05 6.38 5.85 16.26 5.71 22.4-.38l34.24-33.96c6.44-6.39 6.3-16.82-.35-22.97C496.46 26.82 298.08-.76 133.42 71.35L45.47 3.37C38.49-2.05 28.43-.8 23.01 6.18L3.37 31.45C-2.05 38.42-.8 48.47 6.18 53.9l588.36 454.73c6.98 5.43 17.03 4.17 22.46-2.81l19.64-25.27c5.42-6.97 4.17-17.03-2.81-22.45L476.84 336.77zm-358.53-68.38c-6.86 6.1-7.08 16.7-.57 23.17l34.28 34.01c5.97 5.93 15.59 6.32 21.94.8 13.35-11.6 28.01-20.66 43.15-28.55l-68.36-52.83c-10.48 7.15-20.74 14.78-30.44 23.4zM256 416c0 35.35 28.65 64 64 64 31.91 0 58.15-23.42 62.99-53.98l-88.7-68.56C271.77 367.37 256 389.82 256 416z"
+                          class=""></path>
+                      </svg>
+                    </div>
+                    <div id="wifiConnect" class="btn">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="wifi" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
+                        class="svg-inline--fa fa-wifi fa-w-20 fa-2x">
+                        <path fill="currentColor"
+                          d="M634.91 154.88C457.74-8.99 182.19-8.93 5.09 154.88c-6.66 6.16-6.79 16.59-.35 22.98l34.24 33.97c6.14 6.1 16.02 6.23 22.4.38 145.92-133.68 371.3-133.71 517.25 0 6.38 5.85 16.26 5.71 22.4-.38l34.24-33.97c6.43-6.39 6.3-16.82-.36-22.98zM320 352c-35.35 0-64 28.65-64 64s28.65 64 64 64 64-28.65 64-64-28.65-64-64-64zm202.67-83.59c-115.26-101.93-290.21-101.82-405.34 0-6.9 6.1-7.12 16.69-.57 23.15l34.44 33.99c6 5.92 15.66 6.32 22.05.8 83.95-72.57 209.74-72.41 293.49 0 6.39 5.52 16.05 5.13 22.05-.8l34.44-33.99c6.56-6.46 6.33-17.06-.56-23.15z"
+                          class=""></path>
+                      </svg>
+                    </div>
+
+                    <div id="wifiRefreshList" class="btn">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                        class="svg-inline--fa fa-search fa-w-16 fa-2x">
+                        <path fill="currentColor"
+                          d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
+                          class=""></path>
+                      </svg>
+                    </div>
+
+                    <div id="wifiClose" class="btn">
+                      <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sign-out-alt" role="img"
+                        xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
+                        class="svg-inline--fa fa-sign-out-alt fa-w-16 fa-2x">
+                        <path fill="currentColor"
+                          d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"
+                          class=""></path>
+                      </svg>
+                    </div>
+
+                  </div>
                 </div>
 
               </div>
             </div>
-          </div>
-
-          <div class="wifi hide">
-            <div class="wrapper">
-              <h2 class="totranslate">Wi-Fi settings</h2>
-              <div class="data">
-                <div class="currentNetwork"></div>
-                <div class="availableNetworks">
-                  <div class="label"><span class="totranslate">Available networks</span>:</div>
-                  <div class="data"></div>
-                </div>
-              </div>
-              <div class="buttons">
-                <div id="wifiDisconnect" class="btn">
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="wifi-slash" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
-                    class="svg-inline--fa fa-wifi-slash fa-w-20 fa-2x">
-                    <path fill="currentColor"
-                      d="M5.09 154.87c-6.66 6.16-6.79 16.59-.35 22.97l34.24 33.96c6.14 6.09 16.02 6.23 22.4.38 6.99-6.4 14.31-12.22 21.65-18.01l-64.96-50.21c-4.3 3.71-8.79 7.04-12.98 10.91zm471.75 181.9l45.42-45.21c6.52-6.46 6.29-17.06-.57-23.17-64.94-57.74-148.91-82.66-230.34-74.98l-83.16-64.27c125.94-38.36 267.75-11.01 370.43 83.05 6.38 5.85 16.26 5.71 22.4-.38l34.24-33.96c6.44-6.39 6.3-16.82-.35-22.97C496.46 26.82 298.08-.76 133.42 71.35L45.47 3.37C38.49-2.05 28.43-.8 23.01 6.18L3.37 31.45C-2.05 38.42-.8 48.47 6.18 53.9l588.36 454.73c6.98 5.43 17.03 4.17 22.46-2.81l19.64-25.27c5.42-6.97 4.17-17.03-2.81-22.45L476.84 336.77zm-358.53-68.38c-6.86 6.1-7.08 16.7-.57 23.17l34.28 34.01c5.97 5.93 15.59 6.32 21.94.8 13.35-11.6 28.01-20.66 43.15-28.55l-68.36-52.83c-10.48 7.15-20.74 14.78-30.44 23.4zM256 416c0 35.35 28.65 64 64 64 31.91 0 58.15-23.42 62.99-53.98l-88.7-68.56C271.77 367.37 256 389.82 256 416z"
-                      class=""></path>
-                  </svg>
-                </div>
-                <div id="wifiConnect" class="btn">
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="wifi" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"
-                    class="svg-inline--fa fa-wifi fa-w-20 fa-2x">
-                    <path fill="currentColor"
-                      d="M634.91 154.88C457.74-8.99 182.19-8.93 5.09 154.88c-6.66 6.16-6.79 16.59-.35 22.98l34.24 33.97c6.14 6.1 16.02 6.23 22.4.38 145.92-133.68 371.3-133.71 517.25 0 6.38 5.85 16.26 5.71 22.4-.38l34.24-33.97c6.43-6.39 6.3-16.82-.36-22.98zM320 352c-35.35 0-64 28.65-64 64s28.65 64 64 64 64-28.65 64-64-28.65-64-64-64zm202.67-83.59c-115.26-101.93-290.21-101.82-405.34 0-6.9 6.1-7.12 16.69-.57 23.15l34.44 33.99c6 5.92 15.66 6.32 22.05.8 83.95-72.57 209.74-72.41 293.49 0 6.39 5.52 16.05 5.13 22.05-.8l34.44-33.99c6.56-6.46 6.33-17.06-.56-23.15z"
-                      class=""></path>
-                  </svg>
-                </div>
-
-                <div id="wifiRefreshList" class="btn">
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="search" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                    class="svg-inline--fa fa-search fa-w-16 fa-2x">
-                    <path fill="currentColor"
-                      d="M505 442.7L405.3 343c-4.5-4.5-10.6-7-17-7H372c27.6-35.3 44-79.7 44-128C416 93.1 322.9 0 208 0S0 93.1 0 208s93.1 208 208 208c48.3 0 92.7-16.4 128-44v16.3c0 6.4 2.5 12.5 7 17l99.7 99.7c9.4 9.4 24.6 9.4 33.9 0l28.3-28.3c9.4-9.4 9.4-24.6.1-34zM208 336c-70.7 0-128-57.2-128-128 0-70.7 57.2-128 128-128 70.7 0 128 57.2 128 128 0 70.7-57.2 128-128 128z"
-                      class=""></path>
-                  </svg>
-                </div>
-
-                <div id="wifiClose" class="btn">
-                  <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="sign-out-alt" role="img"
-                    xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512"
-                    class="svg-inline--fa fa-sign-out-alt fa-w-16 fa-2x">
-                    <path fill="currentColor"
-                      d="M497 273L329 441c-15 15-41 4.5-41-17v-96H152c-13.3 0-24-10.7-24-24v-96c0-13.3 10.7-24 24-24h136V88c0-21.4 25.9-32 41-17l168 168c9.3 9.4 9.3 24.6 0 34zM192 436v-40c0-6.6-5.4-12-12-12H96c-17.7 0-32-14.3-32-32V160c0-17.7 14.3-32 32-32h84c6.6 0 12-5.4 12-12V76c0-6.6-5.4-12-12-12H96c-53 0-96 43-96 96v192c0 53 43 96 96 96h84c6.6 0 12-5.4 12-12z"
-                      class=""></path>
-                  </svg>
-                </div>
-
+            <div class="debug hide">
+              <div class="wrapper ips">
+                <div id="ipslist"></div>
               </div>
             </div>
-
           </div>
-
         </div>
       </div>
       <!-- END settings element -->

@@ -46,14 +46,7 @@ window.addEventListener('DOMContentLoaded', function () {
             win.close();
         });
         //
-        // bluetooth
-        await document.getElementById('bluetooth').addEventListener("click", function () {
-            // show/hide bluetooth settings
-            document.querySelector('.settings .bluetooth').classList.toggle('hide');
-        });
-        await document.getElementById('btClose').addEventListener("click", function () {
-            document.querySelector('.settings .bluetooth').classList.toggle('hide');
-        });
+
         // display app version from package.json
         ipcRenderer.send('app_version');
         ipcRenderer.on('app_version', (event, args) => {
@@ -227,6 +220,35 @@ function menuHideToggle(element) {
             document.querySelector("#main .settings").classList.add("active");
         }
 
+    }
+}
+
+function toggleMainContent(element) {
+
+    let curElClassList = [...element.classList];
+
+    if (!curElClassList['show']) {
+
+        let actiElem = document.querySelector("#main .settings .tab.menu .show");
+        let actiElemContent = document.querySelector("#main .settings .tab.content .show");
+
+        let classArray = ["sound-settings", "application", "show", "bluetooth", "wifi", "debug"];
+
+
+        let clickedClass = curElClassList.filter((item) => classArray.includes(item)).toString();
+
+        if (curElClassList.includes(clickedClass)) {
+            // remove class show from menu element
+            actiElem.classList.remove("show");
+            // remove class from main content element
+            actiElemContent.classList.remove("show");
+            actiElemContent.classList.add("hide");
+            // add class nav
+            element.classList.add("show");
+            // add class main
+            document.querySelector("#main .settings .tab.content ." + clickedClass).classList.add("show");
+            document.querySelector("#main .settings .tab.content ." + clickedClass).classList.remove("hide");
+        }
     }
 }
 
@@ -618,4 +640,15 @@ function asksCANforNewData() {
         sendCAN('time');
     }
 
+}
+
+function sliderChanged(element) {
+
+    let value = parseInt(element.value, 0);
+
+    let hexArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
+    if (hexArray[value]) {
+        console.log(hexArray[value]);
+        return hexArray[value];
+    }
 }

@@ -72,10 +72,6 @@ window.addEventListener('DOMContentLoaded', function () {
         btScan();
     });
 
-    document.getElementById('btClose').addEventListener('click', function () {
-        bt.close;
-    });
-
     document.getElementById('btPair').addEventListener('click', function () {
         let macAdresSelectedDevice = document.querySelector('.settings .bluetooth .scanedDevices .devices .device.selected .mac');
 

@@ -3,9 +3,6 @@ var currentWifi = wifiNetworkList = '';
 
 window.addEventListener("DOMContentLoaded", function () {
 
-    document.getElementById('wifi').addEventListener("click", function () {
-        document.querySelector('.settings .wifi').classList.toggle('hide');
-    });
     document.getElementById('wifiClose').addEventListener("click", function () {
         document.querySelector('.settings .wifi').classList.toggle('hide');
     })

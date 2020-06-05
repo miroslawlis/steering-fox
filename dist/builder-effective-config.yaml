@@ -2,7 +2,7 @@ directories:
   output: dist
   buildResources: build
 appId: Stearing_FOX
-productName: Stearing Fox
+productName: Stearing_Fox
 dmg:
   contents:
     - x: 110

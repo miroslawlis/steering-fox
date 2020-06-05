@@ -87,7 +87,7 @@ function settingsInit() {
         try {
             fs.writeFile(filePathAndName, contentObject, (err) => {
                 if (err) throw err;
-                console.error('The file has been saved! ' + filePathAndName);
+                console.info('The file has been saved! ' + filePathAndName);
 
                 createSongsObject();
             });
@@ -135,7 +135,6 @@ function settingsInit() {
 
 
     }
-
 
 };
 

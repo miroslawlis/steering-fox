@@ -3,11 +3,11 @@ Not ready yet :)
 
 ### How it looks
 #### Dashboard GUI
-<img src="for_readme/img/stearing_fox_dashboard_GUI_1.jpg" width="300">
-<img src="for_readme/img/stearing_fox_dashboard_GUI_2.jpg" width="300">
+<img src="for_readme/img/steering_fox_dashboard_GUI_1.jpg" width="300">
+<img src="for_readme/img/steering_fox_dashboard_GUI_2.jpg" width="300">
 
 #### Music GUI
-<img src="for_readme/img/stearing_fox_music_GUI.png" width="300">
+<img src="for_readme/img/steering_fox_music_GUI.png" width="300">
 
 `more to come`
 

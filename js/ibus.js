@@ -87,7 +87,7 @@ function onIbusData(data) {
 
             msgDescryption = 'Arrow up? button steering wheel';
         }
-        //next song stearing wheel
+        //next song steering wheel
         if (data.msg == new Buffer.from([59, 1]).toString('ascii')) {
             previousSong();
 
