@@ -49,7 +49,7 @@ function settingsInit() {
     }
 
     setTimeout(() => {
-        document.querySelector(".settings").addEventListener('change', function () {
+        document.querySelector(".settings .content .application").addEventListener('change', function () {
             saveSettingsToFile();
         }, false);
     }, 2000);
@@ -63,7 +63,8 @@ function settingsInit() {
             debugLog("Saving settings to file");
 
             if (document.querySelector(".settings .settingsfile").files && document.querySelector(".settings .settingsfile").files.length != 0) {
-                musicFolder = document.querySelector(".settings .settingsfile").files[0].path;
+                // musicFolder = document.querySelector(".settings .settingsfile").files[0].path;
+                musicFolder = path.parse(musicFolder).dir;
             }
 
             let themeElement = document.querySelector(".settings .themeOption");
@@ -137,7 +138,7 @@ function settingsInit() {
 
     }
 
-    function updateGUIwithSettings(themOpt = document.querySelector(".settings .themeOption"), fileOpt = document.querySelector(".settings .item .filepath"), audioOpt = audio.volume) {
+    function updateGUIwithSettings(themOpt, fileOpt, audioOpt = audio.volume) {
 
         // update GUI
         let themeElement = document.querySelector(".settings .themeOption");
@@ -146,7 +147,6 @@ function settingsInit() {
         musicFolderEl.innerText = fileOpt;
         themeElement.value = themOpt;
         audioElement.volume = audioOpt;
-
 
     }
 

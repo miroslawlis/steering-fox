@@ -57,23 +57,21 @@ h3 {
 }
 
 #nav .element {
-  height     : 20%;
-  min-height : 3vw;
-  padding    : 1.5vw 1vw;
-  text-align : center;
-  color      : #fff;
-  font-size  : 3vw;
-  line-height: 3vw;
-  opacity    : 1;
-  transition : all 0.2s;
+  padding   : 1.5vw 1vw;
+  text-align: center;
+  color     : #fff;
+  font-size : 3vw;
+  opacity   : 1;
+  transition: all 0.2s;
 }
 
 #nav {
-  background    : var(--backgroundNav);
-  text-transform: uppercase;
-  display       : block;
-  width         : 10%;
-  height        : 100%;
+  background     : var(--backgroundNav);
+  display        : flex;
+  flex-direction : column;
+  justify-content: space-between;
+  flex-basis     : 10%;
+  align-self     : stretch;
 }
 
 #nav svg {
@@ -256,6 +254,7 @@ table.musicTable tfoot {
 #threeSongs {
   display   : block;
   text-align: center;
+  padding   : 0 2vw;
 }
 
 #previousSong,
