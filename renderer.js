@@ -649,6 +649,11 @@ function sliderChanged(element) {
     if (hexArray[value] && value % 2 == 0) {
 
         sendCAN('update-bass', '0x6' + hexArray[value]);
-
+        // remove, in production
+        // test
+        sendCAN('update-balance');
+        sendCAN('update-fader');
+        sendCAN('update-trable');
+        //
     }
 }
