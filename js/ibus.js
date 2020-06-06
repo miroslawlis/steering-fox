@@ -386,7 +386,7 @@ function sendCAN(request, arg1_hex, arg2_hex) {
                     ibusInterface.sendMessage({
                         src: 0x68,
                         dst: 0x6A, //FF broadcast, maybe 0x6A DigitalSignalProcessingAudioAmplifier?
-                        msg: new Buffer.from([0x36, arg1_hex])
+                        msg: new Buffer.from([0x36, arg1_hex]) // 0x6... -> plus, 0x72 -> bass -2; +12 max
                     })
                     break;
                 // update balance (left/right) settings in car
@@ -406,7 +406,7 @@ function sendCAN(request, arg1_hex, arg2_hex) {
                     })
                     break;
                 // update trable settings in car
-                case 'update-fader':
+                case 'update-trable':
                     ibusInterface.sendMessage({
                         src: 0x68,
                         dst: 0x6A, //FF broadcast, maybe 0x6A DigitalSignalProcessingAudioAmplifier?
