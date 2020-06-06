@@ -10,27 +10,34 @@ function settingsInit() {
 
     let fuel_1_ele = document.querySelector('#main .fuel_cons1 .data');
 
+    function createSettingsFileDefault() {
+        // creates new file with default values
+
+        debugLog('Settings file not exist, creating...');
+
+        const settingsFileContent = {};
+        settingsFileContent.musicFolder = "";
+        settingsFileContent.themeOptionFile = 'dark_gray';
+
+        try {
+
+            fs.writeFileSync(filePathAndName, JSON.stringify(settingsFileContent));
+            // no error
+            // after crating file, load content
+            debugLog('Settings file created');
+            readSettingfile();
+
+        } catch (err) {
+            console.error('Error in creating settings file: ' + err);
+        }
+    }
+
     // check if settings.json file dose not egzist in app folder 
     // if it's not there then create it that file with default data
     try {
         if (!fs.existsSync(filePathAndName)) {
             // file not exist
-            debugLog('Settings file not exist, creating...');
-
-            const settingsFileContent = {};
-            settingsFileContent.musicFolder = "";
-            settingsFileContent.themeOptionFile = 5;
-
-            fs.writeFile(filePathAndName, JSON.stringify(settingsFileContent), (err) => {
-                if (err) {
-                    console.error('Error in creating settings file: ' + err);
-                } else {
-                    // no error === succes
-                    // after crating file, load content
-                    debugLog('Settings file created');
-                    readSettingfile();
-                }
-            });
+            createSettingsFileDefault();
 
         } else {
             // file exist and no error
@@ -59,7 +66,7 @@ function settingsInit() {
 
             let themeElement = document.querySelector(".settings .themeOption");
             // check if egzist
-            if (themeElement.length > 0) {
+            if (themeElement.length > 0 && themeElement.selectedIndex > -1) {
                 themeOption = themeElement.selectedOptions[0].value;
             }
 
@@ -85,14 +92,14 @@ function settingsInit() {
         }
 
         try {
-            fs.writeFile(filePathAndName, contentObject, (err) => {
-                if (err) throw err;
-                console.info('The file has been saved! ' + filePathAndName);
+            fs.writeFileSync(filePathAndName, contentObject);
 
-                createSongsObject();
-            });
+            console.info('The file has been saved! ' + filePathAndName);
+
+            createSongsObject();
+
         }
-        catch (e) { debugLog("FAILD to save setting file " + e); }
+        catch (error) { debugLog("FAILD to save setting file " + error); }
     }
 
     // if settings file contain folderPath (and it's not empty string) then use it in var musicFolder else use "/Music/"
@@ -102,7 +109,12 @@ function settingsInit() {
 
         try {
             settingFromFileObj = fs.readFileSync(filePathAndName);
-            settingFromFileObj = JSON.parse(settingFromFileObj);
+            try {
+                settingFromFileObj = JSON.parse(settingFromFileObj)
+            } catch (error) {
+                // probobly content is with error, create new file with default values
+                createSettingsFileDefault();
+            };
 
             if (settingFromFileObj.musicFolder != '') {
 

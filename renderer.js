@@ -319,33 +319,31 @@ function createSongsObject() {
     songsObj = [];
     let i = 1;
 
-
     function findMusicFilesRecursivly(initailPath) {
 
         try {
-            // read files and directoryes in current directory
-            let files = fs.readdirSync(initailPath);
+            var statInitial = fs.statSync(initailPath);
+            if (statInitial && statInitial.isDirectory()) {
+                // it is directory
 
-            files.forEach(function (file) {
-                // for each file or directory
-                // check if it's file or directory
-                // file = path.join(initailPath, file).toLowerCase();
-                file = path.join(initailPath, file);
-                var stat = fs.statSync(file);
+                // read files and directories in current directory
+                let files = fs.readdirSync(initailPath);
+                files.forEach(function (file) {
+                    // for each file or directory
+                    // check if it's file or directory
+                    findMusicFilesRecursivly(path.join(initailPath, file));
 
-                if (stat && stat.isDirectory()) {
-                    // it is directory
-                    // Recurse into a subdirectory for curent path/directory
-                    findMusicFilesRecursivly(file);
-                } else {
-                    // Is a file
-                    // get only .mp3 audio files
-                    if (file.split('.').pop() == 'mp3' || file.split('.').pop() == 'MP3') {
-                        songsObj.push({ id: i, name: file.split('\\').pop().split('/').pop(), length: '', path: file });
-                        i++;
-                    }
+                });
+
+            } else {
+                // it is a file
+                // Is a file
+                // get only .mp3 audio files
+                if (initailPath.split('.').pop() == 'mp3' || initailPath.split('.').pop() == 'MP3') {
+                    songsObj.push({ id: i, name: initailPath.split('\\').pop().split('/').pop(), length: '', path: initailPath });
+                    i++;
                 }
-            });
+            }
         } catch (error) {
             console.log(error);
         }
@@ -647,9 +645,8 @@ function sliderChanged(element) {
     let value = parseInt(element.value, 0);
 
     let hexArray = ['0', '1', '2', '3', '4', '5', '6', '7', '8', '9', 'A', 'B', 'C', 'D', 'E', 'F'];
-    // todo
     // allow only even 0, 2, 4, ... - DSP can only accept even values?
-    if (hexArray[value]) {
+    if (hexArray[value] && value % 2 == 0) {
 
         sendCAN('update-bass', '0x6' + hexArray[value]);
 

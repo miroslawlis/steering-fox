@@ -260,17 +260,20 @@
             <div class="sound-settings hide">
               <div class="sliders-wrapper">
                 <div class="slider-wrapper">
-                  balance
-                  <input type="range" id="slider1" class="slider" min="0" max="15" step="1"
-                    onchange="sliderChanged(this)">
-                </div>
-                <div class="slider-wrapper">
-                  bass
+                  Balance
                   <input type="range" id="slider1" class="slider" min="0" max="15" step="1">
                 </div>
                 <div class="slider-wrapper">
-                  fader
-                  <input type="range" id="slider1" class="slider" min="0" max="15" step="11">
+                  Bass
+                  <input type="range" id="slider2" class="slider" min="0" max="15" step="1" onchange="sliderChanged(this)">
+                </div>
+                <div class="slider-wrapper">
+                  Fader
+                  <input type="range" id="slider3" class="slider" min="0" max="15" step="11">
+                </div>
+                <div class="slider-wrapper">
+                  Treble
+                  <input type="range" id="slider4" class="slider" min="0" max="15" step="11">
                 </div>
               </div>
             </div>
@@ -296,7 +299,7 @@
                     <select class="themeOption" onchange="switchTheme(this)">
                       <option value="green">Green</option>
                       <option value="purpule">Purpule</option>
-                      <option value="dark_gray">Dark Grey</option>
+                      <option value="dark_gray" selected>Dark Grey</option>
                       <option value="rainbow">Rainbow</option>
                     </select>
                   </div>
