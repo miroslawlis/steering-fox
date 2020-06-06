@@ -48,9 +48,11 @@ function settingsInit() {
         console.error('Setting file: ' + err);
     }
 
-    document.querySelector(".settings").addEventListener('change', function () {
-        saveSettingsToFile();
-    }, false);
+    setTimeout(() => {
+        document.querySelector(".settings").addEventListener('change', function () {
+            saveSettingsToFile();
+        }, false);
+    }, 2000);
 
     function saveSettingsToFile() {
 
