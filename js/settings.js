@@ -4,7 +4,7 @@ function settingsInit() {
 
     UserPath = '';
     settingsFileName = 'settings.json';
-    musicFolder = '/Music/';
+    musicFolder = 'home/pi/Music/';
     UserPath = (electron.app || electron.remote.app).getPath('userData');
     filePathAndName = path.join(UserPath, settingsFileName);
 
