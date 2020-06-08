@@ -254,7 +254,7 @@ function onIbusData(data) {
     }
 
     //id, from, to, message, message hex, analyzing, description
-    debugLog(data.id, ' | ', IbusDevices.getDeviceName(data.src), ' | ', IbusDevices.getDeviceName(data.dst), ' | ', data.msg, ' | ', buffMsgHex, ' | ', msgDescryption, 'rawHex');
+    debugLog(data.id, IbusDevices.getDeviceName(data.src), IbusDevices.getDeviceName(data.dst), data.msg, buffMsgHex, msgDescryption, 'rawHex');
 
     // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
 

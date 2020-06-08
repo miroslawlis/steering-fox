@@ -104,11 +104,11 @@ function debugLog(...args) {
     var output = '';
 
     if (debugMode === true) {
-        if (args.lastIndexOf('rawHex')) {
+        if (args.lastIndexOf('rawHex') >= 0) {
             // just hex data - short
-            args.pop();
+            // args.pop();
             args.forEach(function (arg, index) {
-                output += property + ': ' + JSON.stringify(arg[property]) + ';';
+                output += arg + ' | ';
             });
 
             console.log(output);
