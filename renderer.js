@@ -110,7 +110,7 @@ function debugLog(...args) {
 
                 // console.log(JSON.stringify(arg, null, 4));
                 for (var property in arg) {
-                    output += property + ': ' + JSON.stringify(arg[property]) + ';\n';
+                    output += property + ': ' + JSON.stringify(arg[property]) + ';';
                 }
                 console.log(output);
 
