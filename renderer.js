@@ -104,32 +104,33 @@ function debugLog(...args) {
     var output = '';
 
     if (debugMode === true) {
-        args.forEach(function (arg, index) {
+        if (args.lastIndexOf('rawHex')) {
+            // just hex data - short
+            args.pop();
+            args.forEach(function (arg, index) {
+                output += property + ': ' + JSON.stringify(arg[property]) + ';';
+            });
 
-            if (typeof (arg) === 'object') {
+            console.log(output);
 
-                // console.log(JSON.stringify(arg, null, 4));
-                for (var property in arg) {
-                    output += property + ': ' + JSON.stringify(arg[property]) + ';';
+        } else {
+            // more info - long
+            args.forEach(function (arg, index) {
+
+                if (typeof (arg) === 'object') {
+
+                    // console.log(JSON.stringify(arg, null, 4));
+                    for (var property in arg) {
+                        output += property + ': ' + JSON.stringify(arg[property]) + ';';
+                    }
+                    console.log(output);
+
+                } else {
+
+                    console.log(arg);
                 }
-                console.log(output);
-
-            } else if (args.lastIndexOf('colorGREEN') >= 0) {
-
-                args.pop();
-                console.log('%c%s', 'background: green;', arg);
-
-            } else if (args.lastIndexOf('colorORANGE') >= 0) {
-
-                args.pop();
-                console.log('%c%s', 'background: orange; color: black;', arg);
-
-            } else {
-
-                console.log(arg);
-            }
-        });
-
+            });
+        }
     }
 }
 
