@@ -122,3 +122,29 @@ Push your changes to GitHub:
 ```
 git push && git push --tags
 ```
+
+### Testing
+from https://github.com/osvathrobi/node-ibus (modyfied)
+
+#### Raw IBUS data stream files
+
+in the src/raw folder I have sniffed and logged some of the data that goes through the IBUS stream of a BMW X3 E83 from 2010.
+
+```test1.bin```, ```BMW_IBUS_1.bin``` and ```BMW_IBUS_2.bin```
+
+You can play back these log files to a virtual serial device and test your code.
+
+#### Setting up a virtual Serial Device
+
+Open new terminal window, and run falowing comand:
+```socat -d -d PTY PTY```
+
+This will create 2 devices: ex ```/dev/pts/2``` and ```/dev/pts/3```
+
+You start IbusReader with the master (ex ```/dev/pts/2```) and send traffic to the slave (ex ```/dev/pts/3```)
+
+#### Simulating IBUS traffic on the serial slave
+
+From the node_modules/ibus/src/raw folder run (in new terminal window):
+
+```socat -U -d -d -d /dev/pts/2,clocal=1,cs8,nonblock=1,ixoff=0,ixon=0,b9600,raw,echo=0,crtscts=0 FILE:BMW_IBUS_1.bin```

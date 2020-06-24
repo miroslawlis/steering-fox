@@ -351,12 +351,16 @@ function createSongsObject() {
     }
 
     findMusicFilesRecursivly(musicFolder);
-    addRowsToMusicTable();
-    // randomize songs
-    shuffl();
-    // HTML update
-    GetThreeSongsToGUI();
 
+    // if there is at least one audio file
+    if (songsObj.length > 0) {
+        addRowsToMusicTable();
+        // randomize songs
+        shuffl();
+        // HTML update
+        GetThreeSongsToGUI();
+    }
+    
     debugLog("songsObj: ");
     debugLog(songsObj);
 }

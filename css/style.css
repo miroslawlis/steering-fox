@@ -177,6 +177,7 @@ html {
 
 #main .tab.two.content {
   flex-basis: 70%;
+  max-width: 80%;
 }
 
 #main .menu svg {

@@ -22,7 +22,8 @@ debug.disable();
 // Configure your device location
 
 // config
-var device = '/dev/ttyUSB0';
+// var device = '/dev/ttyUSB0';
+var device = '/dev/pts/3';
 
 // setup interface
 var ibusInterface = new IbusInterface(device);
@@ -254,7 +255,7 @@ function onIbusData(data) {
     }
 
     //id, from, to, message, message hex, analyzing, description
-    debugLog(data.id, IbusDevices.getDeviceName(data.src), IbusDevices.getDeviceName(data.dst), data.msg, buffMsgHex, msgDescryption, 'rawHex');
+    debugLog(data.id, IbusDevices.getDeviceName(data.src), IbusDevices.getDeviceName(data.dst), data.msg, buffMsgHex, msgDescryption);
 
     // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
 
