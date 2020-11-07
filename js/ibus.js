@@ -7,7 +7,22 @@ sp.list().then(
     }
 );
 
-var time_instrument_cluster, town_nav, street_nav, gps_altitude, gps_cords_lat, gps_cords_lon, gps_utc_time, temp_outside, fuel_consumption_1, fuel_consumption_2, range, distance, speed_limit, avg_speed, light_sensor, coolant_temp;
+var time_instrument_cluster,
+  town_nav,
+  street_nav,
+  gps_altitude = '-',
+  gps_cords_lat,
+  gps_cords_lon,
+  gps_utc_time,
+  temp_outside = '-',
+  fuel_consumption_1 = '-',
+  fuel_consumption_2 = '-',
+  range = '-',
+  distance,
+  speed_limit,
+  avg_speed = '-',
+  light_sensor,
+  coolant_temp = '-';
 var lessInfoFromCAN = true;
 
 //// ibus part start
