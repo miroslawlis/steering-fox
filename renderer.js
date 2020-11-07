@@ -476,8 +476,9 @@ function updateTimeCANfromInput(element) {
 
 function timeSetModal(params) {
     let modal_time;
-    let contentLink = linkModal.import;
-    let elemModal = contentLink.getElementById('modalTwoInputs');
+    console.dir(linkModal);
+    let modalTemplate = document.getElementById('modal-main-template');
+    let elemModal = modalTemplate.content.getElementById('modalTwoInputs');
 
     modal_time = document.createElement('div');
     modal_time.id = 'timeModalSet';
