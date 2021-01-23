@@ -108,61 +108,6 @@ window.addEventListener('DOMContentLoaded', function () {
 
 });
 
-
-function debugLog(...args) {
-
-    // let args = arguments;
-    var output = '';
-
-    if (debugMode === true) {
-        args.forEach(function (arg, index) {
-
-            if (typeof (arg) === 'object') {
-
-    // send request to check if update is available
-    setTimeout(() => {
-      ipcRenderer.send("check_for_application_update");
-    }, 10000);
-
-    ipcRenderer.on("update_available", () => {
-      console.log("update_available");
-      ipcRenderer.removeAllListeners("update_available");
-      document.getElementById("update_status").innerText =
-        "A new update is available. Downloading now...";
-    });
-    ipcRenderer.on("update_downloaded", () => {
-      console.log("update_downloaded");
-      ipcRenderer.removeAllListeners("update_downloaded");
-      document.getElementById("update_status").innerText =
-        "Update Downloaded. It will be installed on restart. Restart now?";
-    });
-    ipcRenderer.on("update-not-available", () => {
-      console.log("update-not-available");
-      ipcRenderer.removeAllListeners("update-not-available");
-    });
-    // download progress
-    ipcRenderer.on("send-download-progress", (text) => {
-      console.log(text);
-    });
-
-    // initiall start
-    await getIPs();
-    await wifiInfo();
-
-    await asksCANforNewData();
-    // and repeate checking and asking if necessery every x miliseconds
-    await setInterval(asksCANforNewData, 500);
-
-    await dateAndTime();
-    await setInterval(dateAndTime, 1000);
-
-    await guiUpdateData();
-    await setInterval(guiUpdateData, 1000);
-
-    await debugLog(os.networkInterfaces());
-  })();
-});
-
 function debugLog(...args) {
   // let args = arguments;
   var output = "";
