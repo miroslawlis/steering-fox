@@ -25,6 +25,9 @@ Not ready yet :)
 <li>GPIO Extension Expansion Board Module for Raspberry pi 3B+</li>
 </ol>
 
+#### Wiring diargam/schematics
+<img src="for_readme/img/Instalation_schema_raspberry_pi_BMW_x3_e83.png" width="300">
+
 <h3>Software:</h3>
 <ol>
 <li>Raspbian</li>
