@@ -122,6 +122,9 @@ autoUpdater.on('download-progress', (progressObj) => {
   log_message = log_message + ' (' + progressObj.transferred + "/" + progressObj.total + ')';
   sendStatusToWindow(log_message);
 })
+autoUpdater.on('error', (error) => {
+  console.log(error);
+});
 function sendStatusToWindow(text) {
   mainWindow.webContents.send('send-download-progress', text);
 }

@@ -62,9 +62,9 @@ window.addEventListener('DOMContentLoaded', function () {
         });
 
         // send request to check if update is available
-        setTimeout(() => {
-            ipcRenderer.send('check_for_application_update');
-        }, 10000);
+        // setTimeout(() => {
+        //     ipcRenderer.send('check_for_application_update');
+        // }, 10000);
 
         ipcRenderer.on('update_available', () => {
             console.log('update_available');
