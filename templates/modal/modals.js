@@ -1,8 +1,8 @@
 const modalTwoInputs = `<div id="modalTwoInputs" class="modal set animated bounceIn">
     <h3 class="totranslate">Enter new time (hh:mm)</h3>
     <div class="wrapper space">
-        <input class="hour time digits" type="text">
-        <input class="minutes time digits" type="text">
+        <input class="hour time digits" type="number">
+        <input class="minutes time digits" type="number">
     </div>
     <div id="setTime1" class="confirm btn single">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img"

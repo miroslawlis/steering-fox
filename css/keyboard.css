@@ -18,28 +18,29 @@
 }
 
 .keyboard__keys {
-    text-align: center;
+    text-align     : center;
+    display        : flex;
+    flex-direction : row;
+    width          : 100%;
+    align-items    : center;
+    justify-content: center;
+    flex-wrap      : wrap;
 }
 
 .keyboard__key {
-    height                     : 45px;
-    width                      : 6%;
-    max-width                  : 90px;
-    margin                     : 3px;
-    border-radius              : 0;
-    border                     : none;
-    background                 : var(--backgroundNav);
-    color                      : var(--white);
-    font-size                  : 3vw;
-    outline                    : none;
-    cursor                     : pointer;
-    display                    : inline-flex;
-    align-items                : center;
-    justify-content            : center;
-    vertical-align             : top;
-    padding                    : 0;
-    -webkit-tap-highlight-color: transparent;
-    position                   : relative;
+    height         : 45px;
+    margin         : 3px;
+    border-radius  : 0;
+    border         : none;
+    background     : var(--backgroundNav);
+    color          : var(--white);
+    font-size      : 3vw;
+    outline        : none;
+    cursor         : pointer;
+    align-items    : center;
+    justify-content: center;
+    padding        : 0;
+    flex           : 1 0 18%;
 }
 
 .keyboard__key:active {
@@ -56,7 +57,7 @@
 }
 
 .keyboard__key--activatable::after {
-    content      : '';
+    content      : "";
     top          : 10px;
     right        : 10px;
     position     : absolute;
