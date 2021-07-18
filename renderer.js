@@ -11,6 +11,7 @@ var spawn = require('child_process').spawn;
 var win = electron.remote.getCurrentWindow();
 var isLinux = process.platform === 'linux';
 const remote = require('electron').remote;
+const modal = require('./templates/modal/modals.js');
 
 // const settings = require('./js/settings.js');
 //for debugLog()
@@ -476,14 +477,13 @@ function updateTimeCANfromInput(element) {
 
 function timeSetModal(params) {
     let modal_time;
-    let contentLink = linkModal.import;
-    let elemModal = contentLink.getElementById('modalTwoInputs');
+    let elemModal = modal.modalTwoInputs;
 
     modal_time = document.createElement('div');
     modal_time.id = 'timeModalSet';
     modal_time.classList = modalClasses[0] + ' ' + modalClasses[1];
 
-    modal_time.innerHTML = elemModal.outerHTML;
+    modal_time.innerHTML = elemModal;
 
     document.body.appendChild(modal_time);
 
@@ -500,14 +500,13 @@ function timeSetModal(params) {
 
 function wifiModal() {
     let modal_wifi;
-    let contentLink = linkModal.import;
-    let elemModal = contentLink.getElementById('wifiPassword');
+    let elemModal = modal.wifiPassword;
 
     modal_wifi = document.createElement('div');
     modal_wifi.id = 'wifipasswordModal';
     modal_wifi.classList = modalClasses[0] + ' ' + modalClasses[1];
 
-    modal_wifi.innerHTML = elemModal.outerHTML;
+    modal_wifi.innerHTML = elemModal;
 
     document.body.appendChild(modal_wifi);
 
@@ -523,14 +522,13 @@ function wifiModal() {
 
 function fuelConsResetModal(arg) {
     let modal_fuel_reset;
-    let contentLink = linkModal.import;
-    let elemModal = contentLink.getElementById('modalConfirm');
+    let elemModal = modal.modalConfirm;
 
     modal_fuel_reset = document.createElement('div');
     modal_fuel_reset.id = 'modalConfirmWrap';
     modal_fuel_reset.classList = modalClasses[0] + ' ' + modalClasses[1];
 
-    modal_fuel_reset.innerHTML = elemModal.outerHTML;
+    modal_fuel_reset.innerHTML = elemModal;
 
     document.body.appendChild(modal_fuel_reset);
 

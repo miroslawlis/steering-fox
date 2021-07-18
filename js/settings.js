@@ -13,13 +13,14 @@ function settingsInit() {
     // check if settings.json file dose not egzist in app folder 
     // if it's not there then create it that file with default data
     try {
+
+        const settingsFileContent = {};
+        settingsFileContent.musicFolder = "";
+        settingsFileContent.themeOptionFile = 5;
+
         if (!fs.existsSync(filePathAndName)) {
             // file not exist
             debugLog('Settings file not exist, creating...');
-
-            const settingsFileContent = {};
-            settingsFileContent.musicFolder = "";
-            settingsFileContent.themeOptionFile = 5;
 
             fs.writeFile(filePathAndName, JSON.stringify(settingsFileContent), (err) => {
                 if (err) {
@@ -32,6 +33,18 @@ function settingsInit() {
                 }
             });
 
+        } else if (fs.readFileSync(filePathAndName).length < 1) {   
+        // empty file
+        fs.writeFile(filePathAndName, JSON.stringify(settingsFileContent), (err) => {
+            if (err) {
+                console.error('Error in creating settings file: ' + err);
+            } else {
+                // no error === succes
+                // after crating file, load content
+                debugLog('Settings file created');
+                readSettingfile();
+            }
+        });
         } else {
             // file exist and no error
             debugLog('Settings file exist');
@@ -53,8 +66,10 @@ function settingsInit() {
         try {
             debugLog("Saving settings to file");
 
-            if (document.querySelector(".settings .settingsfile").files && document.querySelector(".settings .settingsfile").files.length != 0) {
-                musicFolder = document.querySelector(".settings .settingsfile").files[0].path;
+            let musiFolderPathEl = document.getElementById('music-folder-path');
+
+            if (musiFolderPathEl.files && musiFolderPathEl.files.length != 0) {
+                musicFolder = path.dirname(musiFolderPathEl.files[0].path);
             }
 
             let themeElement = document.querySelector(".settings .themeOption");
@@ -87,7 +102,7 @@ function settingsInit() {
         try {
             fs.writeFile(filePathAndName, contentObject, (err) => {
                 if (err) throw err;
-                console.error('The file has been saved! ' + filePathAndName);
+                console.log('The file has been saved! ' + filePathAndName);
 
                 createSongsObject();
             });
@@ -102,8 +117,12 @@ function settingsInit() {
 
         try {
             settingFromFileObj = fs.readFileSync(filePathAndName);
+            if (!isJsonString(settingFromFileObj)) {
+                console.log('invalid content - not JSON');
+                return false;
+            }
             settingFromFileObj = JSON.parse(settingFromFileObj);
-
+            
             if (settingFromFileObj.musicFolder != '') {
 
                 musicFolder = settingFromFileObj.musicFolder;
@@ -135,7 +154,13 @@ function settingsInit() {
 
 
     }
-
-
 };
 
+function isJsonString(str) {
+    try {
+        JSON.parse(str);
+    } catch (e) {
+        return false;
+    }
+    return true;
+}
