@@ -97,12 +97,11 @@ ipcMain.on('app_version', (event) => {
   event.sender.send('app_version', { version: app.getVersion() });
 });
 
-// auto updater
-
+//// auto updater
 
 ipcMain.on('check_for_application_update', () => {
   // autoUpdater.setFeedUrl = "https://github.com/miroslawlis/steering-fox";
-  autoUpdater.checkForUpdates();
+  // autoUpdater.checkForUpdates();
 });
 
 // event listeners to handle update events

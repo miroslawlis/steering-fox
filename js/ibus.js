@@ -21,6 +21,7 @@ var time_instrument_cluster,
   avg_speed = "-",
   light_sensor,
   coolant_temp = "-";
+
 var lessInfoFromCAN = true;
 
 //// ibus part start
