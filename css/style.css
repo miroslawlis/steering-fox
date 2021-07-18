@@ -36,7 +36,7 @@ main,
     grid-template-columns   : 25% 75%;
     grid-template-rows      : 1fr;
     grid-template-areas     : "nav main"; */
-  display                   : block;
+  display: block;
 }
 
 #main .youtube,
@@ -48,11 +48,11 @@ main,
 
 #main {
   /* grid-area: main; */
-  color       : white;
-  font-size   : 2vw;
-  display     : inline-block;
-  width       : 90%;
-  height      : 100%;
+  color    : white;
+  font-size: 2vw;
+  display  : inline-block;
+  width    : 90%;
+  height   : 100%;
 }
 
 #nav .element {
@@ -93,16 +93,16 @@ html {
 
 #nav .active {
   /* background: var(--amber); */
-  transition   : all 0.3s;
+  transition: all 0.3s;
 }
 
 #nav .active svg {
-  transition: all 0.3s;
+  transition   : all 0.3s;
   /* filter    : drop-shadow(0px 0px 8px var(--white)); */
-  height    : 100%;
-  color     : var(--amber);
-  /* stroke: rgb(255, 255, 255);
-  stroke-width: 14; */
+  height       : 100%;
+  color        : var(--amber);
+  /* stroke    : rgb(255, 255, 255);
+  stroke-width : 14; */
 }
 
 #main .element {
@@ -642,6 +642,8 @@ input.minutes.time {
   background: var(--backgroundNav);
   border    : none;
   color     : var(--white);
+  text-align: center;
+  font-size : 4vw;
 }
 
 input.minutes.time {

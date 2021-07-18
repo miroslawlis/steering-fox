@@ -1,8 +1,8 @@
-<div id="modalTwoInputs" class="modal set animated bounceIn">
+const modalTwoInputs = `<div id="modalTwoInputs" class="modal set animated bounceIn">
     <h3 class="totranslate">Enter new time (hh:mm)</h3>
     <div class="wrapper space">
-        <input class="hour time digits" type="text">
-        <input class="minutes time digits" type="text">
+        <input class="hour time digits" type="number">
+        <input class="minutes time digits" type="number">
     </div>
     <div id="setTime1" class="confirm btn single">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img"
@@ -21,10 +21,10 @@
                 class=""></path>
         </svg>
     </div>
-</div>
+</div>`;
 
 
-<div id="wifiPassword" class="content animated bounceIn modal">
+const wifiPassword = `<div id="wifiPassword" class="content animated bounceIn modal">
     <h3 class="totranslate">Enter WiFi password</h3>
     <div id="closeWiFipassword" class="btn close" onclick="modalClose(this)">
         <svg aria-hidden="true" focusable="false" data-prefix="far" data-icon="times-circle" role="img"
@@ -44,10 +44,10 @@
                 class=""></path>
         </svg>
     </div>
-</div>
+</div>`;
 
 
-<div id="modalConfirm" class="content animated bounceIn modal">
+const modalConfirm = `<div id="modalConfirm" class="content animated bounceIn modal">
     <h3 class="totranslate">Confirm reset fuel consumption</h3>
     <div class="confirm btn single">
         <svg aria-hidden="true" focusable="false" data-prefix="fas" data-icon="check" role="img"
@@ -66,4 +66,8 @@
                 class=""></path>
         </svg>
     </div>
-</div>
+</div>`;
+
+exports.modalTwoInputs = modalTwoInputs;
+exports.wifiPassword = wifiPassword;
+exports.modalConfirm = modalConfirm;

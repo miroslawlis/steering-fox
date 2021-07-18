@@ -17,7 +17,7 @@ const Keyboard = {
         capsLock: false
     },
 
-    init() {
+    init(type) {
         // Create main elements
         this.elements.main = document.createElement("div");
         this.elements.keysContainer = document.createElement("div");
@@ -25,7 +25,7 @@ const Keyboard = {
         // Setup main elements
         this.elements.main.classList.add("keyboard", "keyboard--hidden");
         this.elements.keysContainer.classList.add("keyboard__keys");
-        this.elements.keysContainer.appendChild(this._createKeys());
+        this.elements.keysContainer.appendChild(this._createKeys(type));
 
         this.elements.keys = this.elements.keysContainer.querySelectorAll(".keyboard__key");
 
@@ -108,14 +108,24 @@ const Keyboard = {
             });
     },
 
-    _createKeys() {
+    _createKeys(type) {
         const fragment = document.createDocumentFragment();
-        const keyLayout = [
-            "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
-            "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
-            "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
-            "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "space"
-        ];
+        let keyLayout = [];
+
+        // TODO end implementation, now all keyboard will be numeric
+        if (type == 'regular') {
+            keyLayout = [
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
+                "q", "w", "e", "r", "t", "y", "u", "i", "o", "p",
+                "caps", "a", "s", "d", "f", "g", "h", "j", "k", "l", "enter",
+                "done", "z", "x", "c", "v", "b", "n", "m", ",", ".", "?", "space"
+            ];
+        } else {
+            keyLayout = [
+                "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "backspace",
+                "space", "enter"
+            ];
+        }
 
         // Creates HTML for an icon
         const createIconHTML = (icon_name) => {
