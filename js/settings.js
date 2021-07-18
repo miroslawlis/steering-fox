@@ -57,7 +57,7 @@ function settingsInit() {
     document.querySelector(".settings").addEventListener('change', function () {
         saveSettingsToFile();
     }, false);
-    document.getElementById("volume-music-bar").addEventListener('change', () => saveSettingsToFile(true), false);
+    document.getElementById("audio").addEventListener('volumechange', () => saveSettingsToFile(true), false);
 
     function saveSettingsToFile(saveOnly = true) {
 
