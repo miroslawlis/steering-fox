@@ -57,8 +57,9 @@ function settingsInit() {
     document.querySelector(".settings").addEventListener('change', function () {
         saveSettingsToFile();
     }, false);
+    document.getElementById("volume-music-bar").addEventListener('change', () => saveSettingsToFile(true), false);
 
-    function saveSettingsToFile() {
+    function saveSettingsToFile(saveOnly = true) {
 
         let contentObject = {};
         let themeOption = '';
@@ -104,7 +105,9 @@ function settingsInit() {
                 if (err) throw err;
                 console.log('The file has been saved! ' + filePathAndName);
 
-                createSongsObject();
+                if (!saveOnly) {
+                    createSongsObject();
+                }
             });
         }
         catch (e) { debugLog("FAILD to save setting file " + e); }
