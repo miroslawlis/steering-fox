@@ -278,13 +278,10 @@ table.musicTable tfoot {
 }
 
 .grid-cell {
-  width: 32%;
-  height: 26%;
   text-align: center;
   line-height: 4vw;
   font-size: 4vw;
-  margin: 2.5vw auto 2.5vw auto;
-  float: left;
+  margin: auto;
   overflow-wrap: break-word;
 }
 
@@ -306,8 +303,11 @@ table.musicTable tfoot {
 }
 
 .info.element .wrapper-first {
-  display: block;
-  padding: 2vw 0;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 1vw;
+  grid-row-gap: 1vw;
 }
 
 .music.element .wrapper-first,
