@@ -1,34 +1,33 @@
 @font-face {
   font-family: "Montserrat";
-  src        : url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
 }
 
 * {
   box-sizing: border-box;
-  margin    : 0;
-  padding   : 0;
+  margin: 0;
+  padding: 0;
 }
 
 body,
 html {
-  height      : 100%;
-  width       : 100%;
+  height: 100%;
+  width: 100%;
   touch-action: none;
-  font-family : Montserrat;
-  overflow    : hidden;
-  cursor      : none;
+  font-family: Montserrat;
+  overflow: hidden;
+  cursor: none;
 }
 
 h3 {
   margin-bottom: 3vw;
 }
 
-
 #app,
 main,
 .grid-container {
   height: 100%;
-  width : 100%;
+  width: 100%;
 }
 
 .grid-container {
@@ -41,50 +40,49 @@ main,
 
 #main .youtube,
 #main .map {
-  width : 100%;
+  width: 100%;
   height: 100%;
 }
 
-
 #main {
   /* grid-area: main; */
-  color    : white;
+  color: white;
   font-size: 2vw;
-  display  : inline-block;
-  width    : 90%;
-  height   : 100%;
+  display: inline-block;
+  width: 90%;
+  height: 100%;
 }
 
 #nav .element {
-  height     : 20%;
-  min-height : 3vw;
-  padding    : 1.5vw 1vw;
-  text-align : center;
-  color      : #fff;
-  font-size  : 3vw;
+  height: 20%;
+  min-height: 3vw;
+  padding: 1.5vw 1vw;
+  text-align: center;
+  color: #fff;
+  font-size: 3vw;
   line-height: 3vw;
-  opacity    : 1;
-  transition : all 0.2s;
+  opacity: 1;
+  transition: all 0.2s;
 }
 
 #nav {
-  background    : var(--backgroundNav);
+  background: var(--backgroundNav);
   text-transform: uppercase;
-  display       : block;
-  width         : 10%;
-  height        : 100%;
-  float         : left;
+  display: block;
+  width: 10%;
+  height: 100%;
+  float: left;
 }
 
 #nav svg {
-  width : 80%;
+  width: 80%;
   height: 100%;
 }
 
 html {
-  background            : var(--backgroundMain);
+  background: var(--backgroundMain);
   -webkit-font-smoothing: antialiased;
-  letter-spacing        : 1px;
+  letter-spacing: 1px;
 }
 
 .hide {
@@ -97,10 +95,10 @@ html {
 }
 
 #nav .active svg {
-  transition   : all 0.3s;
+  transition: all 0.3s;
   /* filter    : drop-shadow(0px 0px 8px var(--white)); */
-  height       : 100%;
-  color        : var(--amber);
+  height: 100%;
+  color: var(--amber);
   /* stroke    : rgb(255, 255, 255);
   stroke-width : 14; */
 }
@@ -115,10 +113,10 @@ html {
 }
 
 #main .element.active {
-  display  : block;
-  width    : 100%;
-  height   : 100%;
-  opacity  : 1;
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
   animation: fadeInRight 0.5s;
 }
 
@@ -127,12 +125,11 @@ html {
 }
 
 #wrapperMtable {
-  overflow  : auto;
+  overflow: auto;
   max-height: 100%;
-  height    : 100%;
-  display   : none;
+  height: 100%;
+  display: none;
 }
-
 
 #wrapperMtable::-webkit-scrollbar {
   width: 0px;
@@ -149,19 +146,19 @@ html {
 }
 
 table.musicTable {
-  width          : 100%;
-  height         : 100%;
-  text-align     : center;
+  width: 100%;
+  height: 100%;
+  text-align: center;
   border-collapse: collapse;
-  font-size      : 2.6vw;
-  table-layout   : fixed;
-  overflow       : hidden;
+  font-size: 2.6vw;
+  table-layout: fixed;
+  overflow: hidden;
 }
 
 table.musicTable td,
 table.musicTable th {
   border-bottom: 1px solid var(--amber);
-  padding      : 6px 5px;
+  padding: 6px 5px;
 }
 
 td.file,
@@ -180,14 +177,14 @@ th.length {
 }
 
 table.musicTable thead th {
-  font-weight   : normal;
-  color         : #FFFFFF;
-  text-align    : center;
-  position      : sticky;
-  top           : 0;
-  background    : var(--amber);
+  font-weight: normal;
+  color: #ffffff;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--amber);
   border-spacing: 0;
-  word-wrap     : break-word;
+  word-wrap: break-word;
 }
 
 table.musicTable tfoot {
@@ -195,16 +192,16 @@ table.musicTable tfoot {
 }
 
 #threeSongs {
-  display   : block;
+  display: block;
   text-align: center;
 }
 
 #previousSong,
 #currentSong,
 #nextSong {
-  height     : 7vw;
+  height: 7vw;
   line-height: 7vw;
-  overflow   : hidden;
+  overflow: hidden;
 }
 
 #previousSong {
@@ -213,28 +210,28 @@ table.musicTable tfoot {
 
 #currentSong {
   font-size: 3.5vw;
-  color    : var(--amber);
+  color: var(--amber);
 }
 
 #nextSong {
   margin-top: 4vw;
-  font-size : 2.8vw;
+  font-size: 2.8vw;
 }
 
 #music-player {
   text-align: center;
   max-height: 200px;
-  position  : relative;
-  height    : 200px;
+  position: relative;
+  height: 200px;
 }
 
 #music-player .button {
-  display   : inline-block;
-  padding   : 17px;
+  display: inline-block;
+  padding: 17px;
   text-align: center;
-  fill      : #fff;
-  color     : #fff;
-  max-width : 20vw;
+  fill: #fff;
+  color: #fff;
+  max-width: 20vw;
 }
 
 #music-player .button span {
@@ -243,32 +240,32 @@ table.musicTable tfoot {
 
 #volume-music-bar {
   -webkit-appearance: none;
-  background-color  : transparent;
-  outline           : none;
-  overflow          : hidden;
-  transition        : all 0.2s;
-  height            : 2vw;
-  width             : 8vw;
-  display           : block;
-  position          : absolute;
-  top               : 7vw;
-  left              : 1vw;
-  transform         : rotate(270deg);
+  background-color: transparent;
+  outline: none;
+  overflow: hidden;
+  transition: all 0.2s;
+  height: 2vw;
+  width: 8vw;
+  display: block;
+  position: absolute;
+  top: 7vw;
+  left: 1vw;
+  transform: rotate(270deg);
 }
 
 #volume-music-bar::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width             : 1.5vw;
-  height            : 3vw;
-  background        : var(--amber);
-  box-shadow        : -8vw 0 0 8vw #fff;
+  width: 1.5vw;
+  height: 3vw;
+  background: var(--amber);
+  box-shadow: -8vw 0 0 8vw #fff;
 }
 
 .button svg {
-  height    : 45px;
+  height: 45px;
   text-align: center;
-  display   : block;
-  margin    : auto;
+  display: block;
+  margin: auto;
 }
 
 .playing.button {
@@ -276,32 +273,32 @@ table.musicTable tfoot {
 }
 
 .grid-wrapper {
-  width : 100%;
+  width: 100%;
   height: 100%;
 }
 
 .grid-cell {
-  width        : 32%;
-  height       : 26%;
-  text-align   : center;
-  line-height  : 4vw;
-  font-size    : 4vw;
-  margin       : 2.5vw auto 2.5vw auto;
-  float        : left;
+  width: 32%;
+  height: 26%;
+  text-align: center;
+  line-height: 4vw;
+  font-size: 4vw;
+  margin: 2.5vw auto 2.5vw auto;
+  float: left;
   overflow-wrap: break-word;
 }
 
 .info .grid-cell .description {
   line-height: initial;
-  display    : block;
-  margin     : 0;
-  padding    : 0;
-  font-size  : 2.2vw;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 2.2vw;
 }
 
 .info .grid-cell .data {
   line-height: 6vw;
-  font-size  : 5vw;
+  font-size: 5vw;
 }
 
 .info .grid-cell .data1 {
@@ -320,13 +317,13 @@ table.musicTable tfoot {
 }
 
 .settings .item {
-  margin   : 0.4vw 0.3vw;
+  margin: 0.4vw 0.3vw;
   font-size: 2.5vw;
 }
 
 .settings .item-2 {
-  display      : flex;
-  align-items  : center;
+  display: flex;
+  align-items: center;
   align-content: center;
 }
 
@@ -335,20 +332,19 @@ table.musicTable tfoot {
 }
 
 .item-1 {
-  width    : 19vw;
+  width: 19vw;
   min-width: 19vw;
-  ;
 }
 
 .row {
-  display      : flex;
-  align-items  : center;
+  display: flex;
+  align-items: center;
   align-content: center;
 }
 
 .settings .wrapper.buttons {
-  margin         : 5vw auto;
-  display        : flex;
+  margin: 5vw auto;
+  display: flex;
   justify-content: space-between;
 }
 
@@ -364,8 +360,8 @@ table.musicTable tfoot {
 #closeApp,
 #bluetooth,
 #wifi {
-  height : 70px;
-  width  : 70px;
+  height: 70px;
+  width: 70px;
   display: inline-block;
 }
 
@@ -375,10 +371,10 @@ table.musicTable tfoot {
 
 .file-upload.button {
   margin-right: 1vw;
-  padding     : 1vw;
-  border      : 2px solid var(--white);
-  background  : var(--backgroundnav);
-  color       : #fff;
+  padding: 1vw;
+  border: 2px solid var(--white);
+  background: var(--backgroundnav);
+  color: #fff;
 }
 
 .settings select {
@@ -387,10 +383,10 @@ table.musicTable tfoot {
 
 select {
   background: var(--backgroundnav);
-  color     : #fff;
-  font-size : inherit;
-  border    : 2px solid var(--white);
-  padding   : 1vw;
+  color: #fff;
+  font-size: inherit;
+  border: 2px solid var(--white);
+  padding: 1vw;
 }
 
 select option {
@@ -401,24 +397,24 @@ select option {
 #closeApp svg,
 #bluetooth svg,
 #wifi svg {
-  width  : 50px;
-  height : 70px;
-  margin : auto;
+  width: 50px;
+  height: 70px;
+  margin: auto;
   display: block;
-  color  : var(--white);
+  color: var(--white);
 }
 
 .settings .bluetooth,
 .settings .wifi {
-  position  : absolute;
-  top       : 0;
-  left      : 0;
-  right     : 0;
-  bottom    : 0;
-  width     : 100%;
-  height    : 100%;
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
   background: var(--backgroundMain);
-  margin    : auto;
+  margin: auto;
 }
 
 .settings .wrapper {
@@ -428,10 +424,10 @@ select option {
 .settings .bluetooth .wrapper,
 .settings .wifi .wrapper {
   text-align: center;
-  display   : block;
-  height    : 100%;
-  width     : 100%;
-  padding   : 3vw 5vw;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 3vw 5vw;
 }
 
 .settings .wifi .availableNetworks,
@@ -446,29 +442,29 @@ select option {
 .settings .bluetooth .data,
 .settings .wifi .data {
   display: block;
-  width  : 100%;
-  height : 75%;
+  width: 100%;
+  height: 75%;
 }
 
 .settings .bluetooth .buttons,
 .settings .wifi .buttons {
-  display        : flex;
-  height         : auto;
-  width          : 60%;
-  margin         : auto;
-  text-align     : center;
-  align-items    : center;
-  align-content  : center;
+  display: flex;
+  height: auto;
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  align-content: center;
   justify-content: space-evenly;
 }
 
 .settings .bluetooth .btn {
-  display    : block;
-  float      : left;
-  color      : var(--white);
+  display: block;
+  float: left;
+  color: var(--white);
   line-height: 7vw;
-  height     : 7vw;
-  width      : 7vw;
+  height: 7vw;
+  width: 7vw;
 }
 
 .settings .bluetooth .data .pairedDevices {
@@ -501,35 +497,48 @@ select option {
 }
 
 #wifiPassword .content {
-  height    : 26vw;
-  width     : 55vw;
+  height: 26vw;
+  width: 55vw;
   text-align: center;
   background: var(--backgroundMain);
-  position  : relative;
-  top       : 4vw;
-  padding   : 4vw;
+  position: relative;
+  top: 4vw;
+  padding: 4vw;
 }
 
 #wifiPassword input {
-  display   : block;
-  width     : 100%;
-  height    : 4vw;
+  display: block;
+  width: 100%;
+  height: 4vw;
   background: var(--backgroundNav);
-  border    : none;
+  border: none;
 }
 
+#loader-wrapper {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  background: var(--backgroundMain);
+  position: fixed;
+  z-index: 1;
+}
+#loader-wrapper .rotate {
+  animation: spin 2s linear infinite;
+  width: 100%;
+  height: 100%;
+}
 #loader {
-  border          : 22px solid var(--backgroundNav);
-  border-top      : 22px solid var(--amber);
-  border-bottom   : 22px solid var(--amber);
-  border-radius   : 50%;
-  width           : 200px;
-  height          : 200px;
-  animation       : spin 2s linear infinite;
-  margin          : auto;
-  position        : relative;
-  top             : 140px;
-  /* box-shadow   : 0px 0px 3px 3px #bf9f86; */
+  border: 5vw solid var(--backgroundNav);
+  border-top: 5vw solid var(--amber);
+  border-bottom: 5vw solid var(--amber);
+  border-radius: 50%;
+  width: 70vh;
+  height: 70vh;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
 }
 
 @keyframes spin {
@@ -542,32 +551,23 @@ select option {
   }
 }
 
-#loader-wrapper {
-  width     : 100%;
-  height    : 100%;
-  opacity   : 1;
-  background: var(--backgroundMain);
-  position  : absolute;
-  z-index   : 1;
-}
-
 .info .curent_time .time {
-  display     : block;
+  display: block;
   margin-right: 10px;
-  padding     : 0;
-  margin      : auto;
-  height      : 6vw;
-  line-height : 6vw;
-  font-size   : 6vw;
+  padding: 0;
+  margin: auto;
+  height: 6vw;
+  line-height: 6vw;
+  font-size: 6vw;
 }
 
 .info .curent_time .date {
-  display    : block;
-  padding    : 0;
-  margin     : auto;
-  height     : 6vw;
+  display: block;
+  padding: 0;
+  margin: auto;
+  height: 6vw;
   line-height: 6vw;
-  font-size  : 3vw;
+  font-size: 3vw;
 }
 
 #ipslist .ip {
@@ -579,9 +579,9 @@ select option {
 }
 
 .small.text {
-  display    : inline-block;
+  display: inline-block;
   margin-left: 2vw;
-  font-size  : 2vw;
+  font-size: 2vw;
 }
 
 .grid-cell:focus {
@@ -589,61 +589,61 @@ select option {
 }
 
 .background.modal {
-  display           : flex;
+  display: flex;
   /* align-items    : center; */
-  justify-content   : center;
-  position          : absolute;
-  top               : 0;
-  left              : 0;
-  height            : 100%;
-  width             : 100%;
-  background        : var(--backgroundMainOpacity);
-  color             : var(--white);
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--backgroundMainOpacity);
+  color: var(--white);
 }
 
 .modal .set,
 .modal .content,
 #wifipasswordModal .modal {
-  height    : 26vw;
-  width     : 60vw;
+  height: 26vw;
+  width: 60vw;
   text-align: center;
   background: var(--backgroundMain);
-  position  : relative;
-  padding   : 4vw 8vw;
-  top       : 10%;
+  position: relative;
+  padding: 4vw 8vw;
+  top: 10%;
 }
 
 .btn.single {
-  display     : block;
-  float       : left;
-  color       : var(--white);
-  line-height : 7vw;
-  height      : 7vw;
-  width       : 7vw;
+  display: block;
+  float: left;
+  color: var(--white);
+  line-height: 7vw;
+  height: 7vw;
+  width: 7vw;
   margin-right: 3vw;
-  margin      : 2vw auto !important;
-  float       : unset !important;
-  text-align  : center;
+  margin: 2vw auto !important;
+  float: unset !important;
+  text-align: center;
 }
 
 .btn {
-  display    : block;
-  color      : var(--white);
+  display: block;
+  color: var(--white);
   line-height: 7vw;
-  height     : 7vw;
-  width      : 7vw;
+  height: 7vw;
+  width: 7vw;
 }
 
 input.hour.time,
 input.minutes.time {
-  width     : 10vw;
-  height    : 5vw;
+  width: 10vw;
+  height: 5vw;
   background: transparent;
   background: var(--backgroundNav);
-  border    : none;
-  color     : var(--white);
+  border: none;
+  color: var(--white);
   text-align: center;
-  font-size : 4vw;
+  font-size: 4vw;
 }
 
 input.minutes.time {
@@ -652,13 +652,13 @@ input.minutes.time {
 
 .modal .confirm {
   max-width: 10vw;
-  margin   : auto;
-  color    : var(--white);
+  margin: auto;
+  color: var(--white);
 }
 
 .modal .close {
   position: absolute;
-  top     : 2vh;
-  right   : 0;
-  margin  : 1vw;
+  top: 2vh;
+  right: 0;
+  margin: 1vw;
 }

@@ -27,8 +27,7 @@ if (
 songsObj = [];
 
 window.addEventListener('DOMContentLoaded', function () {
-    let loaderEl = document.getElementById('loader-wrapper');
-    document.body.removeChild(loaderEl);
+    document.getElementById('loader-wrapper').style.display = 'none';
 
     audioElement = document.querySelector("#audio");
 
