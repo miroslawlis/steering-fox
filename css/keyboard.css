@@ -1,76 +1,95 @@
 /* https://www.youtube.com/watch?v=N3cq0BHDMOY */
 
 .keyboard {
-    position     : fixed;
-    left         : 0;
-    bottom       : 0;
-    width        : 100%;
-    padding      : 5px 0;
-    background   : var(--backgroundMain);
-    /* box-shadow: 0 0 50px rgba(0, 0, 0, 0.5); */
-    user-select  : none;
-    transition   : bottom 0.4s;
-    z-index      : 1;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  padding: 5px 0;
+  background: var(--backgroundMain);
+  user-select: none;
+  transition: bottom 0.4s;
+  z-index: 1;
 }
 
 .keyboard--hidden {
-    bottom: -100%;
+  bottom: -100%;
 }
 
 .keyboard__keys {
-    text-align     : center;
-    display        : flex;
-    flex-direction : row;
-    width          : 100%;
-    align-items    : center;
-    justify-content: center;
-    flex-wrap      : wrap;
+  width: 100%;
+  position: relative;
+  height: 160px;
 }
 
 .keyboard__key {
-    height         : 45px;
-    margin         : 3px;
-    border-radius  : 0;
-    border         : none;
-    background     : var(--backgroundNav);
-    color          : var(--white);
-    font-size      : 3vw;
-    outline        : none;
-    cursor         : pointer;
-    align-items    : center;
-    justify-content: center;
-    padding        : 0;
-    flex           : 1 0 18%;
+  margin: 3px;
+  border-radius: 0;
+  border: none;
+  background: var(--backgroundNav);
+  color: var(--white);
+  font-size: 3vw;
+  outline: none;
+  cursor: pointer;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  flex: 1 0 18%;
 }
 
 .keyboard__key:active {
-    background: rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.12);
 }
 
 .keyboard__key--wide {
-    width: 12%;
+  width: 12%;
 }
 
 .keyboard__key--extra-wide {
-    width    : 36%;
-    max-width: 500px;
+  width: 36%;
+  max-width: 500px;
 }
 
 .keyboard__key--activatable::after {
-    content      : "";
-    top          : 10px;
-    right        : 10px;
-    position     : absolute;
-    width        : 8px;
-    height       : 8px;
-    background   : rgba(0, 0, 0, 0.4);
-    border-radius: 50%;
+  content: "";
+  top: 10px;
+  right: 10px;
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: rgba(0, 0, 0, 0.4);
+  border-radius: 50%;
 }
 
 .keyboard__key--active::after {
-    background: #08ff00;
+  background: #08ff00;
 }
 
 .keyboard__key--dark {
-    background: rgba(0, 0, 0, 0.25);
+  background: rgba(0, 0, 0, 0.25);
+}
+
+.keyboard__keys > div {
+  position: absolute;
+  width: 100%;
+  transition: left 300ms linear;
+}
+
+.keyboard__keys > div:first-child {
+  top: 0;
+  left: 0;
+}
+.keyboard__keys > div:first-child > .keyboard__key {
+  width: 7.5vw;
+  height: 5.5vw;
+  display: inline-block;
+}
+.keyboard__keys > div:last-child {
+    top: 0;
+    left: 100%;
+  }
+.keyboard__keys > div:last-child > .keyboard__key {
+  width: 13.5vw;
+  height: 8.5vw;
+  display: inline-block;
 }
