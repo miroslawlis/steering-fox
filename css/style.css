@@ -541,6 +541,10 @@ select option {
   position: absolute;
 }
 
+#loader-wrapper .svg {
+  width: 100%;
+  height: 100%;
+}
 @keyframes spin {
   0% {
     transform: rotate(0deg);
