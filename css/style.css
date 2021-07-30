@@ -9,6 +9,12 @@
   padding: 0;
 }
 
+html {
+  background: var(--backgroundMain);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 1px;
+}
+
 body,
 html {
   height: 100%;
@@ -53,6 +59,20 @@ main,
   height: 100%;
 }
 
+#music {
+  position: relative;
+}
+#music .mute-icon {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transition: opacity 200ms linear;
+}
+#music .mute-icon svg {
+  fill: var(--amber);
+  width: 6vw;
+}
 #nav .element {
   height: 20%;
   min-height: 3vw;
@@ -77,12 +97,6 @@ main,
 #nav svg {
   width: 80%;
   height: 100%;
-}
-
-html {
-  background: var(--backgroundMain);
-  -webkit-font-smoothing: antialiased;
-  letter-spacing: 1px;
 }
 
 .hide {

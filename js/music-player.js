@@ -91,6 +91,8 @@ function pauseAudio() {
 function muteAudio(muteBtn) {
     // works only for "music"
 
+    let musicNavEl = document.getElementById('music');
+
     if (audio.muted == true) {
 
         audio.muted = false;
@@ -99,6 +101,9 @@ function muteAudio(muteBtn) {
         audio.volume = audioVolBefore;
         // remove class
         muteBtn.classList.toggle('active');
+
+        // hide mute icon on tom of nav element
+        musicNavEl.querySelector('.mute-icon').style.opacity = 0;
 
     } else {
 
@@ -111,6 +116,9 @@ function muteAudio(muteBtn) {
 
         // remove class
         muteBtn.classList.toggle('active');
+
+        // show mute icon on tom of nav element
+        musicNavEl.querySelector('.mute-icon').style.opacity = 1;
 
     };
 
