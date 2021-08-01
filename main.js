@@ -124,6 +124,13 @@ autoUpdater.on('download-progress', (progressObj) => {
 autoUpdater.on('error', (error) => {
   console.log(error);
 });
+// end
+
+ipcMain.handle('get-user-data-path', () => {
+  const path = app.getPath('userData');
+  return path;
+});
+
 function sendStatusToWindow(text) {
   mainWindow.webContents.send('send-download-progress', text);
 }

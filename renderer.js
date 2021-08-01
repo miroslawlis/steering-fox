@@ -12,6 +12,7 @@ var win = electron.remote.getCurrentWindow();
 var isLinux = process.platform === 'linux';
 const remote = require('electron').remote;
 const modal = require('./templates/modal/modals.js');
+const { settings } = require("cluster");
 
 // const settings = require('./js/settings.js');
 //for debugLog()
@@ -30,9 +31,6 @@ window.addEventListener('DOMContentLoaded', function () {
     document.getElementById('loader-wrapper').style.display = 'none';
 
     audioElement = document.querySelector("#audio");
-
-    // do settings file stuff
-    settingsInit();
 
     (async () => {
         await document.getElementById('settings').addEventListener('click', function () {
@@ -88,6 +86,12 @@ window.addEventListener('DOMContentLoaded', function () {
             console.log(text);
         });
 
+        // get userData path
+        ipcRenderer.invoke('get-user-data-path').then((data) => {
+          settings_app.user_path = data;
+          // do settings file stuff
+          settings_app.init();
+        });
         // initiall start
         await getIPs();
         await wifiInfo();
@@ -262,32 +266,34 @@ function addRowsToMusicTable() {
   // clear table
   document.querySelector("#main .music table tbody").innerHTML = "";
 
-  for (let item of songsObj) {
-    document.querySelector("#main .music table tbody").innerHTML +=
-      '<tr class="itemIDrow' +
-      item["id"] +
-      '" onclick="updateSourceWithSong(this);"><td class="itemid">' +
-      item["id"] +
-      `</td><td class="file">` +
-      item["path"] +
-      '</td><td class="length">' +
-      item["length"] +
-      "</td></tr>";
+  if (songsObj[0]) {
+    for (let item of songsObj) {
+      document.querySelector("#main .music table tbody").innerHTML +=
+        '<tr class="itemIDrow' +
+        item["id"] +
+        '" onclick="updateSourceWithSong(this);"><td class="itemid">' +
+        item["id"] +
+        `</td><td class="file">` +
+        item["path"] +
+        '</td><td class="length">' +
+        item["length"] +
+        "</td></tr>";
+    }
+  
+    // set src (first audio from table) of audio element
+    audioElement.setAttribute(
+      "src",
+      document.querySelector("#main .music table tbody td.file").innerText
+    );
+    // add attribute with song number
+    audioElement.setAttribute(
+      "itemId",
+      document.querySelector("#main .music table tbody td.itemid").innerText
+    );
+    //////////
+    //auto play at start
+    playAudio();
   }
-
-  // set src (first audio from table) of audio element
-  audioElement.setAttribute(
-    "src",
-    document.querySelector("#main .music table tbody td.file").innerText
-  );
-  // add attribute with song number
-  audioElement.setAttribute(
-    "itemId",
-    document.querySelector("#main .music table tbody td.itemid").innerText
-  );
-  //////////
-  //auto play at start
-  playAudio();
 }
 
 function createSongsObject() {
@@ -337,15 +343,18 @@ function createSongsObject() {
     }
   }
 
-  findMusicFilesRecursivly(musicFolder);
-  addRowsToMusicTable();
-  // randomize songs
-  shuffl();
-  // HTML update
-  GetThreeSongsToGUI();
+    findMusicFilesRecursivly(settings_app.musicFolder);
+    addRowsToMusicTable();
+    // randomize songs
+    shuffl();
+    // HTML update
+    GetThreeSongsToGUI();
 
-  debugLog("songsObj: ");
-  debugLog(songsObj);
+    // auto play
+    audio.play();
+  
+    debugLog("songsObj: ");
+    debugLog(songsObj);
 }
 
 function getIPs() {
