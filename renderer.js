@@ -28,86 +28,86 @@ if (
 songsObj = [];
 
 window.addEventListener('DOMContentLoaded', function () {
-    document.getElementById('loader-wrapper').style.display = 'none';
+  document.getElementById('loader-wrapper').style.display = 'none';
 
-    audioElement = document.querySelector("#audio");
+  audioElement = document.querySelector("#audio");
 
-    (async () => {
-        await document.getElementById('settings').addEventListener('click', function () {
-            // on click fire this function
-            getIPs();
-            wifiInfo();
-        });
+  (async () => {
+    await document.getElementById('settings').addEventListener('click', function () {
+      // on click fire this function
+      getIPs();
+      wifiInfo();
+    });
 
-        // minimizing and closing
-        await document.getElementById('minimize').addEventListener("click", function () {
-            win.minimize();
-        });
-        await document.getElementById('closeApp').addEventListener("click", function () {
-            win.close();
-        });
-        //
-        // bluetooth
-        await document.getElementById('bluetooth').addEventListener("click", function () {
-            // show/hide bluetooth settings
-            document.querySelector('.settings .bluetooth').classList.toggle('hide');
-        });
-        await document.getElementById('btClose').addEventListener("click", function () {
-            document.querySelector('.settings .bluetooth').classList.toggle('hide');
-        });
-        // display app version from package.json
-        ipcRenderer.send('app_version');
-        ipcRenderer.on('app_version', (event, args) => {
-            ipcRenderer.removeAllListeners('app_version');
-            document.getElementById('app_version').innerText = 'Version: ' + args.version;
-        });
+    // minimizing and closing
+    await document.getElementById('minimize').addEventListener("click", function () {
+      win.minimize();
+    });
+    await document.getElementById('closeApp').addEventListener("click", function () {
+      win.close();
+    });
+    //
+    // bluetooth
+    await document.getElementById('bluetooth').addEventListener("click", function () {
+      // show/hide bluetooth settings
+      document.querySelector('.settings .bluetooth').classList.toggle('hide');
+    });
+    await document.getElementById('btClose').addEventListener("click", function () {
+      document.querySelector('.settings .bluetooth').classList.toggle('hide');
+    });
+    // display app version from package.json
+    ipcRenderer.send('app_version');
+    ipcRenderer.on('app_version', (event, args) => {
+      ipcRenderer.removeAllListeners('app_version');
+      document.getElementById('app_version').innerText = 'Version: ' + args.version;
+    });
 
-        // send request to check if update is available
-        // setTimeout(() => {
-        //     ipcRenderer.send('check_for_application_update');
-        // }, 10000);
+    // send request to check if update is available
+    // setTimeout(() => {
+    //     ipcRenderer.send('check_for_application_update');
+    // }, 10000);
 
-        ipcRenderer.on('update_available', () => {
-            console.log('update_available');
-            ipcRenderer.removeAllListeners('update_available');
-            document.getElementById('update_status').innerText = 'A new update is available. Downloading now...';
-        });
-        ipcRenderer.on('update_downloaded', () => {
-            console.log('update_downloaded');
-            ipcRenderer.removeAllListeners('update_downloaded');
-            document.getElementById('update_status').innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
-        });
-        ipcRenderer.on('update-not-available', () => {
-            console.log('update-not-available');
-            ipcRenderer.removeAllListeners('update-not-available');
-        });
-        // download progress
-        ipcRenderer.on('send-download-progress', (text) => {
-            console.log(text);
-        });
+    ipcRenderer.on('update_available', () => {
+      console.log('update_available');
+      ipcRenderer.removeAllListeners('update_available');
+      document.getElementById('update_status').innerText = 'A new update is available. Downloading now...';
+    });
+    ipcRenderer.on('update_downloaded', () => {
+      console.log('update_downloaded');
+      ipcRenderer.removeAllListeners('update_downloaded');
+      document.getElementById('update_status').innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+    });
+    ipcRenderer.on('update-not-available', () => {
+      console.log('update-not-available');
+      ipcRenderer.removeAllListeners('update-not-available');
+    });
+    // download progress
+    ipcRenderer.on('send-download-progress', (text) => {
+      console.log(text);
+    });
 
-        // get userData path
-        ipcRenderer.invoke('get-user-data-path').then((data) => {
-          settings_app.user_path = data;
-          // do settings file stuff
-          settings_app.init();
-        });
-        // initiall start
-        await getIPs();
-        await wifiInfo();
+    // get userData path
+    ipcRenderer.invoke('get-user-data-path').then((data) => {
+      settings_app.user_path = data;
+      // do settings file stuff
+      settings_app.init();
+    });
+    // initiall start
+    await getIPs();
+    await wifiInfo();
 
-        await asksCANforNewData();
-        // and repeate checking and asking if necessery every x miliseconds
-        await setInterval(asksCANforNewData, 500);
+    await asksCANforNewData();
+    // and repeate checking and asking if necessery every x miliseconds
+    await setInterval(asksCANforNewData, 500);
 
-        await dateAndTime();
-        await setInterval(dateAndTime, 1000);
+    await dateAndTime();
+    await setInterval(dateAndTime, 1000);
 
-        await guiUpdateData();
-        await setInterval(guiUpdateData, 1000);
+    await guiUpdateData();
+    await setInterval(guiUpdateData, 1000);
 
-        await debugLog(os.networkInterfaces());
-    })();
+    await debugLog(os.networkInterfaces());
+  })();
 
 });
 
@@ -279,7 +279,7 @@ function addRowsToMusicTable() {
         item["length"] +
         "</td></tr>";
     }
-  
+
     // set src (first audio from table) of audio element
     audioElement.setAttribute(
       "src",
@@ -343,18 +343,18 @@ function createSongsObject() {
     }
   }
 
-    findMusicFilesRecursivly(settings_app.musicFolder);
-    addRowsToMusicTable();
-    // randomize songs
-    shuffl();
-    // HTML update
-    GetThreeSongsToGUI();
+  findMusicFilesRecursivly(settings_app.musicFolder);
+  addRowsToMusicTable();
+  // randomize songs
+  shuffl();
+  // HTML update
+  GetThreeSongsToGUI();
 
-    // auto play
-    audio.play();
-  
-    debugLog("songsObj: ");
-    debugLog(songsObj);
+  // auto play
+  audio.play();
+
+  debugLog("songsObj: ");
+  debugLog(songsObj);
 }
 
 function getIPs() {
@@ -512,14 +512,14 @@ function updateTimeCANfromInput(element) {
 
 function timeSetModal(params) {
 
-    let modal_time;
-    let elemModal = modal.modalTwoInputs;
+  let modal_time;
+  let elemModal = modal.modalTwoInputs;
 
   modal_time = document.createElement("div");
   modal_time.id = "timeModalSet";
   modal_time.classList = modalClasses[0] + " " + modalClasses[1];
 
-    modal_time.innerHTML = elemModal;
+  modal_time.innerHTML = elemModal;
 
   document.body.appendChild(modal_time);
 
@@ -538,14 +538,14 @@ function timeSetModal(params) {
 
 function wifiModal() {
 
-    let modal_wifi;
-    let elemModal = modal.wifiPassword;
+  let modal_wifi;
+  let elemModal = modal.wifiPassword;
 
   modal_wifi = document.createElement("div");
   modal_wifi.id = "wifipasswordModal";
   modal_wifi.classList = modalClasses[0] + " " + modalClasses[1];
 
-    modal_wifi.innerHTML = elemModal;
+  modal_wifi.innerHTML = elemModal;
 
   document.body.appendChild(modal_wifi);
 
@@ -562,14 +562,14 @@ function wifiModal() {
 
 function fuelConsResetModal(arg) {
 
-    let modal_fuel_reset;
-    let elemModal = modal.modalConfirm;
+  let modal_fuel_reset;
+  let elemModal = modal.modalConfirm;
 
   modal_fuel_reset = document.createElement("div");
   modal_fuel_reset.id = "modalConfirmWrap";
   modal_fuel_reset.classList = modalClasses[0] + " " + modalClasses[1];
 
-    modal_fuel_reset.innerHTML = elemModal;
+  modal_fuel_reset.innerHTML = elemModal;
 
   document.body.appendChild(modal_fuel_reset);
 
