@@ -611,6 +611,9 @@ function switchTheme(ele) {
         styleTag.setAttribute("href", "css/themes/dark_grey.css");
         break;
     }
+
+    // save settings to file - changed theme
+    settings_app.saveSettingsToFile();
   } else {
     // no element provided in parameter then read saved option from setting file
 

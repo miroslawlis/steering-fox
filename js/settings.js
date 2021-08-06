@@ -53,6 +53,8 @@ var settings_app = {
             createSongsObject();
         }, false);
         document.getElementById("audio").addEventListener('volumechange', () => settings_app.saveSettingsToFile(true), false);
+
+        // theme and language chages and saves to settings file are handled in elements on click functions
     },
     saveSettingsToFile(saveOnly = true) {
 
