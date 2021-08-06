@@ -52,7 +52,7 @@ main,
 
 #main {
   /* grid-area: main; */
-  color: white;
+  color: var(--font-color);
   font-size: 2vw;
   display: inline-block;
   width: 90%;
@@ -78,7 +78,7 @@ main,
   min-height: 3vw;
   padding: 1.5vw 1vw;
   text-align: center;
-  color: #fff;
+  color: var(--font-color);
   font-size: 3vw;
   line-height: 3vw;
   opacity: 1;
@@ -110,7 +110,7 @@ main,
 
 #nav .active svg {
   transition: all 0.3s;
-  /* filter    : drop-shadow(0px 0px 8px var(--white)); */
+  /* filter    : drop-shadow(0px 0px 8px var(--font-color)); */
   height: 100%;
   color: var(--amber);
   /* stroke    : rgb(255, 255, 255);
@@ -192,7 +192,7 @@ th.length {
 
 table.musicTable thead th {
   font-weight: normal;
-  color: #ffffff;
+  color: var(--font-color) fff;
   text-align: center;
   position: sticky;
   top: 0;
@@ -243,8 +243,8 @@ table.musicTable tfoot {
   display: inline-block;
   padding: 17px;
   text-align: center;
-  fill: #fff;
-  color: #fff;
+  fill: var(--font-color);
+  color: var(--font-color);
   max-width: 20vw;
 }
 
@@ -254,25 +254,21 @@ table.musicTable tfoot {
 
 #volume-music-bar {
   -webkit-appearance: none;
-  background-color: transparent;
-  outline: none;
-  overflow: hidden;
+  background-color: var(--font-color);
   transition: all 0.2s;
-  height: 2vw;
-  width: 8vw;
-  display: block;
-  position: absolute;
-  top: 7vw;
-  left: 1vw;
+  height: 5vw;
+  width: 43vw;
+  position: fixed;
+  top: 23vw;
+  left: -15vw;
   transform: rotate(270deg);
 }
 
 #volume-music-bar::-webkit-slider-thumb {
   -webkit-appearance: none;
-  width: 1.5vw;
-  height: 3vw;
+  width: 3vw;
+  height: 5vw;
   background: var(--amber);
-  box-shadow: -8vw 0 0 8vw #fff;
 }
 
 .button svg {
@@ -387,9 +383,9 @@ table.musicTable tfoot {
 .file-upload.button {
   margin-right: 1vw;
   padding: 1vw;
-  border: 2px solid var(--white);
+  border: 2px solid var(--font-color);
   background: var(--backgroundnav);
-  color: #fff;
+  color: var(--font-color);
 }
 
 .settings select {
@@ -398,9 +394,9 @@ table.musicTable tfoot {
 
 select {
   background: var(--backgroundnav);
-  color: #fff;
+  color: var(--font-color);
   font-size: inherit;
-  border: 2px solid var(--white);
+  border: 2px solid var(--font-color);
   padding: 1vw;
 }
 
@@ -416,7 +412,7 @@ select option {
   height: 70px;
   margin: auto;
   display: block;
-  color: var(--white);
+  color: var(--font-color);
 }
 
 .settings .bluetooth,
@@ -476,7 +472,7 @@ select option {
 .settings .bluetooth .btn {
   display: block;
   float: left;
-  color: var(--white);
+  color: var(--font-color);
   line-height: 7vw;
   height: 7vw;
   width: 7vw;
@@ -617,7 +613,7 @@ select option {
   height: 100%;
   width: 100%;
   background: var(--backgroundMainOpacity);
-  color: var(--white);
+  color: var(--font-color);
 }
 
 .modal .set,
@@ -635,7 +631,7 @@ select option {
 .btn.single {
   display: block;
   float: left;
-  color: var(--white);
+  color: var(--font-color);
   line-height: 7vw;
   height: 7vw;
   width: 7vw;
@@ -647,7 +643,7 @@ select option {
 
 .btn {
   display: block;
-  color: var(--white);
+  color: var(--font-color);
   line-height: 7vw;
   height: 7vw;
   width: 7vw;
@@ -660,7 +656,7 @@ input.minutes.time {
   background: transparent;
   background: var(--backgroundNav);
   border: none;
-  color: var(--white);
+  color: var(--font-color);
   text-align: center;
   font-size: 4vw;
 }
@@ -672,7 +668,7 @@ input.minutes.time {
 .modal .confirm {
   max-width: 10vw;
   margin: auto;
-  color: var(--white);
+  color: var(--font-color);
 }
 
 .modal .close {

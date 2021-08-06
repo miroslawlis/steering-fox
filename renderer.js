@@ -604,6 +604,9 @@ function switchTheme(ele) {
       case "rainbow":
         styleTag.setAttribute("href", "css/themes/rainbow.css");
         break;
+      case "light":
+        styleTag.setAttribute("href", "css/themes/light.css");
+        break;
       default:
         styleTag.setAttribute("href", "css/themes/dark_grey.css");
         break;
