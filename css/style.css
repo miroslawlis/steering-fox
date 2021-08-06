@@ -258,7 +258,7 @@ table.musicTable tfoot {
   transition: all 0.2s;
   height: 5vw;
   width: 43vw;
-  position: fixed;
+  position: absolute;
   top: 23vw;
   left: -15vw;
   transform: rotate(270deg);
