@@ -585,57 +585,37 @@ function fuelConsResetModal(arg) {
 function switchTheme(ele) {
   // update css in html
   // based on select drop down change OR from setting file
-
   let styleTag = document.getElementById("themeColor");
+  let theme = '';
 
   if (ele) {
-    let attribute = ele.options[ele.options.selectedIndex].value;
-
-    switch (attribute) {
-      case "green":
-        styleTag.setAttribute("href", "css/themes/green.css");
-        break;
-      case "dark_grey":
-        styleTag.setAttribute("href", "css/themes/dark_grey.css");
-        break;
-      case "purpule":
-        styleTag.setAttribute("href", "css/themes/purpule.css");
-        break;
-      case "rainbow":
-        styleTag.setAttribute("href", "css/themes/rainbow.css");
-        break;
-      case "light":
-        styleTag.setAttribute("href", "css/themes/light.css");
-        break;
-      default:
-        styleTag.setAttribute("href", "css/themes/dark_grey.css");
-        break;
-    }
-
+    theme = ele.options[ele.options.selectedIndex].value;
     // save settings to file - changed theme
     settings_app.saveSettingsToFile();
   } else {
     // no element provided in parameter then read saved option from setting file
+    theme = settingFromFileObj.themeOptionFile;
+  }
 
-    let attribute = settingFromFileObj.themeOptionFile;
-
-    switch (attribute) {
-      case "green":
-        styleTag.setAttribute("href", "css/themes/green.css");
-        break;
-      case "dark_grey":
-        styleTag.setAttribute("href", "css/themes/dark_grey.css");
-        break;
-      case "purpule":
-        styleTag.setAttribute("href", "css/themes/purpule.css");
-        break;
-      case "rainbow":
-        styleTag.setAttribute("href", "css/themes/rainbow.css");
-        break;
-      default:
-        styleTag.setAttribute("href", "css/themes/dark_grey.css");
-        break;
-    }
+  switch (theme) {
+    case "green":
+      styleTag.setAttribute("href", "css/themes/green.css");
+      break;
+    case "dark_grey":
+      styleTag.setAttribute("href", "css/themes/dark_grey.css");
+      break;
+    case "purpule":
+      styleTag.setAttribute("href", "css/themes/purpule.css");
+      break;
+    case "rainbow":
+      styleTag.setAttribute("href", "css/themes/rainbow.css");
+      break;
+    case "light":
+      styleTag.setAttribute("href", "css/themes/light.css");
+      break;
+    default:
+      styleTag.setAttribute("href", "css/themes/dark_grey.css");
+      break;
   }
 }
 
