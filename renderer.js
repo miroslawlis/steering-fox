@@ -495,11 +495,9 @@ function hex_to_ascii(str1) {
 }
 
 function updateTimeCANfromInput(element) {
-  let hour = document.querySelector("#modalTwoInputs.modal input.hour.time")
-    .value;
-  let minutes = document.querySelector(
-    "#modalTwoInputs.modal input.minutes.time"
-  ).value;
+  let el = document.getElementById("modalTwoInputs");
+  let hour = el.querySelector("input.hour.time").value;
+  let minutes = el.querySelector("input.minutes.time").value;
 
   if (
     hour.match(/^[0-9][0-9]$/) != null &&
