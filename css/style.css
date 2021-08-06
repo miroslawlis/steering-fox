@@ -386,10 +386,11 @@ table.musicTable tfoot {
   border: 2px solid var(--font-color);
   background: var(--backgroundnav);
   color: var(--font-color);
+  min-width: 24vw;
 }
 
 .settings select {
-  min-width: 20vw;
+  min-width: 24vw;
 }
 
 select {
