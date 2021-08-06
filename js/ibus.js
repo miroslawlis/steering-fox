@@ -96,13 +96,13 @@ function onIbusData(data) {
     }
     // previous track steering wheel
     if (data.msg == new Buffer.from([59, 8]).toString("ascii")) {
-      nextSong();
-
+      previousSong();
+      
       msgDescryption = "Arrow up? button steering wheel";
     }
     //next song stearing wheel
     if (data.msg == new Buffer.from([59, 1]).toString("ascii")) {
-      previousSong();
+      nextSong();
 
       msgDescryption = "Arrow down? button steering wheel";
     }
@@ -112,13 +112,13 @@ function onIbusData(data) {
   if (data.src == "50") {
     // face button steering wheel
     if (buffMsgHex == "3b40") {
-      muteAudio(document.querySelector("#music-player .mute.button"));
-
+      pauseAudio();
+      
       msgDescryption = "Face button steering wheel";
     }
     // RT button steering wheel
     if (buffMsgHex == "3b80") {
-      pauseAudio();
+      muteAudio(document.querySelector("#music-player .mute.button"));
 
       msgDescryption = "RT button steering wheel";
     }
