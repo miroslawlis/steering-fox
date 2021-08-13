@@ -255,14 +255,14 @@ table.musicTable tfoot {
 
 #volume-music-bar {
   -webkit-appearance: none;
-    background-color: var(--font-color);
-    transition: all 0.2s;
-    height: 5vw;
-    width: 27vw;
-    position: absolute;
-    top: 10vw;
-    left: -9vw;
-    transform: rotate(270deg);
+  background-color: var(--font-color);
+  transition: all 0.2s;
+  height: 5vw;
+  width: 27vw;
+  position: absolute;
+  top: 10vw;
+  left: -9vw;
+  transform: rotate(270deg);
 }
 
 #volume-music-bar::-webkit-slider-thumb {
@@ -308,6 +308,9 @@ table.musicTable tfoot {
 .info .grid-cell .data {
   line-height: 6vw;
   font-size: 5vw;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
 }
 
 .info .grid-cell .data1 {
