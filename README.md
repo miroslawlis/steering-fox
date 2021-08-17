@@ -78,7 +78,7 @@ npm run prepare
 
 Build application for Raspberry pi 3B+ (linux)
 ```
-npm run package
+npm run build-linux-arm
 ```
 
 ### Settings
