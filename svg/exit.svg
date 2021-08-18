@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg viewBox="0 0 12.7 12.7"
+   xmlns="http://www.w3.org/2000/svg">
+   <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
+      <g transform="matrix(0 -1.0926 1.0926 0 -.78606 16.151)">
+         <path d="m8.9706 1.2354-1e-7 7.4574" stroke-width="1.0319"/>
+         <path d="m8.9706 8.6928-2.0099-2.9125" stroke-width="1.0583"/>
+         <path d="m8.9706 8.6928 2.0099-2.9125" stroke-width="1.0583"/>
+      </g>
+      <path d="m6.6406 0.52917h5.5303v11.642h-5.7245" stroke-width="1.0583"/>
+   </g>
+</svg>
