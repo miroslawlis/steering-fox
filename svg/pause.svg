@@ -1,8 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 12.7 12.7"
-   xmlns="http://www.w3.org/2000/svg">
-   <g stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.1578">
-      <rect x=".56544" y=".56768" width="3.9273" height="11.542"/>
-      <rect x="8.1938" y=".5789" width="3.9273" height="11.542"/>
-   </g>
-</svg>
+<svg viewBox="0 0 12.7 12.7" xmlns="http://www.w3.org/2000/svg"><path style="color:#000;fill:#000;fill-opacity:1;stroke:none;stroke-opacity:1;-inkscape-stroke:none" d="M8.193 0a.579.579 0 0 0-.578.578v11.543c0 .32.26.578.578.578h3.928c.32 0 .578-.259.578-.578V.578A.579.579 0 0 0 12.121 0zM.566-.012c-.32 0-.58.26-.58.58V12.11c0 .321.26.581.58.58h3.926c.32.001.58-.259.58-.58V.57c0-.321-.26-.581-.58-.58z"/></svg>

@@ -1,8 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 12.7 12.7"
-   xmlns="http://www.w3.org/2000/svg">
-   <g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round">
-      <rect x=".56095" y=".56095" width="11.578" height="11.578" stroke-width="1.1219"/>
-      <path d="m8.5119 4.1881-4.3238 4.3238m0-4.3238 4.3238 4.3238" stroke-width="2.0383"/>
-   </g>
-</svg>
+<svg viewBox="0 0 12.7 12.7" xmlns="http://www.w3.org/2000/svg"><g fill="none" stroke="#000" stroke-linecap="round" stroke-linejoin="round"><path d="M.56 0A.561.561 0 0 0 0 .56V12.14a.561.561 0 0 0 .56.56H12.14a.561.561 0 0 0 .56-.56V.56A.561.561 0 0 0 12.14 0zm.561 1.121h10.457v10.457H1.121z" style="color:#000;fill:#000;-inkscape-stroke:none;stroke:none"/><path style="color:#000;fill:#000;-inkscape-stroke:none;stroke:none" d="M4.188 3.17a1.02 1.02 0 0 0-.721.297 1.02 1.02 0 0 0 0 1.441L4.908 6.35 3.467 7.79a1.02 1.02 0 0 0 0 1.441 1.02 1.02 0 0 0 1.441 0L6.35 7.791 7.79 9.232a1.02 1.02 0 0 0 1.441 0 1.02 1.02 0 0 0 0-1.441L7.791 6.35l1.441-1.442a1.02 1.02 0 0 0 0-1.441 1.02 1.02 0 0 0-1.441 0L6.35 4.908 4.908 3.467a1.02 1.02 0 0 0-.72-.297z"/></g></svg>

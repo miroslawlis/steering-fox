@@ -1,12 +1,1 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<svg viewBox="0 0 12.7 12.7"
-   xmlns="http://www.w3.org/2000/svg">
-   <g fill="none" stroke="#000">
-      <rect x="2.116" y="4.5653" width="8.3501" height="7.6094" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.0298"/>
-      <path d="m0.52874 3.2228 11.643 0.078629" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.0575"/>
-      <path d="m3.4324 3.262v-2.1747h5.8251v2.1359" stroke-width="1.0583"/>
-      <path d="m4.2717 5.9624v4.8154" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.0583"/>
-      <path d="m6.2911 5.9624v4.8154" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.0583"/>
-      <path d="m8.4269 5.9624v4.8154" stroke-linecap="round" stroke-linejoin="round" stroke-width="1.0583"/>
-   </g>
-</svg>
+<svg viewBox="0 0 12.7 12.7" xmlns="http://www.w3.org/2000/svg"><path style="color:#000;fill:#000;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stroke:none" d="M.533 2.693A.529.529 0 0 0 0 3.22a.529.529 0 0 0 .525.533l11.643.078a.529.529 0 0 0 .533-.525.529.529 0 0 0-.525-.532z"/><path style="color:#000;fill:#000;-inkscape-stroke:none;stroke:none" d="M2.902.559v2.703h1.059V1.617h4.768v1.606h1.058V.559z"/><path style="color:#000;fill:#000;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stroke:none" d="M4.271 5.434a.53.53 0 0 0-.529.529v4.814a.53.53 0 0 0 .53.53.53.53 0 0 0 .529-.53V5.963a.53.53 0 0 0-.53-.53zM6.291 5.434a.53.53 0 0 0-.53.529v4.814a.53.53 0 0 0 .53.53.53.53 0 0 0 .53-.53V5.963a.53.53 0 0 0-.53-.53z"/><path style="color:#000;fill:#000;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stroke:none;stroke-opacity:1" d="M8.428 5.434a.53.53 0 0 0-.53.529v4.814a.53.53 0 0 0 .53.53.53.53 0 0 0 .527-.53V5.963a.53.53 0 0 0-.527-.53z"/><path style="color:#000;fill:#000;stroke-linecap:round;stroke-linejoin:round;-inkscape-stroke:none;stroke:none" d="M2.115 4.05a.515.515 0 0 0-.513.514v7.61a.515.515 0 0 0 .513.515h8.352a.515.515 0 0 0 .513-.515v-7.61a.515.515 0 0 0-.513-.513zm.516 1.03h7.32v6.58h-7.32z"/></svg>

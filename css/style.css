@@ -69,6 +69,9 @@ main,
   bottom: 0;
   transition: opacity 200ms linear;
 }
+#svgs svg {
+  fill: inherit;
+}
 #music .mute-icon svg {
   fill: var(--amber);
   width: 6vw;
@@ -108,13 +111,13 @@ main,
   transition: all 0.3s;
 }
 
-#nav .active svg {
+.active > svg  {
   transition: all 0.3s;
-  /* filter    : drop-shadow(0px 0px 8px var(--font-color)); */
   height: 100%;
-  color: var(--amber);
-  /* stroke    : rgb(255, 255, 255);
-  stroke-width : 14; */
+  fill: var(--amber);
+}
+.element:not(.active) svg {
+  fill: var(--font-color);
 }
 
 #main .element {
@@ -433,7 +436,6 @@ select option {
   height: 70px;
   margin: auto;
   display: block;
-  color: var(--font-color);
 }
 
 .settings .bluetooth,
