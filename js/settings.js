@@ -99,6 +99,10 @@ var settings_app = {
         try {
             fs.writeFile(this.filePathAndName, contentObject, (err) => {
                 if (err) throw err;
+
+                // update settingFromFileObj
+                settingFromFileObj = contentObject;
+                
                 console.log('The file has been saved! ' + this.filePathAndName);
 
                 if (!saveOnly) {
