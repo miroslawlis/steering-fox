@@ -29,7 +29,8 @@ songsObj = [];
 
 window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('loader-wrapper').style.display = 'none';
-
+  document.getElementById('app').style.display = 'block';
+  
   audioElement = document.querySelector("#audio");
 
   (async () => {
