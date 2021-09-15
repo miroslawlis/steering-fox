@@ -268,12 +268,16 @@ function onIbusData(data) {
     light_sensor = "day";
 
     msgDescryption = "Light sensor = day";
+
+    nightSensorSaysItIs(light_sensor);
   }
 
   if (data.src == "d0" && data.dst == "bf" && buffMsgHex === "5cfe3fff00") {
     light_sensor = "night";
 
     msgDescryption = "Light sensor = night";
+
+    nightSensorSaysItIs(light_sensor);
   }
 
   //id, from, to, message, message hex, analyzing, description
@@ -427,3 +431,12 @@ function sendCAN(request, arg1, arg2) {
 // send end
 
 //// ibus part end
+
+function nightSensorSaysItIs(dayOrNightString) {
+  if (dayOrNightString == 'day') {
+    setPreviousTheme();
+  }
+  if (dayOrNightString == 'night') {
+    setDarkTheme();
+  }
+}

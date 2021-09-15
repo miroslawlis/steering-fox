@@ -160,3 +160,12 @@ function isJsonString(str) {
     }
     return true;
 }
+
+function setDarkTheme() {
+    let styleTag = document.getElementById("themeColor");
+
+    styleTag.setAttribute("href", "css/themes/dark_grey.css");
+}
+function setPreviousTheme() {
+    switchTheme();
+}
