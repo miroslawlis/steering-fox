@@ -97,7 +97,7 @@ function onIbusData(data) {
     // previous track steering wheel
     if (data.msg == new Buffer.from([59, 8]).toString("ascii")) {
       previousSong();
-      
+
       msgDescryption = "Arrow up? button steering wheel";
     }
     //next song stearing wheel
@@ -113,7 +113,7 @@ function onIbusData(data) {
     // face button steering wheel
     if (buffMsgHex == "3b40") {
       pauseAudio();
-      
+
       msgDescryption = "Face button steering wheel";
     }
     // RT button steering wheel
@@ -298,6 +298,32 @@ function onIbusData(data) {
   );
 
   // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
+
+  let msgDate = new Date();
+
+  wrtieIBUSdataToFile(
+    msgDate.getHours(),
+    " | ",
+    msgDate.getMinutes(),
+    " | ",
+    msgDate.getSeconds(),
+    " | ",
+    msgDate.getMilliseconds(),
+    " | ",
+    data.id,
+    " | ",
+    IbusDevices.getDeviceName(data.src),
+    "|",
+    IbusDevices.getDeviceName(data.dst),
+    "|",
+    data.msg,
+    "|",
+    buffMsgHex,
+    "|",
+    data,
+    "|",
+    msgDescryption
+  );
 }
 
 // Cleanup and close the device when exiting.

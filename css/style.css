@@ -3,10 +3,13 @@
   src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
 }
 
-* {
+html {
   box-sizing: border-box;
-  margin: 0;
-  padding: 0;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
 }
 
 html {
@@ -23,6 +26,8 @@ html {
   font-family: Montserrat;
   overflow: hidden;
   cursor: none;
+  margin: 0;
+  padding: 0;
 }
 
 h3 {
@@ -111,7 +116,7 @@ main,
   transition: all 0.3s;
 }
 
-.active > svg  {
+.active > svg {
   transition: all 0.3s;
   height: 100%;
   fill: var(--amber);
@@ -371,10 +376,69 @@ table.musicTable tfoot {
 }
 
 .settings .wrapper.buttons {
-  margin: 5vw auto;
   display: flex;
   justify-content: space-between;
+}
+.settings .wrapper-first > .wrapper {
+  margin-bottom: 5vw;
   width: 100%;
+}
+.option-box-container {
+  display: flex;
+  align-items: center;
+}
+
+.option-box-container .input-container {
+  margin-right: 3vw;
+}
+
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+}
+
+input[type="checkbox"]:not(:checked) + label,
+input[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 5vw;
+  line-height: 4vw;
+}
+
+input[type="checkbox"]:not(:checked) + label:before,
+input[type="checkbox"]:checked + label:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4vw;
+  height: 4vw;
+  border: 2px solid var(--font-color);
+  transition: all 300ms linear;
+}
+
+input[type="checkbox"]:not(:checked) + label:after,
+input[type="checkbox"]:checked + label:after {
+  content: "🦊";
+  position: absolute;
+  top: 0;
+  height: 4vw;
+  width: 4vw;
+  left: 0;
+  color: var(--amber);
+  line-height: 4vw;
+  font-size: 2.5vw;
+  text-align: center;
+  transition: all 300ms linear;
+}
+
+input[type="checkbox"]:not(:checked) + label::after {
+  opacity: 0;
+}
+
+input[type="checkbox"]:checked + label:after {
+  opacity: 1;
 }
 
 .active.button path {

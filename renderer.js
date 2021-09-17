@@ -30,7 +30,7 @@ songsObj = [];
 window.addEventListener('DOMContentLoaded', function () {
   document.getElementById('loader-wrapper').style.display = 'none';
   document.getElementById('app').style.display = 'block';
-  
+
   audioElement = document.querySelector("#audio");
 
   (async () => {
@@ -642,4 +642,22 @@ function asksCANforNewData() {
   if (!time_instrument_cluster) {
     sendCAN("time");
   }
+}
+
+function wrtieIBUSdataToFile(...args) {
+  const captureIBUSandSave = document.getElementById('checkbox-ibus-collect').checked;
+  let output_file = fs.createWriteStream(`DATA_FROM_IBUS_${new Date().toISOString().split('T')[0]}.txt`, { flags: 'a' });
+
+  if (!captureIBUSandSave) {
+    return;
+  }
+
+  output_file.on('error', (error) => {
+    console.error(error);
+    return;
+  });
+  output_file.write(args.join(', ') + '\n');
+  output_file.end();
+
+  debugLog('ibus data saved to file');
 }
