@@ -18,8 +18,7 @@
     "build-linux-arm": "electron-builder --armv7l -l appImage",
     "release-win": "electron-builder --windows portable nsis --x64 --publish always",
     "release-linux": "electron-builder --linux appImage --x64 --publish always",
-    "release-linux-arm": "electron-builder --linux appImage --armv7l --publish always",
-    "prettier": "prettier --write ."
+    "release-linux-arm": "electron-builder --linux appImage --armv7l --publish always"
   },
   "release": "build",
   "keywords": [
@@ -43,7 +42,6 @@
     "bluetoothctl": "git+https://github.com/miroslawlis/bluetoothctl.git",
     "electron-updater": "^4.3.1",
     "ibus": "git+https://github.com/osvathrobi/node-ibus.git",
-    "prettier": "^2.4.1",
     "serialport": "^9.0.0"
   },
   "build": {
