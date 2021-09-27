@@ -9,9 +9,9 @@ const os = require("os");
 var ifaces = os.networkInterfaces();
 var spawn = require("child_process").spawn;
 var win = electron.remote.getCurrentWindow();
-var isLinux = process.platform === 'linux';
-const remote = require('electron').remote;
-const modal = require('./templates/modal/modals.js');
+var isLinux = process.platform === "linux";
+const remote = require("electron").remote;
+const modal = require("./templates/modal/modals.js");
 const { settings } = require("cluster");
 
 // const settings = require('./js/settings.js');
@@ -27,40 +27,51 @@ if (
 //
 songsObj = [];
 
-window.addEventListener('load', function () {
-  document.getElementById('loader-wrapper').style.display = 'none';
-  document.getElementById('app').style.display = 'block';
+window.addEventListener("load", function () {
+  document.getElementById("loader-wrapper").style.display = "none";
+  document.getElementById("app").style.display = "block";
 
   audioElement = document.querySelector("#audio");
 
   (async () => {
-    await document.getElementById('settings').addEventListener('click', function () {
-      // on click fire this function
-      getIPs();
-      wifiInfo();
-    });
+    await document
+      .getElementById("settings")
+      .addEventListener("click", function () {
+        // on click fire this function
+        getIPs();
+        wifiInfo();
+      });
 
     // minimizing and closing
-    await document.getElementById('minimize').addEventListener("click", function () {
-      win.minimize();
-    });
-    await document.getElementById('closeApp').addEventListener("click", function () {
-      win.close();
-    });
+    await document
+      .getElementById("minimize")
+      .addEventListener("click", function () {
+        win.minimize();
+      });
+    await document
+      .getElementById("closeApp")
+      .addEventListener("click", function () {
+        win.close();
+      });
     //
     // bluetooth
-    await document.getElementById('bluetooth').addEventListener("click", function () {
-      // show/hide bluetooth settings
-      document.querySelector('.settings .bluetooth').classList.toggle('hide');
-    });
-    await document.getElementById('btClose').addEventListener("click", function () {
-      document.querySelector('.settings .bluetooth').classList.toggle('hide');
-    });
+    await document
+      .getElementById("bluetooth")
+      .addEventListener("click", function () {
+        // show/hide bluetooth settings
+        document.querySelector(".settings .bluetooth").classList.toggle("hide");
+      });
+    await document
+      .getElementById("btClose")
+      .addEventListener("click", function () {
+        document.querySelector(".settings .bluetooth").classList.toggle("hide");
+      });
     // display app version from package.json
-    ipcRenderer.send('app_version');
-    ipcRenderer.on('app_version', (event, args) => {
-      ipcRenderer.removeAllListeners('app_version');
-      document.getElementById('app_version').innerText = 'Version: ' + args.version;
+    ipcRenderer.send("app_version");
+    ipcRenderer.on("app_version", (event, args) => {
+      ipcRenderer.removeAllListeners("app_version");
+      document.getElementById("app_version").innerText =
+        "Version: " + args.version;
     });
 
     // send request to check if update is available
@@ -68,27 +79,29 @@ window.addEventListener('load', function () {
     //     ipcRenderer.send('check_for_application_update');
     // }, 10000);
 
-    ipcRenderer.on('update_available', () => {
-      console.log('update_available');
-      ipcRenderer.removeAllListeners('update_available');
-      document.getElementById('update_status').innerText = 'A new update is available. Downloading now...';
+    ipcRenderer.on("update_available", () => {
+      console.log("update_available");
+      ipcRenderer.removeAllListeners("update_available");
+      document.getElementById("update_status").innerText =
+        "A new update is available. Downloading now...";
     });
-    ipcRenderer.on('update_downloaded', () => {
-      console.log('update_downloaded');
-      ipcRenderer.removeAllListeners('update_downloaded');
-      document.getElementById('update_status').innerText = 'Update Downloaded. It will be installed on restart. Restart now?';
+    ipcRenderer.on("update_downloaded", () => {
+      console.log("update_downloaded");
+      ipcRenderer.removeAllListeners("update_downloaded");
+      document.getElementById("update_status").innerText =
+        "Update Downloaded. It will be installed on restart. Restart now?";
     });
-    ipcRenderer.on('update-not-available', () => {
-      console.log('update-not-available');
-      ipcRenderer.removeAllListeners('update-not-available');
+    ipcRenderer.on("update-not-available", () => {
+      console.log("update-not-available");
+      ipcRenderer.removeAllListeners("update-not-available");
     });
     // download progress
-    ipcRenderer.on('send-download-progress', (text) => {
+    ipcRenderer.on("send-download-progress", (text) => {
       console.log(text);
     });
 
     // get userData path
-    ipcRenderer.invoke('get-user-data-path').then((data) => {
+    ipcRenderer.invoke("get-user-data-path").then((data) => {
       settings_app.user_path = data;
       // do settings file stuff
       settings_app.init();
@@ -109,7 +122,6 @@ window.addEventListener('load', function () {
 
     await debugLog(os.networkInterfaces());
   })();
-
 });
 
 function debugLog(...args) {
@@ -463,9 +475,8 @@ function guiUpdateData() {
 
   // light sensor in place of weather forecast
   if (light_sensor) {
-    document.querySelector(
-      ".grid-cell.weather_forecast"
-    ).innerText = light_sensor;
+    document.querySelector(".grid-cell.weather_forecast").innerText =
+      light_sensor;
   }
 
   // range
@@ -510,7 +521,6 @@ function updateTimeCANfromInput(element) {
 }
 
 function timeSetModal(params) {
-
   let modal_time;
   let elemModal = modal.modalTwoInputs;
 
@@ -536,7 +546,6 @@ function timeSetModal(params) {
 }
 
 function wifiModal() {
-
   let modal_wifi;
   let elemModal = modal.wifiPassword;
 
@@ -549,18 +558,16 @@ function wifiModal() {
   document.body.appendChild(modal_wifi);
 
   // for modal popup, after entering password
-  document.querySelector(
-    "#wifiPassword .wifipassconnect"
-  ).onclick = function () {
-    wifiConnect();
-  };
+  document.querySelector("#wifiPassword .wifipassconnect").onclick =
+    function () {
+      wifiConnect();
+    };
 
   // second init, for inputs in modal that was created
   Keyboard.reinitForInputs();
 }
 
 function fuelConsResetModal(arg) {
-
   let modal_fuel_reset;
   let elemModal = modal.modalConfirm;
 
@@ -585,7 +592,7 @@ function switchTheme(ele) {
   // update css in html
   // based on select drop down change OR from setting file
   let styleTag = document.getElementById("themeColor");
-  let theme = '';
+  let theme = "";
 
   if (ele) {
     theme = ele.options[ele.options.selectedIndex].value;
@@ -645,19 +652,24 @@ function asksCANforNewData() {
 }
 
 function wrtieIBUSdataToFile(...args) {
-  const captureIBUSandSave = document.getElementById('checkbox-ibus-collect').checked;
-  let output_file = fs.createWriteStream(`DATA_FROM_IBUS_${new Date().toISOString().split('T')[0]}.txt`, { flags: 'a' });
+  const captureIBUSandSave = document.getElementById(
+    "checkbox-ibus-collect"
+  ).checked;
+  let output_file = fs.createWriteStream(
+    `DATA_FROM_IBUS_${new Date().toISOString().split("T")[0]}.txt`,
+    { flags: "a" }
+  );
 
   if (!captureIBUSandSave) {
     return;
   }
 
-  output_file.on('error', (error) => {
+  output_file.on("error", (error) => {
     console.error(error);
     return;
   });
-  output_file.write(args.join(', ') + '\n');
+  output_file.write(args.join(", ") + "\n");
   output_file.end();
 
-  debugLog('ibus data saved to file');
+  debugLog("ibus data saved to file");
 }

@@ -1,7 +1,7 @@
 :root {
-  --amber                : #ff5919;
-  --backgroundNav        : #2c2c2c;
-  --backgroundMain       : #272727;
+  --amber: #ff5919;
+  --backgroundNav: #2c2c2c;
+  --backgroundMain: #272727;
   --backgroundMainOpacity: rgba(55, 55, 55, 0.9);
-  --font-color                : rgb(226, 226, 226);
+  --font-color: rgb(226, 226, 226);
 }

@@ -459,10 +459,10 @@ function sendCAN(request, arg1, arg2) {
 //// ibus part end
 
 function nightSensorSaysItIs(dayOrNightString) {
-  if (dayOrNightString == 'day') {
+  if (dayOrNightString == "day") {
     setPreviousTheme();
   }
-  if (dayOrNightString == 'night') {
+  if (dayOrNightString == "night") {
     setDarkTheme();
   }
 }

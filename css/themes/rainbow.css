@@ -1,11 +1,20 @@
 :root {
-    --amber                : #b33e06;
-    --backgroundNav        : linear-gradient(90deg, rgba(94,63,251,1) 0%, rgba(252,70,163,1) 100%);
-    --backgroundMain       : linear-gradient(90deg, rgba(252,70,163,1) 0%, #68ff25 45%, rgba(94,63,251,1) 100%);
-    --backgroundMainOpacity: rgba(55, 55, 55, 0.9);
-    --font-color                : rgb(226, 226, 226);
+  --amber: #b33e06;
+  --backgroundNav: linear-gradient(
+    90deg,
+    rgba(94, 63, 251, 1) 0%,
+    rgba(252, 70, 163, 1) 100%
+  );
+  --backgroundMain: linear-gradient(
+    90deg,
+    rgba(252, 70, 163, 1) 0%,
+    #68ff25 45%,
+    rgba(94, 63, 251, 1) 100%
+  );
+  --backgroundMainOpacity: rgba(55, 55, 55, 0.9);
+  --font-color: rgb(226, 226, 226);
 }
 
 select option {
-    background-color: #51ad33 !important;
+  background-color: #51ad33 !important;
 }

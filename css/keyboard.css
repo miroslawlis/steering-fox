@@ -85,9 +85,9 @@
   display: inline-block;
 }
 .keyboard__keys > div:last-child {
-    top: 0;
-    left: 100%;
-  }
+  top: 0;
+  left: 100%;
+}
 .keyboard__keys > div:last-child > .keyboard__key {
   width: 13.5vw;
   height: 8.5vw;

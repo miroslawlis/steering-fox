@@ -2,11 +2,14 @@ This aplication and hardware was designed to replace default/stock navigation/ra
 Not ready yet :)
 
 ### How it looks
+
 #### Dashboard GUI
+
 <img src="for_readme/img/stearing_fox_dashboard_GUI_1.jpg" width="300">
 <img src="for_readme/img/stearing_fox_dashboard_GUI_2.jpg" width="300">
 
 #### Music GUI
+
 <img src="for_readme/img/stearing_fox_music_GUI.png" width="300">
 
 `more to come`
@@ -26,6 +29,7 @@ Not ready yet :)
 </ol>
 
 #### Wiring diargam/schematics
+
 <img src="for_readme/img/Instalation_schema_raspberry_pi_BMW_x3_e83.png" width="300">
 
 <h3>Software:</h3>
@@ -40,7 +44,7 @@ Not ready yet :)
 <ol>
 <li>GUI was designed for 6,5 inch screen (800 x 480 px)</li>
 <li>Image from revers camera is handled by PCB control board (when revers gear is on then revers camera is on and signal send to control board)</li>
-</ol> 
+</ol>
 
 <h3>Aplication can:</h3>
 <ol>
@@ -62,35 +66,44 @@ npm install
 ```
 
 Start application without debug logs, logs can be later turn on by setting: `debugMode = true`
+
 ```
 npm start
 ```
 
 Start application with debug logs
+
 ```
 npm run debug
 ```
 
 Rebuild application
+
 ```
 npm run prepare
 ```
 
 Build application for Raspberry pi 3B+ (linux)
+
 ```
 npm run build-linux-arm
 ```
 
 ### Settings
+
 More logs can be show by setting:
+
 ```
 lessInfoFromCAN=false
 ```
 
 ### OS settings
+
 #### Auto shutdown script
+
 This Python script is monitoring PIN 33 status when it's changes it will run `sudo shutdown -h now` command and close Linux OS
 Code:
+
 ```
 from time import sleep
 import RPi.GPIO as GPIO
@@ -107,21 +120,28 @@ while(1):
                 os.system("sudo shutdown -h now")
                 sleep(.1)
 ```
+
 To auto start script: `sudo nano /etc/rc.local`
 and at the end add:
-```sudo python /path_to_your_script_file/script.py &```
+`sudo python /path_to_your_script_file/script.py &`
 
 ### Deployment
+
 Github actions need tag to be present in order to compile release
 First update version in package.json:
+
 ```
 git commit -am 1.0.0
 ```
+
 Tag your commit:
+
 ```
 git tag 1.0.0
 ```
+
 Push your changes to GitHub:
+
 ```
 git push && git push --tags
 ```

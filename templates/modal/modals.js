@@ -23,7 +23,6 @@ const modalTwoInputs = `<div id="modalTwoInputs" class="modal set animated bounc
     </div>
 </div>`;
 
-
 const wifiPassword = `<div id="wifiPassword" class="content animated bounceIn modal">
     <h3 class="totranslate">Enter WiFi password</h3>
     <div id="closeWiFipassword" class="btn close" onclick="modalClose(this)">
@@ -45,7 +44,6 @@ const wifiPassword = `<div id="wifiPassword" class="content animated bounceIn mo
         </svg>
     </div>
 </div>`;
-
 
 const modalConfirm = `<div id="modalConfirm" class="content animated bounceIn modal">
     <h3 class="totranslate">Confirm reset fuel consumption</h3>
