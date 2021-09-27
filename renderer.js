@@ -27,7 +27,7 @@ if (
 //
 songsObj = [];
 
-window.addEventListener('DOMContentLoaded', function () {
+window.addEventListener('load', function () {
   document.getElementById('loader-wrapper').style.display = 'none';
   document.getElementById('app').style.display = 'block';
 
