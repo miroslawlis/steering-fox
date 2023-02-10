@@ -2,13 +2,7 @@
 global.profile_startTime = Date.now();
 
 // Modules to control application life and create native browser window
-const {
-  app,
-  BrowserWindow,
-  powerSaveBlocker,
-  session,
-  ipcMain,
-} = require("electron");
+const { app, BrowserWindow, powerSaveBlocker, session, ipcMain } = require("electron");
 const path = require("path");
 const { autoUpdater } = require("electron-updater");
 
@@ -95,6 +89,18 @@ app.commandLine.appendSwitch("--autoplay-policy", "no-user-gesture-required");
 
 const id = powerSaveBlocker.start("prevent-display-sleep");
 // console.log(powerSaveBlocker.isStarted(id))
+ipcMain.on("startParameters", () => {
+  mainWindow.webContents.reply("startParameters:result", remote.process.argv.slice(2));
+});
+ipcMain.on("isLinux", () => {
+  mainWindow.webContents.send("isLinux:result", process.platform === "linux");
+});
+ipcMain.on("minimize", () => {
+  win.minimize();
+});
+ipcMain.on("close", () => {
+  win.close();
+});
 
 ipcMain.on("app_version", (event) => {
   event.sender.send("app_version", { version: app.getVersion() });
@@ -121,13 +127,7 @@ autoUpdater.on("update-not-available", () => {
 autoUpdater.on("download-progress", (progressObj) => {
   let log_message = "Download speed: " + progressObj.bytesPerSecond;
   log_message = log_message + " - Downloaded " + progressObj.percent + "%";
-  log_message =
-    log_message +
-    " (" +
-    progressObj.transferred +
-    "/" +
-    progressObj.total +
-    ")";
+  log_message = log_message + " (" + progressObj.transferred + "/" + progressObj.total + ")";
   sendStatusToWindow(log_message);
 });
 autoUpdater.on("error", (error) => {

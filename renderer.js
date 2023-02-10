@@ -6,21 +6,33 @@ const path = require("path");
 const electron = require("electron");
 const ipcRenderer = electron.ipcRenderer;
 const os = require("os");
-var ifaces = os.networkInterfaces();
-var spawn = require("child_process").spawn;
-var win = electron.remote.getCurrentWindow();
-var isLinux = process.platform === "linux";
-const remote = require("electron").remote;
+let ifaces = os.networkInterfaces();
+let spawn = require("child_process").spawn;
 const modal = require("./templates/modal/modals.js");
+
+let isLinux = null;
+let startParameters = null;
+let debugMode = false;
+
+
+ipcRenderer.send("isLinux");
+ipcRenderer.on("isLinux:result", (event, arg) => {
+  isLinux = event;
+  console.log(isLinux);
+});
 const { settings } = require("cluster");
 
 // const settings = require('./js/settings.js');
 //for debugLog()
-const startParameters = remote.process.argv.slice(2);
+ipcRenderer.send("startParameters");
+ipcRenderer.on("startParameters:result", (event, arg) => {
+  startParameters = arg;
+  if (startParameters.includes("debug") || startParameters.includes("remote-debugging-port=8315")) {
+    debugMode = true;
+  }
+});
 
-if (startParameters.includes("debug") || startParameters.includes("remote-debugging-port=8315")) {
-  var debugMode = true;
-}
+
 //
 songsObj = [];
 
@@ -39,10 +51,10 @@ window.addEventListener("load", function () {
 
     // minimizing and closing
     document.getElementById("minimize").addEventListener("click", function () {
-      win.minimize();
+      ipcRenderer.send("minimize");
     });
     document.getElementById("closeApp").addEventListener("click", function () {
-      win.close();
+      ipcRenderer.send("close");
     });
     //
     // bluetooth
