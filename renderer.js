@@ -18,10 +18,7 @@ const { settings } = require("cluster");
 //for debugLog()
 const startParameters = remote.process.argv.slice(2);
 
-if (
-  startParameters.includes("debug") ||
-  startParameters.includes("remote-debugging-port=8315")
-) {
+if (startParameters.includes("debug") || startParameters.includes("remote-debugging-port=8315")) {
   var debugMode = true;
 }
 //
@@ -33,45 +30,34 @@ window.addEventListener("load", function () {
 
   audioElement = document.querySelector("#audio");
 
-  (async () => {
-    await document
-      .getElementById("settings")
-      .addEventListener("click", function () {
-        // on click fire this function
-        getIPs();
-        wifiInfo();
-      });
+  (() => {
+    document.getElementById("settings").addEventListener("click", function () {
+      // on click fire this function
+      getIPs();
+      wifiInfo();
+    });
 
     // minimizing and closing
-    await document
-      .getElementById("minimize")
-      .addEventListener("click", function () {
-        win.minimize();
-      });
-    await document
-      .getElementById("closeApp")
-      .addEventListener("click", function () {
-        win.close();
-      });
+    document.getElementById("minimize").addEventListener("click", function () {
+      win.minimize();
+    });
+    document.getElementById("closeApp").addEventListener("click", function () {
+      win.close();
+    });
     //
     // bluetooth
-    await document
-      .getElementById("bluetooth")
-      .addEventListener("click", function () {
-        // show/hide bluetooth settings
-        document.querySelector(".settings .bluetooth").classList.toggle("hide");
-      });
-    await document
-      .getElementById("btClose")
-      .addEventListener("click", function () {
-        document.querySelector(".settings .bluetooth").classList.toggle("hide");
-      });
+    document.getElementById("bluetooth").addEventListener("click", function () {
+      // show/hide bluetooth settings
+      document.querySelector(".settings .bluetooth").classList.toggle("hide");
+    });
+    document.getElementById("btClose").addEventListener("click", function () {
+      document.querySelector(".settings .bluetooth").classList.toggle("hide");
+    });
     // display app version from package.json
     ipcRenderer.send("app_version");
     ipcRenderer.on("app_version", (event, args) => {
       ipcRenderer.removeAllListeners("app_version");
-      document.getElementById("app_version").innerText =
-        "Version: " + args.version;
+      document.getElementById("app_version").innerText = "Version: " + args.version;
     });
 
     // send request to check if update is available
@@ -82,14 +68,12 @@ window.addEventListener("load", function () {
     ipcRenderer.on("update_available", () => {
       console.log("update_available");
       ipcRenderer.removeAllListeners("update_available");
-      document.getElementById("update_status").innerText =
-        "A new update is available. Downloading now...";
+      document.getElementById("update_status").innerText = "A new update is available. Downloading now...";
     });
     ipcRenderer.on("update_downloaded", () => {
       console.log("update_downloaded");
       ipcRenderer.removeAllListeners("update_downloaded");
-      document.getElementById("update_status").innerText =
-        "Update Downloaded. It will be installed on restart. Restart now?";
+      document.getElementById("update_status").innerText = "Update Downloaded. It will be installed on restart. Restart now?";
     });
     ipcRenderer.on("update-not-available", () => {
       console.log("update-not-available");
@@ -107,20 +91,20 @@ window.addEventListener("load", function () {
       settings_app.init();
     });
     // initiall start
-    await getIPs();
-    await wifiInfo();
+    getIPs();
+    wifiInfo();
 
-    await asksCANforNewData();
+    asksCANforNewData();
     // and repeate checking and asking if necessery every x miliseconds
-    await setInterval(asksCANforNewData, 500);
+    setInterval(asksCANforNewData, 500);
 
-    await dateAndTime();
-    await setInterval(dateAndTime, 1000);
+    dateAndTime();
+    setInterval(dateAndTime, 1000);
 
-    await guiUpdateData();
-    await setInterval(guiUpdateData, 1000);
+    guiUpdateData();
+    setInterval(guiUpdateData, 1000);
 
-    await debugLog(os.networkInterfaces());
+    debugLog(os.networkInterfaces());
   })();
 });
 
@@ -153,10 +137,7 @@ function menuHideToggle(element) {
   let activeElementNav = document.querySelector("#nav .element.active");
   let activeElementMain = document.querySelector("#main .element.active");
 
-  if (
-    element.classList.contains("active") == false &&
-    element.classList.contains("element") == true
-  ) {
+  if (element.classList.contains("active") == false && element.classList.contains("element") == true) {
     // info
     if (element.id == "info") {
       // remove class from currently active in nav
@@ -227,10 +208,7 @@ function menuHideToggle(element) {
 function updateSourceWithSong(tableRow) {
   audioElement.setAttribute("src", tableRow.querySelector(".file").innerText);
   // add attribute with song number
-  audioElement.setAttribute(
-    "itemId",
-    tableRow.querySelector(".itemid").innerText
-  );
+  audioElement.setAttribute("itemId", tableRow.querySelector(".itemid").innerText);
 
   playAudio(true);
 }
@@ -244,23 +222,11 @@ function dateAndTime() {
 
   if (time_instrument_cluster) {
     // get time from instrument claster (CAN)
-    timeDateElement.innerHTML =
-      '<span class="time">' +
-      time_instrument_cluster +
-      "</span>" +
-      '<span class="date">' +
-      date +
-      "</span>";
+    timeDateElement.innerHTML = '<span class="time">' + time_instrument_cluster + "</span>" + '<span class="date">' + date + "</span>";
     // to do
     // set time and date (on OS) from CAN/car?
   } else {
-    timeDateElement.innerHTML =
-      '<span class="time">' +
-      time +
-      "</span>" +
-      '<span class="date">' +
-      date +
-      "</span>";
+    timeDateElement.innerHTML = '<span class="time">' + time + "</span>" + '<span class="date">' + date + "</span>";
   }
 
   //// if 'gps_utc_time' have data then get time from gps
@@ -281,28 +247,13 @@ function addRowsToMusicTable() {
 
   if (songsObj[0]) {
     for (let item of songsObj) {
-      document.querySelector("#main .music table tbody").innerHTML +=
-        '<tr class="itemIDrow' +
-        item["id"] +
-        '" onclick="updateSourceWithSong(this);"><td class="itemid">' +
-        item["id"] +
-        `</td><td class="file">` +
-        item["path"] +
-        '</td><td class="length">' +
-        item["length"] +
-        "</td></tr>";
+      document.querySelector("#main .music table tbody").innerHTML += '<tr class="itemIDrow' + item["id"] + '" onclick="updateSourceWithSong(this);"><td class="itemid">' + item["id"] + `</td><td class="file">` + item["path"] + '</td><td class="length">' + item["length"] + "</td></tr>";
     }
 
     // set src (first audio from table) of audio element
-    audioElement.setAttribute(
-      "src",
-      document.querySelector("#main .music table tbody td.file").innerText
-    );
+    audioElement.setAttribute("src", document.querySelector("#main .music table tbody td.file").innerText);
     // add attribute with song number
-    audioElement.setAttribute(
-      "itemId",
-      document.querySelector("#main .music table tbody td.itemid").innerText
-    );
+    audioElement.setAttribute("itemId", document.querySelector("#main .music table tbody td.itemid").innerText);
     //////////
     //auto play at start
     playAudio();
@@ -337,10 +288,7 @@ function createSongsObject() {
         } else {
           // Is a file
           // get only .mp3 audio files
-          if (
-            file.split(".").pop() == "mp3" ||
-            file.split(".").pop() == "MP3"
-          ) {
+          if (file.split(".").pop() == "mp3" || file.split(".").pop() == "MP3") {
             songsObj.push({
               id: i,
               name: file.split("\\").pop().split("/").pop(),
@@ -386,19 +334,11 @@ function getIPs() {
       if (alias >= 1) {
         // this single interface has multiple ipv4 addresses
         debugLog(ifname + ":" + alias, iface.address);
-        document.getElementById("ipslist").innerHTML +=
-          '<span class="ip">' +
-          ifname +
-          ": " +
-          alias +
-          " " +
-          iface.address +
-          "</span>";
+        document.getElementById("ipslist").innerHTML += '<span class="ip">' + ifname + ": " + alias + " " + iface.address + "</span>";
       } else {
         // this interface has only one ipv4 adress
         debugLog(ifname + ": " + iface.address);
-        document.getElementById("ipslist").innerHTML +=
-          '<span class="ip">' + ifname + ": " + iface.address + "</span>";
+        document.getElementById("ipslist").innerHTML += '<span class="ip">' + ifname + ": " + iface.address + "</span>";
       }
       ++alias;
     });
@@ -411,15 +351,13 @@ function CPUtemp() {
       temp = spawn("cat", ["/sys/class/thermal/thermal_zone0/temp"]);
       temp.stdout.on("data", function (data) {
         //return data/1000;
-        document.querySelector(".info .cpu_temp .data").innerHTML =
-          Math.round(data / 1000) + '<div class="small text">\xB0C</div>';
+        document.querySelector(".info .cpu_temp .data").innerHTML = Math.round(data / 1000) + '<div class="small text">\xB0C</div>';
       });
     } catch (error) {
       debugLog(error);
     }
   } else {
-    document.querySelector(".info .cpu_temp .data").innerHTML =
-      Math.round("56.548") + '<div class="small text">\xB0C</div>';
+    document.querySelector(".info .cpu_temp .data").innerHTML = Math.round("56.548") + '<div class="small text">\xB0C</div>';
   }
 }
 
@@ -431,14 +369,12 @@ function guiUpdateData() {
 
   // alltitude, with conversion
   if (gps_altitude) {
-    document.querySelector(".grid-cell.altitude .data").innerHTML =
-      gps_altitude + '<div class="small text">m</div>';
+    document.querySelector(".grid-cell.altitude .data").innerHTML = gps_altitude + '<div class="small text">m</div>';
   }
 
   // Temperature outside
   if (temp_outside) {
-    temp_outside =
-      temp_outside.length > 7 ? hex_to_ascii(temp_outside) : temp_outside;
+    temp_outside = temp_outside.length > 7 ? hex_to_ascii(temp_outside) : temp_outside;
 
     // to string conversion
     temp_outside = temp_outside + "";
@@ -450,45 +386,36 @@ function guiUpdateData() {
       temp_outside = temp_outside.replace("-", "- ");
       temp_outside = temp_outside.replace(".", ",");
 
-      document.querySelector(".grid-cell.temp_outside_car .data").innerText =
-        temp_outside + " \xB0C";
+      document.querySelector(".grid-cell.temp_outside_car .data").innerText = temp_outside + " \xB0C";
     }
   }
 
   if (coolant_temp) {
-    document.querySelector(".grid-cell.coolant_temp .data").innerText =
-      coolant_temp + " \xB0C";
+    document.querySelector(".grid-cell.coolant_temp .data").innerText = coolant_temp + " \xB0C";
   }
 
   //fuel consumption 1
   if (fuel_consumption_1) {
-    document.querySelector("#main .fuel_cons1 .data").innerHTML =
-      '<div class="data1">' +
-      fuel_consumption_1 +
-      '</div><div class="small text">l/100km</div>';
+    document.querySelector("#main .fuel_cons1 .data").innerHTML = '<div class="data1">' + fuel_consumption_1 + '</div><div class="small text">l/100km</div>';
   }
   //fuel consumption 2
   if (fuel_consumption_2) {
-    document.querySelector(".grid-cell.fuel_cons2 .data").innerHTML =
-      fuel_consumption_2 + '<div class="small text">l/100km</div>';
+    document.querySelector(".grid-cell.fuel_cons2 .data").innerHTML = fuel_consumption_2 + '<div class="small text">l/100km</div>';
   }
 
   // light sensor in place of weather forecast
   if (light_sensor) {
-    document.querySelector(".grid-cell.weather_forecast").innerText =
-      light_sensor;
+    document.querySelector(".grid-cell.weather_forecast").innerText = light_sensor;
   }
 
   // range
   if (range) {
-    document.querySelector(".grid-cell.range .data").innerHTML =
-      range + '<div class="small text">km</div>';
+    document.querySelector(".grid-cell.range .data").innerHTML = range + '<div class="small text">km</div>';
   }
 
   // avg_speed
   if (avg_speed) {
-    document.querySelector(".grid-cell.avg_speed .data").innerHTML =
-      avg_speed + '<div class="small text">km/h</div>';
+    document.querySelector(".grid-cell.avg_speed .data").innerHTML = avg_speed + '<div class="small text">km/h</div>';
   }
 
   CPUtemp();
@@ -511,10 +438,7 @@ function updateTimeCANfromInput(element) {
   let hour = el.querySelector("input.hour.time").value;
   let minutes = el.querySelector("input.minutes.time").value;
 
-  if (
-    hour.match(/^[0-9][0-9]$/) != null &&
-    minutes.match(/^[0-9][0-9]$/) != null
-  ) {
+  if (hour.match(/^[0-9][0-9]$/) != null && minutes.match(/^[0-9][0-9]$/) != null) {
     sendCAN("update-time", hour, minutes);
     modalClose(element);
   }
@@ -534,9 +458,7 @@ function timeSetModal(params) {
 
   // add attribute "onclick" to template file
   // fire chnage time CAN fucntion
-  document
-    .querySelector("#timeModalSet .modal .confirm")
-    .setAttribute("onclick", "updateTimeCANfromInput(this)");
+  document.querySelector("#timeModalSet .modal .confirm").setAttribute("onclick", "updateTimeCANfromInput(this)");
 
   // second init, for inputs in modal that was created
   Keyboard.reinitForInputs();
@@ -558,10 +480,9 @@ function wifiModal() {
   document.body.appendChild(modal_wifi);
 
   // for modal popup, after entering password
-  document.querySelector("#wifiPassword .wifipassconnect").onclick =
-    function () {
-      wifiConnect();
-    };
+  document.querySelector("#wifiPassword .wifipassconnect").onclick = function () {
+    wifiConnect();
+  };
 
   // second init, for inputs in modal that was created
   Keyboard.reinitForInputs();
@@ -581,11 +502,9 @@ function fuelConsResetModal(arg) {
 
   // add attribute "onclick" to template file
 
-  document
-    .querySelector("#modalConfirmWrap .modal .confirm")
-    .click(function () {
-      // fire reset fuel1 CAN function
-    });
+  document.querySelector("#modalConfirmWrap .modal .confirm").click(function () {
+    // fire reset fuel1 CAN function
+  });
 }
 
 function switchTheme(ele) {
@@ -652,13 +571,8 @@ function asksCANforNewData() {
 }
 
 function wrtieIBUSdataToFile(...args) {
-  const captureIBUSandSave = document.getElementById(
-    "checkbox-ibus-collect"
-  ).checked;
-  let output_file = fs.createWriteStream(
-    `DATA_FROM_IBUS_${new Date().toISOString().split("T")[0]}.txt`,
-    { flags: "a" }
-  );
+  const captureIBUSandSave = document.getElementById("checkbox-ibus-collect").checked;
+  let output_file = fs.createWriteStream(`DATA_FROM_IBUS_${new Date().toISOString().split("T")[0]}.txt`, { flags: "a" });
 
   if (!captureIBUSandSave) {
     return;
