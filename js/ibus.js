@@ -1,26 +1,4 @@
-var sp = require("serialport");
-
-sp.list().then(function (err, ports) {
-  debugLog("ports: ");
-  debugLog(ports);
-});
-
-var time_instrument_cluster,
-  town_nav,
-  street_nav,
-  gps_altitude,
-  gps_cords_lat,
-  gps_cords_lon,
-  gps_utc_time,
-  temp_outside,
-  fuel_consumption_1,
-  fuel_consumption_2,
-  range,
-  distance,
-  speed_limit,
-  avg_speed,
-  light_sensor,
-  coolant_temp;
+var time_instrument_cluster, town_nav, street_nav, gps_altitude, gps_cords_lat, gps_cords_lon, gps_utc_time, temp_outside, fuel_consumption_1, fuel_consumption_2, range, distance, speed_limit, avg_speed, light_sensor, coolant_temp;
 
 var lessInfoFromCAN = true;
 
@@ -45,8 +23,13 @@ function init() {
   ibusInterface.startup();
 }
 
+ipcRenderer.send("isLinux");
+ipcRenderer.on("isLinux:result", (event, arg) => {
+  isLinux = arg;
+  console.log(event, arg);
+});
 // main start
-init();
+isLinux && init();
 
 // Message structure:
 // 1. Transmitter address (8 bit Source ID)
@@ -126,11 +109,7 @@ function onIbusData(data) {
   // egz WHOLE message: 80 0a ff 24 03 00 2b 31 32 2e 35 61 80 0f ff 24 02 00 31 30 2e 31 31 2e 32 30 31 39 5d 80 05 bf 18 00 06 24
   // or WHOLE message: Buffer(36) [128, 10, 255, 36, 3, 0, 43, 49, 50, 46, 53, 97, 128, 15, 255, 36, 2, 0, 49, 48, 46, 49, 49, 46, 50, 48, 49, 57, 93, 128, 5, 191, 24, 0, 6, 36]
   // 80 source, 0a length, ff destenation, 2b 31 32 2e 35 actual temperature, there is allso time later in string
-  if (
-    data.src == "80" &&
-    data.dst == "ff" &&
-    buffMsgHex.substring(0, 4) == "2403"
-  ) {
+  if (data.src == "80" && data.dst == "ff" && buffMsgHex.substring(0, 4) == "2403") {
     // outside temperature
     temp_outside = buffMsgHex.substring(6, 16);
 
@@ -139,11 +118,7 @@ function onIbusData(data) {
 
   // time from instrument cluster not GPS
   // data.msg -> first 3 parts in buffer describe is it time ([36, 1, 0]) in hex: 24010031373a30392020
-  if (
-    data.src == "80" &&
-    data.dst == "ff" &&
-    buffMsgHex.substring(0, 6) == "240100"
-  ) {
+  if (data.src == "80" && data.dst == "ff" && buffMsgHex.substring(0, 6) == "240100") {
     // remove 3 first parts from buffer and remove 2 parts from end -> this give time in format HH:MM egz 12:45 (12h or 24h?)
     time_instrument_cluster = buffMsg.slice(3, 9).toString("utf-8");
 
@@ -152,11 +127,7 @@ function onIbusData(data) {
 
   // temperature outside and coolant temperature
   // from: InstrumentClusterElectronics - 80 to: GlobalBroadcastAddress - bf msg: 19154b00
-  if (
-    data.src == "80" &&
-    data.dst == "bf" &&
-    buffMsgHex.substring(0, 2) == "19"
-  ) {
+  if (data.src == "80" && data.dst == "bf" && buffMsgHex.substring(0, 2) == "19") {
     // first hex in message indicates temperature outside and coolant temperatur message
 
     // to decimal conversion
@@ -165,24 +136,14 @@ function onIbusData(data) {
     temp_outside = parseInt(buffMsgHex.substring(2, 4), 16);
     coolant_temp = parseInt(buffMsgHex.substring(4, 6), 16);
 
-    msgDescryption =
-      "Temperature: Outside:" +
-      temp_outside +
-      "C " +
-      "Coolant: " +
-      coolant_temp +
-      " C";
+    msgDescryption = "Temperature: Outside:" + temp_outside + "C " + "Coolant: " + coolant_temp + " C";
   }
 
   if (data.src == "80" && data.dst == "ff") {
     // if (buffMsg.slice(1, 1).toString('hex') == '04') {
     if (data.msg[1] == "04") {
       // fuel consumption 1
-      fuel_consumption_1 = data.msg
-        .slice(3, 14)
-        .toString("utf-8")
-        .replace(".", ",")
-        .trim();
+      fuel_consumption_1 = data.msg.slice(3, 14).toString("utf-8").replace(".", ",").trim();
 
       msgDescryption = "Fuel consumption 1";
     }
@@ -196,9 +157,7 @@ function onIbusData(data) {
       // 24050020382e34
       // crc: "55";
       fuel_consumption_2 = buffMsgHex.slice(6, 14);
-      fuel_consumption_2 = hex_to_ascii(fuel_consumption_2)
-        .replace(".", ",")
-        .trim();
+      fuel_consumption_2 = hex_to_ascii(fuel_consumption_2).replace(".", ",").trim();
 
       msgDescryption = "Fuel consumption 2";
     }
@@ -281,21 +240,7 @@ function onIbusData(data) {
   }
 
   //id, from, to, message, message hex, analyzing, description
-  debugLog(
-    data.id,
-    " | ",
-    IbusDevices.getDeviceName(data.src),
-    "|",
-    IbusDevices.getDeviceName(data.dst),
-    "|",
-    data.msg,
-    "|",
-    buffMsgHex,
-    "|",
-    data,
-    "|",
-    msgDescryption
-  );
+  debugLog(data.id, " | ", IbusDevices.getDeviceName(data.src), "|", IbusDevices.getDeviceName(data.dst), "|", data.msg, "|", buffMsgHex, "|", data, "|", msgDescryption);
 
   // debugLog('[app] Analyzing: ', new Buffer.from(data), '\n');
 

@@ -9,11 +9,11 @@ const os = require("os");
 let ifaces = os.networkInterfaces();
 let spawn = require("child_process").spawn;
 const modal = require("./templates/modal/modals.js");
+const { SerialPort } = require("serialport");
 
 let isLinux = null;
 let startParameters = null;
 let debugMode = false;
-
 
 ipcRenderer.send("isLinux");
 ipcRenderer.on("isLinux:result", (event, arg) => {
@@ -31,7 +31,6 @@ ipcRenderer.on("startParameters:result", (event, arg) => {
     debugMode = true;
   }
 });
-
 
 //
 songsObj = [];
@@ -599,3 +598,25 @@ function wrtieIBUSdataToFile(...args) {
 
   debugLog("ibus data saved to file");
 }
+
+async function listSerialPorts() {
+  await SerialPort.list().then((ports, err) => {
+    if (err) {
+      console.log(`serialPort list error`, err)
+      return;
+    } else {
+      // clear error
+      // document.getElementById("error").textContent = "";
+    }
+    debugLog("ports: ");
+    debugLog(ports);
+
+    // if (ports.length === 0) {
+    //   document.getElementById("error").textContent = "No ports discovered";
+    // }
+
+    // tableHTML = tableify(ports);
+    // document.getElementById("ports").innerHTML = tableHTML;
+  });
+}
+listSerialPorts();
