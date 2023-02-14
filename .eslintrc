@@ -1,0 +1,15 @@
+{
+  "env": {
+    "browser": true
+  },
+  "extends": ["airbnb-base", "prettier"],
+  "rules": {
+    "camelcase": "warn"
+  },
+  "parserOptions": {
+    "ecmaVersion": 2020
+  },
+  "settings": {
+    "import/core-modules": ["electron"]
+  }
+}

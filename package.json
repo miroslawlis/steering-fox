@@ -1,26 +1,22 @@
 {
   "name": "stearing_fox",
-  "version": "1.1.3",
+  "productName": "stearing_fox",
+  "version": "1.1.4",
   "description": "Stearing Fox car dash application (Navigation, control panel, wheater, CAN)",
   "repository": {
     "type": "git",
     "url": "https://github.com/miroslawlis/steering-fox.git"
   },
-  "main": "main.js",
+  "main": ".webpack/main",
   "scripts": {
-    "start": "electron .",
-    "debug": "node_modules\\.bin\\electron . debug",
-    "prepare": "electron-build-env npm rebuild",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "postinstall": "electron-builder install-app-deps",
-    "build-win": "electron-builder --x64 -w portable nsis",
-    "build-linux": "electron-builder --x64 -l appImage",
-    "build-linux-arm": "electron-builder --armv7l -l appImage",
-    "release-win": "electron-builder --windows portable nsis --x64 --publish always",
-    "release-linux": "electron-builder --linux appImage --x64 --publish always",
-    "release-linux-arm": "electron-builder --linux appImage --armv7l --publish always"
+    "start": "electron-forge start",
+    "debug": "electron-forge start --inspect-electron",
+    "debug:remote": "electron-forge start --inspect=5858",
+    "package": "electron-forge package",
+    "make": "electron-forge make",
+    "publish": "electron-forge publish",
+    "lint": "echo \"No linting configured\""
   },
-  "release": "build",
   "keywords": [
     "car",
     "dash",
@@ -30,55 +26,37 @@
     "bmw",
     "carputer"
   ],
-  "author": "Mirosław Lis, <aaa@aaa.aaa>",
-  "license": "ISC",
+  "author": {
+    "name": "Mirosław Lis",
+    "email": "miroslawlis@users.noreply.github.com"
+  },
+  "license": "MIT",
   "devDependencies": {
-    "electron": "^23.0.0",
-    "electron-build-env": "^0.2.0",
-    "electron-builder": "^22.10.3",
-    "electron-reload": "^2.0.0-alpha.1"
+    "@electron-forge/cli": "^6.0.5",
+    "@electron-forge/maker-deb": "^6.0.5",
+    "@electron-forge/maker-rpm": "^6.0.5",
+    "@electron-forge/maker-squirrel": "^6.0.5",
+    "@electron-forge/maker-zip": "^6.0.5",
+    "@electron-forge/plugin-webpack": "^6.0.5",
+    "@vercel/webpack-asset-relocator-loader": "^1.7.3",
+    "css-loader": "^6.7.3",
+    "electron": "23.0.0",
+    "eslint": "^8.2.0",
+    "eslint-config-airbnb-base": "^15.0.0",
+    "eslint-config-prettier": "^8.6.0",
+    "eslint-plugin-import": "^2.25.2",
+    "eslint-webpack-plugin": "^4.0.0",
+    "node-loader": "^2.0.0",
+    "prettier": "^2.8.4",
+    "style-loader": "^3.3.1"
   },
   "dependencies": {
+    "@serialport/bindings": "^9.2.9",
+    "@serialport/list": "^10.5.0",
     "bluetoothctl": "git+https://github.com/miroslawlis/bluetoothctl.git",
+    "electron-squirrel-startup": "^1.0.0",
     "ibus": "git+https://github.com/osvathrobi/node-ibus.git",
-    "electron-updater": "^5.3.0",
-    "serialport": "^10.5.0"
-  },
-  "build": {
-    "appId": "Stearing_FOX",
-    "productName": "Stearing Fox",
-    "dmg": {
-      "contents": [
-        {
-          "x": 110,
-          "y": 150
-        },
-        {
-          "x": 240,
-          "y": 150,
-          "type": "link",
-          "path": "/Applications"
-        }
-      ]
-    },
-    "linux": {
-      "target": [
-        "AppImage"
-      ],
-      "icon": "build/icons/png/",
-      "publish": [
-        "github"
-      ]
-    },
-    "win": {
-      "target": [
-        "portable",
-        "nsis"
-      ],
-      "icon": "build/icons/png/1024x1024.png",
-      "publish": [
-        "github"
-      ]
-    }
+    "serialport": "^10.5.0",
+    "update-electron-app": "^2.0.1"
   }
 }

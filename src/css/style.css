@@ -1,0 +1,762 @@
+@font-face {
+  font-family: "Montserrat";
+  src: url("../fonts/Montserrat/Montserrat-Regular.ttf") format("truetype");
+}
+
+html {
+  box-sizing: border-box;
+}
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+html {
+  background: var(--backgroundMain);
+  -webkit-font-smoothing: antialiased;
+  letter-spacing: 1px;
+}
+
+body,
+html {
+  height: 100%;
+  width: 100%;
+  touch-action: none;
+  font-family: Montserrat;
+  overflow: hidden;
+  cursor: none;
+  margin: 0;
+  padding: 0;
+}
+
+h3 {
+  margin-bottom: 3vw;
+}
+
+#app,
+main,
+.grid-container {
+  height: 100%;
+  width: 100%;
+}
+
+.grid-container {
+  /* display                : grid;
+    grid-template-columns   : 25% 75%;
+    grid-template-rows      : 1fr;
+    grid-template-areas     : "nav main"; */
+  display: block;
+}
+
+#main .youtube,
+#main .map {
+  width: 100%;
+  height: 100%;
+}
+
+#main {
+  /* grid-area: main; */
+  color: var(--font-color);
+  font-size: 2vw;
+  display: inline-block;
+  width: 90%;
+  height: 100%;
+}
+
+#music {
+  position: relative;
+}
+#music .mute-icon {
+  opacity: 0;
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  transition: opacity 200ms linear;
+}
+#svgs svg {
+  fill: inherit;
+}
+#music .mute-icon svg {
+  fill: var(--amber);
+  width: 6vw;
+}
+#nav .element {
+  height: 20%;
+  min-height: 3vw;
+  padding: 1.5vw 1vw;
+  text-align: center;
+  color: var(--font-color);
+  font-size: 3vw;
+  line-height: 3vw;
+  opacity: 1;
+  transition: all 0.2s;
+}
+
+#nav {
+  background: var(--backgroundNav);
+  text-transform: uppercase;
+  display: block;
+  width: 10%;
+  height: 100%;
+  float: left;
+}
+
+#nav svg {
+  width: 80%;
+  height: 100%;
+}
+
+.hide {
+  display: none !important;
+}
+
+#nav .active {
+  /* background: var(--amber); */
+  transition: all 0.3s;
+}
+
+.active > svg {
+  transition: all 0.3s;
+  height: 100%;
+  fill: var(--amber);
+}
+.element:not(.active) svg {
+  fill: var(--font-color);
+}
+
+#main .element {
+  background: var(--backgroundMain);
+}
+
+#main .element:not(.active) {
+  display: none;
+  opacity: 0;
+}
+
+#main .element.active {
+  display: block;
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  animation: fadeInRight 0.5s;
+}
+
+#main .music.element.active {
+  height: 100%;
+}
+#main .music.element > .column {
+  height: 100%;
+  justify-content: space-around;
+}
+.music.element .wrapper-first,
+.settings.element .wrapper-first {
+  display: block;
+  padding: 3vw;
+}
+
+#wrapperMtable {
+  overflow: auto;
+  max-height: 100%;
+  height: 100%;
+  display: none;
+}
+
+#wrapperMtable::-webkit-scrollbar {
+  width: 0px;
+}
+
+/* Track */
+#wrapperMtable::-webkit-scrollbar-track {
+  background: #4e4d4d;
+}
+
+/* Handle */
+#wrapperMtable::-webkit-scrollbar-thumb {
+  background: var(--amber);
+}
+
+table.musicTable {
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  border-collapse: collapse;
+  font-size: 2.6vw;
+  table-layout: fixed;
+  overflow: hidden;
+}
+
+table.musicTable td,
+table.musicTable th {
+  border-bottom: 1px solid var(--amber);
+  padding: 6px 5px;
+}
+
+td.file,
+th.file {
+  width: auto;
+}
+
+td.itemid,
+th.itemid {
+  width: 7vw;
+}
+
+td.length,
+th.length {
+  width: 15vw;
+}
+
+table.musicTable thead th {
+  font-weight: normal;
+  color: var(--font-color) fff;
+  text-align: center;
+  position: sticky;
+  top: 0;
+  background: var(--amber);
+  border-spacing: 0;
+  word-wrap: break-word;
+}
+
+table.musicTable tfoot {
+  font-weight: normal;
+}
+
+#threeSongs {
+  text-align: center;
+  font-weight: bold;
+}
+
+#previousSong,
+#currentSong,
+#nextSong {
+  height: 7vw;
+  line-height: 7vw;
+  overflow: hidden;
+}
+
+#previousSong {
+  font-size: 2.8vw;
+}
+
+#currentSong {
+  font-size: 3.5vw;
+  color: var(--amber);
+}
+
+#nextSong {
+  font-size: 2.8vw;
+}
+
+#music-player {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  position: relative;
+}
+
+#music-player .button {
+  text-align: center;
+  fill: var(--font-color);
+  color: var(--font-color);
+}
+
+#music-player .button span {
+  vertical-align: sub;
+}
+
+#volume-music-bar {
+  -webkit-appearance: none;
+  background-color: var(--font-color);
+  transition: all 0.2s;
+  height: 5vw;
+  width: 27vw;
+  position: absolute;
+  top: 14vw;
+  left: -9vw;
+  transform: rotate(270deg);
+}
+
+#volume-music-bar::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 3vw;
+  height: 5vw;
+  background: var(--amber);
+}
+
+.button svg {
+  height: 6rem;
+  text-align: center;
+  display: block;
+  margin: auto;
+}
+
+.playing.button {
+  fill: #7b7bf4;
+}
+
+.grid-wrapper {
+  width: 100%;
+  height: 100%;
+}
+
+.grid-cell {
+  text-align: center;
+  line-height: 4vw;
+  font-size: 4vw;
+  font-weight: bold;
+  margin: auto;
+  overflow-wrap: break-word;
+}
+
+.info .grid-cell .description {
+  line-height: initial;
+  display: block;
+  margin: 0;
+  padding: 0;
+  font-size: 2.2vw;
+}
+
+.info .grid-cell .data {
+  line-height: 6vw;
+  font-size: 5vw;
+  display: flex;
+  align-items: baseline;
+  justify-content: center;
+}
+
+.info .grid-cell .data1 {
+  display: inline-block;
+}
+
+.info.element .wrapper-first {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(3, 1fr);
+  grid-column-gap: 1vw;
+  grid-row-gap: 1vw;
+}
+
+#main .element {
+  overflow: auto;
+}
+
+.settings .item {
+  margin: 0.4vw 0.3vw;
+  font-size: 2.5vw;
+}
+
+.settings .item-2 {
+  display: flex;
+  align-items: center;
+  align-content: center;
+  height: 10vw;
+}
+
+.item .filepath {
+  font-size: 1.6vw;
+}
+
+.item-1 {
+  width: 19vw;
+  min-width: 19vw;
+}
+
+.row {
+  display: flex;
+  align-items: center;
+  align-content: center;
+}
+
+.settings .wrapper-options {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.settings .wrapper.buttons {
+  display: flex;
+  justify-content: space-between;
+}
+.settings .wrapper-first > .wrapper {
+  margin-bottom: 5vw;
+  width: 100%;
+}
+.option-box-container {
+  display: flex;
+  align-items: center;
+}
+
+.option-box-container .input-container {
+  margin-right: 3vw;
+}
+
+input[type="checkbox"]:not(:checked),
+input[type="checkbox"]:checked {
+  position: absolute;
+  opacity: 0;
+  left: 0;
+}
+
+input[type="checkbox"]:not(:checked) + label,
+input[type="checkbox"]:checked + label {
+  position: relative;
+  padding-left: 5vw;
+  line-height: 4vw;
+}
+
+input[type="checkbox"]:not(:checked) + label:before,
+input[type="checkbox"]:checked + label:before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 4vw;
+  height: 4vw;
+  border: 2px solid var(--font-color);
+  transition: all 300ms linear;
+}
+
+input[type="checkbox"]:not(:checked) + label:after,
+input[type="checkbox"]:checked + label:after {
+  content: "🦊";
+  position: absolute;
+  top: 0;
+  height: 4vw;
+  width: 4vw;
+  left: 0;
+  color: var(--amber);
+  line-height: 4vw;
+  font-size: 2.5vw;
+  text-align: center;
+  transition: all 300ms linear;
+}
+
+input[type="checkbox"]:not(:checked) + label::after {
+  opacity: 0;
+}
+
+input[type="checkbox"]:checked + label:after {
+  opacity: 1;
+}
+
+.active.button path {
+  fill: var(--amber);
+}
+
+.curentlyPlaying {
+  color: var(--amber);
+}
+
+#minimize,
+#closeApp,
+#bluetooth,
+#wifi {
+  height: 70px;
+  width: 70px;
+  display: inline-block;
+}
+
+#music-folder-path {
+  display: none;
+}
+
+.file-upload.button {
+  margin-right: 1vw;
+  padding: 1vw;
+  border: 2px solid var(--font-color);
+  background: var(--backgroundnav);
+  color: var(--font-color);
+  min-width: 24vw;
+  width: 24vw;
+  height: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.settings select {
+  width: 24vw;
+}
+
+select {
+  background: var(--backgroundnav);
+  color: var(--font-color);
+  font-size: 3vw;
+  border: 2px solid var(--font-color);
+  padding: 1vw;
+  height: 100%;
+}
+
+select option {
+  background: var(--backgroundNav);
+}
+
+#minimize svg,
+#closeApp svg,
+#bluetooth svg,
+#wifi svg {
+  width: 50px;
+  height: 70px;
+  margin: auto;
+  display: block;
+}
+
+.settings .bluetooth,
+.settings .wifi {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  height: 100%;
+  background: var(--backgroundMain);
+  margin: auto;
+}
+
+.settings .bluetooth .wrapper,
+.settings .wifi .wrapper {
+  text-align: center;
+  display: block;
+  height: 100%;
+  width: 100%;
+  padding: 3vw 5vw;
+}
+
+.settings .wifi .availableNetworks,
+.settings .wifi .currentNetwork {
+  margin-top: 2vw;
+}
+
+.settings .wifi .availableNetworks .label {
+  margin-bottom: 1vw;
+}
+
+.settings .bluetooth .data,
+.settings .wifi .data {
+  display: block;
+  width: 100%;
+  height: 75%;
+}
+
+.settings .bluetooth .buttons,
+.settings .wifi .buttons {
+  display: flex;
+  height: auto;
+  width: 60%;
+  margin: auto;
+  text-align: center;
+  align-items: center;
+  align-content: center;
+  justify-content: space-evenly;
+}
+
+.settings .bluetooth .btn {
+  display: block;
+  float: left;
+  color: var(--font-color);
+  line-height: 7vw;
+  height: 7vw;
+  width: 7vw;
+}
+
+.settings .bluetooth .data .pairedDevices {
+  min-height: 15vw;
+  margin-top: 2vw;
+}
+
+.settings .bluetooth .scanedDevices .devices .device .name,
+.settings .bluetooth .scanedDevices .devices .device .mac,
+.settings .bluetooth .pairedDevices .devices .device .name,
+.settings .bluetooth .pairedDevices .devices .device .mac {
+  display: inline-block;
+}
+
+.settings .bluetooth .scanedDevices .devices .device .mac,
+.settings .bluetooth .pairedDevices .devices .device .mac {
+  margin-left: 1vw;
+}
+
+.settings .bluetooth .scanedDevices .devices .device.selected {
+  color: var(--amber);
+}
+
+.ssid {
+  margin-bottom: 0.5vw;
+}
+
+.ssid.selectedWiFi {
+  color: var(--amber);
+}
+
+#wifiPassword .content {
+  height: 26vw;
+  width: 55vw;
+  text-align: center;
+  background: var(--backgroundMain);
+  position: relative;
+  top: 4vw;
+  padding: 4vw;
+}
+
+#wifiPassword input {
+  display: block;
+  width: 100%;
+  height: 4vw;
+  background: var(--backgroundNav);
+  border: none;
+}
+
+#loader-wrapper {
+  width: 100%;
+  height: 100%;
+  opacity: 1;
+  /* background: var(--backgroundMain); */
+  position: fixed;
+  z-index: 1;
+}
+#loader-wrapper .rotate {
+  animation: spin 2s linear infinite;
+  width: 100%;
+  height: 100%;
+}
+#loader {
+  border: 5vw solid var(--backgroundNav);
+  border-top: 5vw solid var(--amber);
+  border-bottom: 5vw solid var(--amber);
+  border-radius: 50%;
+  width: 70vh;
+  height: 70vh;
+  margin: auto;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  position: absolute;
+}
+
+#loader-wrapper .svg {
+  width: 100%;
+  height: 100%;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.info .curent_time .time {
+  display: block;
+  margin-right: 10px;
+  padding: 0;
+  margin: auto;
+  height: 6vw;
+  line-height: 6vw;
+  font-size: 6vw;
+}
+
+.info .curent_time .date {
+  display: block;
+  padding: 0;
+  margin: auto;
+  height: 6vw;
+  line-height: 6vw;
+  font-size: 3vw;
+}
+
+#ipslist .ip {
+  display: block;
+}
+
+.grid-cell.weather_forecast {
+  display: none;
+}
+
+.small.text {
+  display: inline-block;
+  margin-left: 2vw;
+  font-size: 2vw;
+}
+
+.grid-cell:focus {
+  outline: 4px solid var(--amber);
+}
+
+.background.modal {
+  display: flex;
+  /* align-items    : center; */
+  justify-content: center;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  background: var(--backgroundMainOpacity);
+  color: var(--font-color);
+}
+
+.modal .set,
+.modal .content,
+#wifipasswordModal .modal {
+  height: 26vw;
+  width: 60vw;
+  text-align: center;
+  background: var(--backgroundMain);
+  position: relative;
+  padding: 4vw 8vw;
+  top: 10%;
+}
+
+.btn.single {
+  display: block;
+  float: left;
+  color: var(--font-color);
+  line-height: 7vw;
+  height: 7vw;
+  width: 7vw;
+  margin-right: 3vw;
+  margin: 2vw auto !important;
+  float: unset !important;
+  text-align: center;
+}
+
+.btn {
+  display: block;
+  color: var(--font-color);
+  fill: var(--font-color);
+  line-height: 7vw;
+  height: 7vw;
+  width: 7vw;
+}
+
+input.hour.time,
+input.minutes.time {
+  width: 10vw;
+  height: 5vw;
+  background: transparent;
+  background: var(--backgroundNav);
+  border: none;
+  color: var(--font-color);
+  text-align: center;
+  font-size: 4vw;
+}
+
+input.minutes.time {
+  margin-left: 3vw;
+}
+
+.modal .confirm {
+  max-width: 10vw;
+  margin: auto;
+  color: var(--font-color);
+}
+
+.modal .close {
+  position: absolute;
+  top: 2vh;
+  right: 0;
+  margin: 1vw;
+}

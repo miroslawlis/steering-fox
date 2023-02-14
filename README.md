@@ -1,6 +1,9 @@
 This aplication and hardware was designed to replace default/stock navigation/radio provided by BMW in my x3 e83 (2004).<br>
 Not ready yet :)
 
+for serialport: 
+rm -f node_modules/@serialport
+npm install serialport --build-from-source
 ### How it looks
 
 #### Dashboard GUI
