@@ -12,6 +12,7 @@ module.exports = {
           name: "steering-fox",
         },
         prerelease: true,
+        draft: true,
       },
     },
   ],
