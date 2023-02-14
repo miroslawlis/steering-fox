@@ -58,12 +58,15 @@ const mainIpcs = (profileStartTime) => {
       .list()
       .then((ports, err) => {
         if (err) {
+          // eslint-disable-next-line no-console
           console.log(`serialPort list error`, err);
           return null;
         }
+        // eslint-disable-next-line no-console
         console.log("ports: ", ports);
         return ports;
       })
+      // eslint-disable-next-line no-console
       .catch((err) => console.log("listSerialPorts error: ", err));
   });
   ipcMain.handle("existsSync", (event, arg) => existsSync(arg));
@@ -74,8 +77,10 @@ const mainIpcs = (profileStartTime) => {
   ipcMain.handle("writeFileSync", (event, args) => writeFileSync(...args));
   ipcMain.handle("writeFile", (event, args) => {
     writeFile(...args, (err) => {
+      // eslint-disable-next-line no-console
       if (err) console.log(err);
       else {
+        // eslint-disable-next-line no-console
         console.log("writeFile callback: File written successfully");
       }
     });

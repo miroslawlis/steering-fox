@@ -37,6 +37,7 @@ module.exports.findMusicFilesRecursivly = (folderPath) => {
       }
     });
   } catch (error) {
+    // eslint-disable-next-line no-console
     console.log(error);
   }
   return songs;

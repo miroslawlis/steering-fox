@@ -3,8 +3,7 @@ const profileStartTime = Date.now();
 
 // Modules to control application life and create native browser window
 // eslint-disable-next-line import/no-extraneous-dependencies
-const { app, BrowserWindow, protocol } = require("electron");
-const path = require("path");
+const { app, BrowserWindow } = require("electron");
 const mainIpcs = require("./js/main-ipcs");
 require("update-electron-app")();
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
@@ -80,25 +79,6 @@ app.commandLine.appendSwitch("--autoplay-policy", "no-user-gesture-required");
 
 // console.log(powerSaveBlocker.isStarted(id))
 app.whenReady().then(() => {
-  protocol.registerFileProtocol("file", (request, callback) => {
-    const pathname = decodeURI(request.url.replace(/^file:\/\//, ""));
-    callback(pathname);
-  });
-
-  protocol.registerFileProtocol("local-audio", (request, callback) => {
-    const url = request.url.replace(/^local-audio:\/\//, "");
-    // Decode URL to prevent errors when loading filenames with UTF-8 chars or chars like "#"
-    const decodedUrl = decodeURI(url); // Needed in case URL contains spaces
-    try {
-      // eslint-disable-next-line no-undef
-      return callback(path.join(__static, decodedUrl));
-    } catch (error) {
-      console.error(
-        "ERROR: registerLocalVideoProtocol: Could not get file path:",
-        error
-      );
-    }
-  });
 
   // API
   mainIpcs(profileStartTime);
