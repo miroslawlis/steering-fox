@@ -5,7 +5,15 @@ const profileStartTime = Date.now();
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { app, BrowserWindow } = require("electron");
 const mainIpcs = require("./js/main-ipcs");
-require("update-electron-app")();
+const {
+  default: handleSquirrelEvent,
+} = require("./js/main-squirel-events-handler");
+
+const { default: initUpdates } = require("./js/main-updates");
+require("update-electron-app")({
+  updateInterval: "1 hour",
+  notifyUser: true,
+});
 // Handle creating/removing shortcuts on Windows when installing/uninstalling.
 // eslint-disable-next-line global-require
 if (require("electron-squirrel-startup")) {
@@ -51,7 +59,14 @@ const createWindow = () => {
 // This method will be called when Electron has finished
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
-app.on("ready", createWindow);
+app.on("ready", () => {
+  if (handleSquirrelEvent() === "firstrun") {
+    setTimeout(initUpdates, 30000);
+  } else {
+    initUpdates();
+  }
+  createWindow();
+});
 
 // Quit when all windows are closed, except on macOS. There, it's common
 // for applications and their menu bar to stay active until the user quits
@@ -79,7 +94,6 @@ app.commandLine.appendSwitch("--autoplay-policy", "no-user-gesture-required");
 
 // console.log(powerSaveBlocker.isStarted(id))
 app.whenReady().then(() => {
-
   // API
   mainIpcs(profileStartTime);
 });
