@@ -1,7 +1,7 @@
 {
   "name": "stearing_fox",
   "productName": "stearing_fox",
-  "version": "1.1.6",
+  "version": "1.1.7",
   "description": "Stearing Fox car dash application (Navigation, control panel, wheater, CAN)",
   "repository": {
     "type": "git",
