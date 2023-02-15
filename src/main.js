@@ -60,12 +60,13 @@ const createWindow = () => {
 // initialization and is ready to create browser windows.
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
+  createWindow();
+
   if (handleSquirrelEvent() === "firstrun") {
     setTimeout(initUpdates, 30000);
   } else {
     initUpdates();
   }
-  createWindow();
 });
 
 // Quit when all windows are closed, except on macOS. There, it's common
