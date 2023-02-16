@@ -137,7 +137,6 @@ window.addEventListener("DOMContentLoaded", () => {
   window.electronAPI.isLinux().then((data) => {
     window.appData.isLinux = data;
   });
-  window.appData.debugMode = false;
   window.appData.debugMode = true;
 
   // const settings = require('./js/settings.js');
@@ -201,10 +200,10 @@ window.addEventListener("DOMContentLoaded", () => {
   // bluetooth
   document.getElementById("bluetooth").addEventListener("click", () => {
     // show/hide bluetooth settings
-    document.querySelector(".settings .bluetooth").classList.toggle("hide");
+    document.querySelector("#bluetooth-settings-modal").classList.toggle("hide");
   });
   document.getElementById("btClose").addEventListener("click", () => {
-    document.querySelector(".settings .bluetooth").classList.toggle("hide");
+    document.querySelector("#.bluetooth-settings-modal").classList.toggle("hide");
   });
   // display app version from package.json
   window.electronAPI.appVersion().then((data) => {

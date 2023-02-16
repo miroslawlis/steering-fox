@@ -14,6 +14,7 @@
     "debug:remote": "electron-forge start --inspect=5858",
     "package": "electron-forge package",
     "make": "electron-forge make",
+    "make:armv7": "electron-forge make --arch=armv7l",
     "publish": "electron-forge publish",
     "lint": "echo \"No linting configured\""
   },
