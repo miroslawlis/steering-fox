@@ -184,7 +184,7 @@ window.addEventListener("DOMContentLoaded", () => {
 
   window.menuHideToggle = menuHideToggle;
 
-  document.getElementById("settings").addEventListener("click", () => {
+  document.getElementById("settings-main-nav").addEventListener("click", () => {
     getIPs();
     wifiInfo();
   });

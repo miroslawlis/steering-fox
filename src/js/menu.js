@@ -1,74 +1,71 @@
 export const menuHideToggle = (element) => {
-  const activeElementNav = document.querySelector("#nav .element.active");
-  const activeElementMain = document.querySelector("#main .element.active");
+  const activeMainNavigationEl = document.querySelector("#nav > .active");
+  const activeMainView = document.querySelector("#main > .active");
 
-  if (
-    element.classList.contains("active") === false &&
-    element.classList.contains("element") === true
-  ) {
+  if (element.classList.contains("active") === false) {
     // info
-    if (element.id === "info") {
+    if (element.id === "info-main-nav") {
       // remove class from currently active in nav
-      activeElementNav.classList.remove("active");
+      activeMainNavigationEl.classList.remove("active");
       // remove class from currently active in main
-      activeElementMain.classList.remove("active");
+      activeMainView.classList.remove("active");
 
       // add class nav
-      document.getElementById("info").classList.add("active");
+      element.classList.add("active");
       // add class main
-      document.querySelector("#main .info.element").classList.add("active");
+      document.querySelector("#info").classList.add("active");
     }
 
     // music
-    if (element.id === "music") {
+    if (element.id === "music-main-nav") {
       // remove class from currently active in nav
-      activeElementNav.classList.remove("active");
+      activeMainNavigationEl.classList.remove("active");
       // remove class from currently active in main
-      activeElementMain.classList.remove("active");
+      activeMainView.classList.remove("active");
 
       // add class nav
-      document.getElementById("music").classList.add("active");
+      element.classList.add("active");
       // add class main
-      document.querySelector("#main .music.element").classList.add("active");
+      document.querySelector("#music").classList.add("active");
     }
 
     // youtube
-    if (element.id === "youtube") {
+    if (element.id === "youtube-main-nav") {
       // remove class from currently active in nav
-      activeElementNav.classList.remove("active");
+      activeMainNavigationEl.classList.remove("active");
       // remove class from currently active in main
-      activeElementMain.classList.remove("active");
+      activeMainView.classList.remove("active");
 
       // add class nav
-      document.getElementById("youtube").classList.add("active");
+      element.classList.add("active");
       // add class main
-      document.querySelector("#main .youtube.element").classList.add("active");
+      document.querySelector("#youtube").classList.add("active");
     }
 
     // map
-    if (element.id === "map") {
+    if (element.id === "map-main-nav") {
       // remove class from currently active in nav
-      activeElementNav.classList.remove("active");
+      activeMainNavigationEl.classList.remove("active");
       // remove class from currently active in main
-      activeElementMain.classList.remove("active");
+      activeMainView.classList.remove("active");
 
       // add class nav
-      document.getElementById("map").classList.add("active");
+      element.classList.add("active");
       // add class main
-      document.querySelector("#main .map.element").classList.add("active");
+      document.querySelector("#map").classList.add("active");
     }
 
     // settings
-    if (element.id === "settings") {
+    if (element.id === "settings-main-nav") {
       // remove class from currently active in nav
-      activeElementNav.classList.remove("active");
+      activeMainNavigationEl.classList.remove("active");
       // remove class from currently active in main
-      activeElementMain.classList.remove("active");
+      activeMainView.classList.remove("active");
 
       // add class nav
-      document.getElementById("settings").classList.add("active");
+      element.classList.add("active");
       // add class main
-      document.querySelector("#main .settings.element").classList.add("active");
+      document.querySelector("#settings").classList.add("active");
     }
   }
 };

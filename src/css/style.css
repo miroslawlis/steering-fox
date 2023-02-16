@@ -35,22 +35,21 @@ h3 {
 }
 
 #app,
-main,
+#main,
 .grid-container {
   height: 100%;
   width: 100%;
 }
 
 .grid-container {
-  /* display                : grid;
-    grid-template-columns   : 25% 75%;
-    grid-template-rows      : 1fr;
-    grid-template-areas     : "nav main"; */
-  display: block;
+  display: grid;
+  grid-template-columns: 25% 75%;
+  grid-template-rows: 1fr;
+  grid-template-areas: "nav main";
 }
 
-#main .youtube,
-#main .map {
+#youtube,
+#map {
   width: 100%;
   height: 100%;
 }
@@ -67,30 +66,23 @@ main,
 #music {
   position: relative;
 }
-#music .mute-icon {
-  opacity: 0;
+#notifications-persistant {
+  pointer-events: none;
   position: absolute;
-  right: 0;
-  bottom: 0;
+  inset: 0;
+}
+#notifications-persistant .mute-icon {
+  opacity: 0;
+  width: 6vw;
+  height: 6vw;
   transition: opacity 200ms linear;
 }
-#svgs svg {
-  fill: inherit;
-}
-#music .mute-icon svg {
+#notifications-persistant .mute-icon svg {
   fill: var(--amber);
   width: 6vw;
 }
-#nav .element {
-  height: 20%;
-  min-height: 3vw;
-  padding: 1.5vw 1vw;
-  text-align: center;
-  color: var(--font-color);
-  font-size: 3vw;
-  line-height: 3vw;
-  opacity: 1;
-  transition: all 0.2s;
+#svgs svg {
+  fill: inherit;
 }
 
 #nav {
@@ -101,7 +93,17 @@ main,
   height: 100%;
   float: left;
 }
-
+#nav > div {
+  height: 20%;
+  min-height: 3vw;
+  padding: 1.5vw 1vw;
+  text-align: center;
+  color: var(--font-color);
+  font-size: 3vw;
+  line-height: 3vw;
+  opacity: 1;
+  transition: all 0.2s;
+}
 #nav svg {
   width: 80%;
   height: 100%;
@@ -121,105 +123,25 @@ main,
   height: 100%;
   fill: var(--amber);
 }
-.element:not(.active) svg {
+#nav > div:not(.active) svg {
   fill: var(--font-color);
 }
 
-#main .element {
+#main > div {
   background: var(--backgroundMain);
 }
 
-#main .element:not(.active) {
-  display: none;
+#main > div:not(.active) {
+  display: none !important;
   opacity: 0;
 }
 
-#main .element.active {
+#main > .active {
   display: block;
   width: 100%;
   height: 100%;
   opacity: 1;
   animation: fadeInRight 0.5s;
-}
-
-#main .music.element.active {
-  height: 100%;
-}
-#main .music.element > .column {
-  height: 100%;
-  justify-content: space-around;
-}
-.music.element .wrapper-first,
-.settings.element .wrapper-first {
-  display: block;
-  padding: 3vw;
-}
-
-#wrapperMtable {
-  overflow: auto;
-  max-height: 100%;
-  height: 100%;
-  display: none;
-}
-
-#wrapperMtable::-webkit-scrollbar {
-  width: 0px;
-}
-
-/* Track */
-#wrapperMtable::-webkit-scrollbar-track {
-  background: #4e4d4d;
-}
-
-/* Handle */
-#wrapperMtable::-webkit-scrollbar-thumb {
-  background: var(--amber);
-}
-
-table.musicTable {
-  width: 100%;
-  height: 100%;
-  text-align: center;
-  border-collapse: collapse;
-  font-size: 2.6vw;
-  table-layout: fixed;
-  overflow: hidden;
-}
-
-table.musicTable td,
-table.musicTable th {
-  border-bottom: 1px solid var(--amber);
-  padding: 6px 5px;
-}
-
-td.file,
-th.file {
-  width: auto;
-}
-
-td.itemid,
-th.itemid {
-  width: 7vw;
-}
-
-td.length,
-th.length {
-  width: 15vw;
-}
-
-table.musicTable thead th {
-  font-weight: normal;
-  color: var(--font-color) fff;
-  text-align: center;
-  position: sticky;
-  top: 0;
-  background: var(--amber);
-  border-spacing: 0;
-  word-wrap: break-word;
-}
-
-table.musicTable tfoot {
-  font-weight: normal;
 }
 
 #threeSongs {
@@ -309,7 +231,7 @@ table.musicTable tfoot {
   overflow-wrap: break-word;
 }
 
-.info .grid-cell .description {
+#info .grid-cell .description {
   line-height: initial;
   display: block;
   margin: 0;
@@ -317,7 +239,7 @@ table.musicTable tfoot {
   font-size: 2.2vw;
 }
 
-.info .grid-cell .data {
+#info .grid-cell .data {
   line-height: 6vw;
   font-size: 5vw;
   display: flex;
@@ -325,28 +247,29 @@ table.musicTable tfoot {
   justify-content: center;
 }
 
-.info .grid-cell .data1 {
+#info .grid-cell .data1 {
   display: inline-block;
 }
 
-.info.element .wrapper-first {
+#main #info {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-template-rows: repeat(3, 1fr);
   grid-column-gap: 1vw;
   grid-row-gap: 1vw;
+  height: 100%;
 }
 
 #main .element {
   overflow: auto;
 }
 
-.settings .item {
+#main #settings .item {
   margin: 0.4vw 0.3vw;
   font-size: 2.5vw;
 }
 
-.settings .item-2 {
+#main #settings .item-2 {
   display: flex;
   align-items: center;
   align-content: center;
@@ -368,17 +291,17 @@ table.musicTable tfoot {
   align-content: center;
 }
 
-.settings .wrapper-options {
+#main #settings .wrapper-options {
   display: flex;
   flex-direction: column;
   align-items: center;
 }
 
-.settings .wrapper.buttons {
+#main #settings .wrapper.buttons {
   display: flex;
   justify-content: space-between;
 }
-.settings .wrapper-first > .wrapper {
+#main #settings > .wrapper {
   margin-bottom: 5vw;
   width: 100%;
 }
@@ -474,7 +397,7 @@ input[type="checkbox"]:checked + label:after {
   align-items: center;
 }
 
-.settings select {
+#main #settings select {
   width: 24vw;
 }
 
@@ -501,8 +424,8 @@ select option {
   display: block;
 }
 
-.settings .bluetooth,
-.settings .wifi {
+#main #settings .bluetooth,
+#main #settings .wifi {
   position: absolute;
   top: 0;
   left: 0;
@@ -514,8 +437,8 @@ select option {
   margin: auto;
 }
 
-.settings .bluetooth .wrapper,
-.settings .wifi .wrapper {
+#main #settings .bluetooth .wrapper,
+#main #settings .wifi .wrapper {
   text-align: center;
   display: block;
   height: 100%;
@@ -523,24 +446,24 @@ select option {
   padding: 3vw 5vw;
 }
 
-.settings .wifi .availableNetworks,
-.settings .wifi .currentNetwork {
+#main #settings .wifi .availableNetworks,
+#main #settings .wifi .currentNetwork {
   margin-top: 2vw;
 }
 
-.settings .wifi .availableNetworks .label {
+#main #settings .wifi .availableNetworks .label {
   margin-bottom: 1vw;
 }
 
-.settings .bluetooth .data,
-.settings .wifi .data {
+#main #settings .bluetooth .data,
+#main #settings .wifi .data {
   display: block;
   width: 100%;
   height: 75%;
 }
 
-.settings .bluetooth .buttons,
-.settings .wifi .buttons {
+#main #settings .bluetooth .buttons,
+#main #settings .wifi .buttons {
   display: flex;
   height: auto;
   width: 60%;
@@ -551,7 +474,7 @@ select option {
   justify-content: space-evenly;
 }
 
-.settings .bluetooth .btn {
+#main #settings .bluetooth .btn {
   display: block;
   float: left;
   color: var(--font-color);
@@ -560,24 +483,24 @@ select option {
   width: 7vw;
 }
 
-.settings .bluetooth .data .pairedDevices {
+#main #settings .bluetooth .data .pairedDevices {
   min-height: 15vw;
   margin-top: 2vw;
 }
 
-.settings .bluetooth .scanedDevices .devices .device .name,
-.settings .bluetooth .scanedDevices .devices .device .mac,
-.settings .bluetooth .pairedDevices .devices .device .name,
-.settings .bluetooth .pairedDevices .devices .device .mac {
+#main #settings .bluetooth .scanedDevices .devices .device .name,
+#main #settings .bluetooth .scanedDevices .devices .device .mac,
+#main #settings .bluetooth .pairedDevices .devices .device .name,
+#main #settings .bluetooth .pairedDevices .devices .device .mac {
   display: inline-block;
 }
 
-.settings .bluetooth .scanedDevices .devices .device .mac,
-.settings .bluetooth .pairedDevices .devices .device .mac {
+#main #settings .bluetooth .scanedDevices .devices .device .mac,
+#main #settings .bluetooth .pairedDevices .devices .device .mac {
   margin-left: 1vw;
 }
 
-.settings .bluetooth .scanedDevices .devices .device.selected {
+#main #settings .bluetooth .scanedDevices .devices .device.selected {
   color: var(--amber);
 }
 
@@ -648,7 +571,7 @@ select option {
   }
 }
 
-.info .curent_time .time {
+#info .curent_time .time {
   display: block;
   margin-right: 10px;
   padding: 0;
@@ -658,7 +581,7 @@ select option {
   font-size: 6vw;
 }
 
-.info .curent_time .date {
+#info .curent_time .date {
   display: block;
   padding: 0;
   margin: auto;

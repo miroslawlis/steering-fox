@@ -65,32 +65,27 @@
       </div>
     </template>
     <div id="nav">
-      <div id="info" class="element active" onclick="menuHideToggle(this)">
+      <div id="info-main-nav" class="active" onclick="menuHideToggle(this)">
         <svg viewBox="0 0 48 48">
           <use href="#dashboard_svg" />
         </svg>
       </div>
-      <div id="music" class="element" onclick="menuHideToggle(this)">
-        <div class="mute-icon">
-          <svg viewBox="0 0 48 48">
-            <use href="#volume_mute_svg" />
-          </svg>
-        </div>
+      <div id="music-main-nav" onclick="menuHideToggle(this)">
         <svg viewBox="0 0 48 48">
           <use href="#music_svg" />
         </svg>
       </div>
-      <div id="youtube" class="element" onclick="menuHideToggle(this)">
+      <div id="youtube-main-nav" onclick="menuHideToggle(this)">
         <svg viewBox="0 0 48 48">
           <use href="#youtube_svg" />
         </svg>
       </div>
-      <div id="map" class="element" onclick="menuHideToggle(this)">
+      <div id="map-main-nav" onclick="menuHideToggle(this)">
         <svg viewBox="0 0 48 48">
           <use href="#navigation_svg" />
         </svg>
       </div>
-      <div id="settings" class="element" onclick="menuHideToggle(this)">
+      <div id="settings-main-nav" onclick="menuHideToggle(this)">
         <svg viewBox="0 0 48 48">
           <use href="#cog_svg" />
         </svg>
@@ -98,56 +93,54 @@
     </div>
 
     <div id="main">
-      <div class="info element active">
-        <div class="grid-wrapper wrapper-first">
-          <div class="grid-cell weather_forecast" tabindex="0"><span class="totranslate">Wheater forecast</span></div>
-          <div class="grid-cell temp_outside_car" tabindex="1">
-            <span class="description">
-              <span class="totranslate">Outside temp</span>
-            </span>
-            <span class="data">-</span>
-          </div>
-          <div class="grid-cell curent_time" tabindex="2" onclick="window.appData.timeSetModal()"></div>
-          <div class="grid-cell altitude" tabindex="3">
-            <span class="description"><span class="totranslate">Alltitude</span></span>
-            <span class="data">-</span>
-          </div>
-          <div class="grid-cell coolant_temp" tabindex="4">
-            <span class="description"><span class="totranslate">Coolant temp</span></span>
-            <span class="data">-</span>
-          </div>
-          <div class="grid-cell fuel_cons1" onclick="window.appData.fuelConsResetModal('fuel1')">
-            <span class="description"><span class="totranslate">Fuel 1</span></span>
-            <span class="data">
-              <div class="data1">-</div>
-              <div class="small text">l/100km</div>
-            </span>
-          </div>
-          <div class="grid-cell fuel_cons2" onclick="window.appData.fuelConsResetModal('fuel2')">
-            <span class="description"><span class="totranslate">Fuel 2</span></span>
-            <span class="data">
-              -
-              <div class="small text">l/100km</div>
-            </span>
-          </div>
-          <div class="grid-cell range">
-            <span class="description"><span class="totranslate">Range</span></span>
-            <span class="data">-</span>
-          </div>
-          <div class="grid-cell avg_speed">
-            <span class="description"><span class="totranslate">Avarage speed</span></span>
-            <span class="data">-</span>
-          </div>
-          <div class="grid-cell cpu_temp">
-            <span class="description"><span class="totranslate">CPU temp.</span></span>
-            <span class="data">-</span>
-          </div>
+      <div id="info" class="box active">
+        <div class="grid-cell weather_forecast" tabindex="0"><span class="totranslate">Wheater forecast</span></div>
+        <div class="grid-cell temp_outside_car" tabindex="1">
+          <span class="description">
+            <span class="totranslate">Outside temp</span>
+          </span>
+          <span class="data">-</span>
+        </div>
+        <div class="grid-cell curent_time" tabindex="2" onclick="window.appData.timeSetModal()"></div>
+        <div class="grid-cell altitude" tabindex="3">
+          <span class="description"><span class="totranslate">Alltitude</span></span>
+          <span class="data">-</span>
+        </div>
+        <div class="grid-cell coolant_temp" tabindex="4">
+          <span class="description"><span class="totranslate">Coolant temp</span></span>
+          <span class="data">-</span>
+        </div>
+        <div class="grid-cell fuel_cons1" onclick="window.appData.fuelConsResetModal('fuel1')">
+          <span class="description"><span class="totranslate">Fuel 1</span></span>
+          <span class="data">
+            <div class="data1">-</div>
+            <div class="small text">l/100km</div>
+          </span>
+        </div>
+        <div class="grid-cell fuel_cons2" onclick="window.appData.fuelConsResetModal('fuel2')">
+          <span class="description"><span class="totranslate">Fuel 2</span></span>
+          <span class="data">
+            -
+            <div class="small text">l/100km</div>
+          </span>
+        </div>
+        <div class="grid-cell range">
+          <span class="description"><span class="totranslate">Range</span></span>
+          <span class="data">-</span>
+        </div>
+        <div class="grid-cell avg_speed">
+          <span class="description"><span class="totranslate">Avarage speed</span></span>
+          <span class="data">-</span>
+        </div>
+        <div class="grid-cell cpu_temp">
+          <span class="description"><span class="totranslate">CPU temp.</span></span>
+          <span class="data">-</span>
         </div>
       </div>
-      <div class="music element">
+      <div id="music" class="box">
         <div class="column">
           <div id="music-player" class="gap-2">
-            <input id="volume-music-bar" class="settings" type="range" min="1" max="100" value="50" class="slider nokeyboard" />
+            <input id="volume-music-bar" class="settings-watcher" type="range" min="1" max="100" value="50" class="slider nokeyboard" />
             <div class="row gap-2">
               <div class="volumedown button" onclick="window.appData.audio.methods.volDown()">
                 <svg viewBox="0 0 48 48">
@@ -211,7 +204,7 @@
           </div>
         </div>
       </div>
-      <div class="youtube element">
+      <div id="youtube" class="box">
         <div id="yt-view"></div>
         <!-- pig hack for youtube in iframe -->
         <input
@@ -232,161 +225,166 @@
               font-size: 2.5vw;
             " />
       </div>
-      <div class="map element">
+      <div id="map" class="box">
         <webview id="map-view" src="https://www.google.pl/maps?hl=pl&tab=wl" style="width: 100%; height: 100%" preload="./js/keyboard.js"></webview>
         <!-- nodeintegration nodeintegrationinsubframes -->
         <!-- <div id="map-canvas" style="width:100%; height:100%"></div> -->
       </div>
-      <div class="settings element">
-        <div class="wrapper-first">
-          <div class="wrapper options">
-            <div class="row">
-              <div class="item item-1 totranslate">Music folder</div>
-              <div class="item item-2 option">
-                <label for="music-folder-path" class="file-upload button"> Change music folder </label>
-                <input id="music-folder-path" class="settings file nokeyboard" type="file" webkitdirectory directory />
-                <p class="filepath"></p>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="item item-1 totranslate">Theme</div>
-              <div class="item item-2">
-                <select class="themeOption" onchange="window.appData.switchTheme(this);">
-                  <option value="green">Green</option>
-                  <option value="purpule">Purpule</option>
-                  <option value="dark_grey">Dark Grey</option>
-                  <option value="rainbow">Rainbow</option>
-                  <option value="light" selected>Light</option>
-                </select>
-              </div>
-            </div>
-
-            <div class="row">
-              <div class="item item-1 totranslate">Language</div>
-              <div class="item item-2">
-                <select class="languageOption" onchange="languageSwitch(this)">
-                  <option value="eng">English</option>
-                  <option value="pol">Polish</option>
-                </select>
-              </div>
-            </div>
-          </div>
-          <div class="wrapper buttons">
-            <div id="minimize" class="btn">
-              <svg viewBox="0 0 48 48">
-                <use href="#minimize_svg" />
-              </svg>
-            </div>
-            <div id="closeApp" class="btn">
-              <svg viewBox="0 0 48 48">
-                <use href="#close_app_svg" />
-              </svg>
-            </div>
-            <div id="bluetooth" class="btn">
-              <svg viewBox="0 0 48 48">
-                <use href="#bluetooth_svg" />
-              </svg>
-            </div>
-            <div id="wifi" class="btn">
-              <svg viewBox="0 0 48 48">
-                <use href="#wifi_svg" />
-              </svg>
+      <div id="settings" class="box">
+        <div class="wrapper options">
+          <div class="row">
+            <div class="item item-1 totranslate">Music folder</div>
+            <div class="item item-2 option">
+              <label for="music-folder-path" class="file-upload button"> Change music folder </label>
+              <input id="music-folder-path" class="settings-watcher file nokeyboard" type="file" webkitdirectory directory />
+              <p class="filepath"></p>
             </div>
           </div>
 
-          <div class="wrapper options">
-            <div id="collect-ibus-data-and-save" class="option-box-container">
-              <input id="checkbox-ibus-collect" class="nokeyboard" type="checkbox" />
-              <label for="checkbox-ibus-collect">Start collecting IBUS data, and save to disk. </label>
+          <div class="row">
+            <div class="item item-1 totranslate">Theme</div>
+            <div class="item item-2">
+              <select class="themeOption settings-watcher" onchange="window.appData.switchTheme(this);">
+                <option value="green">Green</option>
+                <option value="purpule">Purpule</option>
+                <option value="dark_grey">Dark Grey</option>
+                <option value="rainbow">Rainbow</option>
+                <option value="light" selected>Light</option>
+              </select>
             </div>
           </div>
 
-          <div class="wrapper ips">
-            <div id="ipslist"></div>
+          <div class="row">
+            <div class="item item-1 totranslate">Language</div>
+            <div class="item item-2">
+              <select class="languageOption" onchange="languageSwitch(this)">
+                <option value="eng">English</option>
+                <option value="pol">Polish</option>
+              </select>
+            </div>
           </div>
-          <div class="wrapper app_data">
-            <div id="app_version"></div>
-            <div id="update_status"></div>
+        </div>
+        <div class="wrapper buttons">
+          <div id="minimize" class="btn">
+            <svg viewBox="0 0 48 48">
+              <use href="#minimize_svg" />
+            </svg>
           </div>
+          <div id="closeApp" class="btn">
+            <svg viewBox="0 0 48 48">
+              <use href="#close_app_svg" />
+            </svg>
+          </div>
+          <div id="bluetooth" class="btn">
+            <svg viewBox="0 0 48 48">
+              <use href="#bluetooth_svg" />
+            </svg>
+          </div>
+          <div id="wifi" class="btn">
+            <svg viewBox="0 0 48 48">
+              <use href="#wifi_svg" />
+            </svg>
+          </div>
+        </div>
 
-          <div id="bluetooth-settings-modal" class="hide">
-            <div class="wrapper">
-              <h2 class="totranslate">Bluetooth settings</h2>
-              <div class="data">
-                <div class="pairedDevices">
-                  <div class="label"><span class="totranslate">Paired devices</span>:</div>
-                  <div class="devices"></div>
-                </div>
-                <div class="scanedDevices">
-                  <div class="label"><span class="totranslate">Devices available</span>:</div>
-                  <div class="devices"></div>
-                </div>
+        <div class="wrapper options">
+          <div id="collect-ibus-data-and-save" class="option-box-container">
+            <input id="checkbox-ibus-collect" class="nokeyboard" type="checkbox" />
+            <label for="checkbox-ibus-collect">Start collecting IBUS data, and save to disk. </label>
+          </div>
+        </div>
+
+        <div class="wrapper ips">
+          <div id="ipslist"></div>
+        </div>
+        <div class="wrapper app_data">
+          <div id="app_version"></div>
+          <div id="update_status"></div>
+        </div>
+
+        <div id="bluetooth-settings-modal" class="hide">
+          <div class="wrapper">
+            <h2 class="totranslate">Bluetooth settings</h2>
+            <div class="data">
+              <div class="pairedDevices">
+                <div class="label"><span class="totranslate">Paired devices</span>:</div>
+                <div class="devices"></div>
               </div>
-              <div class="buttons">
-                <div id="btDisconnect" class="btn">
-                  <svg viewBox="0 0 48 48">
-                    <use href="#cross_svg" />
-                  </svg>
-                </div>
-                <div id="btPair" class="btn">
-                  <svg viewBox="0 0 48 48">
-                    <use href="#confirm_svg" />
-                  </svg>
-                </div>
-                <div id="btScan" class="btn">
-                  <svg viewBox="0 0 48 48">
-                    <use href="#look_up_glass_svg" />
-                  </svg>
-                </div>
-                <div id="btClose" class="btn">
-                  <svg viewBox="0 0 48 48">
-                    <use href="#exit_svg" />
-                  </svg>
-                </div>
+              <div class="scanedDevices">
+                <div class="label"><span class="totranslate">Devices available</span>:</div>
+                <div class="devices"></div>
+              </div>
+            </div>
+            <div class="buttons">
+              <div id="btDisconnect" class="btn">
+                <svg viewBox="0 0 48 48">
+                  <use href="#cross_svg" />
+                </svg>
+              </div>
+              <div id="btPair" class="btn">
+                <svg viewBox="0 0 48 48">
+                  <use href="#confirm_svg" />
+                </svg>
+              </div>
+              <div id="btScan" class="btn">
+                <svg viewBox="0 0 48 48">
+                  <use href="#look_up_glass_svg" />
+                </svg>
+              </div>
+              <div id="btClose" class="btn">
+                <svg viewBox="0 0 48 48">
+                  <use href="#exit_svg" />
+                </svg>
               </div>
             </div>
           </div>
+        </div>
 
-          <div id="wifi-settings-modal" class="hide">
-            <div class="wrapper">
-              <h2 class="totranslate">Wi-Fi settings</h2>
-              <div class="data">
-                <div class="currentNetwork"></div>
-                <div class="availableNetworks">
-                  <div class="label"><span class="totranslate">Available networks</span>:</div>
-                  <div class="data"></div>
-                </div>
+        <div id="wifi-settings-modal" class="hide">
+          <div class="wrapper">
+            <h2 class="totranslate">Wi-Fi settings</h2>
+            <div class="data">
+              <div class="currentNetwork"></div>
+              <div class="availableNetworks">
+                <div class="label"><span class="totranslate">Available networks</span>:</div>
+                <div class="data"></div>
               </div>
-              <div class="buttons">
-                <div id="wifiDisconnect" class="btn">
-                  <svg viewBox="0 0 48 48">
-                    <use href="#wifi_disconnect_svg" />
-                  </svg>
-                </div>
-                <div id="wifiConnect" class="btn">
-                  <svg viewBox="0 0 48 48">
-                    <use href="#confirm_svg" />
-                  </svg>
-                </div>
+            </div>
+            <div class="buttons">
+              <div id="wifiDisconnect" class="btn">
+                <svg viewBox="0 0 48 48">
+                  <use href="#wifi_disconnect_svg" />
+                </svg>
+              </div>
+              <div id="wifiConnect" class="btn">
+                <svg viewBox="0 0 48 48">
+                  <use href="#confirm_svg" />
+                </svg>
+              </div>
 
-                <div id="wifiRefreshList" class="btn">
-                  <svg viewBox="0 0 48 48">
-                    <use href="#look_up_glass_svg" />
-                  </svg>
-                </div>
+              <div id="wifiRefreshList" class="btn">
+                <svg viewBox="0 0 48 48">
+                  <use href="#look_up_glass_svg" />
+                </svg>
+              </div>
 
-                <div id="wifiClose" class="btn">
-                  <svg viewBox="0 0 48 48">
-                    <use href="#exit_svg" />
-                  </svg>
-                </div>
+              <div id="wifiClose" class="btn">
+                <svg viewBox="0 0 48 48">
+                  <use href="#exit_svg" />
+                </svg>
               </div>
             </div>
           </div>
         </div>
       </div>
       <!-- END settings element -->
+    </div>
+    <div id="notifications-persistant">
+      <div class="mute-icon">
+        <svg viewBox="0 0 48 48">
+          <use href="#volume_mute_svg" />
+        </svg>
+      </div>
     </div>
   </div>
 

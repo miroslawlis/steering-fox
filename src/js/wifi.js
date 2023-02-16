@@ -35,16 +35,16 @@ export function wifiInfo() {
             .split('"');
 
           document.querySelector(
-            ".settings .wifi .currentNetwork"
+            "#settings .wifi .currentNetwork"
           ).innerHTML = `<p>Connected to: ${currentWifi}</p>`;
           // clear DOM object
           document.querySelector(
-            ".settings .wifi .availableNetworks .data"
+            "#settings .wifi .availableNetworks .data"
           ).innerHTML = "";
 
           wifiNetworkList.forEach((element) => {
             document.querySelector(
-              ".settings .wifi .availableNetworks .data"
+              "#settings .wifi .availableNetworks .data"
             ).innerHTML += `<div class="ssid" onclick="selectedWiFitoConnect(this);">${element}</div>`;
           });
         });
@@ -73,16 +73,16 @@ export function wifiInfo() {
                 .split("\n");
 
               document.querySelector(
-                ".settings .wifi .currentNetwork"
+                "#settings .wifi .currentNetwork"
               ).innerHTML = `<p>Connected to: ${currentWifi}</p>`;
               // clear DOM object
               document.querySelector(
-                ".settings .wifi .availableNetworks .data"
+                "#settings .wifi .availableNetworks .data"
               ).innerHTML = "";
 
               wifiNetworkList.forEach((element) => {
                 document.querySelector(
-                  ".settings .wifi .availableNetworks .data"
+                  "#settings .wifi .availableNetworks .data"
                 ).innerHTML += `<div class="ssid" onclick="selectedWiFitoConnect(this);">${element}</div>`;
               });
             }
@@ -112,7 +112,7 @@ function wifiDisconnect() {
       // disconnect from WiFi network
       executeCommand("netsh wlan disconnect", () => {
         debugLog(`disconected from Wi-Fi network: ${currentWifi}`);
-        document.querySelector(".settings .wifi .currentNetwork").innerHTML =
+        document.querySelector("#settings .wifi .currentNetwork").innerHTML =
           '<p class="warning">No connection</p>';
       });
     } catch (error) {
@@ -123,7 +123,7 @@ function wifiDisconnect() {
 
 export default function wifiConnect() {
   const selectedWiFitoConnectEl = document.querySelector(
-    ".settings .wifi .data .ssid.selectedWiFi"
+    "#settings .wifi .data .ssid.selectedWiFi"
   );
   let wifiPassword;
 
@@ -144,7 +144,7 @@ export default function wifiConnect() {
           (outputWpaCli) => {
             debugLog(`output_wpa_cli: ${outputWpaCli}`);
             document.querySelector(
-              ".settings .wifi .currentNetwork"
+              "#settings .wifi .currentNetwork"
             ).innerHTML = `<p>Connected to: ${currentWifi}</p>`;
             debugLog(
               `conected to Wi-Fi network: ${selectedWiFitoConnectEl.innerText}`
@@ -163,7 +163,7 @@ export default function wifiConnect() {
         `netsh wlan connect name="${selectedWiFitoConnectEl.innerText}"`,
         (output) => {
           document.querySelector(
-            ".settings .wifi .currentNetwork"
+            "#settings .wifi .currentNetwork"
           ).innerHTML = `<p>Connected to: ${currentWifi}</p>`;
           debugLog(
             `conected to Wi-Fi network: ${selectedWiFitoConnectEl.innerText}`
@@ -192,7 +192,7 @@ export default function wifiConnect() {
 // for marking purposes
 function selectedWiFitoConnect(element) {
   document
-    .querySelectorAll(".settings .wifi .availableNetworks .data .selectedWiFi")
+    .querySelectorAll("#settings .wifi .availableNetworks .data .selectedWiFi")
     .forEach((ele) => {
       ele.classList.remove("selectedWiFi");
     });
@@ -201,10 +201,10 @@ function selectedWiFitoConnect(element) {
 
 window.addEventListener("DOMContentLoaded", () => {
   document.getElementById("wifi").addEventListener("click", () => {
-    document.querySelector(".settings .wifi").classList.toggle("hide");
+    document.querySelector("#settings .wifi").classList.toggle("hide");
   });
   document.getElementById("wifiClose").addEventListener("click", () => {
-    document.querySelector(".settings .wifi").classList.toggle("hide");
+    document.querySelector("#settings .wifi").classList.toggle("hide");
   });
   document.getElementById("wifiDisconnect").addEventListener("click", () => {
     wifiDisconnect();

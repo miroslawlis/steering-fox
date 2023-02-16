@@ -66,7 +66,7 @@ export function saveSettingsToFile() {
       .then((response) => {
         console.log(`saveSettingsToFile response: `, response);
         window.appData.settingsFile.musicFolder = response;
-        const themeElement = document.querySelector(".settings .themeOption");
+        const themeElement = document.querySelector("#settings .themeOption");
         // check if egzist
         if (themeElement.length > 0) {
           themeOption = themeElement.selectedOptions[0].value;

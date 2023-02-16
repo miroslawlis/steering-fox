@@ -50,7 +50,6 @@ export function muteAudio() {
   // works only for "music"
 
   const muteButton = document.querySelector("#music-player .mute.button");
-  const musicNavEl = document.getElementById("music");
 
   if (window.appData.audio.audio.muted === true) {
     window.appData.audio.audio.muted = false;
@@ -60,7 +59,7 @@ export function muteAudio() {
     muteButton.classList.toggle("active");
 
     // hide mute icon on tom of nav element
-    musicNavEl.querySelector(".mute-icon").style.opacity = 0;
+    document.querySelector("#notifications-persistant .mute-icon").style.opacity = 0;
   } else {
     window.appData.audio.audio.muted = true;
     debugLog("audio muted");
@@ -69,7 +68,7 @@ export function muteAudio() {
     muteButton.classList.toggle("active");
 
     // show mute icon on tom of nav element
-    musicNavEl.querySelector(".mute-icon").style.opacity = 1;
+    document.querySelector("#notifications-persistant .mute-icon").style.opacity = 1;
   }
 }
 
