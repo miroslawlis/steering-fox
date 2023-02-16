@@ -59,7 +59,9 @@ export function muteAudio() {
     muteButton.classList.toggle("active");
 
     // hide mute icon on tom of nav element
-    document.querySelector("#notifications-persistant .mute-icon").style.opacity = 0;
+    document.querySelector(
+      "#notifications-persistant .mute-icon"
+    ).style.opacity = 0;
   } else {
     window.appData.audio.audio.muted = true;
     debugLog("audio muted");
@@ -68,7 +70,9 @@ export function muteAudio() {
     muteButton.classList.toggle("active");
 
     // show mute icon on tom of nav element
-    document.querySelector("#notifications-persistant .mute-icon").style.opacity = 1;
+    document.querySelector(
+      "#notifications-persistant .mute-icon"
+    ).style.opacity = 1;
   }
 }
 
@@ -95,14 +99,12 @@ export function shuffl() {
 }
 
 export function currentVolume() {
-  const sliVmValue = window.appData.sliderVolumeMusicEl.value;
+  console.log("currentVolume");
+  const sliVmValue = window.appData.sliderVolumeMusicEl.valueAsNumber;
 
   // update slider value
-  // sliVmValue = window.appData.audio.audio.volume*100;
-  // set slider attribute from slider value
-  window.appData.sliderVolumeMusicEl.setAttribute("value", sliVmValue);
   // set window.appData.audio.audio volume "globaly", value from slider value
-  window.appData.audio.audio.volume = sliVmValue / 100;
+  window.appData.audio.audio.volume = sliVmValue;
 
   // debugLog(window.appData.audio.audio.volume.toFixed(2));
   // debugLog("sliderVolMusicValue: " + sliderVolMusicValue);
@@ -197,8 +199,10 @@ export function musicEventRegister() {
   const pauseButon = document.querySelector("#music-player .pause.button");
 
   // setting sliders values to default window.appData.audio.audio value (at start they are different)
+  window.appData.sliderVolumeMusicEl =
+    document.getElementById("volume-music-bar");
   window.appData.sliderVolumeMusicEl.value =
-    window.appData.audio.audio.volume * 100;
+    window.appData.audio.audio.volume;
   window.appData.sliderVolumeMusicEl.setAttribute(
     "value",
     window.appData.sliderVolumeMusicEl.value
@@ -208,7 +212,7 @@ export function musicEventRegister() {
   // on every volume change update slider as well
   window.appData.audio.audio.onvolumechange = function () {
     window.appData.sliderVolumeMusicEl.value =
-      window.appData.audio.audio.volume * 100;
+      window.appData.audio.audio.volume;
     window.appData.sliderVolumeMusicEl.setAttribute(
       "value",
       window.appData.sliderVolumeMusicEl.value
@@ -254,4 +258,8 @@ export function musicEventRegister() {
     debugLog("event ENDED occured");
     nextSong();
   };
+
+  window.appData.sliderVolumeMusicEl.addEventListener("input", () =>
+    currentVolume()
+  );
 }

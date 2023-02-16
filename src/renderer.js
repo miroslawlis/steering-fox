@@ -178,9 +178,7 @@ window.addEventListener("DOMContentLoaded", () => {
   window.appData.modalTemplateEl = document.getElementById(
     "modal-main-template"
   );
-  window.appData.sliderVolumeMusicEl =
-    document.getElementById("volume-music-bar");
-  window.appData.sliderVolumeMusicEl.oninput = currentVolume();
+
 
   window.menuHideToggle = menuHideToggle;
 
