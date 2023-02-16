@@ -1,29 +1,97 @@
-on: [push, pull_request]
-
+name: CI-armv7
+on:
+  push:
+    branches:
+      - master
 jobs:
-  armv7_job:
-    # The host should always be Linux
-    runs-on: ubuntu-18.04
-    name: Build on ubuntu-18.04 armv7
+  build_on_armv7_linux:
+    runs-on: ubuntu-20.04-latest
     steps:
-      - uses: actions/checkout@v3
-      - uses: uraimo/run-on-arch-action@v2
-        name: Run commands
-        id: runcmd
-        with:
-          arch: armv7
-          distro: ubuntu18.04
-
-          # Not required, but speeds up builds by storing container images in
-          # a GitHub package registry.
-          githubToken: ${{ github.token }}
-
-          # Set an output parameter `uname` for use in subsequent steps
-          run: |
-            uname -a
-            echo ::set-output name=uname::$(uname -a)
-
-      - name: Get the output
-        # Echo the `uname` output parameter from the `runcmd` step
-        run: |
-          echo "The uname output was ${{ steps.runcmd.outputs.uname }}"
+    - uses: actions/checkout@master
+      with:
+        ref: electron
+    - uses: actions/setup-node@master
+      with:
+        node-version: 10.16
+    - uses: uraimo/run-on-arch-action@v2
+      with:
+            arch: armv7
+            distro: ubuntu18.04
+            # Set an output parameter `uname` for use in subsequent steps
+            run: |
+              uname -a
+              echo ::set-output name=uname::$(uname -a)
+    # - name: see directory in electron_dist
+      # run: ls ./electron
+    - name: Install dependencies
+      run: npm install
+    - name: Build on armv7
+      env:
+        ELECTRON: true
+        # APP_VERSION_NUMBER: 0.5.9
+      run: npm build
+    - name: Build Electron
+      env:
+        ELECTRON: true
+        # CSC_KEY_PASSWORD: ${{ secrets.CSC_KEY_PASSWORD }}
+        # APP_VERSION_NUMBER: 0.5.9
+      run: npm run package
+    - name: see directory
+      run: ls
+    - name: check env
+      run: echo $ELECTRON $FEATHERS_URL
+    - name: see directory in out/make/...
+      run: ls ./out/make/
+    - uses: lucyio/upload-to-release@master
+      with:
+        name: lucyio/electron
+        path: ./out/make/
+        action: unpublished
+        release_id: 0.x.x
+        release-repo: lucyio/electron
+  
+  # build_on_win:
+  #   runs-on: windows-2016
+  #   steps:
+  #   - uses: actions/checkout@master
+  #     with:
+  #       ref: feature/github-actions        
+  #   - uses: actions/setup-node@master
+  #     with:
+  #       node-version: 10.16
+  #   - name: install node tools
+  #     run: npm install --global --production windows-build-tools@4.0.0
+  #   - name: install node-gyp
+  #     run: npm install --global node-gyp@latest
+  #   - name: Set node config to use python2.7
+  #     run: npm config set python python2.7
+  #   - name: Set node config to set msvs_version to 2015
+  #     run: npm config set msvs_version 2015
+  #   - name: Work around for Windows Server 2019
+  #     run: set path=%path%;C:\Program Files (x86)\Microsoft Visual Studio\2019\Community\MSBuild\Current\Bin
+  #   - name: Install dependencies
+  #     run: npm install
+  #   - name: check env
+  #     env:
+  #       ELECTRON: true
+  #       # APP_VERSION_NUMBER: 0.5.9
+  #     run: set
+  #   - name: Build on Windows
+  #     env:
+  #       ELECTRON: true
+  #       # APP_VERSION_NUMBER: 0.5.9
+  #     run: npm build
+  #   - name: Build Electron
+  #     env:
+  #       ELECTRON: true
+  #       # APP_VERSION_NUMBER: 0.5.9
+  #     run: npm electron:buildWin
+  #   - name: see directory
+  #     run: ls ./electron_dist/squirrel-windows
+  #   - uses: lucyio/upload-to-release@master
+  #     with:
+  #       name: lucyio/electron
+  #       path: ./electron_dist/squirrel-windows
+  #       action: unpublished
+  #       release_id: 0.5.9
+  #       release-repo: lucyio/electron
