@@ -187,14 +187,18 @@ export function updateGUIwithSettings(settingsObj) {
 
 export function listenForUIchanges() {
   // add events listners responsible for saving when user interacts with UI
-  document.querySelector("#settings input").addEventListener(
-    "change",
-    () => {
-      console.log(`listenForUIchanges`);
-      saveSettingsToFile();
-    },
-    false
-  );
+  const elToWatch = document.querySelectorAll(".settings-watcher");
+
+  elToWatch.forEach((el) => {
+    el.addEventListener(
+      "change",
+      () => {
+        console.log(`listenForUIchanges`);
+        saveSettingsToFile();
+      },
+      false
+    );
+  });
   window.appData.audio.audio.onvolumechange = () => {
     console.log(`volumechange`);
   };
