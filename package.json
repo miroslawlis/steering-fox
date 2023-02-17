@@ -49,6 +49,9 @@
     "eslint-plugin-import": "^2.25.2",
     "eslint-webpack-plugin": "^4.0.0",
     "node-loader": "^2.0.0",
+    "postcss": "^8.4.21",
+    "postcss-loader": "^7.0.2",
+    "postcss-preset-env": "^8.0.1",
     "prettier": "^2.8.4",
     "style-loader": "^3.3.1"
   },
