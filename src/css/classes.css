@@ -9,6 +9,10 @@
   align-content: center;
 }
 
+.space-between {
+  justify-content: space-between;
+}
+
 .hide {
   display: none !important;
 }

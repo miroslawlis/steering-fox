@@ -234,7 +234,7 @@
               <use href="#bluetooth_svg" />
             </svg>
           </div>
-          <div id="wifi" class="btn">
+          <div id="show-wifi-settings-dialog" class="btn">
             <svg viewBox="0 0 48 48">
               <use href="#wifi_svg" />
             </svg>
@@ -294,42 +294,6 @@
           </div>
         </div>
 
-        <div id="wifi-settings-modal" class="hide">
-          <div class="wrapper">
-            <h2 class="totranslate">Wi-Fi settings</h2>
-            <div class="data">
-              <div class="currentNetwork"></div>
-              <div class="availableNetworks">
-                <div class="label"><span class="totranslate">Available networks</span>:</div>
-                <div class="data"></div>
-              </div>
-            </div>
-            <div class="buttons">
-              <div id="wifiDisconnect" class="btn">
-                <svg viewBox="0 0 48 48">
-                  <use href="#wifi_disconnect_svg" />
-                </svg>
-              </div>
-              <div id="wifiConnect" class="btn">
-                <svg viewBox="0 0 48 48">
-                  <use href="#confirm_svg" />
-                </svg>
-              </div>
-
-              <div id="wifiRefreshList" class="btn">
-                <svg viewBox="0 0 48 48">
-                  <use href="#look_up_glass_svg" />
-                </svg>
-              </div>
-
-              <div id="wifiClose" class="btn">
-                <svg viewBox="0 0 48 48">
-                  <use href="#exit_svg" />
-                </svg>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
       <!-- END settings element -->
     </div>
@@ -340,8 +304,8 @@
         </svg>
       </div>
     </div>
-    <template id="modal-main-template">
-      <div id="modalTwoInputs" class="modal set animated bounceIn">
+    <div id="modal-main-template">
+      <dialog id="modalTwoInputs" class="animated bounceIn">
         <h3 class="totranslate">Enter new time (hh:mm)</h3>
         <div class="wrapper space">
           <input class="hour time digits" type="text" />
@@ -352,42 +316,82 @@
             <use href="#confirm_svg" />
           </svg>
         </div>
-        <div class="btn close" onclick="modalClose(this)">
+        <div class="btn close" onclick="window.appData.dialogs.dialogCloseHandler(this)">
           <svg viewBox="0 0 48 48">
             <use href="#close_svg" />
           </svg>
         </div>
-      </div>
+      </dialog>
 
-      <div id="wifiPassword" class="content animated bounceIn modal">
-        <h3 class="totranslate">Enter WiFi password</h3>
-        <div id="closeWiFipassword" class="btn close" onclick="modalClose(this)">
-          <svg viewBox="0 0 48 48">
-            <use href="#exit_svg" />
-          </svg>
-        </div>
-        <input type="password" class="wide" />
-        <div class="wifipassconnect btn single">
-          <svg viewBox="0 0 48 48">
-            <use href="#wifi_svg" />
-          </svg>
-        </div>
-      </div>
+      <dialog id="wifiPasswordDialog" class="animated bounceIn">
+        <form method="dialog">
+          <h3 class="totranslate">Enter WiFi password</h3>
+          <div id="closeWiFipassword" class="btn close" onclick="window.appData.dialogs.dialogCloseHandler(this)">
+            <svg viewBox="0 0 48 48">
+              <use href="#exit_svg" />
+            </svg>
+          </div>
+          <input type="password" class="wide" />
+          <div class="wifipassconnect btn single">
+            <svg viewBox="0 0 48 48">
+              <use href="#wifi_svg" />
+            </svg>
+          </div>
 
-      <div id="modalConfirm" class="content animated bounceIn modal">
+        </form>
+
+      </dialog>
+
+
+      <dialog id="wifi-modal-with-settings" class="box column gap-1">
+        <h2 class="totranslate">Wi-Fi settings</h2>
+        <div class="data">
+          <div class="currentNetwork"></div>
+          <div class="availableNetworks">
+            <div class="label"><span class="totranslate">Available networks</span>:</div>
+            <div class="data"></div>
+          </div>
+        </div>
+        <div class="row space-between">
+          <div id="wifiDisconnect" class="btn">
+            <svg viewBox="0 0 48 48">
+              <use href="#wifi_disconnect_svg" />
+            </svg>
+          </div>
+          <div id="wifiConnect" class="btn">
+            <svg viewBox="0 0 48 48">
+              <use href="#confirm_svg" />
+            </svg>
+          </div>
+
+          <div id="wifiRefreshList" class="btn">
+            <svg viewBox="0 0 48 48">
+              <use href="#look_up_glass_svg" />
+            </svg>
+          </div>
+
+          <div id="wifiClose" class="btn">
+            <svg viewBox="0 0 48 48">
+              <use href="#exit_svg" />
+            </svg>
+          </div>
+        </div>
+      </dialog>
+
+      <dialog id="modalConfirm" class="animated bounceIn">
         <h3 class="totranslate">Confirm reset fuel consumption</h3>
         <div class="confirm btn single">
           <svg viewBox="0 0 48 48">
             <use href="#confirm_svg" />
           </svg>
         </div>
-        <div class="btn close" onclick="modalClose(this)">
+        <div class="btn close" onclick="window.appData.dialogs.dialogCloseHandler(this)">
           <svg viewBox="0 0 48 48">
             <use href="#exit_svg" />
           </svg>
         </div>
-      </div>
-    </template>
+      </dialog>
+    </div>
   </div>
 
   <div id="svgs" style="display: none">

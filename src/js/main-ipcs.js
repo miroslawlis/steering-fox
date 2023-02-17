@@ -10,7 +10,7 @@ const {
   readFile,
 } = require("fs");
 const serialBingings = require("@serialport/bindings");
-const { spawn } = require("child_process");
+const { spawn, exec } = require("child_process");
 const { findMusicFilesRecursivly } = require("./main-music-utils");
 
 const convertSong = (filePath) => {
@@ -25,6 +25,24 @@ const convertSong = (filePath) => {
   });
   return songPromise;
 };
+
+function currentWifiSSID() {
+  const cmd =
+    process.platform === "linux"
+      ? "iw wlan0 link | grep SSID"
+      : "netsh wlan show interfaces";
+
+  return new Promise((resolve, reject) => {
+    exec(cmd, (error, stdout, stderr) => {
+      if (error) {
+        console.log("Error on BE while getting WIFI SSID");
+        console.warn(error);
+        reject(error);
+      }
+      resolve(stdout || stderr);
+    });
+  });
+}
 
 const mainIpcs = (profileStartTime) => {
   ipcMain.handle("getMusicFiles", (event, folderPath) =>
@@ -91,10 +109,8 @@ const mainIpcs = (profileStartTime) => {
     return temp.stdout.on("data", (data) => data);
   });
 
-  ipcMain.handle(
-    "getSong",
-    (event, filePath) => convertSong(filePath)
-  );
+  ipcMain.handle("getSong", (event, filePath) => convertSong(filePath));
+  ipcMain.handle("getWifiSSID", currentWifiSSID);
 };
 
 module.exports = mainIpcs;

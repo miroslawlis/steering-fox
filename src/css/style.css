@@ -413,7 +413,7 @@ input[type="checkbox"]:checked + label:after {
 #minimize,
 #closeApp,
 #bluetooth,
-#wifi {
+#show-wifi-settings-dialog {
   height: 70px;
   width: 70px;
   display: inline-block;
@@ -454,7 +454,7 @@ select {
 #minimize svg,
 #closeApp svg,
 #bluetooth svg,
-#wifi svg {
+#show-wifi-settings-dialog svg {
   width: 50px;
   height: 70px;
   margin: auto;
@@ -467,24 +467,6 @@ select {
 
 .ssid.selectedWiFi {
   color: var(--amber);
-}
-
-#wifiPassword .content {
-  height: 26vw;
-  width: 55vw;
-  text-align: center;
-  background: var(--backgroundMain);
-  position: relative;
-  top: 4vw;
-  padding: 4vw;
-}
-
-#wifiPassword input {
-  display: block;
-  width: 100%;
-  height: 4vw;
-  background: var(--backgroundNav);
-  border: none;
 }
 
 #loader-wrapper {
@@ -565,31 +547,6 @@ select {
   outline: 4px solid var(--amber);
 }
 
-.background.modal {
-  display: flex;
-  /* align-items    : center; */
-  justify-content: center;
-  position: absolute;
-  top: 0;
-  left: 0;
-  height: 100%;
-  width: 100%;
-  background: var(--backgroundMainOpacity);
-  color: var(--font-color);
-}
-
-.modal .set,
-.modal .content,
-#wifipasswordModal .modal {
-  height: 26vw;
-  width: 60vw;
-  text-align: center;
-  background: var(--backgroundMain);
-  position: relative;
-  padding: 4vw 8vw;
-  top: 10%;
-}
-
 .btn.single {
   display: block;
   float: left;
@@ -626,17 +583,4 @@ input.minutes.time {
 
 input.minutes.time {
   margin-left: 3vw;
-}
-
-.modal .confirm {
-  max-width: 10vw;
-  margin: auto;
-  color: var(--font-color);
-}
-
-.modal .close {
-  position: absolute;
-  top: 2vh;
-  right: 0;
-  margin: 1vw;
 }

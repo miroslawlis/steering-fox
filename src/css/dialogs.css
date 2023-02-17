@@ -1,0 +1,44 @@
+dialog {
+  & #wifiPasswordDialog .content {
+    height: 26vw;
+    width: 55vw;
+    text-align: center;
+    background: var(--backgroundMain);
+    position: relative;
+    top: 4vw;
+    padding: 4vw;
+  }
+
+  & #wifiPasswordDialog input {
+    display: block;
+    width: 100%;
+    height: 4vw;
+    background: var(--backgroundNav);
+    border: none;
+  }
+  & .backgrounddialog {
+    display: flex;
+    /* align-items    : center; */
+    justify-content: center;
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background: var(--backgroundMainOpacity);
+    color: var(--font-color);
+  }
+
+  & .confirm {
+    max-width: 10vw;
+    margin: auto;
+    color: var(--font-color);
+  }
+
+  & .close {
+    position: absolute;
+    top: 2vh;
+    right: 0;
+    margin: 1vw;
+  }
+}

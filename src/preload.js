@@ -5,7 +5,8 @@
 const { contextBridge, ipcRenderer } = require("electron");
 
 contextBridge.exposeInMainWorld("electronAPI", {
-  getMusicFiles: (folderPath) => ipcRenderer.invoke("getMusicFiles", folderPath),
+  getMusicFiles: (folderPath) =>
+    ipcRenderer.invoke("getMusicFiles", folderPath),
   networkInterfaces: () => ipcRenderer.invoke("networkInterfaces"),
   isLinux: () => ipcRenderer.invoke("isLinux"),
   startParameters: () => ipcRenderer.invoke("startParameters"),
@@ -19,9 +20,11 @@ contextBridge.exposeInMainWorld("electronAPI", {
   pathJoin: (args = []) => ipcRenderer.invoke("pathJoin", args),
   pathDirname: (filePath) => ipcRenderer.invoke("pathDirname", filePath),
   existsSync: (stringPath = "") => ipcRenderer.invoke("existsSync", stringPath),
-  readFileSync: (stringPath = "") => ipcRenderer.invoke("readFileSync", stringPath),
+  readFileSync: (stringPath = "") =>
+    ipcRenderer.invoke("readFileSync", stringPath),
   writeFileSync: (args) => ipcRenderer.invoke("writeFileSync", args),
   writeFile: (args) => ipcRenderer.invoke("writeFile", args),
   CPUtemp: () => ipcRenderer.send("CPUtemp"),
   getSong: (filePath) => ipcRenderer.invoke("getSong", filePath),
+  getWifiSSID: () => ipcRenderer.invoke("getWifiSSID"),
 });

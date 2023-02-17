@@ -1,4 +1,5 @@
-import { wifiModal } from "../renderer";
+import Keyboard from "./keyboard";
+import dialogCloseHandler from "./modal";
 import debugLog from "./utils";
 
 // var exec = require("child_process").exec;
@@ -12,12 +13,13 @@ function executeCommand(command) {
   // });
 }
 
-export function wifiInfo() {
+export function getWifiInfo() {
   debugLog("Getting wifi info");
 
   if (window.appData.isLinux) {
     // Linux
     try {
+      window.electronAPI.getWifiSSID().then((data) => console.log(data));
       // current wifi SSID
       // https://unix.stackexchange.com/questions/92799/connecting-to-wifi-network-through-command-line
       executeCommand("iw wlan0 link | grep SSID", (SSID) => {
@@ -125,7 +127,7 @@ export default function wifiConnect() {
   const selectedWiFitoConnectEl = document.querySelector(
     "#settings .wifi .data .ssid.selectedWiFi"
   );
-  let wifiPassword;
+  let wifiPasswordDialog;
 
   if (window.appData.isLinux) {
     // Linux
@@ -140,7 +142,7 @@ export default function wifiConnect() {
         // connect to selected WiFi
         //
         executeCommand(
-          `wpa_cli set_network ${networkId} ssid '"${selectedWiFitoConnectEl.innerText}"' psk '"${wifiPassword}"'`,
+          `wpa_cli set_network ${networkId} ssid '"${selectedWiFitoConnectEl.innerText}"' psk '"${wifiPasswordDialog}"'`,
           (outputWpaCli) => {
             debugLog(`output_wpa_cli: ${outputWpaCli}`);
             document.querySelector(
@@ -175,10 +177,10 @@ export default function wifiConnect() {
           debugLog(outputTrimed);
 
           // no password, show password input
-          if (outputTrimed === stringHelper && !wifiPassword) {
-            wifiModal();
-            // document.getElementById('wifiPassword').classList.toggle('hide');
-            document.querySelector("#wifiPassword input").focus();
+          if (outputTrimed === stringHelper && !wifiPasswordDialog) {
+            showWifiDialog();
+            // document.getElementById('wifiPasswordDialog').classList.toggle('hide');
+            document.querySelector("#wifiPasswordDialog input").focus();
             debugLog("Enter wifi password");
           }
         }
@@ -199,12 +201,29 @@ function selectedWiFitoConnect(element) {
   element.classList.toggle("selectedWiFi");
 }
 
+export function showWifiDialog() {
+  document.getElementById("wifiPasswordDialog").showModal();
+
+  // for modal popup, after entering password
+  document.querySelector("#wifiPasswordDialog .wifipassconnect").onclick =
+    function () {
+      wifiConnect();
+    };
+
+  // second init, for inputs in modal that was created
+  Keyboard.reinitForInputs();
+}
+
+function showWifiNetworkListModal() {
+  document.getElementById("wifi-modal-with-settings").showModal();
+}
+
 window.addEventListener("DOMContentLoaded", () => {
-  document.getElementById("wifi").addEventListener("click", () => {
-    document.querySelector("#settings .wifi").classList.toggle("hide");
-  });
-  document.getElementById("wifiClose").addEventListener("click", () => {
-    document.querySelector("#settings .wifi").classList.toggle("hide");
+  document
+    .getElementById("show-wifi-settings-dialog")
+    .addEventListener("click", showWifiNetworkListModal);
+  document.getElementById("wifiClose").addEventListener("click", (e) => {
+    dialogCloseHandler(e.target);
   });
   document.getElementById("wifiDisconnect").addEventListener("click", () => {
     wifiDisconnect();
@@ -213,6 +232,6 @@ window.addEventListener("DOMContentLoaded", () => {
     wifiConnect();
   });
   document.getElementById("wifiRefreshList").addEventListener("click", () => {
-    wifiInfo();
+    getWifiInfo();
   });
 });

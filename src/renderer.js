@@ -30,9 +30,9 @@ import { settingsInit } from "./js/settings";
 
 import Keyboard from "./js/keyboard";
 import "./js/bluetooth";
-import wifiConnect, { wifiInfo } from "./js/wifi";
+import { getWifiInfo } from "./js/wifi";
 import "./js/translation";
-import { modalClasses } from "./js/modal";
+import dialogCloseHandler, { modalClasses } from "./js/modal";
 import playAudio, {
   pauseAudio,
   muteAudio,
@@ -69,35 +69,14 @@ function timeSetModal() {
 
   // add attribute "onclick" to template file
   // fire chnage time CAN fucntion
-  document.querySelector("#timeModalSet .modal .confirm").onclick =
+  document.querySelector("#timeModalSet dialog .confirm").onclick =
     updateTimeCANfromInput();
 
   // second init, for inputs in modal that was created
   Keyboard.reinitForInputs();
 
   // set focus on first input to show keyboard
-  document.querySelector("#timeModalSet .modal input").focus();
-}
-
-export function wifiModal() {
-  const elemModal = window.appData.modalTemplateEl.wifiPassword;
-
-  const modalWifi = document.createElement("div");
-  modalWifi.id = "wifipasswordModal";
-  modalWifi.classList = `${modalClasses[0]} ${modalClasses[1]}`;
-
-  modalWifi.innerHTML = elemModal;
-
-  document.body.appendChild(modalWifi);
-
-  // for modal popup, after entering password
-  document.querySelector("#wifiPassword .wifipassconnect").onclick =
-    function () {
-      wifiConnect();
-    };
-
-  // second init, for inputs in modal that was created
-  Keyboard.reinitForInputs();
+  document.querySelector("#timeModalSet dialog input").focus();
 }
 
 function fuelConsResetModal() {
@@ -113,7 +92,7 @@ function fuelConsResetModal() {
 
   // add attribute "onclick" to template file
 
-  document.querySelector("#modalConfirmWrap .modal .confirm").click(() => {
+  document.querySelector("#modalConfirmWrap dialog .confirm").click(() => {
     // fire reset fuel1 CAN function
   });
 }
@@ -155,7 +134,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.style.cursor = "auto";
   }
   document.getElementById("loader-wrapper").style.display = "none";
-  document.getElementById("app").classList.remove('hidden');
+  document.getElementById("app").classList.remove("hidden");
 
   window.appData.audio = {
     ...window.appData.audio,
@@ -172,15 +151,15 @@ window.addEventListener("DOMContentLoaded", () => {
     },
   };
 
-  window.appData.modalTemplateEl = document.getElementById(
-    "modal-main-template"
-  );
+  window.appData.dialogs = {
+    dialogCloseHandler,
+  };
 
   window.menuHideToggle = menuHideToggle;
 
   document.getElementById("settings-main-nav").addEventListener("click", () => {
     getIPs();
-    wifiInfo();
+    getWifiInfo();
   });
 
   // minimizing and closing
@@ -221,7 +200,7 @@ window.addEventListener("DOMContentLoaded", () => {
         playAudio(data[0]);
       });
     setTimeout(getIPs, 4000);
-    setTimeout(wifiInfo, 4000);
+    setTimeout(getWifiInfo, 4000);
 
     asksCANforNewData();
     // and repeate checking and asking if necessery every x miliseconds
