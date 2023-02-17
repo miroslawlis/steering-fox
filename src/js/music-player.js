@@ -1,48 +1,24 @@
 import debugLog, { clampNumbers } from "./utils";
 
-function checkIfHasSourceAndPlay(audioElement, trackId) {
-  if (audioElement.src) {
-    audioElement
-      .play()
-      .then(() => {
-        window.appData.currentSongId = trackId;
-        console.log("playing");
-      })
-      .catch((err) => console.error(err));
-  } else {
-    console.log("Audio element has no source");
-  }
-}
-
 export default async function playAudio(songObj = {}) {
   console.log("playAudio");
-  window.appData.audio.audio = new Audio();
   const { audio } = window.appData.audio;
   const { path } = songObj;
 
   if (!path) return;
 
   window.electronAPI.getSong(path).then((data) => {
+    // window.appData.audio.audio.currentTime = 0;
+    // window.appData.audio.audio.pause();
     audio.src = data;
     audio.load();
-
-    if (
-      document
-        .querySelector("#music-player .play.button")
-        .classList.contains("active")
-    ) {
-      audio.pause();
-    } else {
-      checkIfHasSourceAndPlay(audio, songObj.id);
-    }
+    window.appData.currentSongId = songObj.id;
   });
 }
 
 export function pauseAudio() {
   if (!window.appData.audio.audio.paused) {
     window.appData.audio.audio.pause();
-  } else {
-    checkIfHasSourceAndPlay(window.appData.audio.audio);
   }
 }
 
@@ -110,7 +86,7 @@ export function currentVolume() {
   // debugLog("sliderVolMusicValue: " + sliderVolMusicValue);
 }
 
-export function GetThreeSongsToGUI() {
+export function updateThreeSongsInHTML() {
   const previousSongHTMLObject = document.getElementById("previousSong");
   const currentSongHTMLObject = document.getElementById("currentSong");
   const nextSongHTMLObject = document.getElementById("nextSong");
@@ -120,13 +96,12 @@ export function GetThreeSongsToGUI() {
 
   if (currentSongID < 0) return;
 
-  const currentSongIndex = Math.abs(
-    window.appData.songsObj.findIndex((obj) => obj.id === currentSongID)
+  const currentSongIndex = window.appData.songsObj.findIndex(
+    (obj) => obj.id === currentSongID
   );
-
   let nextSongIndex = currentSongIndex + 1;
   // if this is last song then go to first
-  if (nextSongIndex >= window.appData.songsObj.length) {
+  if (nextSongIndex === window.appData.songsObj.length) {
     nextSongIndex = 0;
   }
   let prevSongIndex = currentSongIndex - 1;
@@ -136,15 +111,17 @@ export function GetThreeSongsToGUI() {
   }
 
   // update HTML with songs
-  previousSongHTMLObject.innerText = window.appData.songsObj[prevSongIndex].name
-    ? window.appData.songsObj[prevSongIndex].name
+  nextSongHTMLObject.innerText = window.appData.songsObj[nextSongIndex].name
+    ? window.appData.songsObj[nextSongIndex].name
     : "";
+
   currentSongHTMLObject.innerText = window.appData.songsObj[currentSongIndex]
     .name
     ? window.appData.songsObj[currentSongIndex].name
     : "";
-  nextSongHTMLObject.innerText = window.appData.songsObj[nextSongIndex].name
-    ? window.appData.songsObj[nextSongIndex].name
+
+  previousSongHTMLObject.innerText = window.appData.songsObj[prevSongIndex].name
+    ? window.appData.songsObj[prevSongIndex].name
     : "";
 }
 
@@ -163,8 +140,6 @@ export function nextSong() {
     window.appData.currentSongId = window.appData.songsObj[nextSongIndex].id;
     window.appData.audio.audio.pause();
     playAudio(window.appData.songsObj[nextSongIndex]);
-    // HTML update
-    GetThreeSongsToGUI();
     debugLog("next song");
   }
 }
@@ -182,16 +157,12 @@ export function previousSong() {
       prevSongIndex = window.appData.songsObj.length - 1;
     }
 
-    window.appData.currentSongId = window.appData.songsObj[prevSongIndex].id;
-    window.appData.audio.audio.pause();
-    playAudio(window.appData.songsObj[prevSongIndex]);
-    // HTML update
-    GetThreeSongsToGUI();
-    debugLog("previous song");
-  }
+    debugLog(
+      `previous song - prevSongIndex: ${prevSongIndex}, currentSongIndex: ${currentSongIndex}`
+    );
 
-  // HTML update
-  GetThreeSongsToGUI();
+    playAudio(window.appData.songsObj[prevSongIndex]);
+  }
 }
 
 export function musicEventRegister() {
@@ -201,8 +172,7 @@ export function musicEventRegister() {
   // setting sliders values to default window.appData.audio.audio value (at start they are different)
   window.appData.sliderVolumeMusicEl =
     document.getElementById("volume-music-bar");
-  window.appData.sliderVolumeMusicEl.value =
-    window.appData.audio.audio.volume;
+  window.appData.sliderVolumeMusicEl.value = window.appData.audio.audio.volume;
   window.appData.sliderVolumeMusicEl.setAttribute(
     "value",
     window.appData.sliderVolumeMusicEl.value
@@ -220,15 +190,18 @@ export function musicEventRegister() {
   };
 
   // hook to play event and manage DOM classes
-  window.appData.audio.audio.onplay = function () {
-    // start time messure
-    window.electronAPI.profileStartTime().then((startTime) => {
-      console.log(
-        "app start time (to play event): ",
-        (Date.now() - startTime) / 1000,
-        " s"
-      );
-    });
+  window.appData.audio.audio.addEventListener("play", () => {
+    if (!window.appData.hasFirstPlayStarted) {
+      window.appData.hasFirstPlayStarted = true;
+      // start time messure
+      window.electronAPI.profileStartTime().then((startTime) => {
+        console.log(
+          "app start time (to play event): ",
+          (Date.now() - startTime) / 1000,
+          " s"
+        );
+      });
+    }
 
     //
     debugLog("event PLAY occured");
@@ -239,7 +212,20 @@ export function musicEventRegister() {
 
     // remove class for pause button
     pauseButon.classList.remove("active");
-  };
+  });
+
+  window.appData.audio.audio.addEventListener("canplaythrough", () => {
+    window.appData.audio.audio
+      .play()
+      .then(() => {
+        updateThreeSongsInHTML();
+        console.log("playing currentSongId: ", window.appData.currentSongId);
+      })
+      .catch((err) => {
+        console.error(err);
+        window.appData.currentSongId = 0;
+      });
+  });
 
   // hook to pause event and manage DOM classes
   window.appData.audio.audio.onpause = function () {
@@ -255,7 +241,7 @@ export function musicEventRegister() {
 
   window.appData.audio.audio.onended = function () {
     // start new song when "current" song ends
-    debugLog("event ENDED occured");
+    debugLog("audio event ENDED occured");
     nextSong();
   };
 
