@@ -187,17 +187,20 @@ h3 {
   pointer-events: none;
   position: absolute;
   inset: 0;
+  display: flex;
+  flex-direction: row-reverse;
+  & .mute-icon {
+    opacity: 0;
+    width: 6vw;
+    height: 6vw;
+    transition: opacity 200ms linear;
+    & svg {
+      fill: var(--amber);
+      width: 6vw;
+    }
+  }
 }
-#notifications-persistant .mute-icon {
-  opacity: 0;
-  width: 6vw;
-  height: 6vw;
-  transition: opacity 200ms linear;
-}
-#notifications-persistant .mute-icon svg {
-  fill: var(--amber);
-  width: 6vw;
-}
+
 #svgs svg {
   fill: inherit;
 }
