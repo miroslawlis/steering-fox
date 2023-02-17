@@ -30,7 +30,7 @@ export function dateAndTimeSetInHTML() {
 export function CPUtemp() {
   if (window.appData.isLinux) {
     try {
-      window.electronAPI.CPUtemp.then((data) => {
+      window.electronAPI.CPUtemp().then((data) => {
         // return data/1000;
         document.querySelector(
           "#info .cpu_temp .data"
@@ -43,7 +43,7 @@ export function CPUtemp() {
     }
   } else {
     document.querySelector("#info .cpu_temp .data").innerHTML = `${Math.round(
-      "56.548"
+      "no"
     )}<div class="small text">\xB0C</div>`;
   }
 }

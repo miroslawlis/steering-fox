@@ -3,7 +3,7 @@ import dialogCloseHandler from "./modal";
 import debugLog from "./utils";
 
 // var exec = require("child_process").exec;
-let currentWifi = "";
+const currentWifi = "";
 
 // executing OS commands
 function executeCommand(command) {
@@ -16,110 +16,49 @@ function executeCommand(command) {
 export function getWifiInfo() {
   debugLog("Getting wifi info");
 
-  if (window.appData.isLinux) {
-    // Linux
-    try {
-      window.electronAPI.getWifiSSID().then((data) => console.log(data));
-      // current wifi SSID
-      // https://unix.stackexchange.com/questions/92799/connecting-to-wifi-network-through-command-line
-      executeCommand("iw wlan0 link | grep SSID", (SSID) => {
-        currentWifi = SSID;
-        currentWifi = currentWifi.replace(/SSID:\s+|\n|\s+/g, "");
-        // debugLog("currentWifi: " + currentWifi);
+  window.electronAPI.getWifiSSID().then((data) => {
+    const SSID = data.replace(/SSID:\s+|\n|\s+/g, "");
+    console.log(SSID);
+    document.querySelector(
+      "#wifi-modal-with-settings .currentNetwork"
+    ).innerHTML = `<p>Connected to: ${currentWifi}</p>`;
+  });
 
-        // // list o available networks
-        executeCommand("iwlist wlan0 scan | grep ESSID", (wifiListOutput) => {
-          // trimRight removes white spaces and new lines from end
-          debugLog(`wifiNetworkList: ${wifiListOutput}`);
-          const wifiNetworkList = wifiListOutput
-            .trimRight()
-            .replace(/\s+ESSID:"/g, "")
-            .split('"');
+  window.electronAPI
+    .getListOfAvailableNetworks()
+    .then((data) => {
+      const wifiNetworkList = data
+        .trimRight()
+        .replace(/\s+ESSID:"/g, "")
+        .split('"');
 
-          document.querySelector(
-            "#settings .wifi .currentNetwork"
-          ).innerHTML = `<p>Connected to: ${currentWifi}</p>`;
-          // clear DOM object
-          document.querySelector(
-            "#settings .wifi .availableNetworks .data"
-          ).innerHTML = "";
-
-          wifiNetworkList.forEach((element) => {
-            document.querySelector(
-              "#settings .wifi .availableNetworks .data"
-            ).innerHTML += `<div class="ssid" onclick="selectedWiFitoConnect(this);">${element}</div>`;
-          });
-        });
+      // clear
+      document.querySelector(
+        "#wifi-modal-with-settings .availableNetworks .data"
+      ).innerHTML = "";
+      // populate
+      wifiNetworkList.forEach((element) => {
+        document.querySelector(
+          "#wifi-modal-with-settings .availableNetworks .data"
+        ).innerHTML += `<div class="ssid" onclick="selectedWiFitoConnect(this);">${element}</div>`;
       });
-    } catch (error) {
-      debugLog(error);
-    }
-  } else {
-    // Windows
-    try {
-      // current wifi SSID
-      executeCommand(
-        'netsh wlan show interface name="Wi-Fi" | findstr "\\<SSID\\>"',
-        (SSID) => {
-          // list o available networks
-          executeCommand(
-            'netsh wlan show networks | findstr "SSID"',
-            (wifiListOutput) => {
-              currentWifi = SSID;
-              currentWifi = currentWifi.replace(/ |S|I|D|:|\n/g, "");
-              // trimRight removes white spaces and new lines from end
-              const wifiNetworkList = wifiListOutput
-                .trimRight()
-                .replace(/SSID [0-9] : /g, "")
-                .replace(/\n+/g, "\n")
-                .split("\n");
-
-              document.querySelector(
-                "#settings .wifi .currentNetwork"
-              ).innerHTML = `<p>Connected to: ${currentWifi}</p>`;
-              // clear DOM object
-              document.querySelector(
-                "#settings .wifi .availableNetworks .data"
-              ).innerHTML = "";
-
-              wifiNetworkList.forEach((element) => {
-                document.querySelector(
-                  "#settings .wifi .availableNetworks .data"
-                ).innerHTML += `<div class="ssid" onclick="selectedWiFitoConnect(this);">${element}</div>`;
-              });
-            }
-          );
-        }
-      );
-    } catch (error) {
-      debugLog(error);
-    }
-  }
+    })
+    .catch((err) => {
+      document.querySelector(
+        "#wifi-modal-with-settings .availableNetworks .data"
+      ).innerHTML = err;
+    });
 }
 
 function wifiDisconnect() {
   if (window.appData.isLinux) {
     // Linux
-    try {
-      // disconnect from WiFi network
-      executeCommand("", () => {
-        debugLog(`disconected from Wi-Fi network: ${currentWifi}`);
-      });
-    } catch (error) {
-      debugLog(error);
-    }
+    // nop
   } else {
     // Windows
-    try {
-      // disconnect from WiFi network
-      executeCommand("netsh wlan disconnect", () => {
-        debugLog(`disconected from Wi-Fi network: ${currentWifi}`);
-        document.querySelector("#settings .wifi .currentNetwork").innerHTML =
-          '<p class="warning">No connection</p>';
-      });
-    } catch (error) {
-      debugLog(error);
-    }
+    window.electronAPI
+      .disconnectFromWifi()
+      .then((data) => debugLog("disconnected from wifi", data));
   }
 }
 
