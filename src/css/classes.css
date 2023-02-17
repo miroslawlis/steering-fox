@@ -5,15 +5,23 @@
 
 .row {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  align-content: center;
+  width: 100%;
 }
 
-.gap-1 {
-  gap: 1rem;
+.space-between {
+  justify-content: space-between;
 }
-.gap-2 {
-  gap: 2rem;
+.justify-content {
+  justify-content: center;
 }
-.gap-3 {
-  gap: 3rem;
+
+.hide {
+  display: none !important;
+}
+
+.active > svg {
+  transition: all 0.3s;
+  fill: var(--amber);
 }

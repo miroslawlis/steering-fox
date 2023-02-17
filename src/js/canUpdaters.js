@@ -1,5 +1,5 @@
 // import sendCAN from "./ibus";
-import modalClose from "./modal";
+import dialogCloseHandler from "./modal";
 
 const sendCAN = () => {};
 
@@ -13,7 +13,7 @@ export default function updateTimeCANfromInput(event) {
     minutes.match(/^[0-9][0-9]$/) != null
   ) {
     sendCAN("update-time", hour, minutes);
-    modalClose(event.target);
+    dialogCloseHandler(event.target);
   }
 }
 

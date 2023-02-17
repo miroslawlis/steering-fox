@@ -10,7 +10,7 @@ const {
   readFile,
 } = require("fs");
 const serialBingings = require("@serialport/bindings");
-const { spawn } = require("child_process");
+const { spawn, exec } = require("child_process");
 const { findMusicFilesRecursivly } = require("./main-music-utils");
 
 const convertSong = (filePath) => {
@@ -25,6 +25,72 @@ const convertSong = (filePath) => {
   });
   return songPromise;
 };
+
+function currentWifiSSID() {
+  const cmd =
+    process.platform === "linux"
+      ? "iw wlan0 link | grep SSID"
+      : "netsh wlan show interfaces";
+
+  return new Promise((resolve, reject) => {
+    exec(cmd, (error, stdout, stderr) => {
+      if (error) {
+        console.log("Error on BE while getting WIFI SSID");
+        console.warn(error);
+        reject(error);
+      }
+      resolve(stdout || stderr);
+    });
+  });
+}
+
+function getListOfAvailableNetworks() {
+  const cmd =
+    process.platform === "linux"
+      ? "iwlist wlan0 scan | grep ESSID"
+      : "netsh wlan show networks mode=Bssid";
+
+  return new Promise((resolve, reject) => {
+    exec(cmd, (error, stdout, stderr) => {
+      if (error) {
+        console.log("Error on BE while getting WIFI list");
+        console.warn(error);
+        reject(error);
+      }
+      resolve(stdout || stderr);
+    });
+  });
+}
+
+function disconnectFromWifi() {
+  const cmd = process.platform === "linux" ? "" : "netsh wlan disconnect";
+
+  return new Promise((resolve, reject) => {
+    exec(cmd, (error, stdout, stderr) => {
+      if (error) {
+        console.log("Error on BE while disconnecting from wifi");
+        console.warn(error);
+        reject(error);
+      }
+      resolve(stdout || stderr);
+    });
+  });
+}
+
+function connectToWifiNetwork() {
+  const cmd = process.platform === "linux" ? "" : "";
+
+  return new Promise((resolve, reject) => {
+    exec(cmd, (error, stdout, stderr) => {
+      if (error) {
+        console.log("Error on BE while connecting to wifi");
+        console.warn(error);
+        reject(error);
+      }
+      resolve(stdout || stderr);
+    });
+  });
+}
 
 const mainIpcs = (profileStartTime) => {
   ipcMain.handle("getMusicFiles", (event, folderPath) =>
@@ -86,15 +152,21 @@ const mainIpcs = (profileStartTime) => {
     });
   });
 
-  ipcMain.on("CPUtemp", () => {
-    const temp = spawn("cat", ["/sys/class/thermal/thermal_zone0/temp"]);
-    return temp.stdout.on("data", (data) => data);
-  });
-
   ipcMain.handle(
-    "getSong",
-    (event, filePath) => convertSong(filePath)
+    "CPUtemp",
+    () =>
+      new Promise((resolve, reject) => {
+        const temp = spawn("cat", ["/sys/class/thermal/thermal_zone0/temp"]);
+        temp.stdout.on("data", async (data) => resolve(data / 1000));
+        temp.stdout.on("error", async (err) => reject(err));
+      })
   );
+
+  ipcMain.handle("getSong", (event, filePath) => convertSong(filePath));
+  ipcMain.handle("getWifiSSID", currentWifiSSID);
+  ipcMain.handle("getListOfAvailableNetworks", getListOfAvailableNetworks);
+  ipcMain.handle("disconnectFromWifi", disconnectFromWifi);
+  ipcMain.handle("connectToWifiNetwork", connectToWifiNetwork);
 };
 
 module.exports = mainIpcs;

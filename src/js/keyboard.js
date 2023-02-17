@@ -52,7 +52,7 @@ const Keyboard = {
     });
 
     // hide keyboard after focus is lost on input element - for modal
-    document.querySelectorAll(".background.modal").forEach((element) => {
+    document.querySelectorAll(".backgrounddialog").forEach((element) => {
       element.addEventListener("click", (e) => {
         if (
           e.path[0].localName !== "input" &&
@@ -85,7 +85,7 @@ const Keyboard = {
       }
     });
     // hide keyboard after focus is lost on input element - for modal
-    document.querySelectorAll(".background.modal").forEach((element) => {
+    document.querySelectorAll(".backgrounddialog").forEach((element) => {
       element.addEventListener("click", (e) => {
         if (
           e.path[0].localName !== "input" &&

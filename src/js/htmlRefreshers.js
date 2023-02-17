@@ -5,7 +5,7 @@ export function dateAndTimeSetInHTML() {
   const dateObj = new Date();
   const date = dateObj.toLocaleDateString("pl-PL").replace(/\./g, "-");
   const time = dateObj.toLocaleTimeString("pl-PL").substring(0, 5);
-  const timeDateElement = document.querySelector("#main .info .curent_time");
+  const timeDateElement = document.querySelector("#main #info .curent_time");
   // get time from instrument claster (CAN)
 
   if (window.CANdata.time_instrument_cluster) {
@@ -30,10 +30,10 @@ export function dateAndTimeSetInHTML() {
 export function CPUtemp() {
   if (window.appData.isLinux) {
     try {
-      window.electronAPI.CPUtemp.then((data) => {
+      window.electronAPI.CPUtemp().then((data) => {
         // return data/1000;
         document.querySelector(
-          ".info .cpu_temp .data"
+          "#info .cpu_temp .data"
         ).innerHTML = `${Math.round(
           data / 1000
         )}<div class="small text">\xB0C</div>`;
@@ -42,8 +42,8 @@ export function CPUtemp() {
       debugLog(error);
     }
   } else {
-    document.querySelector(".info .cpu_temp .data").innerHTML = `${Math.round(
-      "56.548"
+    document.querySelector("#info .cpu_temp .data").innerHTML = `${Math.round(
+      "no"
     )}<div class="small text">\xB0C</div>`;
   }
 }
@@ -173,8 +173,8 @@ export function getIPs() {
 
 export function updateGUIwithSettings(settingsObj) {
   // update GUI
-  const themeElement = document.querySelector(".settings .themeOption");
-  const musicFolderEl = document.querySelector(".settings .item .filepath");
+  const themeElement = document.querySelector("#settings .themeOption");
+  const musicFolderEl = document.querySelector("#settings .item .filepath");
 
   musicFolderEl.innerText = settingsObj.musicFolder;
 
@@ -187,14 +187,18 @@ export function updateGUIwithSettings(settingsObj) {
 
 export function listenForUIchanges() {
   // add events listners responsible for saving when user interacts with UI
-  document.querySelector(".settings input").addEventListener(
-    "change",
-    () => {
-      console.log(`listenForUIchanges`);
-      saveSettingsToFile();
-    },
-    false
-  );
+  const elToWatch = document.querySelectorAll(".settings-watcher");
+
+  elToWatch.forEach((el) => {
+    el.addEventListener(
+      "change",
+      () => {
+        console.log(`listenForUIchanges`);
+        saveSettingsToFile();
+      },
+      false
+    );
+  });
   window.appData.audio.audio.onvolumechange = () => {
     console.log(`volumechange`);
   };
