@@ -15,7 +15,7 @@
       <object class="svg" type="image/svg+xml" data="./icon_fox.svg"></object>
     </div>
   </div>
-  <div id="app" class="grid-container" style="display: none">
+  <div id="app" class="main-layout hidden">
     <template id="modal-main-template">
       <div id="modalTwoInputs" class="modal set animated bounceIn">
         <h3 class="totranslate">Enter new time (hh:mm)</h3>
@@ -64,7 +64,7 @@
         </div>
       </div>
     </template>
-    <div id="nav">
+    <div id="nav" class="sidebar">
       <div id="info-main-nav" class="active" onclick="menuHideToggle(this)">
         <svg viewBox="0 0 48 48">
           <use href="#dashboard_svg" />
@@ -92,7 +92,7 @@
       </div>
     </div>
 
-    <div id="main">
+    <div id="main" class="right-side">
       <div id="info" class="box active">
         <div class="grid-cell weather_forecast" tabindex="0"><span class="totranslate">Wheater forecast</span></div>
         <div class="grid-cell temp_outside_car" tabindex="1">
@@ -264,6 +264,7 @@
             </div>
           </div>
         </div>
+
         <div class="wrapper buttons">
           <div id="minimize" class="btn">
             <svg viewBox="0 0 48 48">

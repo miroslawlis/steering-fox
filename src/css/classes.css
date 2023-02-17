@@ -5,5 +5,15 @@
 
 .row {
   display: flex;
-  flex-direction: row;
+  align-items: center;
+  align-content: center;
+}
+
+.hide {
+  display: none !important;
+}
+
+.active > svg {
+  transition: all 0.3s;
+  fill: var(--amber);
 }

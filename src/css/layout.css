@@ -1,0 +1,19 @@
+.main-layout {
+  display: grid;
+  grid-template-columns: 0.3fr 1.7fr;
+  grid-template-rows: 1fr;
+  gap: 0px 0px;
+  grid-template-areas: ". .";
+  & .sidebar {
+    background-color: red;
+    overflow: hidden;
+    height: 100%;
+    width: 100%;
+    max-height: 100vh;
+  }
+  & .right-side {
+    height: 100%;
+    width: 100%;
+    overflow: auto;
+  }
+}

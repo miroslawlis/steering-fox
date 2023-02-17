@@ -34,13 +34,6 @@ h3 {
   margin-bottom: 3vw;
 }
 
-#app,
-#main,
-.grid-container {
-  height: 100%;
-  width: 100%;
-}
-
 .grid-container {
   display: grid;
   grid-template-columns: 25% 75%;
@@ -48,24 +41,148 @@ h3 {
   grid-template-areas: "nav main";
 }
 
-#youtube,
-#map {
-  width: 100%;
+#app {
   height: 100%;
+  & #main {
+    color: var(--font-color);
+    font-size: 2vw;
+    & > div {
+      background: var(--backgroundMain);
+      animation: fadeInRight 0.5s;
+    }
+    & > .active {
+      opacity: 1;
+    }
+    & > div:not(.active) {
+      display: none !important;
+      opacity: 0;
+    }
+    & #info {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      grid-template-rows: repeat(3, 1fr);
+      grid-column-gap: 1vw;
+      grid-row-gap: 1vw;
+      height: 100%;
+    }
+
+    & #music {
+      position: relative;
+    }
+
+    & #settings {
+      & .item {
+        margin: 0.4vw 0.3vw;
+        font-size: 2.5vw;
+      }
+      & .item-2 {
+        display: flex;
+        align-items: center;
+        align-content: center;
+        height: 10vw;
+      }
+      & .wrapper-options {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+      }
+
+      & .wrapper.buttons {
+        display: flex;
+        justify-content: space-between;
+      }
+      & > .wrapper {
+        margin-bottom: 5vw;
+        width: 100%;
+      }
+
+      & select {
+        width: 24vw;
+      }
+
+      & .bluetooth,
+      & .wifi {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--backgroundMain);
+        margin: auto;
+      }
+
+      & .bluetooth .wrapper,
+      & .wifi .wrapper {
+        text-align: center;
+        display: block;
+        height: 100%;
+        width: 100%;
+        padding: 3vw 5vw;
+      }
+
+      & .wifi .availableNetworks,
+      & .wifi .currentNetwork {
+        margin-top: 2vw;
+      }
+
+      & .wifi .availableNetworks .label {
+        margin-bottom: 1vw;
+      }
+
+      & .bluetooth .data,
+      & .wifi .data {
+        display: block;
+        width: 100%;
+        height: 75%;
+      }
+
+      & .bluetooth .buttons,
+      & .wifi .buttons {
+        display: flex;
+        height: auto;
+        width: 60%;
+        margin: auto;
+        text-align: center;
+        align-items: center;
+        align-content: center;
+        justify-content: space-evenly;
+      }
+
+      & .bluetooth .btn {
+        display: block;
+        float: left;
+        color: var(--font-color);
+        line-height: 7vw;
+        height: 7vw;
+        width: 7vw;
+      }
+
+      & .bluetooth .data .pairedDevices {
+        min-height: 15vw;
+        margin-top: 2vw;
+      }
+
+      & .bluetooth .scanedDevices .devices .device .name,
+      & .bluetooth .scanedDevices .devices .device .mac,
+      & .bluetooth .pairedDevices .devices .device .name,
+      & .bluetooth .pairedDevices .devices .device .mac {
+        display: inline-block;
+      }
+
+      & .bluetooth .scanedDevices .devices .device .mac,
+      & .bluetooth .pairedDevices .devices .device .mac {
+        margin-left: 1vw;
+      }
+
+      & .bluetooth .scanedDevices .devices .device.selected {
+        color: var(--amber);
+      }
+    }
+  }
 }
 
-#main {
-  /* grid-area: main; */
-  color: var(--font-color);
-  font-size: 2vw;
-  display: inline-block;
-  width: 90%;
-  height: 100%;
-}
-
-#music {
-  position: relative;
-}
 #notifications-persistant {
   pointer-events: none;
   position: absolute;
@@ -88,60 +205,28 @@ h3 {
 #nav {
   background: var(--backgroundNav);
   text-transform: uppercase;
-  display: block;
-  width: 10%;
-  height: 100%;
-  float: left;
-}
-#nav > div {
-  height: 20%;
-  min-height: 3vw;
-  padding: 1.5vw 1vw;
-  text-align: center;
-  color: var(--font-color);
-  font-size: 3vw;
-  line-height: 3vw;
-  opacity: 1;
-  transition: all 0.2s;
-}
-#nav svg {
-  width: 80%;
-  height: 100%;
-}
-
-.hide {
-  display: none !important;
-}
-
-#nav .active {
-  /* background: var(--amber); */
-  transition: all 0.3s;
-}
-
-.active > svg {
-  transition: all 0.3s;
-  height: 100%;
-  fill: var(--amber);
-}
-#nav > div:not(.active) svg {
-  fill: var(--font-color);
-}
-
-#main > div {
-  background: var(--backgroundMain);
-}
-
-#main > div:not(.active) {
-  display: none !important;
-  opacity: 0;
-}
-
-#main > .active {
-  display: block;
-  width: 100%;
-  height: 100%;
-  opacity: 1;
-  animation: fadeInRight 0.5s;
+  & > div {
+    height: 20%;
+    min-height: 3vw;
+    padding: 1.5vw 1vw;
+    text-align: center;
+    color: var(--font-color);
+    font-size: 3vw;
+    line-height: 3vw;
+    opacity: 1;
+    transition: all 0.2s;
+  }
+  & svg {
+    width: 80%;
+    height: 100%;
+  }
+  & .active {
+    /* background: var(--amber); */
+    transition: all 0.3s;
+  }
+  & > div:not(.active) svg {
+    fill: var(--font-color);
+  }
 }
 
 #threeSongs {
@@ -213,10 +298,6 @@ h3 {
   margin: auto;
 }
 
-.playing.button {
-  fill: #7b7bf4;
-}
-
 .grid-wrapper {
   width: 100%;
   height: 100%;
@@ -251,31 +332,6 @@ h3 {
   display: inline-block;
 }
 
-#main #info {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  grid-template-rows: repeat(3, 1fr);
-  grid-column-gap: 1vw;
-  grid-row-gap: 1vw;
-  height: 100%;
-}
-
-#main .element {
-  overflow: auto;
-}
-
-#main #settings .item {
-  margin: 0.4vw 0.3vw;
-  font-size: 2.5vw;
-}
-
-#main #settings .item-2 {
-  display: flex;
-  align-items: center;
-  align-content: center;
-  height: 10vw;
-}
-
 .item .filepath {
   font-size: 1.6vw;
 }
@@ -285,26 +341,6 @@ h3 {
   min-width: 19vw;
 }
 
-.row {
-  display: flex;
-  align-items: center;
-  align-content: center;
-}
-
-#main #settings .wrapper-options {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-}
-
-#main #settings .wrapper.buttons {
-  display: flex;
-  justify-content: space-between;
-}
-#main #settings > .wrapper {
-  margin-bottom: 5vw;
-  width: 100%;
-}
 .option-box-container {
   display: flex;
   align-items: center;
@@ -397,21 +433,19 @@ input[type="checkbox"]:checked + label:after {
   align-items: center;
 }
 
-#main #settings select {
-  width: 24vw;
-}
-
 select {
-  background: var(--backgroundnav);
   color: var(--font-color);
-  font-size: 3vw;
   border: 2px solid var(--font-color);
   padding: 1vw;
   height: 100%;
-}
-
-select option {
-  background: var(--backgroundNav);
+  outline: none;
+  background-color: transparent;
+  margin: 0;
+  font-size: 2rem;
+  & option {
+    background: var(--backgroundNav);
+    font-size: inherit;
+  }
 }
 
 #minimize svg,
@@ -422,86 +456,6 @@ select option {
   height: 70px;
   margin: auto;
   display: block;
-}
-
-#main #settings .bluetooth,
-#main #settings .wifi {
-  position: absolute;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: 100%;
-  background: var(--backgroundMain);
-  margin: auto;
-}
-
-#main #settings .bluetooth .wrapper,
-#main #settings .wifi .wrapper {
-  text-align: center;
-  display: block;
-  height: 100%;
-  width: 100%;
-  padding: 3vw 5vw;
-}
-
-#main #settings .wifi .availableNetworks,
-#main #settings .wifi .currentNetwork {
-  margin-top: 2vw;
-}
-
-#main #settings .wifi .availableNetworks .label {
-  margin-bottom: 1vw;
-}
-
-#main #settings .bluetooth .data,
-#main #settings .wifi .data {
-  display: block;
-  width: 100%;
-  height: 75%;
-}
-
-#main #settings .bluetooth .buttons,
-#main #settings .wifi .buttons {
-  display: flex;
-  height: auto;
-  width: 60%;
-  margin: auto;
-  text-align: center;
-  align-items: center;
-  align-content: center;
-  justify-content: space-evenly;
-}
-
-#main #settings .bluetooth .btn {
-  display: block;
-  float: left;
-  color: var(--font-color);
-  line-height: 7vw;
-  height: 7vw;
-  width: 7vw;
-}
-
-#main #settings .bluetooth .data .pairedDevices {
-  min-height: 15vw;
-  margin-top: 2vw;
-}
-
-#main #settings .bluetooth .scanedDevices .devices .device .name,
-#main #settings .bluetooth .scanedDevices .devices .device .mac,
-#main #settings .bluetooth .pairedDevices .devices .device .name,
-#main #settings .bluetooth .pairedDevices .devices .device .mac {
-  display: inline-block;
-}
-
-#main #settings .bluetooth .scanedDevices .devices .device .mac,
-#main #settings .bluetooth .pairedDevices .devices .device .mac {
-  margin-left: 1vw;
-}
-
-#main #settings .bluetooth .scanedDevices .devices .device.selected {
-  color: var(--amber);
 }
 
 .ssid {

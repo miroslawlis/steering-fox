@@ -25,7 +25,6 @@
  *  });
  * ```
  */
-
 import "./css/index.css";
 import { settingsInit } from "./js/settings";
 
@@ -35,8 +34,6 @@ import wifiConnect, { wifiInfo } from "./js/wifi";
 import "./js/translation";
 import { modalClasses } from "./js/modal";
 import playAudio, {
-  currentVolume,
-  GetThreeSongsToGUI,
   pauseAudio,
   muteAudio,
   volUp,
@@ -158,7 +155,7 @@ window.addEventListener("DOMContentLoaded", () => {
     document.body.style.cursor = "auto";
   }
   document.getElementById("loader-wrapper").style.display = "none";
-  document.getElementById("app").style.display = "block";
+  document.getElementById("app").classList.remove('hidden');
 
   window.appData.audio = {
     ...window.appData.audio,
@@ -179,7 +176,6 @@ window.addEventListener("DOMContentLoaded", () => {
     "modal-main-template"
   );
 
-
   window.menuHideToggle = menuHideToggle;
 
   document.getElementById("settings-main-nav").addEventListener("click", () => {
@@ -198,10 +194,14 @@ window.addEventListener("DOMContentLoaded", () => {
   // bluetooth
   document.getElementById("bluetooth").addEventListener("click", () => {
     // show/hide bluetooth settings
-    document.querySelector("#bluetooth-settings-modal").classList.toggle("hide");
+    document
+      .querySelector("#bluetooth-settings-modal")
+      .classList.toggle("hide");
   });
   document.getElementById("btClose").addEventListener("click", () => {
-    document.querySelector("#.bluetooth-settings-modal").classList.toggle("hide");
+    document
+      .querySelector("#.bluetooth-settings-modal")
+      .classList.toggle("hide");
   });
   // display app version from package.json
   window.electronAPI.appVersion().then((data) => {
@@ -215,9 +215,10 @@ window.addEventListener("DOMContentLoaded", () => {
       .getMusicFiles(window.appData.settingsFile.musicFolder)
       .then((data) => {
         window.appData.songsObj = data;
-        playAudio(data[0]);
+        // create audio object
+        window.appData.audio.audio = new Audio();
         musicEventRegister();
-        GetThreeSongsToGUI();
+        playAudio(data[0]);
       });
     setTimeout(getIPs, 4000);
     setTimeout(wifiInfo, 4000);
