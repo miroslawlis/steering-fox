@@ -9,7 +9,7 @@ const {
   lstatSync,
   readFile,
 } = require("fs");
-const serialBingings = require("@serialport/bindings-cpp");
+const { SerialPort } = require("serialport");
 const { spawn, exec } = require("child_process");
 const { findMusicFilesRecursivly } = require("../main-music-utils");
 const { default: sendMsgToCAN } = require("./ibus-senders");
@@ -120,9 +120,8 @@ const mainIpcs = (profileStartTime) => {
     const parentFolder = path.dirname(arg);
     return parentFolder;
   });
-  ipcMain.handle("listSerialPorts", () => {
-    serialBingings
-      .list()
+  ipcMain.handle("listSerialPorts", async () => {
+    await SerialPort.list()
       .then((ports, err) => {
         if (err) {
           // eslint-disable-next-line no-console
