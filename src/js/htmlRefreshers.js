@@ -1,4 +1,3 @@
-import { saveSettingsToFile } from "./settings";
 import debugLog, { hexToAscii } from "./utils";
 
 export function dateAndTimeSetInHTML() {
@@ -8,10 +7,10 @@ export function dateAndTimeSetInHTML() {
   const timeDateElement = document.querySelector("#main #info .curent_time");
   // get time from instrument claster (CAN)
 
-  if (window.CANdata.time_instrument_cluster) {
+  if (window.CANdata.timeFromInstrumentCluster) {
     // get time from instrument claster (CAN)
     timeDateElement.innerHTML =
-      `<span class="time">${window.CANdata.time_instrument_cluster}</span>` +
+      `<span class="time">${window.CANdata.timeFromInstrumentCluster}</span>` +
       `<span class="date">${date}</span>`;
     // to do
     // set time and date (on OS) from CAN/car?
@@ -50,89 +49,89 @@ export function CPUtemp() {
 
 export function guiUpdateData() {
   // neerest town
-  if (window.CANdata.town_nav) {
-    // document.querySelector('.grid-cell.nearest_town .data').innerText = window.CANdata.town_nav;
+  if (window.CANdata.townNav) {
+    // document.querySelector('.grid-cell.nearest_town .data').innerText = window.CANdata.townNav;
   }
 
   // alltitude, with conversion
-  if (window.CANdata.gps_altitude) {
+  if (window.CANdata.altitude) {
     document.querySelector(
       ".grid-cell.altitude .data"
-    ).innerHTML = `${window.CANdata.gps_altitude}<div class="small text">m</div>`;
+    ).innerHTML = `${window.CANdata.altitude}<div class="small text">m</div>`;
   }
 
   // Temperature outside
-  if (window.CANdata.temp_outside) {
-    window.CANdata.temp_outside =
-      window.CANdata.temp_outside.length > 7
-        ? hexToAscii(window.CANdata.temp_outside)
-        : window.CANdata.temp_outside;
+  if (window.CANdata.tempOutside) {
+    window.CANdata.tempOutside =
+      window.CANdata.tempOutside.length > 7
+        ? hexToAscii(window.CANdata.tempOutside)
+        : window.CANdata.tempOutside;
 
     // to string conversion
-    window.CANdata.temp_outside += "";
+    window.CANdata.tempOutside += "";
 
-    if (window.CANdata.temp_outside.includes(" ")) {
-      window.CANdata.temp_outside = window.CANdata.temp_outside.trim();
+    if (window.CANdata.tempOutside.includes(" ")) {
+      window.CANdata.tempOutside = window.CANdata.tempOutside.trim();
     } else if (
-      window.CANdata.temp_outside.includes("+") ||
-      window.CANdata.temp_outside.includes("-")
+      window.CANdata.tempOutside.includes("+") ||
+      window.CANdata.tempOutside.includes("-")
     ) {
-      window.CANdata.temp_outside = window.CANdata.temp_outside.replace(
+      window.CANdata.tempOutside = window.CANdata.tempOutside.replace(
         "+",
         "+ "
       );
-      window.CANdata.temp_outside = window.CANdata.temp_outside.replace(
+      window.CANdata.tempOutside = window.CANdata.tempOutside.replace(
         "-",
         "- "
       );
-      window.CANdata.temp_outside = window.CANdata.temp_outside.replace(
+      window.CANdata.tempOutside = window.CANdata.tempOutside.replace(
         ".",
         ","
       );
 
       document.querySelector(
-        ".grid-cell.window.CANdata.temp_outside_car .data"
-      ).innerText = `${window.CANdata.temp_outside} \xB0C`;
+        ".grid-cell.temp_outside_car .data"
+      ).innerText = `${window.CANdata.tempOutside} \xB0C`;
     }
   }
 
-  if (window.CANdata.coolant_temp) {
+  if (window.CANdata.coolantTemp) {
     document.querySelector(
-      ".grid-cell.window.CANdata.coolant_temp .data"
-    ).innerText = `${window.CANdata.coolant_temp} \xB0C`;
+      ".grid-cell.coolant_temp .data"
+    ).innerText = `${window.CANdata.coolantTemp} \xB0C`;
   }
 
   // fuel consumption 1
-  if (window.CANdata.fuel_consumption_1) {
+  if (window.CANdata.fuelConsumption1) {
     document.querySelector(
       "#main .fuel_cons1 .data"
-    ).innerHTML = `<div class="data1">${window.CANdata.fuel_consumption_1}</div><div class="small text">l/100km</div>`;
+    ).innerHTML = `<div class="data1">${window.CANdata.fuelConsumption1}</div><div class="small text">l/100km</div>`;
   }
   // fuel consumption 2
-  if (window.CANdata.fuel_consumption_2) {
+  if (window.CANdata.fuelConsumption2) {
     document.querySelector(
       ".grid-cell.fuel_cons2 .data"
-    ).innerHTML = `${window.CANdata.fuel_consumption_2}<div class="small text">l/100km</div>`;
+    ).innerHTML = `${window.CANdata.fuelConsumption2}<div class="small text">l/100km</div>`;
   }
 
   // light sensor in place of weather forecast
-  if (window.CANdata.light_sensor) {
+  if (window.CANdata.lightSensor) {
     document.querySelector(".grid-cell.weather_forecast").innerText =
-      window.CANdata.light_sensor;
+      window.CANdata.lightSensor;
   }
 
   // window.CANdata.range
   if (window.CANdata.range) {
     document.querySelector(
-      ".grid-cell.window.CANdata.range .data"
+      ".grid-cell.range .data"
     ).innerHTML = `${window.CANdata.range}<div class="small text">km</div>`;
   }
 
-  // window.CANdata.avg_speed
-  if (window.CANdata.avg_speed) {
+  // window.CANdata.avgSpeed
+  if (window.CANdata.avgSpeed) {
     document.querySelector(
-      ".grid-cell.window.CANdata.avg_speed .data"
-    ).innerHTML = `${window.CANdata.avg_speed}<div class="small text">km/h</div>`;
+      ".grid-cell.avg_speed .data"
+    ).innerHTML = `${window.CANdata.avgSpeed}<div class="small text">km/h</div>`;
   }
 
   CPUtemp();

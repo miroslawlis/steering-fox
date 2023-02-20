@@ -27,8 +27,10 @@ contextBridge.exposeInMainWorld("electronAPI", {
   CPUtemp: () => ipcRenderer.invoke("CPUtemp"),
   getSong: (filePath) => ipcRenderer.invoke("getSong", filePath),
   getWifiSSID: () => ipcRenderer.invoke("getWifiSSID"),
-  getListOfAvailableNetworks: () => ipcRenderer.invoke("getListOfAvailableNetworks"),
+  getListOfAvailableNetworks: () =>
+    ipcRenderer.invoke("getListOfAvailableNetworks"),
   disconnectFromWifi: () => ipcRenderer.invoke("disconnectFromWifi"),
   connectToWifiNetwork: () => ipcRenderer.invoke("connectToWifiNetwork"),
-  
+  onCAN: (callback) => ipcRenderer.on("fromCAN", callback),
+  sendMsgToCAN: (data) => ipcRenderer.invoke("sendMsgToCAN", data),
 });

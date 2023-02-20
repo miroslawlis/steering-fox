@@ -4,12 +4,13 @@ const profileStartTime = Date.now();
 // Modules to control application life and create native browser window
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { app, BrowserWindow } = require("electron");
-const mainIpcs = require("./js/main-ipcs");
+const mainIpcs = require("./js/mainProcess/ipcs");
 const {
   default: handleSquirrelEvent,
 } = require("./js/main-squirel-events-handler");
 
 const { default: initUpdates } = require("./js/main-updates");
+const { default: initIBUS } = require("./js/mainProcess/ibus");
 require("update-electron-app")({
   updateInterval: "1 hour",
   notifyUser: true,
@@ -61,6 +62,8 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
   createWindow();
+
+  initIBUS();
 
   if (handleSquirrelEvent() === "firstrun") {
     setTimeout(initUpdates, 30000);

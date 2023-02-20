@@ -9,9 +9,10 @@ const {
   lstatSync,
   readFile,
 } = require("fs");
-const serialBingings = require("@serialport/bindings");
+const serialBingings = require("@serialport/bindings-cpp");
 const { spawn, exec } = require("child_process");
-const { findMusicFilesRecursivly } = require("./main-music-utils");
+const { findMusicFilesRecursivly } = require("../main-music-utils");
+const { default: sendMsgToCAN } = require("./ibus-senders");
 
 const convertSong = (filePath) => {
   const songPromise = new Promise((resolve, reject) => {
@@ -167,6 +168,9 @@ const mainIpcs = (profileStartTime) => {
   ipcMain.handle("getListOfAvailableNetworks", getListOfAvailableNetworks);
   ipcMain.handle("disconnectFromWifi", disconnectFromWifi);
   ipcMain.handle("connectToWifiNetwork", connectToWifiNetwork);
+  ipcMain.handle("sendMsgToCAN", (event, data) => {
+    sendMsgToCAN(data);
+  });
 };
 
 module.exports = mainIpcs;

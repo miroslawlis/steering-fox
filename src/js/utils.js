@@ -29,10 +29,10 @@
 //     });
 //   }
 // }
-export default function debugLog() {
+export default function debugLog(...args) {
   if (window.appData.debugMode) {
     // eslint-disable-next-line prefer-spread
-    console.log.apply(console, arguments);
+    console.log.apply(console, args);
   }
 }
 
@@ -46,28 +46,6 @@ export function hexToAscii(str) {
     output += String.fromCharCode(parseInt(hex.substr(n, 2), 16));
   }
   return output;
-}
-
-export function wrtieIBUSdataToFile(...args) {
-  const captureIBUSandSave = document.getElementById(
-    "checkbox-ibus-collect"
-  ).checked;
-  // const output_file = fs.createWriteStream(
-  //   `DATA_FROM_IBUS_${new Date().toISOString().split("T")[0]}.txt`,
-  //   { flags: "a" }
-  // );
-
-  if (!captureIBUSandSave) {
-    return;
-  }
-
-  // output_file.on("error", (error) => {
-  //   console.error(error);
-  // });
-  // output_file.write(`${args.join(", ")}\n`);
-  // output_file.end();
-
-  debugLog("ibus data saved to file");
 }
 
 export function isJsonString(str) {

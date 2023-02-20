@@ -32,7 +32,10 @@ import Keyboard from "./js/keyboard";
 import "./js/bluetooth";
 import { getWifiInfo } from "./js/wifi";
 import "./js/translation";
-import dialogCloseHandler, { modalClasses } from "./js/modal";
+import dialogCloseHandler, {
+  dialogShowHandler,
+  modalClasses,
+} from "./js/modal";
 import playAudio, {
   pauseAudio,
   muteAudio,
@@ -80,20 +83,12 @@ function timeSetModal() {
 }
 
 function fuelConsResetModal() {
-  const elemModal = window.appData.modalTemplateEl.modalConfirm;
-
-  const modalFuleReset = document.createElement("div");
-  modalFuleReset.id = "modalConfirmWrap";
-  modalFuleReset.classList = `${modalClasses[0]} ${modalClasses[1]}`;
-
-  modalFuleReset.innerHTML = elemModal;
-
-  document.body.appendChild(modalFuleReset);
-
-  // add attribute "onclick" to template file
-
-  document.querySelector("#modalConfirmWrap dialog .confirm").click(() => {
-    // fire reset fuel1 CAN function
+  // show dialog
+  const dialogEl = document.getElementById("modalConfirm");
+  dialogShowHandler(dialogEl);
+  // after confirm send reset
+  dialogEl.querySelector(".confirm").addEventListener("click", () => {
+    // TODO: add reset fuel consumption function
   });
 }
 
