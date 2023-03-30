@@ -93,7 +93,7 @@ function connectToWifiNetwork() {
   });
 }
 
-const mainIpcs = (profileStartTime) => {
+const mainIpcs = (profileStartTime, ibusInstance) => {
   ipcMain.handle("getMusicFiles", (event, folderPath) =>
     findMusicFilesRecursivly(folderPath)
   );
@@ -126,7 +126,7 @@ const mainIpcs = (profileStartTime) => {
         if (err) {
           // eslint-disable-next-line no-console
           console.log(`serialPort list error`, err);
-          return null;
+          return;
         }
         // eslint-disable-next-line no-console
         console.log("ports: ", ports);
@@ -168,7 +168,7 @@ const mainIpcs = (profileStartTime) => {
   ipcMain.handle("disconnectFromWifi", disconnectFromWifi);
   ipcMain.handle("connectToWifiNetwork", connectToWifiNetwork);
   ipcMain.handle("sendMsgToCAN", (event, data) => {
-    sendMsgToCAN(data);
+    sendMsgToCAN(data, ibusInstance);
   });
 };
 

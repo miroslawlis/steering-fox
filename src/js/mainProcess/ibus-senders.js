@@ -1,6 +1,15 @@
-import { ibusInterface } from "./ibus";
+export default function sendMsgToCAN(
+  requestName,
+  ibusInterface,
+  arg1,
+  arg2,
+  arg3
+) {
+  if (Object.keys(ibusInterface) === 0) {
+    // ibus not initialised
+    return;
+  }
 
-export default function sendMsgToCAN(requestName, arg1, arg2, arg3) {
   switch (requestName) {
     // request for fuel consumption 1
     case "fuelConsumption1":

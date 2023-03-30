@@ -1,13 +1,10 @@
 import { BrowserWindow } from "electron";
+
 import { wrtieIBUSdataToFile } from "./utils";
 
-const { IbusInterface, IbusDevices } = require("ibus");
+const { IbusDevices } = require("ibus");
 
 // config
-const device = "/dev/ttyUSB0";
-
-// setup interface
-export const ibusInterface = new IbusInterface(device);
 
 export function sendAllData(data) {
   // id, from, to, message, message hex, analyzing, description
@@ -18,7 +15,7 @@ export function sendAllData(data) {
     ${data}`;
 }
 
-export default function initIBUS() {
+export default function initIBUSinMain(ibusInterface) {
   // disables logs from ibus (lots of colorfull spam, "ibus" is using "debug" package)
   // const debug = require("debug");
   // debug.disable();
@@ -26,13 +23,17 @@ export default function initIBUS() {
   // Configure your device location
 
   function init() {
-    ibusInterface.startup();
+    try {
+      ibusInterface.startup();
+    } catch (error) {
+      console.log(error);
+    }
   }
 
   // main start
-  if (window.appData.isLinux) {
-    init();
-  }
+  // if (window.appData.isLinux) {
+  init();
+  // }
 
   // Message structure:
   // 1. Transmitter address (8 bit Source ID)
@@ -48,6 +49,7 @@ export default function initIBUS() {
   // Add an event listener on the ibus interface output stream.
 
   function onIbusDataHandler(data) {
+    console.log(data)
     const msgDescryption = "";
     const buffMsg = Buffer.from(data.msg);
     const buffMsgHex = buffMsg.toString("hex").toLowerCase();

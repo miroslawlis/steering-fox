@@ -1,4 +1,5 @@
 import debugLog, { hexToAscii } from "./utils";
+import { saveSettingsToFile } from "./settings";
 
 export function dateAndTimeSetInHTML() {
   const dateObj = new Date();
@@ -84,10 +85,7 @@ export function guiUpdateData() {
         "-",
         "- "
       );
-      window.CANdata.tempOutside = window.CANdata.tempOutside.replace(
-        ".",
-        ","
-      );
+      window.CANdata.tempOutside = window.CANdata.tempOutside.replace(".", ",");
 
       document.querySelector(
         ".grid-cell.temp_outside_car .data"

@@ -17,4 +17,7 @@ module.exports = {
   //   serialport: "serialport", // Ref: https://copyprogramming.com/howto/electron-and-serial-ports
   // },
   // externals: ["serialport"],
+  externals: {
+    serialport: "serialport",
+  },
 };
