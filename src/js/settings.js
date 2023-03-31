@@ -1,4 +1,3 @@
-import { listenForUIchanges, updateGUIwithSettings } from "./htmlRefreshers";
 import debugLog from "./utils";
 import { SETTINGS_FILE_NAME } from "./var";
 
@@ -11,44 +10,6 @@ export function getUserPath() {
         .pathJoin([userPath, SETTINGS_FILE_NAME])
         .then((path) => path)
     );
-}
-
-export function checkForSettingsFileCreate() {
-  // check if settings.json file dose not egzist in app folder
-  // if it's not there then create it that file with default data
-  // try {
-  return window.electronAPI
-    .existsSync(window.appData.userPath)
-    .then((exist) => {
-      if (exist) {
-        return window.electronAPI
-          .readFileSync(window.appData.userPath)
-          .then((settingsFileContent) => {
-            // file exist and no error
-            const parsed = JSON.parse(settingsFileContent);
-            window.appData.settingsFile = parsed;
-            debugLog("Settings file exist");
-            settingsFileContentHandler(parsed);
-            return parsed;
-          });
-      }
-      // file not exist or empty
-      debugLog("Settings file not exist or empty, creating...");
-
-      const defaultSettingsFileContent = {
-        musicFolder: "",
-        theme: "light",
-        audioVolume: 0.5,
-      };
-
-      return window.electronAPI.writeFileSync([
-        window.appData.userPath,
-        JSON.stringify(defaultSettingsFileContent),
-      ]);
-    });
-  // } catch (err) {
-  //   console.error(`Setting file: ${err}`);
-  // }
 }
 
 export function saveSettingsToFile() {
@@ -110,6 +71,20 @@ export function saveSettingsToFile() {
   }
 }
 
+export function updateGUIwithSettings(settingsObj) {
+  // update GUI
+  const themeElement = document.querySelector("#settings .themeOption");
+  const musicFolderEl = document.querySelector("#settings .item .filepath");
+
+  musicFolderEl.innerText = settingsObj.musicFolder;
+
+  themeElement.value = settingsObj.theme;
+  const event = new Event("change");
+  themeElement.dispatchEvent(event);
+
+  window.appData.audio.audio.volume = settingsObj.audioVolume;
+}
+
 export function settingsFileContentHandler(fileContentObject) {
   // if settings file contain folderPath (and it's not empty string) then use it in var musicFolder else use "/Music/"
   if (!fileContentObject) return;
@@ -131,6 +106,65 @@ export function settingsFileContentHandler(fileContentObject) {
   } catch (error) {
     console.error(error);
   }
+}
+
+export function checkForSettingsFileCreate() {
+  // check if settings.json file dose not egzist in app folder
+  // if it's not there then create it that file with default data
+  // try {
+  return window.electronAPI
+    .existsSync(window.appData.userPath)
+    .then((exist) => {
+      if (exist) {
+        return window.electronAPI
+          .readFileSync(window.appData.userPath)
+          .then((settingsFileContent) => {
+            // file exist and no error
+            const parsed = JSON.parse(settingsFileContent);
+            window.appData.settingsFile = parsed;
+            debugLog("Settings file exist");
+            settingsFileContentHandler(parsed);
+            return parsed;
+          });
+      }
+      // file not exist or empty
+      debugLog("Settings file not exist or empty, creating...");
+
+      const defaultSettingsFileContent = {
+        musicFolder: "",
+        theme: "light",
+        audioVolume: 0.5,
+      };
+
+      return window.electronAPI.writeFileSync([
+        window.appData.userPath,
+        JSON.stringify(defaultSettingsFileContent),
+      ]);
+    });
+  // } catch (err) {
+  //   console.error(`Setting file: ${err}`);
+  // }
+}
+
+export function listenForUIchanges() {
+  // add events listners responsible for saving when user interacts with UI
+  const elToWatch = document.querySelectorAll(".settings-watcher");
+
+  elToWatch.forEach((el) => {
+    el.addEventListener(
+      "change",
+      () => {
+        console.log(`listenForUIchanges`);
+        saveSettingsToFile();
+      },
+      false
+    );
+  });
+  window.appData.audio.audio.onvolumechange = () => {
+    console.log(`volumechange`);
+  };
+
+  // theme and language chages and saves to settings file are handled in elements on click functions
 }
 
 export function settingsInit() {

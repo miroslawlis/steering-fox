@@ -9,9 +9,10 @@ const {
   lstatSync,
   readFile,
 } = require("fs");
-const serialBingings = require("@serialport/bindings");
+const { SerialPort } = require("serialport");
 const { spawn, exec } = require("child_process");
-const { findMusicFilesRecursivly } = require("./main-music-utils");
+const { findMusicFilesRecursivly } = require("../main-music-utils");
+const { default: sendMsgToCAN } = require("./ibus-senders");
 
 const convertSong = (filePath) => {
   const songPromise = new Promise((resolve, reject) => {
@@ -92,7 +93,7 @@ function connectToWifiNetwork() {
   });
 }
 
-const mainIpcs = (profileStartTime) => {
+const mainIpcs = (profileStartTime, ibusInstance) => {
   ipcMain.handle("getMusicFiles", (event, folderPath) =>
     findMusicFilesRecursivly(folderPath)
   );
@@ -119,9 +120,8 @@ const mainIpcs = (profileStartTime) => {
     const parentFolder = path.dirname(arg);
     return parentFolder;
   });
-  ipcMain.handle("listSerialPorts", () => {
-    serialBingings
-      .list()
+  ipcMain.handle("listSerialPorts", async () => {
+    await SerialPort.list()
       .then((ports, err) => {
         if (err) {
           // eslint-disable-next-line no-console
@@ -157,7 +157,7 @@ const mainIpcs = (profileStartTime) => {
     () =>
       new Promise((resolve, reject) => {
         const temp = spawn("cat", ["/sys/class/thermal/thermal_zone0/temp"]);
-        temp.stdout.on("data", async (data) => resolve(data / 1000));
+        temp.stdout.on("data", async (data) => resolve(Number(data) / 1000));
         temp.stdout.on("error", async (err) => reject(err));
       })
   );
@@ -167,6 +167,9 @@ const mainIpcs = (profileStartTime) => {
   ipcMain.handle("getListOfAvailableNetworks", getListOfAvailableNetworks);
   ipcMain.handle("disconnectFromWifi", disconnectFromWifi);
   ipcMain.handle("connectToWifiNetwork", connectToWifiNetwork);
+  ipcMain.handle("sendMsgToCAN", (event, data) => {
+    sendMsgToCAN(data, ibusInstance);
+  });
 };
 
 module.exports = mainIpcs;

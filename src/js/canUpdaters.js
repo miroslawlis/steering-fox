@@ -1,7 +1,4 @@
-// import sendCAN from "./ibus";
 import dialogCloseHandler from "./modal";
-
-const sendCAN = () => {};
 
 export default function updateTimeCANfromInput(event) {
   const el = document.getElementById("modalTwoInputs");
@@ -12,7 +9,7 @@ export default function updateTimeCANfromInput(event) {
     hour.match(/^[0-9][0-9]$/) != null &&
     minutes.match(/^[0-9][0-9]$/) != null
   ) {
-    sendCAN("update-time", hour, minutes);
+    window.electronAPI.sendMsgToCAN("update-time", hour, minutes);
     dialogCloseHandler(event.target);
   }
 }
@@ -20,25 +17,25 @@ export default function updateTimeCANfromInput(event) {
 export function asksCANforNewData() {
   // checks if variable is empty, if soo then ask CAN for new data
 
-  if (!window.CANdata.fuel_consumption_1) {
-    sendCAN("window.CANdata.fuel_consumption_1");
+  if (!window.CANdata.fuelConsumption1) {
+    window.electronAPI.sendMsgToCAN("fuelConsumption1");
   }
-  if (!window.CANdata.fuel_consumption_2) {
-    sendCAN("window.CANdata.fuel_consumption_2");
+  if (!window.CANdata.fuelConsumption2) {
+    window.electronAPI.sendMsgToCAN("fuelConsumption2");
   }
-  if (!window.CANdata.temp_outside) {
-    sendCAN("window.CANdata.temp_outside");
+  if (!window.CANdata.tempOutside) {
+    window.electronAPI.sendMsgToCAN("tempOutside");
   }
   if (!window.CANdata.distance) {
-    sendCAN("window.CANdata.distance");
+    window.electronAPI.sendMsgToCAN("distance");
   }
   if (!window.CANdata.range) {
-    sendCAN("window.CANdata.range");
+    window.electronAPI.sendMsgToCAN("range");
   }
-  if (!window.CANdata.avg_speed) {
-    sendCAN("window.CANdata.avg_speed");
+  if (!window.CANdata.avgSpeed) {
+    window.electronAPI.sendMsgToCAN("avgSpeed");
   }
-  if (!window.CANdata.time_instrument_cluster) {
-    sendCAN("time");
+  if (!window.CANdata.timeFromInstrumentCluster) {
+    window.electronAPI.sendMsgToCAN("time");
   }
 }

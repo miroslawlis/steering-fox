@@ -1,15 +1,21 @@
 // mesuure start time
 const profileStartTime = Date.now();
 
+require("log-node")();
+
 // Modules to control application life and create native browser window
 // eslint-disable-next-line import/no-extraneous-dependencies
 const { app, BrowserWindow } = require("electron");
-const mainIpcs = require("./js/main-ipcs");
+const IbusInterface = require("ibus/src/IbusInterface");
+const { SerialPort } = require("serialport");
+const mainIpcs = require("./js/mainProcess/ipcs");
 const {
   default: handleSquirrelEvent,
 } = require("./js/main-squirel-events-handler");
 
 const { default: initUpdates } = require("./js/main-updates");
+const { default: initIBUSinMain } = require("./js/mainProcess/ibus");
+
 require("update-electron-app")({
   updateInterval: "1 hour",
   notifyUser: true,
@@ -25,7 +31,7 @@ if (require("electron-squirrel-startup")) {
 
 const createWindow = () => {
   // Create the browser window.
-  const mainWindow = new BrowserWindow({
+  let mainWindow = new BrowserWindow({
     width: 800,
     height: 480,
     frame: !app.isPackaged,
@@ -54,6 +60,13 @@ const createWindow = () => {
   // mainWindow.loadFile(
   //   "F:/Repozytoria/my-app/src/index.html"
   // );
+  // Emitted when the window is closed.
+  mainWindow.on("closed", () => {
+    // Dereference the window object, usually you would store windows
+    // in an array if your app supports multi windows, this is the time
+    // when you should delete the corresponding element.
+    mainWindow = null;
+  });
 };
 
 // This method will be called when Electron has finished
@@ -61,6 +74,32 @@ const createWindow = () => {
 // Some APIs can only be used after this event occurs.
 app.on("ready", () => {
   createWindow();
+
+  // let ibusInterface = {};
+
+  SerialPort.list().then((ports, err) => {
+    if (err) {
+      // eslint-disable-next-line no-console
+      console.log(`serialPort list error`, err);
+      return;
+    }
+    // eslint-disable-next-line no-console
+    console.log("ports: ", ports);
+    // setup interface
+    // const device = "/dev/ttyUSB0"; // for linux
+    const ibusInterface = new IbusInterface(
+      app.isPackaged ? ports[0].path : "/dev/ROBOT"
+    );
+
+    try {
+      initIBUSinMain(ibusInterface);
+    } catch (error) {
+      console.log(error);
+    }
+
+    // API
+    mainIpcs(profileStartTime, ibusInterface);
+  });
 
   if (handleSquirrelEvent() === "firstrun") {
     setTimeout(initUpdates, 30000);
@@ -94,7 +133,4 @@ app.on("activate", () => {
 app.commandLine.appendSwitch("--autoplay-policy", "no-user-gesture-required");
 
 // console.log(powerSaveBlocker.isStarted(id))
-app.whenReady().then(() => {
-  // API
-  mainIpcs(profileStartTime);
-});
+// app.whenReady().then(() => {});
