@@ -1,5 +1,4 @@
 import debugLog, { hexToAscii } from "./utils";
-import { saveSettingsToFile } from "./settings";
 
 export function dateAndTimeSetInHTML() {
   const dateObj = new Date();
@@ -42,9 +41,9 @@ export function CPUtemp() {
       debugLog(error);
     }
   } else {
-    document.querySelector("#info .cpu_temp .data").innerHTML = `${Math.round(
-      "no"
-    )}<div class="small text">\xB0C</div>`;
+    document.querySelector(
+      "#info .cpu_temp .data"
+    ).innerHTML = `-<div class="small text">\xB0C</div>`;
   }
 }
 
@@ -168,37 +167,3 @@ export function getIPs() {
   });
 }
 
-export function updateGUIwithSettings(settingsObj) {
-  // update GUI
-  const themeElement = document.querySelector("#settings .themeOption");
-  const musicFolderEl = document.querySelector("#settings .item .filepath");
-
-  musicFolderEl.innerText = settingsObj.musicFolder;
-
-  themeElement.value = settingsObj.theme;
-  const event = new Event("change");
-  themeElement.dispatchEvent(event);
-
-  window.appData.audio.audio.volume = settingsObj.audioVolume;
-}
-
-export function listenForUIchanges() {
-  // add events listners responsible for saving when user interacts with UI
-  const elToWatch = document.querySelectorAll(".settings-watcher");
-
-  elToWatch.forEach((el) => {
-    el.addEventListener(
-      "change",
-      () => {
-        console.log(`listenForUIchanges`);
-        saveSettingsToFile();
-      },
-      false
-    );
-  });
-  window.appData.audio.audio.onvolumechange = () => {
-    console.log(`volumechange`);
-  };
-
-  // theme and language chages and saves to settings file are handled in elements on click functions
-}

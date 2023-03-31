@@ -126,7 +126,7 @@ const mainIpcs = (profileStartTime, ibusInstance) => {
         if (err) {
           // eslint-disable-next-line no-console
           console.log(`serialPort list error`, err);
-          return;
+          return null;
         }
         // eslint-disable-next-line no-console
         console.log("ports: ", ports);
@@ -157,7 +157,7 @@ const mainIpcs = (profileStartTime, ibusInstance) => {
     () =>
       new Promise((resolve, reject) => {
         const temp = spawn("cat", ["/sys/class/thermal/thermal_zone0/temp"]);
-        temp.stdout.on("data", async (data) => resolve(data / 1000));
+        temp.stdout.on("data", async (data) => resolve(Number(data) / 1000));
         temp.stdout.on("error", async (err) => reject(err));
       })
   );
